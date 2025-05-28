@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "b5f887aa-95b0-4809-aa11-ef9b12ab271f",
+		"name": "Bootcamp CampusDual - Peticiones Spring",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6379296"
+	},
+	"item": [
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "Test controller",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30030/contacts/testController",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"contacts",
+								"testController"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all contacts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:30030/contacts/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"contacts",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete contact",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/contacts/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"contacts",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get specific contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n     \"id\": 29\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/contacts/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"contacts",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tanny\",\r\n    \"surname1\": \"Bingle\",\r\n    \"surname2\": \"Dulwitch\",\r\n    \"phone\": \"5707788652\",\r\n    \"email\": \"tdulwitcht@zimbio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/contacts/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"contacts",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update contact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 30,\r\n    \"name\": \"Darcey\",\r\n    \"surname1\": \"Bingle\",\r\n    \"surname2\": \"Dulwitch\",\r\n    \"phone\": \"5707788652\",\r\n    \"email\": \"tdulwitcht@zimbio.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/contacts/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"contacts",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Test JWT Auth",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "demo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "demo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"demo\",\r\n    \"password\": \"demo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/auth/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test JWT Singup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"test\",\r\n    \"password\": \"demo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test JWT Public",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/test/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"test",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test JWT Private",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vIiwiaWF0IjoxNzQ4MzU3MjE4LCJleHAiOjE3NDgzOTMyMTh9.7JIQwKqwAxP7LDmtKw3vRJOhiWaKfoGUQxXtukTQzpo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"demo\",\r\n    \"password\": \"demo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:30030/test/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "30030",
+							"path": [
+								"test",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkZW1vIiwiaWF0IjoxNzQ4MzU3MjE4LCJleHAiOjE3NDgzOTMyMTh9.7JIQwKqwAxP7LDmtKw3vRJOhiWaKfoGUQxXtukTQzpo",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
