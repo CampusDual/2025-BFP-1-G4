@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Contacts",
+			"name": "Enterprises",
 			"item": [
 				{
 					"name": "Test controller",
@@ -15,14 +15,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:30030/contacts/testController",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/testController",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"45.84.210.174"
 							],
-							"port": "30030",
+							"port": "65432",
 							"path": [
-								"contacts",
+								"enterprises",
 								"testController"
 							]
 						}
@@ -30,12 +30,12 @@
 					"response": []
 				},
 				{
-					"name": "Get all contacts",
+					"name": "Get all enterpises",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:30030/contacts/getAll",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/getAll",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -64,7 +64,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:30030/contacts/delete",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/delete",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -93,7 +93,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:30030/contacts/get",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/get",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -122,7 +122,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:30030/contacts/add",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/add",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -151,7 +151,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:30030/contacts/update",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/update",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -267,7 +267,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:30030/test/all",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/test/all",
 							"protocol": "http",
 							"host": [
 								"localhost"
