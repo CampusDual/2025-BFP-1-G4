@@ -1,13 +1,13 @@
 server:
-  port: 30030
+  port: 65432
 spring:
   banner:
     location: classpath:banner.txt
   datasource:
-    driver-class-name: org.hsqldb.jdbcDriver
-    url: jdbc:hsqldb:hsql://localhost:9013/templateDB
-    username: SA
-    password:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql:45.84.210.174
+    username: testuser
+    password: testuser
   jpa:
     hibernate:
       ddl-auto: none
@@ -16,7 +16,7 @@ spring:
     properties:
       hibernate:
         format_sql: false
-        dialect: org.hibernate.dialect.HSQLDialect
+        dialect: org.hibernate.dialect.PostgresSQLDialect
 logging:
   level:
     org:

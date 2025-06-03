@@ -1,15 +1,15 @@
-package com.campusdual.bfp.model.dto;
+package com.campusdual.bfp.controller;
 
 public class SignupDTO {
     private String login;
     private String password;
 
-    public String getLogin() {
-        return this.login;
-    }
-
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getLogin() {
+        return this.login;
     }
 
     public String getPassword() {
