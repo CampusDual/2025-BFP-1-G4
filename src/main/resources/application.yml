@@ -1,5 +1,5 @@
 server:
-  port: 65432
+  port: 30030
 spring:
   banner:
     location: classpath:banner.txt
