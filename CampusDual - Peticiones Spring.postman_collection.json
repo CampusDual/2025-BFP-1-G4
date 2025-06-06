@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/testController",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterprises/testController",
 							"protocol": "http",
 							"host": [
 								"45.84.210.174"
@@ -35,7 +35,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/getAll",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterprises/getAll",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -64,7 +64,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/delete",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterprises/delete",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -85,7 +85,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n     \"id\": 29\r\n }",
+							"raw": " {\r\n     \"ent_id\": 1\r\n }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +93,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/get",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterprises/get",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -122,7 +122,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/add",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterprises/add",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -137,13 +137,13 @@
 					"response": []
 				},
 				{
-					"name": "Update contact",
+					"name": "Update Enterprise",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 30,\r\n    \"name\": \"Darcey\",\r\n    \"surname1\": \"Bingle\",\r\n    \"surname2\": \"Dulwitch\",\r\n    \"phone\": \"5707788652\",\r\n    \"email\": \"tdulwitcht@zimbio.com\"\r\n}",
+							"raw": "{\r\n    \"ent_id\": 1,\r\n    \"ent_name\": \"prueba2\",\r\n    \"ent_email\": \"email@gmail.com\",\r\n    \"ent_phoneNumber\": \"111111111\",\r\n   \"ent_address\": \"coruna\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -151,7 +151,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterpises/update",
+							"raw": "http://45.84.210.174:65432/cd2025bfp1g4/enterprises/update",
 							"protocol": "http",
 							"host": [
 								"localhost"

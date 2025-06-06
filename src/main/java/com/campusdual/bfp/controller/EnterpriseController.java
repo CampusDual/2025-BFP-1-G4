@@ -18,7 +18,7 @@ public class EnterpriseController {
         return "Enterprises controller works!";
     }
 
-    @PostMapping(value = "/get")
+    @GetMapping(value = "/get")
     public EnterpriseDTO queryEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         return enterpriseService.queryEnterprise(enterpriseDTO);
     }
