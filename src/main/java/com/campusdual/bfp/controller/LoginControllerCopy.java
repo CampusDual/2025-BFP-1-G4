@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/login")
-public class LoginController {
+public class LoginControllerCopy {
     @Autowired
     private ILoginService loginService;
 
@@ -42,4 +42,6 @@ public class LoginController {
     public int deleteLogin(@RequestBody LoginDTO loginDTO) {
         return loginService.deleteLogin(loginDTO);
     }
+
+
 }

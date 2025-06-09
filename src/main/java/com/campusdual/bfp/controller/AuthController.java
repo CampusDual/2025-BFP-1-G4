@@ -33,7 +33,7 @@ public class AuthController {
     @Autowired
     JWTUtil jwtUtils;
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<String> authenticateUser(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
         if (authHeader == null || !authHeader.toLowerCase().startsWith("basic ")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Header auth is missing.");

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/enterprises")
-public class EnterpriseController {
+public class EnterpriseControllerCopy {
     @Autowired
     private IEnterpriseService enterpriseService;
 
