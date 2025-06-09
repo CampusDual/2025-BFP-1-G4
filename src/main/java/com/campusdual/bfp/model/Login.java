@@ -19,8 +19,8 @@ public class Login {
     public Login() {
     }
 
-    public Login(String log_username, String log_password) {
-        this.log_ent_id = log_username;
+    public Login(String log_ent_id, String log_password) {
+        this.log_ent_id = log_ent_id;
         this.log_password = log_password;
     }
 
