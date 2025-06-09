@@ -10,7 +10,7 @@ public class Login {
     private Integer log_id;
 
     @Column
-    private String log_username;
+    private String log_ent_id;
 
     @Column
     private String log_password;
@@ -20,7 +20,7 @@ public class Login {
     }
 
     public Login(String log_username, String log_password) {
-        this.log_username = log_username;
+        this.log_ent_id = log_username;
         this.log_password = log_password;
     }
 
@@ -32,12 +32,12 @@ public class Login {
         this.log_id = log_id;
     }
 
-    public String getLog_username() {
-        return log_username;
+    public String getLog_ent_id() {
+        return log_ent_id;
     }
 
-    public void setLog_username(String log_username) {
-        this.log_username = log_username;
+    public void setLog_ent_id(String log_ent_id) {
+        this.log_ent_id = log_ent_id;
     }
 
     public String getLog_password() {
