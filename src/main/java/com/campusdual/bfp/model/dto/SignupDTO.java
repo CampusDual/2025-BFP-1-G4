@@ -1,4 +1,4 @@
-package com.campusdual.bfp.controller;
+package com.campusdual.bfp.model.dto;
 
 public class SignupDTO {
     private String login;
