@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/login")
-public class LoginControllerCopy {
+public class LoginController {
     @Autowired
     private ILoginService loginService;
 
