@@ -13,10 +13,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@SuppressWarnings("unused")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @SuppressWarnings("unused")
     @Autowired
     private UserDetailsService userDetailsService;
 
