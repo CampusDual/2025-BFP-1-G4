@@ -15,4 +15,5 @@ public interface IEnterpriseService {
     int updateEnterprise(EnterpriseDTO enterpriseDTO);
 
     int deleteEnterprise(EnterpriseDTO enterpriseDTO);
+
 }
