@@ -6,11 +6,14 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  getNombreEmpresa(): string {
+    throw new Error('Method not implemented.');
+  }
   private baseUrl = 'http://localhost:30030/auth';
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string}): Observable<string> {
+  login(credentials: { email: string, password: string }): Observable<string> {
 
     const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
 
