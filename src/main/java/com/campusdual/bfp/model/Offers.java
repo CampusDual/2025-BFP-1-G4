@@ -10,19 +10,19 @@ public class Offers {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (name = "enterpriseId")
+    @Column
     private Integer enterpriseId;
 
-    @Column (name = "title")
+    @Column
     private String title;
 
-    @Column (name = "description")
+    @Column
     private String description;
 
-    @Column (name = "publicationDate")
+    @Column
     private Date publicationDate;
 
-    @Column (name = "active")
+    @Column
     private boolean active;
 
     public Integer getId() {

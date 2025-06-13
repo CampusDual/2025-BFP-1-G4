@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IOffersService {
     //CRUD Operations
-    OffersDTO queryOffers(OffersDTO offersDTO);
+    //Puede usarse entero en vez de OffersDTO para el id
+    OffersDTO queryOffer(OffersDTO offersDTO);
     List<OffersDTO> queryAllOffers();
 }

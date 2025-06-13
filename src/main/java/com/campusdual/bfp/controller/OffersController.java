@@ -1,9 +1,6 @@
 package com.campusdual.bfp.controller;
 
-import com.campusdual.bfp.api.IEnterpriseService;
 import com.campusdual.bfp.api.IOffersService;
-import com.campusdual.bfp.model.dto.EnterpriseDTO;
-import com.campusdual.bfp.model.dto.LoginDTO;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +18,7 @@ public class OffersController {
 
     @GetMapping(value = "/get")
     public OffersDTO queryOffers(@RequestBody OffersDTO offersDTO) {
-        return offersService.queryOffers(offersDTO);
+        return offersService.queryOffer(offersDTO);
     }
 
     @GetMapping(value = "/getAll")
