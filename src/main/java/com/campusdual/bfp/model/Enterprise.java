@@ -7,64 +7,64 @@ import javax.persistence.*;
 public class Enterprise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ent_id;
+    private Integer id;
 
     @Column
-    private String ent_name;
+    private String name;
 
     @Column
-    private String ent_email;
+    private String email;
 
     @Column
-    private String ent_phoneNumber;
+    private String phoneNumber;
 
     @Column
-    private String ent_address;
+    private String address;
 
     public Enterprise() {
     }
 
     public Enterprise(String ent_name) {
-        this.ent_name = ent_name;
+        this.name = ent_name;
     }
 
-    public Integer getEnt_id() {
-        return ent_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setEnt_id(Integer ent_id) {
-        this.ent_id = ent_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getEnt_name() {
-        return ent_name;
+    public String getName() {
+        return name;
     }
 
-    public void setEnt_name(String ent_name) {
-        this.ent_name = ent_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEnt_email() {
-        return ent_email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEnt_email(String ent_email) {
-        this.ent_email = ent_email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getEnt_phoneNumber() {
-        return ent_phoneNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setEnt_phoneNumber(String ent_phoneNumber) {
-        this.ent_phoneNumber = ent_phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getEnt_address() {
-        return ent_address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setEnt_address(String ent_address) {
-        this.ent_address = ent_address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
