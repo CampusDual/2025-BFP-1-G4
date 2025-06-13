@@ -11,7 +11,7 @@ public class Offers {
     private Integer id;
 
     @Column (name = "enterpriseId")
-    private String enterpriseId;
+    private Integer enterpriseId;
 
     @Column (name = "title")
     private String title;
@@ -33,11 +33,11 @@ public class Offers {
         this.id = id;
     }
 
-    public String getEnterpriseId() {
+    public Integer getEnterpriseId() {
         return enterpriseId;
     }
 
-    public void setEnterpriseId(String enterpriseId) {
+    public void setEnterpriseId(Integer enterpriseId) {
         this.enterpriseId = enterpriseId;
     }
 
