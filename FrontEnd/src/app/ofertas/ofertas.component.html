@@ -1,0 +1,17 @@
+<!-- CONTENIDO PRINCIPAL -->
+<main class="page-container">
+  <h1 class="page-title">Ofertas de Empleo</h1>
+
+  <div class="ofertas-grid">
+    <mat-card *ngFor="let oferta of ofertas" class="oferta-card">
+      <mat-card-title>{{ oferta.titulo }}</mat-card-title>
+      <mat-card-content>
+        <p>{{ oferta.descripcion }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="warn" (click)="aplicar(oferta)">Aplicar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</main>
+
