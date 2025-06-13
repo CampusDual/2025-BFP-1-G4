@@ -21,7 +21,7 @@ public class LoginService implements ILoginService {
     @Override
     public LoginDTO queryLogin(LoginDTO loginDTO) {
         Login login = LoginMapper.INSTANCE.toEntity(loginDTO);
-        return LoginMapper.INSTANCE.toDTO(loginDao.getReferenceById(login.getId()));
+        return LoginMapper.INSTANCE.toDTO(loginDao.getReferenceById(login.getLog_id()));
     }
 
     @Override
@@ -33,7 +33,7 @@ public class LoginService implements ILoginService {
     public int insertLogin(LoginDTO loginDTO) {
         Login login = LoginMapper.INSTANCE.toEntity(loginDTO);
         loginDao.saveAndFlush(login);
-        return login.getId();
+        return login.getLog_id();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class LoginService implements ILoginService {
 
     @Override
     public int deleteLogin(LoginDTO loginDTO) {
-        int log_id = loginDTO.getId();
+        int log_id = loginDTO.getLog_id();
         Login login = LoginMapper.INSTANCE.toEntity(loginDTO);
         loginDao.delete(login);
         return log_id;

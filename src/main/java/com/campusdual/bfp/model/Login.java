@@ -7,45 +7,45 @@ import javax.persistence.*;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer log_id;
 
     @Column
-    private String enterpriseId;
+    private String log_ent_id;
 
     @Column
-    private String password;
+    private String log_password;
 
 
     public Login() {
     }
 
-    public Login(String enterpriseId, String password) {
-        this.enterpriseId = enterpriseId;
-        this.password = password;
+    public Login(String log_ent_id, String log_password) {
+        this.log_ent_id = log_ent_id;
+        this.log_password = log_password;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getLog_id() {
+        return log_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLog_id(Integer log_id) {
+        this.log_id = log_id;
     }
 
-    public String getEnterpriseId() {
-        return enterpriseId;
+    public String getLog_ent_id() {
+        return log_ent_id;
     }
 
-    public void setEnterpriseId(String enterpriseId) {
-        this.enterpriseId = enterpriseId;
+    public void setLog_ent_id(String log_ent_id) {
+        this.log_ent_id = log_ent_id;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLog_password() {
+        return log_password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLog_password(String log_password) {
+        this.log_password = log_password;
     }
 
 }
