@@ -24,22 +24,22 @@ public class EnterpriseController {
     }
 
     @GetMapping(value = "/getAll")
-    public List<EnterpriseDTO> queryAllContact() {
+    public List<EnterpriseDTO> queryAllEnterprise() {
         return enterpriseService.queryAllEnterprise();
     }
 
     @PostMapping(value = "/add")
-    public int addContact(@RequestBody EnterpriseDTO enterpriseDTO) {
+    public int addEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         return enterpriseService.insertEnterprise(enterpriseDTO);
     }
 
     @PutMapping(value = "/update")
-    public int updateContact(@RequestBody EnterpriseDTO enterpriseDTO) {
+    public int updateEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         return enterpriseService.updateEnterprise(enterpriseDTO);
     }
 
     @DeleteMapping(value = "/delete")
-    public int deleteContact(@RequestBody EnterpriseDTO enterpriseDTO) {
+    public int deleteEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         return enterpriseService.deleteEnterprise(enterpriseDTO);
     }
 

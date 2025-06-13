@@ -8,68 +8,68 @@ import java.util.Date;
 public class Offers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer off_id;
+    private Integer id;
 
-    @Column (name = "off_ent_id")
-    private String offEntID;
+    @Column
+    private Integer enterpriseId;
 
-    @Column (name = "off_title")
-    private String offTittle;
+    @Column
+    private String title;
 
-    @Column (name = "off_description")
-    private String offDescription;
+    @Column
+    private String description;
 
-    @Column (name = "off_date")
-    private Date offDate;
+    @Column
+    private Date publicationDate;
 
-    @Column (name = "off_active")
-    private boolean offActive;
+    @Column
+    private boolean active;
 
-    public Integer getOff_id() {
-        return off_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOff_id(Integer off_id) {
-        this.off_id = off_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getOffEntID() {
-        return offEntID;
+    public Integer getEnterpriseId() {
+        return enterpriseId;
     }
 
-    public void setOffEntID(String offEntID) {
-        this.offEntID = offEntID;
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 
-    public String getOffTittle() {
-        return offTittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setOffTittle(String offTittle) {
-        this.offTittle = offTittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getOffDescription() {
-        return offDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOffDescription(String offDescription) {
-        this.offDescription = offDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getOffDate() {
-        return offDate;
+    public Date getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setOffDate(Date offDate) {
-        this.offDate = offDate;
+    public void setPublicationDate(Date publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
-    public boolean isOffActive() {
-        return offActive;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setOffActive(boolean offActive) {
-        this.offActive = offActive;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

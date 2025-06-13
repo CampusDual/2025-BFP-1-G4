@@ -22,7 +22,7 @@ public class EnterpriseService implements IEnterpriseService {
     @Override
     public EnterpriseDTO queryEnterprise(EnterpriseDTO enterpriseDTO) {
         Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);
-        return EnterpriseMapper.INSTANCE.toDTO(enterpriseDao.getReferenceById(enterprise.getEnt_id()));
+        return EnterpriseMapper.INSTANCE.toDTO(enterpriseDao.getReferenceById(enterprise.getId()));
     }
 
     @Override
@@ -34,7 +34,7 @@ public class EnterpriseService implements IEnterpriseService {
     public int insertEnterprise(EnterpriseDTO enterpriseDTO) {
         Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);
         enterpriseDao.saveAndFlush(enterprise);
-        return enterprise.getEnt_id();
+        return enterprise.getId();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Override
     public int deleteEnterprise(EnterpriseDTO enterpriseDTO) {
-        int ent_id = enterpriseDTO.getEnt_id();
+        int ent_id = enterpriseDTO.getId();
         Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);
         enterpriseDao.delete(enterprise);
         return ent_id;

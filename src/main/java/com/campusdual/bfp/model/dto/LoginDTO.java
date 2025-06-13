@@ -1,31 +1,31 @@
 package com.campusdual.bfp.model.dto;
 
 public class LoginDTO {
-    private Integer log_id;
-    private String log_ent_id;
-    private String log_password;
+    private Integer id;
+    private String enterpriseId;
+    private String password;
 
-    public String getLog_password() {
-        return log_password;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLog_password(String log_password) {
-        this.log_password = log_password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getLog_ent_id() {
-        return log_ent_id;
+    public String getEnterpriseId() {
+        return enterpriseId;
     }
 
-    public void setLog_ent_id(String log_ent_id) {
-        this.log_ent_id = log_ent_id;
+    public void setEnterpriseId(String enterpriseId) {
+        this.enterpriseId = enterpriseId;
     }
 
-    public Integer getLog_id() {
-        return log_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setLog_id(Integer log_id) {
-        this.log_id = log_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
