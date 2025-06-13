@@ -1,7 +1,5 @@
 package com.campusdual.bfp.api;
 
-import com.campusdual.bfp.model.dto.LoginDTO;
-
 import java.util.List;
 
 public interface ILoginService {

@@ -1,7 +1,5 @@
 package com.campusdual.bfp.model.dto.dtomapper;
 
-import com.campusdual.bfp.model.Login;
-import com.campusdual.bfp.model.dto.LoginDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

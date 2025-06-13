@@ -1,7 +1,5 @@
 package com.campusdual.bfp.controller;
 
-import com.campusdual.bfp.api.ILoginService;
-import com.campusdual.bfp.model.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
