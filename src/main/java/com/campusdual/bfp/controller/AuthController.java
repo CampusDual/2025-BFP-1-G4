@@ -1,6 +1,7 @@
 package com.campusdual.bfp.controller;
 
 import com.campusdual.bfp.auth.JWTUtil;
+import com.campusdual.bfp.model.dto.SignupDTO;
 import com.campusdual.bfp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
