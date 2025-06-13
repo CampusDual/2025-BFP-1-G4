@@ -1,28 +1,13 @@
-package com.campusdual.bfp.model;
+package com.campusdual.bfp.model.dto;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name="offers")
-public class Offers {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OffersDTO {
     private Integer off_id;
-
-    @Column (name = "off_ent_id")
-    private String offEntID;
-
-    @Column (name = "off_title")
+    private Integer offEntID;
     private String offTittle;
-
-    @Column (name = "off_description")
     private String offDescription;
-
-    @Column (name = "off_date")
     private Date offDate;
-
-    @Column (name = "off_active")
     private boolean offActive;
 
     public Integer getOff_id() {
@@ -33,11 +18,11 @@ public class Offers {
         this.off_id = off_id;
     }
 
-    public String getOffEntID() {
+    public Integer getOffEntID() {
         return offEntID;
     }
 
-    public void setOffEntID(String offEntID) {
+    public void setOffEntID(Integer offEntID) {
         this.offEntID = offEntID;
     }
 

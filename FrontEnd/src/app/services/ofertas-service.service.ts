@@ -12,7 +12,7 @@ export interface Oferta {
   providedIn: 'root'
 })
 export class OfertasService {
-  private apiUrl = 'http://localhost:3000/api/ofertas'; // Cambia esto a tu URL real
+  private apiUrl = 'http://localhost:30030/ofertas'; // Cambia esto a tu URL real
 
   constructor(private http: HttpClient) {}
 

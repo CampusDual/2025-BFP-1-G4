@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**/**","/test/all", "/public/**").permitAll()
+                .antMatchers("/api/**","/test/all", "/public/**").permitAll()
 //                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
