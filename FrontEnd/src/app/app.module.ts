@@ -23,7 +23,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { OfertasComponent } from './ofertas/ofertas.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component'; 
+import { FooterComponent } from './shared/footer/footer.component';
+import { MatToolbarModuleComponent } from './mat-toolbar-module/mat-toolbar-module.component'; 
 
 
 
@@ -37,6 +38,7 @@ import { FooterComponent } from './shared/footer/footer.component';
     OfertasComponent,
     HeaderComponent,
     FooterComponent,
+    MatToolbarModuleComponent,
   ],
   imports: [
     BrowserModule,

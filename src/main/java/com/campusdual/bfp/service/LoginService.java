@@ -1,10 +1,6 @@
 package com.campusdual.bfp.service;
 
 import com.campusdual.bfp.api.ILoginService;
-import com.campusdual.bfp.model.Login;
-import com.campusdual.bfp.model.dao.LoginDao;
-import com.campusdual.bfp.model.dto.LoginDTO;
-import com.campusdual.bfp.model.dto.dtomapper.LoginMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
