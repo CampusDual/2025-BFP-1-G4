@@ -3,10 +3,7 @@ package com.campusdual.bfp.controller;
 import com.campusdual.bfp.api.IOffersService;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,11 @@ public class OffersController {
         return offersService.queryAllOffers();
     }
 
-        }
+    @PostMapping(value = "/add")
+    public OffersDTO addOffer(OffersDTO offer) {
+        return offersService.insertOffer(offer);
+    }
+}
 
 
 
