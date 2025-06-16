@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Oferta } from '../model/oferta.model';
+import { OfertasService } from '../services/ofertas-service.service';
 
 
 @Component({
@@ -8,15 +10,22 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./publicar-oferta.component.css']
 })
 export class PublicarOfertaComponent{
-    oferta = this.of.group({
-    tituto: [''],
-    descripcion: [''],
-  });
+   oferta: Oferta = {
+     titulo: '', descripcion: '',
+     id: 0
+   };
 
-  constructor(private of: FormBuilder){}
+  constructor(private ofertasService: OfertasService) {}
 
-  onSubmit() {
-      
+  publicarOferta() {
+    this.ofertasService.crearOferta(this.oferta).subscribe({
+      next: (data) => {
+        alert('Oferta publicada con éxito');
+      },
+      error: (err) => {
+        console.error('Error al publicar oferta', err);
+      }
+    });
   }
 
 }

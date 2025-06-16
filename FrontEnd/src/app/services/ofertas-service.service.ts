@@ -12,11 +12,15 @@ export interface Oferta {
   providedIn: 'root'
 })
 export class OfertasService {
-  private apiUrl = 'http://localhost:30030/ofertas'; // Cambia esto a tu URL real
+  private apiUrl = 'http://localhost:30030/ofertas';
 
   constructor(private http: HttpClient) {}
 
-  getOfertas(): Observable<Oferta[]> {
+  crearOferta(oferta: Oferta): Observable<Oferta> {
+    return this.http.post<Oferta>(this.apiUrl, oferta);
+  }
+
+  obtenerOfertas(): Observable<Oferta[]> {
     return this.http.get<Oferta[]>(this.apiUrl);
   }
 }
