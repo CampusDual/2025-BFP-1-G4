@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface OffersDao extends JpaRepository<Offers, Integer>{
     //search enterprise by id
+    Enterprise findEnterpriseById(Integer id);
     //query all by enterprise id
     List<Offers> findAllByEnterpriseId(Integer enterpriseId);
+
+    List<Offers> findAllByActive(Boolean active);
 }

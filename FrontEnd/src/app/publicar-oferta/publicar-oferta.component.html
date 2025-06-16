@@ -1,23 +1,24 @@
-<div class="publicar-oferta">
-    <mat-card>
-        <form [formGroup]="publicar" (ngSubmit)="onSubmit()">
-            <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo" class="logo">
-            <h1 class="title">Bienvenido "{{ nombreEmpresa }}"</h1>
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Título de la oferta</mat-label>
-                    <input matInput placeholder="Título de la oferta" formControlName="oferta" type="text" required>
-                </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Descripción de la oferta</mat-label>
-                    <textarea matInput placeholder="Descripción" formControlName="descripcion" rows="5" required></textarea>
-                </mat-form-field>
-            </div>
-            <mat-card-actions>
-                <button mat-flat-button color="warn" type="submit">Publicar</button>
-            </mat-card-actions>
-        </form>
-    </mat-card>
+<app-nav></app-nav>
+<div class="container">
+    <form [formGroup]="oferta" (ngSubmit)="onSubmit()">
+        <h1 class="title">Publicar oferta</h1>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Titulo de la oferta</mat-label>
+                <input matInput formControlName="text" type="text" required>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Detalles de la oferta</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+        </div>
+
+        <mat-card-actions>
+            <button mat-flat-button color="warn" type="submit">Publicar</button>
+        </mat-card-actions>
+    </form>
+
 </div>

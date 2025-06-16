@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER_ROLES")
+@Table(name = "user_roles")
 public class UserRole {
 
 
@@ -18,11 +18,11 @@ public class UserRole {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "userid")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "ROLE_ID")
+    @JoinColumn(name = "roleid")
     private Role role;
 
     public UserRole() { }
