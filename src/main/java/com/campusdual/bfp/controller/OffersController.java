@@ -24,7 +24,7 @@ public class OffersController {
     }
 
     @PostMapping(value = "/add")
-    public OffersDTO addOffer(OffersDTO offer) {
+    public OffersDTO addOffer(@RequestBody OffersDTO offer) {
         return offersService.insertOffer(offer);
     }
 }
