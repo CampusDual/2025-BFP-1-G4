@@ -1,28 +1,13 @@
-package com.campusdual.bfp.model;
+package com.campusdual.bfp.model.dto;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name="offers")
-public class Offers {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OffersDTO {
     private Integer id;
-
-    @Column
     private Integer enterpriseId;
-
-    @Column
     private String title;
-
-    @Column
     private String description;
-
-    @Column
     private Date publicationDate;
-
-    @Column
     private boolean active;
 
     public Integer getId() {
