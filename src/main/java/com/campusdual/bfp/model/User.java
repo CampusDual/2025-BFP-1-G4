@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User implements UserDetails {
 
     @Id
@@ -44,14 +44,11 @@ public class User implements UserDetails {
     @Column
     private String password;
 
-    @Column (name = "enterpriseid")
-    private Integer enterpriseId;
-
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
 
     public User(){ }
-    public User(int id, String nif, String name, String surname1, String surname2, String login, String password, Integer enterpriseId) {
+    public User(int id, String nif, String name, String surname1, String surname2, String login, String password) {
         this.id = id;
         this.nif = nif;
         this.name = name;
@@ -59,7 +56,6 @@ public class User implements UserDetails {
         this.surname2 = surname2;
         this.login = login;
         this.password = password;
-        this.enterpriseId = enterpriseId;
     }
 
     public int getId() {
@@ -117,10 +113,6 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Integer getEnterpriseId() { return enterpriseId; }
-
-    public void setEnterpriseId(Integer enterpriseId) { this.enterpriseId = enterpriseId; }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
