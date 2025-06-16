@@ -1,6 +1,14 @@
 <app-nav></app-nav>
 <div class="container">
-    <form [formGroup]="oferta" (ngSubmit)="onSubmit()">
+    <!-- crear-oferta.component.html -->
+<form (ngSubmit)="publicarOferta()">
+  <input [(ngModel)]="oferta.titulo" name="titulo" placeholder="Título" required />
+  <textarea [(ngModel)]="oferta.descripcion" name="descripcion" placeholder="Descripción"></textarea>
+  <button type="submit">Publicar Oferta</button>
+</form>
+
+
+    <!--<form [formGroup]="oferta" (ngSubmit)="onSubmit()">
         <h1 class="title">Publicar oferta</h1>
         <div>
             <mat-form-field appearance="fill">
@@ -19,6 +27,6 @@
         <mat-card-actions>
             <button mat-flat-button color="warn" type="submit">Publicar</button>
         </mat-card-actions>
-    </form>
+    </form>-->
 
 </div>
