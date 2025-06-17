@@ -10,9 +10,16 @@
   color: #333;
   margin-bottom: 1.5rem;
   border-bottom: 2px solid #d32f2f;
-  display: inline-block;
+  display: inline-block;    /* para que la línea solo cubra el texto */
   padding-bottom: 0.5rem;
 }
+
+/* Contenedor padre que centra el título */
+.page-container {
+  text-align: center;       /* centra el inline-block horizontalmente */
+}
+
+
 
 .oferta-form {
   background-color: #ffffff;

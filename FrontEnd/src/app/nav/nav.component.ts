@@ -19,4 +19,8 @@ export class NavComponent implements OnInit {
    irAListaOfertas() {
     this.router.navigate(['/lista-ofertas']);
   }
+
+  irAPublicarOferta() {
+  this.router.navigate(['/publicar-oferta']);
+}
 }
