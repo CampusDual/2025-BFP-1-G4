@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { JwtPayload } from '../models/jwt-payload';
-import { jwtDecode } from 'jwt-decode';
+
 
 
 @Component({
@@ -33,18 +33,8 @@ export class LoginComponent implements OnInit {
       this.authService.login({ email, password }).subscribe({
         next: (res: string) => {
 
-          const decoded = jwtDecode<JwtPayload>(res);
-          const email = decoded.sub;
-
-          const userEmail = decoded.sub;
-          const userName = decoded.username;
-
           sessionStorage.setItem('token', res);
           sessionStorage.setItem('email', email || '');
-
-          if (userName) {
-            sessionStorage.setItem('user', userName || ''); 
-          }
 
           if (rememberMe) {
             localStorage.setItem('rememberedEmail', email || '');
