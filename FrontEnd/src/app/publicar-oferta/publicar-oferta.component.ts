@@ -10,9 +10,8 @@ import { OfertasService } from '../services/ofertas-service.service';
   styleUrls: ['./publicar-oferta.component.css']
 })
 export class PublicarOfertaComponent{
-   oferta: Oferta = {
-     titulo: '', descripcion: '',
-     id: 0
+    oferta: Oferta = {
+     title: '', description: '', active: true
    };
 
   constructor(private ofertasService: OfertasService) {}

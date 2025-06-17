@@ -24,7 +24,6 @@ import { LoginComponent } from './login/login.component';
 //servicios
 import { AuthService } from './services/auth.service';
 import { NavComponent } from './nav/nav.component';
-import { JwtInterceptor } from './jwt.interceptor.ts/jwt.interceptor.ts.component';
 
 
 
