@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 //Agular material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +25,11 @@ import { LoginComponent } from './login/login.component';
 //servicios
 import { AuthService } from './services/auth.service';
 import { NavComponent } from './nav/nav.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { ListaOfertasComponent } from './lista-ofertas/lista-ofertas.component';
+
+
 
 
 
@@ -34,7 +40,10 @@ import { NavComponent } from './nav/nav.component';
     AppComponent,
     LoginComponent,
     PublicarOfertaComponent,
+    HeaderComponent,
+    FooterComponent,
     NavComponent,
+    ListaOfertasComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +51,7 @@ import { NavComponent } from './nav/nav.component';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
@@ -53,6 +63,7 @@ import { NavComponent } from './nav/nav.component';
     MatMenuModule,
     MatToolbarModule
   ],
+
   providers: [AuthService],
   bootstrap: [AppComponent]
 })

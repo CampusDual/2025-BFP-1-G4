@@ -10,6 +10,7 @@ import java.util.List;
 @RestController()
 @RequestMapping("/offers")
 public class OffersController {
+
     @Autowired
     private IOffersService offersService;
 

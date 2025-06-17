@@ -1,9 +1,9 @@
 <nav>
-  <mat-toolbar color="warn">
+  <mat-toolbar class="custom-toolbar">
     <mat-toolbar-row>
-     <span><p>Usuario: {{usuario}} {{username}}</p></span>
-      <span class="example-spacer"></span>
-      <button mat-stroked-button color="warn">Ver Ofertas</button>
+      <span class="user-info">Usuario: {{usuario}} {{username}}</span>
+      <span class="spacer"></span>
+      <button mat-button (click)="irAListaOfertas()">Ver Ofertas</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>

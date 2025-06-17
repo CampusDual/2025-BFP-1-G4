@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Oferta } from '../model/oferta.model';
 import { OfertasService } from '../services/ofertas-service.service';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -14,7 +17,11 @@ export class PublicarOfertaComponent{
      title: '', description: '', publicationdate: new Date(), active: true
    };
 
+onSubmit() {
+throw new Error('Method not implemented.');
+}
   constructor(private ofertasService: OfertasService) {}
+
 
   publicarOferta() {
     this.ofertasService.crearOferta(this.oferta).subscribe({

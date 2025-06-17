@@ -1,32 +1,29 @@
 <app-nav></app-nav>
-<div class="container">
-    <!-- crear-oferta.component.html -->
-<form (ngSubmit)="publicarOferta()">
-  <input [(ngModel)]="oferta.title" name="titulo" placeholder="Título" required />
-  <textarea [(ngModel)]="oferta.description" name="descripcion" placeholder="Descripción"></textarea>
-  <button type="submit">Publicar Oferta</button>
-</form>
+<div class="page-container">
+  <h1 class="page-title">Publicar nueva oferta</h1>
 
+  <form class="oferta-form" (ngSubmit)="publicarOferta()">
+    <div class="form-group">
+      <label for="titulo">Título</label>
+      <input
+        [(ngModel)]="oferta.title"
+        name="titulo"
+        id="titulo"
+        placeholder="Título"
+        required
+      />
+    </div>
 
-    <!--<form [formGroup]="oferta" (ngSubmit)="onSubmit()">
-        <h1 class="title">Publicar oferta</h1>
-        <div>
-            <mat-form-field appearance="fill">
-                <mat-label>Titulo de la oferta</mat-label>
-                <input matInput formControlName="text" type="text" required>
-            </mat-form-field>
-        </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea
+        [(ngModel)]="oferta.description"
+        name="descripcion"
+        id="descripcion"
+        placeholder="Descripción"
+      ></textarea>
+    </div>
 
-        <div>
-            <mat-form-field appearance="fill">
-                <mat-label>Detalles de la oferta</mat-label>
-                <textarea matInput></textarea>
-            </mat-form-field>
-        </div>
-
-        <mat-card-actions>
-            <button mat-flat-button color="warn" type="submit">Publicar</button>
-        </mat-card-actions>
-    </form>-->
-
+    <button class="btn-publicar" type="submit">Publicar Oferta</button>
+  </form>
 </div>
