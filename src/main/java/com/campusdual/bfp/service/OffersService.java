@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -44,6 +45,8 @@ public class OffersService implements IOffersService {
         System.out.println("User: " + auth.getName() + " is querying all offers.");
         User user = userDao.findByLogin(auth.getName());
         offersDTO.setEnterpriseId(user.getEnterpriseId());
+        offersDTO.setPublicationDate(new Date());
+        offersDTO.setActive(true);
         Offer offer = OffersMapper.INSTANCE.toEntity(offersDTO);
         offersDao.saveAndFlush(offer);
         return OffersMapper.INSTANCE.toDTO(offer);

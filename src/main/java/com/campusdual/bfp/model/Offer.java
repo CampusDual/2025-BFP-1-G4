@@ -19,8 +19,8 @@ public class Offer {
     @Column
     private String description;
 
-    /* @Column (name="publicationdate")
-    private Date publicationDate; */
+    @Column (name="publicationdate")
+    private Date publicationDate;
 
     @Column
     private boolean active;
@@ -57,13 +57,13 @@ public class Offer {
         this.description = description;
     }
 
-   /* public Date getPublicationDate() {
+   public Date getPublicationDate() {
         return publicationDate;
     }
 
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
-    }*/
+    }
 
     public boolean isActive() {
         return active;

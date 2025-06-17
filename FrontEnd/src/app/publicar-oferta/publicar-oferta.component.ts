@@ -11,7 +11,7 @@ import { OfertasService } from '../services/ofertas-service.service';
 })
 export class PublicarOfertaComponent{
     oferta: Oferta = {
-     title: '', description: '', active: true
+     title: '', description: '', publicationdate: new Date(), active: true
    };
 
   constructor(private ofertasService: OfertasService) {}
