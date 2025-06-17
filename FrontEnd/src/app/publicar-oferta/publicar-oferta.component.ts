@@ -1,29 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Oferta } from '../model/oferta.model';
+import { OfertasService } from '../services/ofertas-service.service';
+import { Router } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-publicar-oferta',
   templateUrl: './publicar-oferta.component.html',
   styleUrls: ['./publicar-oferta.component.css']
 })
-export class PublicarOfertaComponent implements OnInit {
-  publicar: FormGroup = this.fb.group({}); 
-  nombreEmpresa: string = '';
+export class PublicarOfertaComponent{
+    oferta: Oferta = {
+     title: '', description: '', publicationdate: new Date(), active: true
+   };
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+onSubmit() {
+throw new Error('Method not implemented.');
+}
+  constructor(private ofertasService: OfertasService) {}
 
-  ngOnInit(): void {
-    this.publicar = this.fb.group({
-      oferta: ['', Validators.required],
-      descripcion: ['', Validators.required]
+
+  publicarOferta() {
+    this.ofertasService.crearOferta(this.oferta).subscribe({
+      next: (data) => {
+        alert('Oferta publicada con éxito');
+      },
+      error: (err) => {
+        console.error('Error al publicar oferta', err);
+      }
     });
-    this.nombreEmpresa = this.authService.getNombreEmpresa();
   }
 
-  onSubmit() {
-    if (this.publicar.valid) {
-      // Lógica para publicar la oferta
-    }
-  }
 }

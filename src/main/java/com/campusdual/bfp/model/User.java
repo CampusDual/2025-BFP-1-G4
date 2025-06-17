@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
@@ -44,7 +44,7 @@ public class User implements UserDetails {
     @Column
     private String password;
 
-    @Column
+    @Column (name="enterpriseid")
     private Integer enterpriseId;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -118,9 +118,13 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Integer getEnterpriseId() { return enterpriseId; }
+    public Integer getEnterpriseId() {
+        return enterpriseId;
+    }
 
-    public void setEnterpriseId(Integer enterpriseId) { this.enterpriseId = enterpriseId; }
+    public void setEnterpriseId(Integer enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -5,12 +5,12 @@ import java.util.Date;
 
 @Entity
 @Table(name="offers")
-public class Offers {
+public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column (name="enterpriseid")
     private Integer enterpriseId;
 
     @Column
@@ -19,7 +19,7 @@ public class Offers {
     @Column
     private String description;
 
-    @Column
+    @Column (name="publicationdate")
     private Date publicationDate;
 
     @Column
@@ -57,7 +57,7 @@ public class Offers {
         this.description = description;
     }
 
-    public Date getPublicationDate() {
+   public Date getPublicationDate() {
         return publicationDate;
     }
 

@@ -6,14 +6,11 @@ import { map, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  getNombreEmpresa(): string {
-    throw new Error('Method not implemented.');
-  }
   private baseUrl = 'http://localhost:30030/auth';
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string }): Observable<string> {
+  login(credentials: { email: string, password: string}): Observable<string> {
 
     const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
 
@@ -23,12 +20,12 @@ export class AuthService {
     });
 
 
-    return this.http.post(`${this.baseUrl}/login`, null, { headers, responseType: 'text' }).pipe(
-      map((response:any) =>  
-        {return response as string; }
-
-      ));
-
+   return this.http.post(`${this.baseUrl}/login`, null, {
+      headers,
+      responseType: 'text'
+    }).pipe(
+      map(response => response as string)
+    );
   }
 
 }

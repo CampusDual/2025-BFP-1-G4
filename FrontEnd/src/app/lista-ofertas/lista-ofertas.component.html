@@ -1,0 +1,41 @@
+<app-nav></app-nav>
+
+<div class="page-container">
+    <h1 class="page-title">Ofertas de empleo de la empresa</h1>
+
+    <div class="tabla-container">
+        <table class="tabla-ofertas">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let oferta of ofertasMock">
+                    <td>{{ oferta.titulo }}</td>
+                    <td>{{ oferta.descripcion }}</td>
+                    <td>{{ oferta.fecha | date }}</td>
+                    <td>
+                        <span
+                            class="estado-circle"
+                            [ngClass]="oferta.activa ? 'activo' : 'inactivo'"
+                            matTooltip="{{ oferta.activa ? 'Activa' : 'Inactiva' }}">
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn-ver">Ver</button>
+                        <button class="btn-eliminar"
+                            (click)="toggleEstado(oferta)">
+                            {{ oferta.activa ? 'Desactivar' : 'Activar' }}
+                        </button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

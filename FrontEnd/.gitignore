@@ -40,9 +40,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-
-#edit config
-.editorconfig
-
-#vscode
-.vscode

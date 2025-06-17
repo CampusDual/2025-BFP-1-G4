@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   usuario: string = '';
+  username: string | null = null;
+  constructor(private router: Router) {};
 
   ngOnInit(): void {
-    this.usuario = localStorage.getItem('email') || '';
+    this.usuario = sessionStorage.getItem('email') || '';
+    this.username = sessionStorage.getItem('username');
   }
 
+   irAListaOfertas() {
+    this.router.navigate(['/lista-ofertas']);
+  }
+
+  irAPublicarOferta() {
+  this.router.navigate(['/publicar-oferta']);
+}
 }

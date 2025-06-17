@@ -1,0 +1,62 @@
+/* Estilo para la tabla */
+.tabla-container {
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+
+.tabla-ofertas {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-ofertas th,
+.tabla-ofertas td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-ofertas th {
+  background-color: #d32f2f;
+  color: white;
+  font-weight: 600;
+}
+
+/* Estado con círculo */
+.estado-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.activo {
+  background-color: #4caf50;
+}
+
+.inactivo {
+  background-color: #f44336;
+}
+
+/* Botones */
+.btn-ver,
+.btn-eliminar {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-ver {
+  background-color: #1976d2;
+  color: white;
+}
+
+.btn-eliminar {
+  background-color: #e53935;
+  color: white;
+}

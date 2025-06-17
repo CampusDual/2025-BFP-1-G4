@@ -1,5 +1,6 @@
 export interface Oferta {
-  id: number;
-  titulo: string;
-  descripcion: string;
+  title: String;
+  description: String;
+  publicationdate: Date;
+  active: boolean;
 }
