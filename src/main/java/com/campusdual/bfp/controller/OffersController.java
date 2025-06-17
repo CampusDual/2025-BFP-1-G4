@@ -23,9 +23,14 @@ public class OffersController {
         return offersService.queryAllOffers();
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping( "/add")
     public OffersDTO addOffer(@RequestBody OffersDTO offer) {
         return offersService.insertOffer(offer);
+    }
+
+    @GetMapping("/test")
+    public String allAccess() {
+        return "Controller words";
     }
 }
 
