@@ -17,7 +17,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 //componetes
 import { PublicarOfertaComponent } from './publicar-oferta/publicar-oferta.component';
 import { LoginComponent } from './login/login.component';
@@ -31,10 +30,6 @@ import { ListaOfertasComponent } from './lista-ofertas/lista-ofertas.component';
 
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +38,7 @@ import { ListaOfertasComponent } from './lista-ofertas/lista-ofertas.component';
     HeaderComponent,
     FooterComponent,
     NavComponent,
-    ListaOfertasComponent,
+    ListaOfertasComponent
   ],
   imports: [
     BrowserModule,
