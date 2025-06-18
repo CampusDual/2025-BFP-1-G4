@@ -1,0 +1,18 @@
+/* HEADER Y FOOTER */
+.main-header, .main-footer {
+  background-color: #ccc;
+  color: #212121;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.main-header .logo {
+  height: 50px;
+}
+
+.main-footer {
+  justify-content: center;
+  text-align: center;
+  font-size: 0.9rem;
+}

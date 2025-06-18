@@ -1,25 +1,11 @@
-<!--<nav>
-  <mat-toolbar class="custom-toolbar">
-    <mat-toolbar-row>
-      <span class="user-info">Usuario: {{usuario}} {{username}}</span>
-      <span class="spacer"></span>
-      
-
-      <button mat-button (click)="irAPublicarOferta()">Publicar</button>
-      
-      
-      <button mat-button (click)="irAListaOfertas()">Ver Ofertas</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-</nav>-->
-
 <nav>
-  <mat-toolbar color="warn">
+  <mat-toolbar>
     <mat-toolbar-row>
+      <span class="logo_container"><img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo" class="logo"></span>
      <span><p>Usuario: {{usuario}} {{username}}</p></span>
       <span class="example-spacer"></span>
-      <button  *ngIf="router.url !== '/lista-ofertas'" mat-stroked-button color="warn" (click)="irAListaOfertas()">Ver Ofertas</button>
-      <button  *ngIf="router.url !== '/publicar-oferta'" mat-stroked-button color="warn" (click)="irAPublicarOferta()">Publicar</button>
+      <button  *ngIf="router.url !== '/lista-ofertas'" mat-raised-button color="warn" (click)="irAListaOfertas()">Ver Ofertas</button>
+      <button  *ngIf="router.url !== '/publicar-oferta'" mat-raised-button color="warn" (click)="irAPublicarOferta()">Publicar</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>
