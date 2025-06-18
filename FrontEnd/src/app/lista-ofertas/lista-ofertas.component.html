@@ -18,7 +18,7 @@
                 <tr *ngFor="let oferta of offerList">
                     <td>{{ oferta.title }}</td>
                     <td>{{ oferta.description }}</td>
-                    <td>{{ oferta.publicationdate | date }}</td>
+                    <td>{{ oferta.publicationDate | date: 'dd/MM/yyyy'}}</td>
                     <td>
                         <span
                             class="estado-circle"
