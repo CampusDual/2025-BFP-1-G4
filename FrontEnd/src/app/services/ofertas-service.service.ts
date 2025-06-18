@@ -26,16 +26,9 @@ export class OfertasService {
         );
   }
 
-  getOffersByEnterprise(enterpriseId: number): Observable<Oferta[]> {
-    return this.http.get<Oferta[]>(`${this.apiUrl}/enterprise/${enterpriseId}`, {
-      headers: this.getAuthHeaders()
-    }).pipe(
-      map((response: Oferta[]) => response as Oferta[])
-    );
-  }
-  /*obtenerOfertas(): Observable<Oferta[]> {
+  obtenerOfertas(): Observable<Oferta[]> {
     return this.http.get<Oferta[]>(this.apiUrl, {
       headers: this.getAuthHeaders()
     });
-  }*/
+  }
 }

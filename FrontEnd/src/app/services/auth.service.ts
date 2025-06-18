@@ -7,7 +7,6 @@ import { map, Observable } from 'rxjs';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:30030/auth';
-  private loginuser: any = null;
 
   constructor(private http: HttpClient) { }
 
@@ -25,14 +24,8 @@ export class AuthService {
       headers,
       responseType: 'text'
     }).pipe(
-      map((response: any) => {
-        this.loginuser = response.user;
-        sessionStorage.setItem('token', response.token);
-        return response;
-      })
+      map(response => response as string)
     );
   }
-getLoginUser(): any {
-    return this.loginuser;
-  }
+
 }

@@ -16,21 +16,21 @@
             </thead>
             <tbody>
                 <tr *ngFor="let oferta of ofertasMock">
-                    <td>{{ oferta.titulo }}</td>
-                    <td>{{ oferta.descripcion }}</td>
-                    <td>{{ oferta.fecha | date }}</td>
+                    <td>{{ oferta.title }}</td>
+                    <td>{{ oferta.description }}</td>
+                    <td>{{ oferta.publicationdate | date }}</td>
                     <td>
                         <span
                             class="estado-circle"
-                            [ngClass]="oferta.activa ? 'activo' : 'inactivo'"
-                            matTooltip="{{ oferta.activa ? 'Activa' : 'Inactiva' }}">
+                            [ngClass]="oferta.active ? 'activo' : 'inactivo'"
+                            matTooltip="{{ oferta.active ? 'Activa' : 'Inactiva' }}">
                         </span>
                     </td>
                     <td>
                         <button class="btn-ver">Ver</button>
                         <button class="btn-eliminar"
                             (click)="toggleEstado(oferta)">
-                            {{ oferta.activa ? 'Desactivar' : 'Activar' }}
+                            {{ oferta.active ? 'Desactivar' : 'Activar' }}
                         </button>
 
                     </td>
