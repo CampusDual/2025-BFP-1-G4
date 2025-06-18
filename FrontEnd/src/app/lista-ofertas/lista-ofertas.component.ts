@@ -38,10 +38,17 @@ export class ListaOfertasComponent {
       active: false // Oferta inactiva (círculo rojo)
     }
   ];*/
-
-  toggleEstado(oferta: any) {
-    oferta.active = !oferta.active;
-  }
+toggleEstado(oferta: any) {
+  this.ofertasService.toggleEstadoOferta(oferta.id).subscribe({
+    next: (updatedOferta) => {
+      console.log('Respuesta backend:', updatedOferta);
+      oferta.active = updatedOferta.active;
+    },
+    error: (err) => {
+      console.error('Error al cambiar estado', err);
+    }
+  });
+}
 
   // dataSource: any; // Úsalo solo si empleas <mat-table>
 }

@@ -60,4 +60,12 @@ public class OffersService implements IOffersService {
         return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseId(enterpriseId));
     }
 
+    @Override
+    public OffersDTO toggleActive(OffersDTO offersDTO) {
+        Offer offer = OffersMapper.INSTANCE.toEntity(offersDTO);
+        Offer entity = offersDao.getReferenceById(offer.getId());
+        entity.setActive(!entity.isActive());
+        offersDao.saveAndFlush(entity);
+        return OffersMapper.INSTANCE.toDTO(entity);
+    }
 }

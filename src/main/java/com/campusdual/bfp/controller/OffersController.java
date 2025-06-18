@@ -39,6 +39,10 @@ public class OffersController {
         return offersService.findOffersByEnterpriseId();
     }
 
+    @PutMapping("/toggleActive")
+    public OffersDTO toggleActive(@RequestBody OffersDTO offersDTO) {
+        return offersService.toggleActive(offersDTO);
+    }
 }
 
 
