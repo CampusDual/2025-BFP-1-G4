@@ -10,4 +10,5 @@ public interface IOffersService {
     OffersDTO queryOffer(OffersDTO offersDTO);
     List<OffersDTO> queryAllOffers();
     OffersDTO insertOffer(OffersDTO offersDTO);
+    List<OffersDTO> findOffersByEnterpriseId(OffersDTO offersDTO);
 }

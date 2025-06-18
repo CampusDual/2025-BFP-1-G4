@@ -52,4 +52,13 @@ public class OffersService implements IOffersService {
         return OffersMapper.INSTANCE.toDTO(offer);
     }
 
+    @Override
+    public List<OffersDTO> findOffersByEnterpriseId(OffersDTO offersDTO) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userDao.findByLogin(auth.getName());
+        offersDTO.setEnterpriseId(user.getEnterpriseId());
+        Integer enterpriseId = user.getEnterpriseId();
+        return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseId(enterpriseId));
+    }
+
 }
