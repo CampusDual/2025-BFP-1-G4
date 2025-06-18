@@ -12,7 +12,7 @@ export class OfertasService {
   constructor(private http: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {
-    const token = sessionStorage.getItem('token'); 
+    const token = sessionStorage.getItem('token');
     return new HttpHeaders({
       'Authorization': "Bearer "+ token
     });
@@ -32,7 +32,14 @@ export class OfertasService {
     });
   }
 
-  getOfferById(): Observable<Oferta[]> {   
+  getOfferById(): Observable<Oferta[]> {
+      return this.http.get<Oferta[]>(this.apiUrl+"/byEnterprise", {
+    return this.http.get<Oferta[]>(this.apiUrl+"/getAll", {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  getOfferById(): Observable<Oferta[]> {
       return this.http.get<Oferta[]>(this.apiUrl+"/byEnterprise", {
       headers: this.getAuthHeaders()
     });

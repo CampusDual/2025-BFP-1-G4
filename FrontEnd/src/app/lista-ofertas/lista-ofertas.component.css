@@ -4,24 +4,30 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    margin: 0 auto;
+    margin: 0 3rem;
+}
+
+table {
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .tabla-ofertas {
-  max-width: 100%;
   border-collapse: collapse;
+  table-layout: auto;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tabla-ofertas th,
 .tabla-ofertas td {
-  padding: 1rem;
   text-align: left;
   border-bottom: 1px solid #ddd;
+  padding: 10px;
 }
 
 .tabla-ofertas th {
+  padding: 1rem;
   background-color: #fff;
   border-bottom: 2px solid #f44336;
   color: #f44336;
@@ -30,11 +36,14 @@
 }
 
 /* Estado con círculo */
-.estado-circle {
-  width: 14px;
-  height: 14px;
+.tabla-ofertas .estado-circle {
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   display: inline-block;
+}
+.tabla-ofertas td.centrar{
+  text-align: center !important;
 }
 
 .activo {

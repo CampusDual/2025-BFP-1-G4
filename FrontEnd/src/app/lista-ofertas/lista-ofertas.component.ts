@@ -7,13 +7,31 @@ import { OfertasService } from '../services/ofertas-service.service';
   styleUrls: ['./lista-ofertas.component.css']
 })
 export class ListaOfertasComponent {
-  
+
   offerList: any[] =[];
 
   showView:string[] = ['titulo', 'descripcion', 'fecha', 'estado', 'acciones'];
 
   constructor(private ofertasService: OfertasService) { }
-  
+
+  ngOnInit(): void {
+    this.ofertasService.getOfferById().subscribe({
+      next: (data) => {
+        this.offerList = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener ofertas', err);
+      }
+    });
+   } // Asegúrate de importar y usar el servicio correctamente
+  /*ofertasMock = [
+
+  offerList: any[] =[];
+
+  showView:string[] = ['titulo', 'descripcion', 'fecha', 'estado', 'acciones'];
+
+  constructor(private ofertasService: OfertasService) { }
+
   ngOnInit(): void {
     this.ofertasService.getOfferById().subscribe({
       next: (data) => {
@@ -26,16 +44,16 @@ export class ListaOfertasComponent {
    } // Asegúrate de importar y usar el servicio correctamente
   /*ofertasMock = [
     {
-      title: 'Desarrollador Frontend',
-      description: 'Buscamos dev con experiencia en Angular.',
-      publicationdate: new Date(),
-      active: true // Oferta activa (círculo verde)
+      titulo: 'Desarrollador Frontend',
+      descripcion: 'Buscamos dev con experiencia en Angular.',
+      fecha: new Date(),
+      activa: true // Oferta activa (círculo verde)
     },
     {
-      title: 'Diseñador UX/UI',
-      description: 'Diseño de interfaces para plataforma móvil.',
-      publicationdate: new Date(),
-      active: false // Oferta inactiva (círculo rojo)
+      titulo: 'Diseñador UX/UI',
+      descripcion: 'Diseño de interfaces para plataforma móvil.',
+      fecha: new Date(),
+      activa: false // Oferta inactiva (círculo rojo)
     }
   ];*/
 
