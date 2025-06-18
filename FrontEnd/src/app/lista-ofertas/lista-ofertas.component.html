@@ -15,23 +15,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let oferta of offerList">
-                    <td>{{ oferta.title }}</td>
-                    <td>{{ oferta.description }}</td>
-                    <td>{{ oferta.publicationDate | date: 'dd/MM/yyyy'}}</td>
+                <tr *ngFor="let oferta of ofertasMock">
+                    <td>{{ oferta.titulo }}</td>
+                    <td>{{ oferta.descripcion }}</td>
+                    <td>{{ oferta.fecha | date }}</td>
                     <td>
-                        <span
-                            class="estado-circle"
-                            [ngClass]="oferta.active ? 'activo' : 'inactivo'"
-                            matTooltip="{{ oferta.active ? 'Activa' : 'Inactiva' }}">
+                        <span class="estado-circle" [ngClass]="oferta.activa ? 'activo' : 'inactivo'"
+                            matTooltip="{{ oferta.activa ? 'Activa' : 'Inactiva' }}">
                         </span>
                     </td>
                     <td>
                         <button mat-icon-button color="primary"><mat-icon>visibility</mat-icon></button>
                         <button mat-icon-button color="warn" (click)="toggleEstado(oferta)">
-                            <mat-icon *ngIf="oferta.active">toggle_on</mat-icon>
-                            <mat-icon *ngIf="!oferta.active">toggle_off</mat-icon>
+                            <mat-icon *ngIf="oferta.activa">toggle_on</mat-icon>
+                            <mat-icon *ngIf="!oferta.activa">toggle_off</mat-icon>
                         </button>
+                        <!--<button class="btn-eliminar" (click)="toggleEstado(oferta)">
+                            {{ oferta.activa ? '<mat-icon>toggle_on</mat-icon>' : '<mat-icon>toggle_off</mat-icon>' }}
+                        </button>-->
 
                     </td>
                 </tr>
