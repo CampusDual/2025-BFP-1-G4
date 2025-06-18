@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
   usuario: string = '';
   username: string | null = null;
-  constructor(private router: Router) {};
+  constructor(public router: Router) {};
+  
 
   ngOnInit(): void {
     this.usuario = sessionStorage.getItem('email') || '';

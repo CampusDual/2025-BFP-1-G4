@@ -18,8 +18,8 @@
     <mat-toolbar-row>
      <span><p>Usuario: {{usuario}} {{username}}</p></span>
       <span class="example-spacer"></span>
-      <button mat-stroked-button color="warn" (click)="irAListaOfertas()">Ver Ofertas</button>
-      <button mat-stroked-button color="warn" (click)="irAPublicarOferta()">Publicar</button>
+      <button  *ngIf="router.url !== '/lista-ofertas'" mat-stroked-button color="warn" (click)="irAListaOfertas()">Ver Ofertas</button>
+      <button  *ngIf="router.url !== '/publicar-oferta'" mat-stroked-button color="warn" (click)="irAPublicarOferta()">Publicar</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>
