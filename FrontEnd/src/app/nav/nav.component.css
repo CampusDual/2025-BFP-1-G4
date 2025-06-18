@@ -1,27 +1,8 @@
-.custom-toolbar {
-  background-color: #ffffff !important; /* Fondo blanco */
-  color: #444 !important;               /* Texto gris oscuro */
-  border-bottom: 2px solid #d32f2f;     /* Línea inferior roja */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.user-info {
-  font-weight: 500;
-  color: #555;
-}
-
-.spacer {
+.example-spacer {
   flex: 1 1 auto;
 }
 
-button[mat-button] {
-  color: #444;
-  font-weight: 500;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-button[mat-button]:hover {
-  background-color: #f0f0f0;
-  color: #d32f2f;
-  border-radius: 5px;
+.mdc-button {
+  background-color: #fff;
+  border-color: #fff !important;
 }

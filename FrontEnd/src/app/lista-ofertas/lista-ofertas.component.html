@@ -1,7 +1,7 @@
 <app-nav></app-nav>
 
 <div class="page-container">
-    <h1 class="page-title">Ofertas de empleo de la empresa</h1>
+    <h1 class="page-title">Ofertas de empleo</h1>
 
     <div class="tabla-container">
         <table class="tabla-ofertas">
@@ -27,10 +27,10 @@
                         </span>
                     </td>
                     <td>
-                        <button class="btn-ver">Ver</button>
-                        <button class="btn-eliminar"
-                            (click)="toggleEstado(oferta)">
-                            {{ oferta.active ? 'Desactivar' : 'Activar' }}
+                        <button mat-icon-button color="primary"><mat-icon>visibility</mat-icon></button>
+                        <button mat-icon-button color="warn" (click)="toggleEstado(oferta)">
+                            <mat-icon *ngIf="oferta.active">toggle_on</mat-icon>
+                            <mat-icon *ngIf="!oferta.active">toggle_off</mat-icon>
                         </button>
 
                     </td>
@@ -39,3 +39,4 @@
         </table>
     </div>
 </div>
+<app-footer></app-footer>

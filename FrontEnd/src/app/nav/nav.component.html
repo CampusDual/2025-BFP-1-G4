@@ -1,14 +1,25 @@
-<nav>
+<!--<nav>
   <mat-toolbar class="custom-toolbar">
     <mat-toolbar-row>
       <span class="user-info">Usuario: {{usuario}} {{username}}</span>
       <span class="spacer"></span>
       
-      <!-- Nuevo botón Publicar -->
+
       <button mat-button (click)="irAPublicarOferta()">Publicar</button>
       
-      <!-- Botón ya existente -->
+      
       <button mat-button (click)="irAListaOfertas()">Ver Ofertas</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</nav>-->
+
+<nav>
+  <mat-toolbar color="warn">
+    <mat-toolbar-row>
+     <span><p>Usuario: {{usuario}} {{username}}</p></span>
+      <span class="example-spacer"></span>
+      <button mat-stroked-button color="warn" (click)="irAListaOfertas()">Ver Ofertas</button>
+      <button mat-stroked-button color="warn" (click)="irAPublicarOferta()">Publicar</button>
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>

@@ -25,7 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
+import { FooterComponent } from './footer/footer.component';
 import { ListaOfertasComponent } from './lista-ofertas/lista-ofertas.component';
 
 
