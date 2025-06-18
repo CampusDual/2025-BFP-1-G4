@@ -33,6 +33,12 @@ public class OffersController {
     public String allAccess() {
         return "Controller words";
     }
+
+    @GetMapping("/byEnterprise")
+    public List<OffersDTO> findOffersByEnterpriseId() {
+        return offersService.findOffersByEnterpriseId();
+    }
+
 }
 
 

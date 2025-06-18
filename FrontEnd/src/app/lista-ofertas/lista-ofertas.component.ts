@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OfertasService } from '../services/ofertas-service.service';
 
 @Component({
   selector: 'app-lista-ofertas',
@@ -6,23 +7,40 @@ import { Component } from '@angular/core';
   styleUrls: ['./lista-ofertas.component.css']
 })
 export class ListaOfertasComponent {
-  ofertasMock = [
+  
+  offerList: any[] =[];
+
+  showView:string[] = ['titulo', 'descripcion', 'fecha', 'estado', 'acciones'];
+
+  constructor(private ofertasService: OfertasService) { }
+  
+  ngOnInit(): void {
+    this.ofertasService.getOfferById().subscribe({
+      next: (data) => {
+        this.offerList = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener ofertas', err);
+      }
+    });
+   } // Asegúrate de importar y usar el servicio correctamente
+  /*ofertasMock = [
     {
-      titulo: 'Desarrollador Frontend',
-      descripcion: 'Buscamos dev con experiencia en Angular.',
-      fecha: new Date(),
-      activa: true // Oferta activa (círculo verde)
+      title: 'Desarrollador Frontend',
+      description: 'Buscamos dev con experiencia en Angular.',
+      publicationdate: new Date(),
+      active: true // Oferta activa (círculo verde)
     },
     {
-      titulo: 'Diseñador UX/UI',
-      descripcion: 'Diseño de interfaces para plataforma móvil.',
-      fecha: new Date(),
-      activa: false // Oferta inactiva (círculo rojo)
+      title: 'Diseñador UX/UI',
+      description: 'Diseño de interfaces para plataforma móvil.',
+      publicationdate: new Date(),
+      active: false // Oferta inactiva (círculo rojo)
     }
-  ];
+  ];*/
 
   toggleEstado(oferta: any) {
-    oferta.activa = !oferta.activa;
+    oferta.active = !oferta.active;
   }
 
   // dataSource: any; // Úsalo solo si empleas <mat-table>
