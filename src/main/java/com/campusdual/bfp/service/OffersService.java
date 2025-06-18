@@ -53,10 +53,9 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public List<OffersDTO> findOffersByEnterpriseId(OffersDTO offersDTO) {
+    public List<OffersDTO> findOffersByEnterpriseId() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.findByLogin(auth.getName());
-        offersDTO.setEnterpriseId(user.getEnterpriseId());
         Integer enterpriseId = user.getEnterpriseId();
         return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseId(enterpriseId));
     }

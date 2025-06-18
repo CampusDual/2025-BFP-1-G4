@@ -27,7 +27,13 @@ export class OfertasService {
   }
 
   obtenerOfertas(): Observable<Oferta[]> {
-    return this.http.get<Oferta[]>(this.apiUrl, {
+    return this.http.get<Oferta[]>(this.apiUrl+"/getAll", {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  getOfferById(): Observable<Oferta[]> {   
+      return this.http.get<Oferta[]>(this.apiUrl+"/byEnterprise", {
       headers: this.getAuthHeaders()
     });
   }

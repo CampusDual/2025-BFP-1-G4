@@ -35,8 +35,8 @@ public class OffersController {
     }
 
     @GetMapping("/byEnterprise")
-    public List<OffersDTO> findOffersByEnterpriseId(@RequestBody OffersDTO offersDTO) {
-        return offersService.findOffersByEnterpriseId(offersDTO);
+    public List<OffersDTO> findOffersByEnterpriseId() {
+        return offersService.findOffersByEnterpriseId();
     }
 
 }

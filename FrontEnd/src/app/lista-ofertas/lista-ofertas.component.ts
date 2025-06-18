@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OfertasService } from '../services/ofertas-service.service';
 
 @Component({
   selector: 'app-lista-ofertas',
@@ -6,7 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./lista-ofertas.component.css']
 })
 export class ListaOfertasComponent {
-  ofertasMock = [
+  
+  offerList: any[] =[];
+
+  showView:string[] = ['titulo', 'descripcion', 'fecha', 'estado', 'acciones'];
+
+  constructor(private ofertasService: OfertasService) { }
+  
+  ngOnInit(): void {
+    this.ofertasService.getOfferById().subscribe({
+      next: (data) => {
+        this.offerList = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener ofertas', err);
+      }
+    });
+   } // Asegúrate de importar y usar el servicio correctamente
+  /*ofertasMock = [
     {
       title: 'Desarrollador Frontend',
       description: 'Buscamos dev con experiencia en Angular.',
@@ -19,10 +37,10 @@ export class ListaOfertasComponent {
       publicationdate: new Date(),
       active: false // Oferta inactiva (círculo rojo)
     }
-  ];
+  ];*/
 
   toggleEstado(oferta: any) {
-    oferta.activa = !oferta.activa;
+    oferta.active = !oferta.active;
   }
 
   // dataSource: any; // Úsalo solo si empleas <mat-table>
