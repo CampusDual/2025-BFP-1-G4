@@ -6,13 +6,11 @@
       <h3 class="oferta-titulo">{{ oferta.title }}</h3>
       <p class="oferta-descripcion">{{ oferta.description }}</p>
       <p class="oferta-fecha">📅 {{ oferta.publicationDate | date:'dd/MM/yyyy' }}</p>
-      <!-- <p class="oferta-estado">🟢 {{ oferta.active ? 'Activa' : 'Inactiva' }}</p><span
         class="estado-tag"
         [class.activo]="oferta.active"
         [class.inactivo]="!oferta.active"
       >
         {{ oferta.active ? 'Activa' : 'Inactiva' }}
-      </span>-->
     </div>
   </div>
 </div>

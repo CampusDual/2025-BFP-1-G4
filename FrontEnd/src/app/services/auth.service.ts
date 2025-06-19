@@ -18,7 +18,7 @@ export class AuthService {
       'Authorization': 'Basic ' + encodedCredentials,
       'Content-Type': 'text/plain;charset=UTF-8'
     });
-    
+
 
 
     return this.http.post(`${this.baseUrl}/login`, null, {
@@ -47,5 +47,5 @@ export class AuthService {
     sessionStorage.clear();
   }
 
-  
+
 }

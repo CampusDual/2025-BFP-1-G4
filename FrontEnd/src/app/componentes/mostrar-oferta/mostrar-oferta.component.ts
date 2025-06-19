@@ -13,7 +13,7 @@ offerActivas: any[] = [];
 
   ngOnInit(): void {
     this.ofertasService.getAllActiveOffers().subscribe(ofertas =>{
-        this.offerActivas = ofertas;  
+        this.offerActivas = ofertas;
     });
   }
 }
