@@ -23,25 +23,16 @@ export class ListaOfertasComponent {
         console.error('Error al obtener ofertas', err);
       }
     });
-   } // Asegúrate de importar y usar el servicio correctamente
-  /*ofertasMock = [
-    {
-      title: 'Desarrollador Frontend',
-      description: 'Buscamos dev con experiencia en Angular.',
-      publicationdate: new Date(),
-      active: true // Oferta activa (círculo verde)
+   } 
+toggleEstado(oferta: any) {
+  this.ofertasService.toggleEstadoOferta(oferta.id).subscribe({
+    next: (updatedOferta) => {
+      console.log('Respuesta backend:', updatedOferta);
+      oferta.active = updatedOferta.active;
     },
-    {
-      title: 'Diseñador UX/UI',
-      description: 'Diseño de interfaces para plataforma móvil.',
-      publicationdate: new Date(),
-      active: false // Oferta inactiva (círculo rojo)
+    error: (err) => {
+      console.error('Error al cambiar estado', err);
     }
-  ];*/
-
-  toggleEstado(oferta: any) {
-    oferta.active = !oferta.active;
-  }
-
-  // dataSource: any; // Úsalo solo si empleas <mat-table>
+  });
+}  
 }

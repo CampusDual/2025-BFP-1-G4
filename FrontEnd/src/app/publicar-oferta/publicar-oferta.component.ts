@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
   templateUrl: './publicar-oferta.component.html',
   styleUrls: ['./publicar-oferta.component.css']
 })
-export class PublicarOfertaComponent{
-    oferta: Oferta = {
-     title: '', description: '', publicationdate: new Date(), active: true
-   };
+export class PublicarOfertaComponent {
+  oferta: Oferta = {
+    title: '', description: '', publicationdate: new Date(), active: true
+  };
 
-onSubmit() {
-throw new Error('Method not implemented.');
-}
-  constructor(private ofertasService: OfertasService) {}
+  onSubmit() {
+    throw new Error('Method not implemented.');
+  }
+  constructor(private ofertasService: OfertasService) { }
 
 
   publicarOferta() {

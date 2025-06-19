@@ -1,10 +1,8 @@
 <app-nav></app-nav>
 
 <div class="page-container">
-    <h1 class="page-title">Ofertas de empleo de la empresa</h1>
-
-    <div class="tabla-container">
-        <table class="tabla-ofertas">
+    <h1 class="page-title">Ofertas de empleo</h1>
+        <table mat-table class="tabla-ofertas">
             <thead>
                 <tr>
                     <th>Título</th>
@@ -18,24 +16,21 @@
                 <tr *ngFor="let oferta of offerList">
                     <td>{{ oferta.title }}</td>
                     <td>{{ oferta.description }}</td>
-                    <td>{{ oferta.publicationDate | date: 'dd/MM/yyyy'}}</td>
-                    <td>
+                    <td class="centrar">{{ oferta.publicationDate | date: "dd-MM-yyyy" }}</td>
+                    <td class="centrar">
                         <span
                             class="estado-circle"
                             [ngClass]="oferta.active ? 'activo' : 'inactivo'"
                             matTooltip="{{ oferta.active ? 'Activa' : 'Inactiva' }}">
                         </span>
                     </td>
-                    <td>
-                        <button class="btn-ver">Ver</button>
-                        <button class="btn-eliminar"
-                            (click)="toggleEstado(oferta)">
-                            {{ oferta.active ? 'Desactivar' : 'Activar' }}
+                    <td class="centrar">
+                        <button mat-icon-button color="warn" (click)="toggleEstado(oferta)">
+                            <mat-icon>{{ oferta.active ? 'toggle_on' : 'toggle_off' }}</mat-icon>
                         </button>
-
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
 </div>
+<app-footer></app-footer>
