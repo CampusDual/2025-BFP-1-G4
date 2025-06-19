@@ -25,41 +25,31 @@ export class ListaOfertasComponent {
     });
    } // Asegúrate de importar y usar el servicio correctamente
   /*ofertasMock = [
-
-  offerList: any[] =[];
-
-  showView:string[] = ['titulo', 'descripcion', 'fecha', 'estado', 'acciones'];
-
-  constructor(private ofertasService: OfertasService) { }
-
-  ngOnInit(): void {
-    this.ofertasService.getOfferById().subscribe({
-      next: (data) => {
-        this.offerList = data;
-      },
-      error: (err) => {
-        console.error('Error al obtener ofertas', err);
-      }
-    });
-   } // Asegúrate de importar y usar el servicio correctamente
-  /*ofertasMock = [
     {
-      titulo: 'Desarrollador Frontend',
-      descripcion: 'Buscamos dev con experiencia en Angular.',
-      fecha: new Date(),
-      activa: true // Oferta activa (círculo verde)
+      title: 'Desarrollador Frontend',
+      description: 'Buscamos dev con experiencia en Angular.',
+      publicationdate: new Date(),
+      active: true // Oferta activa (círculo verde)
     },
     {
-      titulo: 'Diseñador UX/UI',
-      descripcion: 'Diseño de interfaces para plataforma móvil.',
-      fecha: new Date(),
-      activa: false // Oferta inactiva (círculo rojo)
+      title: 'Diseñador UX/UI',
+      description: 'Diseño de interfaces para plataforma móvil.',
+      publicationdate: new Date(),
+      active: false // Oferta inactiva (círculo rojo)
     }
   ];*/
 
   toggleEstado(oferta: any) {
-    oferta.active = !oferta.active;
+    /*oferta.active = !oferta.active;*/
+    this.ofertasService.toggleEstadoOferta(oferta.id).subscribe({
+      next: (updatedOferta) => {
+        console.log('Respuesta backend:', updatedOferta);
+        oferta.active = updatedOferta.active;
+      },
+      error: (err) => {
+        console.error('Error al cambiar estado', err);
+      }
+    })
   }
 
-  // dataSource: any; // Úsalo solo si empleas <mat-table>
 }
