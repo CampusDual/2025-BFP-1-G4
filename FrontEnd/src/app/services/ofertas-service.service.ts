@@ -37,4 +37,12 @@ export class OfertasService {
       headers: this.getAuthHeaders()
     });
   }
+  
+  toggleEstadoOferta(id: number): Observable<any> {
+    return this.http.put(
+      `${this.apiUrl}/toggleActive`,
+      { id }, 
+      { headers: this.getAuthHeaders() }
+    );
+  }
 }

@@ -1,18 +1,5 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Zona donde irá el contenido principal */
-.main-content {
-  flex: 1; /* Esto empuja el footer hacia abajo */
-  padding: 2rem;
-  background-color: #f0f0f0;
-  box-sizing: border-box;
-}
-
-/* Asegúrate de que header y footer no colapsen con estilos heredados */
-app-header, app-footer {
-  flex-shrink: 0;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }

@@ -15,7 +15,7 @@ public class Enterprise {
     @Column
     private String email;
 
-    @Column
+    @Column(name = "phoneNumber")
     private String phoneNumber;
 
     @Column

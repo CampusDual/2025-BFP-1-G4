@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Oferta } from '../model/oferta.model';
-import { OfertasService } from '../services/ofertas-service.service';
+import { Oferta } from '../../model/oferta.model';
+import { OfertasService } from '../../services/ofertas-service.service';
 import { Router } from '@angular/router';
 
 
@@ -12,15 +12,16 @@ import { Router } from '@angular/router';
   templateUrl: './publicar-oferta.component.html',
   styleUrls: ['./publicar-oferta.component.css']
 })
-export class PublicarOfertaComponent{
-    oferta: Oferta = {
-     title: '', description: '', publicationdate: new Date(), active: true
-   };
+export class PublicarOfertaComponent {
+  oferta: Oferta = {
+    title: '', description: '', publicationdate: new Date(), active: true
+  };
 
-onSubmit() {
-throw new Error('Method not implemented.');
-}
-  constructor(private ofertasService: OfertasService) {}
+  onSubmit() {
+    throw new Error('Method not implemented.');
+    //this.publicarOferta.resect();
+  }
+  constructor(private ofertasService: OfertasService) { }
 
 
   publicarOferta() {

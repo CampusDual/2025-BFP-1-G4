@@ -32,3 +32,7 @@ button {
     margin-bottom: 1rem;
     color: #333333;
 }
+
+.footer_login p{
+    color: #777;
+}

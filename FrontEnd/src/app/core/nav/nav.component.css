@@ -1,0 +1,20 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+/*.mdc-button {
+  background-color: #fff;
+  border-color: #fff !important;
+}*/
+
+.logo_container {
+  width: 200px;
+}
+
+.logo {
+  width: 90%;
+}
+.mat-toolbar-multiple-rows {
+  box-shadow: 0 2px 10px rgba(185, 185, 185, 0.275);
+  background-color: #fff;
+}
