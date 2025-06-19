@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { JwtPayload } from '../models/jwt-payload';
+import { AuthService } from '../../services/auth.service';
+import { JwtPayload } from '../../models/jwt-payload';
 
 
 
@@ -12,6 +12,8 @@ import { JwtPayload } from '../models/jwt-payload';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  currentYear: number;
+
   loginF = this.lf.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -21,7 +23,9 @@ export class LoginComponent implements OnInit {
   hide = true;
 
 
-  constructor(private lf: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(private lf: FormBuilder, private authService: AuthService, private router: Router) {
+  this.currentYear = new Date().getFullYear();
+   }
 
   onSubmit() {
     if (this.loginF.valid) {

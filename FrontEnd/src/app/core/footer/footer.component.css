@@ -1,8 +1,8 @@
 /* HEADER Y FOOTER */
 .main-header, .main-footer {
-  background-color: #2c2c2c;
-  color: white;
-  padding: 1rem 2rem;
+  background-color: #ccc;
+  color: #212121;
+  padding: 0.8rem;
   display: flex;
   align-items: center;
 }

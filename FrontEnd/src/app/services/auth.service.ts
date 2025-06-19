@@ -7,10 +7,11 @@ import { map, Observable } from 'rxjs';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:30030/auth';
+  //isLogged = false;
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string}): Observable<string> {
+  login(credentials: { email: string, password: string }): Observable<string> {
 
     const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
 
@@ -18,14 +19,35 @@ export class AuthService {
       'Authorization': 'Basic ' + encodedCredentials,
       'Content-Type': 'text/plain;charset=UTF-8'
     });
+    
 
 
-   return this.http.post(`${this.baseUrl}/login`, null, {
+    return this.http.post(`${this.baseUrl}/login`, null, {
       headers,
       responseType: 'text'
     }).pipe(
-      map(response => response as string)
+     map(response => {
+        if (response) {
+          // Guardar token y marcar como logueado
+          sessionStorage.setItem('token', response);
+          sessionStorage.setItem('username', credentials.email); // o el nombre real si lo recibes
+        }
+        return response;
+      })
     );
   }
 
+ get isLogged(): boolean {
+    return !!sessionStorage.getItem('token');
+  }
+
+  getUsername(): string | null {
+    return sessionStorage.getItem('username');
+  }
+
+  logout(): void {
+    sessionStorage.clear();
+  }
+
+  
 }

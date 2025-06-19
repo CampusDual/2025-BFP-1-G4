@@ -11,4 +11,5 @@ public interface IOffersService {
     List<OffersDTO> queryAllOffers();
     OffersDTO insertOffer(OffersDTO offersDTO);
     List<OffersDTO> findOffersByEnterpriseId();
+    OffersDTO toggleActive(OffersDTO offersDTO);
 }

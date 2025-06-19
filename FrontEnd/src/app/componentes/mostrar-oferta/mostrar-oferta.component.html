@@ -1,0 +1,18 @@
+<div class="mostrar-ofertas-container">
+  <h1 class="page-title">Ofertas de empleo disponibles</h1>
+
+  <div class="ofertas-grid">
+    <div *ngFor="let oferta of offerList" class="oferta-card">
+      <h3 class="oferta-titulo">{{ oferta.title }}</h3>
+      <p class="oferta-descripcion">{{ oferta.description }}</p>
+      <p class="oferta-fecha">📅 {{ oferta.publicationDate | date:'dd/MM/yyyy' }}</p>
+      <span
+        class="estado-tag"
+        [class.activo]="oferta.active"
+        [class.inactivo]="!oferta.active"
+      >
+        {{ oferta.active ? 'Activa' : 'Inactiva' }}
+      </span>
+    </div>
+  </div>
+</div>
