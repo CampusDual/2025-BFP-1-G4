@@ -18,14 +18,17 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 //componetes
-import { PublicarOfertaComponent } from './publicar-oferta/publicar-oferta.component';
-import { LoginComponent } from './login/login.component';
+import { PublicarOfertaComponent } from './componentes/publicar-oferta/publicar-oferta.component';
+import { LoginComponent } from './auth/login/login.component';
+import { NavComponent } from './core/nav/nav.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { ListaOfertasComponent } from './componentes/lista-ofertas/lista-ofertas.component';
+import { MostrarOfertaComponent } from './componentes/mostrar-oferta/mostrar-oferta.component';
 
 //servicios
 import { AuthService } from './services/auth.service';
-import { NavComponent } from './nav/nav.component';
-import { FooterComponent } from './footer/footer.component';
-import { ListaOfertasComponent } from './lista-ofertas/lista-ofertas.component';
+
+
 
 
 
@@ -36,7 +39,8 @@ import { ListaOfertasComponent } from './lista-ofertas/lista-ofertas.component';
     PublicarOfertaComponent,
     FooterComponent,
     NavComponent,
-    ListaOfertasComponent
+    ListaOfertasComponent,
+    MostrarOfertaComponent
   ],
   imports: [
     BrowserModule,

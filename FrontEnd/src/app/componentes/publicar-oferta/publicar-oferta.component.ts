@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Oferta } from '../model/oferta.model';
-import { OfertasService } from '../services/ofertas-service.service';
+import { Oferta } from '../../model/oferta.model';
+import { OfertasService } from '../../services/ofertas-service.service';
 import { Router } from '@angular/router';
 
 
