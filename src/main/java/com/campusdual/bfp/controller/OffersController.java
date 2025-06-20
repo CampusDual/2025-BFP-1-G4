@@ -24,7 +24,7 @@ public class OffersController {
         return offersService.queryAllOffers();
     }
 
-    @PostMapping( "/add")
+    @PostMapping("/add")
     public OffersDTO addOffer(@RequestBody OffersDTO offer) {
         return offersService.insertOffer(offer);
     }
@@ -45,7 +45,12 @@ public class OffersController {
         return offersService.toggleActive(offersDTO);
     }
 
+    @GetMapping("/findAllByActive")
+    public List<OffersDTO> getAllActiveOffers() {
+        return offersService.findAllByActiveOffers();}
+
 }
+
 
 
 
