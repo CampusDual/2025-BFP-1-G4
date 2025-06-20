@@ -7,7 +7,6 @@ import { map, Observable } from 'rxjs';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:30030/auth';
-  //isLogged = false;
 
   constructor(private http: HttpClient) { }
 
@@ -28,9 +27,8 @@ export class AuthService {
     }).pipe(
      map(response => {
         if (response) {
-          // Guardar token y marcar como logueado
           sessionStorage.setItem('token', response);
-          sessionStorage.setItem('username', credentials.email); // o el nombre real si lo recibes
+          sessionStorage.setItem('username', credentials.email);
         }
         return response;
       })
