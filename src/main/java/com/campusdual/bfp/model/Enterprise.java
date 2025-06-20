@@ -12,7 +12,7 @@ public class Enterprise {
     @Column
     private String name;
 
-    @Column
+    @Column(name= "phonenumber")
     private String email;
 
     @Column
