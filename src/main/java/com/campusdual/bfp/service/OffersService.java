@@ -74,8 +74,4 @@ public class OffersService implements IOffersService {
         return OffersMapper.INSTANCE.toDTO(entity);
     }
 
-    @Override
-    public List<OffersDTO> findAllByActiveOffers() {
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActive(true));
-    }
 }
