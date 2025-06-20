@@ -15,7 +15,7 @@ public class Enterprise {
     @Column
     private String email;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phonenumber")
     private String phoneNumber;
 
     @Column
@@ -24,8 +24,8 @@ public class Enterprise {
     public Enterprise() {
     }
 
-    public Enterprise(String ent_name) {
-        this.name = ent_name;
+    public Enterprise(String name) {
+        this.name = name;
     }
 
     public Integer getId() {

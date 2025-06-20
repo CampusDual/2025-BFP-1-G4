@@ -39,6 +39,10 @@ public class OffersController {
         return offersService.findOffersByEnterpriseId();
     }
 
+    @GetMapping("/findAllByActive")
+    public List<OffersDTO> getAllActiveOffers() {
+        return offersService.findAllByActiveOffers();
+    }
 
     @PutMapping("/toggleActive")
     public OffersDTO toggleActive(@RequestBody OffersDTO offersDTO) {

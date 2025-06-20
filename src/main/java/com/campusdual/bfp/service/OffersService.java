@@ -61,6 +61,11 @@ public class OffersService implements IOffersService {
     }
 
     @Override
+    public List<OffersDTO> findAllByActiveOffers() {
+        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActive(true));
+    }
+
+    @Override
     public OffersDTO toggleActive(OffersDTO offersDTO) {
         Offer offer = OffersMapper.INSTANCE.toEntity(offersDTO);
         Offer entity = offersDao.getReferenceById(offer.getId());

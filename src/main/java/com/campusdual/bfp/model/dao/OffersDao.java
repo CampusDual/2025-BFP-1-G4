@@ -10,4 +10,5 @@ public interface OffersDao extends JpaRepository<Offer, Integer>{
     //search enterprise by id
     //query all by enterprise id
     List<Offer> findAllByEnterpriseId(Integer enterpriseId);
+    List<Offer> findByActive(boolean active);
 }
