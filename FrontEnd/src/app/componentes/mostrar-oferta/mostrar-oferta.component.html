@@ -5,7 +5,7 @@
     <div *ngFor="let oferta of offerActivas" class="oferta-card">
       <h3 class="oferta-titulo">{{ oferta.title }}</h3>
       <p class="oferta-descripcion">{{ oferta.description }}</p>
-      <p class="oferta-fecha">📅 {{ oferta.publicationDate | date:'dd/MM/yyyy' }}</p>
+      <p class="oferta-fecha"><mat-icon>calendar_month</mat-icon>{{ oferta.publicationDate | date:'dd/MM/yyyy' }}</p>
     </div>
   </div>
 </div>
