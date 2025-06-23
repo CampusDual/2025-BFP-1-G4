@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string}): Observable<string> {
+  login(credentials: { email: string, password: string }): Observable<string> {
 
     const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
 
@@ -20,12 +20,32 @@ export class AuthService {
     });
 
 
-   return this.http.post(`${this.baseUrl}/login`, null, {
+
+    return this.http.post(`${this.baseUrl}/login`, null, {
       headers,
       responseType: 'text'
     }).pipe(
-      map(response => response as string)
+     map(response => {
+        if (response) {
+          sessionStorage.setItem('token', response);
+          sessionStorage.setItem('username', credentials.email);
+        }
+        return response;
+      })
     );
   }
+
+ get isLogged(): boolean {
+    return !!sessionStorage.getItem('token');
+  }
+
+  getUsername(): string | null {
+    return sessionStorage.getItem('username');
+  }
+
+  logout(): void {
+    sessionStorage.clear();
+  }
+
 
 }

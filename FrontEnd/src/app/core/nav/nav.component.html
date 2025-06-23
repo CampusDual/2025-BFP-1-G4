@@ -1,0 +1,25 @@
+<nav *ngIf="router.url !== '/login'">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <span class="logo_container"><img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo"
+          class="logo"></span>
+
+      <ng-container *ngIf="!login">
+         <span class="example-spacer"></span>
+        <button mat-raised-button color="warn" *ngIf="router.url !== '/login'" (click)="irALogin()">Iniciar Sesión</button>
+      </ng-container>
+
+
+      <ng-container *ngIf="login">
+        <span>
+          <p>Usuario: {{username}}</p>
+        </span>
+        <span class="example-spacer"></span>
+        <button *ngIf="router.url !== '/lista-ofertas'" mat-raised-button color="warn" (click)="irAListaOfertas()">Ver
+          Ofertas</button>
+        <button *ngIf="router.url !== '/publicar-oferta'" mat-raised-button color="warn"
+          (click)="irAPublicarOferta()">Publicar</button>
+      </ng-container>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</nav>
