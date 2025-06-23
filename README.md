@@ -18,6 +18,10 @@ Este proyecto es una plataforma web de empleo orientada a empresas y usuarios en
 
 ---
 
+## 🚀 Usuario de Prueba
+USER: test@test.com
+PASS: 456789
+
 ## 🔐 Acceso empresarial
 
 Las empresas se autentican mediante su **correo electrónico** y **contraseña**.  
@@ -46,10 +50,6 @@ Una vez logueadas, obtienen acceso exclusivo a:
 - `publicar-oferta.component.ts`: Formulario para enviar nuevas ofertas.
 - `mostrar-ofertas.component.ts`: Página pública con todas las ofertas activas.
 - `tabla-ofertas-empresa.component.ts`: Panel privado de cada empresa con sus ofertas.
-
----
-
-## 🚀 Próximas funcionalidades
 
 ---
 
