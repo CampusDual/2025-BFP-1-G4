@@ -13,6 +13,10 @@ public class Offer {
     @Column (name="enterpriseid")
     private Integer enterpriseId;
 
+    @ManyToOne
+    @JoinColumn(name="enterpriseid", insertable = false, updatable = false)
+    private Enterprise enterprise;
+
     @Column
     private String title;
 
@@ -71,5 +75,12 @@ public class Offer {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 }
