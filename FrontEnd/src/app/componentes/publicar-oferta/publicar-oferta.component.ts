@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class PublicarOfertaComponent {
   oferta: Oferta = {
-    title: '', description: '', publicationdate: new Date(), active: true
+    title: '', description: '', publicationdate: new Date(), active: true, enterpriseName: '', enterpriseId: 0, enterpriseEmail: ''
   };
 
   onSubmit() {

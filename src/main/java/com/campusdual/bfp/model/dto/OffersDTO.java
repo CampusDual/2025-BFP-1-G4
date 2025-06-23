@@ -9,6 +9,8 @@ public class OffersDTO {
     private String description;
     private Date publicationDate;
     private boolean active;
+    private String enterpriseName;
+    private String enterpriseEmail;
 
     public Integer getId() {
         return id;
@@ -56,5 +58,21 @@ public class OffersDTO {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getEnterpriseName() {
+        return enterpriseName;
+    }
+
+    public void setEnterpriseName(String enterpriseName) {
+        this.enterpriseName = enterpriseName;
+    }
+
+    public String getEnterpriseEmail() {
+        return enterpriseEmail;
+    }
+
+    public void setEnterpriseEmail(String enterpriseEmail) {
+        this.enterpriseEmail = enterpriseEmail;
     }
 }
