@@ -5,9 +5,9 @@
             <h1 class="title">Iniciar Sesión</h1>
             <div>
                 <mat-form-field appearance="fill">
-                    <mat-label>Introduce tu email</mat-label>
-                    <input matInput placeholder="pat@example.com" formControlName="email" type="email" required>
-                    <mat-error *ngIf="loginF.get('email')?.invalid">Email inválido</mat-error>
+                    <mat-label>Introduce tu nombre de usuario</mat-label>
+                    <input matInput placeholder="ClusterTIC" formControlName="username" type="text" required>
+                    <mat-error *ngIf="loginF.get('username')?.invalid">Nombnre de usuario inválido</mat-error>
                 </mat-form-field>
             </div>
             <div>
