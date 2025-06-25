@@ -52,6 +52,10 @@ textarea {
   max-height: 300px;
 }
 
+::placeholder {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 button {
     width: 100%;
     font-size: 1rem;

@@ -6,7 +6,6 @@
                     <th>Título</th>
                     <th>Descripción</th>
                     <th>Fecha</th>
-                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -16,14 +15,7 @@
                     <td>{{ oferta.description }}</td>
                     <td class="centrar">{{ oferta.publicationDate | date: "dd-MM-yyyy" }}</td>
                     <td class="centrar">
-                        <span
-                            class="estado-circle"
-                            [ngClass]="oferta.active ? 'activo' : 'inactivo'"
-                            matTooltip="{{ oferta.active ? 'Activa' : 'Inactiva' }}">
-                        </span>
-                    </td>
-                    <td class="centrar">
-                        <button mat-icon-button color="warn" (click)="toggleEstado(oferta)">
+                        <button mat-icon-button [ngClass]="oferta.active ? 'activo' : 'inactivo'" (click)="toggleEstado(oferta)">
                             <mat-icon>{{ oferta.active ? 'toggle_on' : 'toggle_off' }}</mat-icon>
                         </button>
                     </td>

@@ -47,11 +47,11 @@ table {
 }
 
 .activo {
-  background-color: #4caf50;
+ color: #4caf50;
 }
 
 .inactivo {
-  background-color: #f44336;
+  color: #f44336;
 }
 
 /* Botones */
