@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { filter } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -12,9 +13,11 @@ export class NavComponent implements OnInit {
   login = false;
   username: string | null = null;
 
-  constructor(private authService: AuthService, public router: Router) {}
+  constructor(private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
+  
+    this.username = sessionStorage.getItem('username');
     this.actualizarEstado();
 
     // Escuchar navegación para actualizar el estado del menú dinámicamente
@@ -46,4 +49,10 @@ export class NavComponent implements OnInit {
   irAPublicarOferta(): void {
     this.router.navigate(['/publicar-oferta']);
   }
+
+  cerrarSesion(): void {
+    sessionStorage.clear();  // Borra todo lo que guardaste en sesión
+    this.router.navigate(['/mostrar-oferta']);  // Redirige al login
+  }
+
 }

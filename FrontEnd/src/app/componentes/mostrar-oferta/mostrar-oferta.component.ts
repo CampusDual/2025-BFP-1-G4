@@ -16,4 +16,9 @@ offerActivas: any[] = [];
         this.offerActivas = ofertas;
     });
   }
+
+ aplicarOferta(oferta: any): void {
+    alert(`✅ Aplicaste a la oferta: ${oferta.title}`);
+  }
+
 }

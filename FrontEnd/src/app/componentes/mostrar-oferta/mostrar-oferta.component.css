@@ -18,13 +18,18 @@
 }
 
 .oferta-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* asegura el empuje */
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   border-left: 6px solid #f44336;
   transition: transform 0.2s;
+  min-height: 280px; /* opcional: asegura altura mínima común */
 }
+
 
 .oferta-card:hover {
   transform: scale(1.02);
@@ -72,4 +77,23 @@ mat-icon, p.oferta-email {
 p.oferta-empresa {
   color: #333;
   font-weight: 500;
+}
+
+.apButton {
+  width: 50%;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 45px;
+  background-color: #ff4400;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-end; /* lo alinea a la derecha */
+  margin-top: auto;     /* lo empuja al fondo de la tarjeta */
+}
+
+.apButton:hover {
+  background-color: #e65100;
 }

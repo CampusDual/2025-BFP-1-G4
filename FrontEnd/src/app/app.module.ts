@@ -17,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+
 //componetes
 import { PublicarOfertaComponent } from './componentes/publicar-oferta/publicar-oferta.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -55,6 +57,7 @@ import { AuthService } from './services/auth.service';
     MatIconModule,
     MatCardModule,
     MatCheckboxModule,
+    MatDividerModule,
     RouterModule,
     HttpClientModule,
     MatMenuModule,
