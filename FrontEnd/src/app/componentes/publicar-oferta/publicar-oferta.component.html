@@ -20,9 +20,20 @@
         name="descripcion"
         id="descripcion"
         placeholder="Descripción"
+        required
       ></textarea>
     </div>
 
-    <button mat-flat-button color="warn" type="submit">Publicar Oferta</button>
+    <button
+      mat-flat-button
+      color="warn"
+      type="submit"
+      [disabled]="
+    !oferta.title || oferta.title.trim() === '' ||
+    !oferta.description || oferta.description.trim() === ''
+  "
+    >
+      Publicar Oferta
+    </button>
   </form>
 </div>

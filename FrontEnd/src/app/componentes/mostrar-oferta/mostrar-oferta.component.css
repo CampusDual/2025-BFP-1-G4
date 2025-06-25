@@ -30,7 +30,7 @@
   transform: scale(1.02);
 }
 
-.oferta-titulo {
+.oferta-titulo{
   font-size: 20px;
   margin-bottom: 10px;
   color: #333;
@@ -62,4 +62,14 @@
 
 .estado-tag.inactivo {
   background-color: #f44336
+}
+
+mat-icon, p.oferta-email {
+  margin-bottom: -0.2rem;
+  color: #777;
+}
+
+p.oferta-empresa {
+  color: #333;
+  font-weight: 500;
 }

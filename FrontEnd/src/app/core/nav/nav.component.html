@@ -15,7 +15,7 @@
           <p>Usuario: {{username}}</p>
         </span>
         <span class="example-spacer"></span>
-        <button *ngIf="router.url !== '/lista-ofertas'" mat-raised-button color="warn" (click)="irAListaOfertas()">Ver
+        <button class="ver-ofertas"  *ngIf="router.url !== '/lista-ofertas'" mat-raised-button color="warn" (click)="irAListaOfertas()">Ver
           Ofertas</button>
         <button *ngIf="router.url !== '/publicar-oferta'" mat-raised-button color="warn"
           (click)="irAPublicarOferta()">Publicar</button>
