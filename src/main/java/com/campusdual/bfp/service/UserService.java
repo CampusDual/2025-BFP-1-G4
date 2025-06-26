@@ -50,7 +50,7 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String login, String name,String phonenumber, String password, String surname1, String surname2, String email) {
+    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email) {
         User user = new User();
         user.setLogin(login);
         user.setName(name);
@@ -62,15 +62,24 @@ public class UserService implements IUserService, UserDetailsService {
         user.setEnterpriseId(null);
         User savedUser = this.userDao.saveAndFlush(user);
 
-        Role role = this.roleDao.findByRoleName("ROLE_USER");
-        if (role != null) {
-            UserRole userRole = new UserRole();
-            userRole.setUser(savedUser);
-            userRole.setRole(role);
-            this.userRoleDao.saveAndFlush(userRole);
-        }
+        this.addRoleToUser(savedUser.getId(), 1L);
     }
 
+    public void addRoleToUser(int userid, Long roleid) {
+        User user = this.userDao.findUserById(userid);
+        if (user == null) return;
+
+        Role role = this.roleDao.findById(roleid).orElse(null);
+        if (role == null) return;
+
+        boolean alreadyAssigned = userRoleDao.findUserRoleByUserAndRole(user, role) != null;
+        if (!alreadyAssigned) {
+            UserRole userRole = new UserRole();
+            userRole.setUser(user);
+            userRole.setRole(role);
+            userRoleDao.saveAndFlush(userRole);
+        }
+    }
     /*
         public void registerNewEnterprise(String username, String password) {
         User user = new User();
