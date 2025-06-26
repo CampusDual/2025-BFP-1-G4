@@ -12,8 +12,6 @@ import com.campusdual.bfp.model.dto.dtomapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,11 +50,11 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String login, String name,String telephone, String password, String surname1, String surname2, String email) {
+    public void registerNewUser(String login, String name,String phonenumber, String password, String surname1, String surname2, String email) {
         User user = new User();
         user.setLogin(login);
         user.setName(name);
-        user.setTelephone(telephone);
+        user.setPhonenumber(phonenumber);
         user.setPassword(this.passwordEncoder().encode(password));
         user.setSurname1(surname1);
         user.setSurname2(surname2);

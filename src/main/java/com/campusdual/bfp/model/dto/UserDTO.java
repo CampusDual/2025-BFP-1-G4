@@ -5,7 +5,7 @@ public class UserDTO {
     private String name;
     private String password;
     private String email;
-    private String telephone;
+    private String phonenumber;
     private String surname1;
     private String surname2;
     private Integer enterpriseid;
@@ -43,12 +43,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getSurname1() {

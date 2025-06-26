@@ -53,7 +53,7 @@ public class UserController {
         userService.registerNewUser(
                 userDTO.getLogin(),
                 userDTO.getName(),
-                userDTO.getTelephone(),
+                userDTO.getPhonenumber(),
                 userDTO.getPassword(),
                 userDTO.getSurname1(),
                 userDTO.getSurname2(),
