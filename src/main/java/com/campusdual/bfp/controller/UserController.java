@@ -2,7 +2,9 @@ package com.campusdual.bfp.controller;
 
 import com.campusdual.bfp.api.IUserService;
 import com.campusdual.bfp.model.dto.UserDTO;
+import com.campusdual.bfp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +14,9 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private IUserService iuserService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/testController")
     public String testUserController() {
@@ -21,27 +25,40 @@ public class UserController {
 
     @GetMapping(value = "/get")
     public UserDTO queryUser(@RequestBody UserDTO userDTO) {
-        return userService.queryUser(userDTO);
+        return iuserService.queryUser(userDTO);
     }
 
     @GetMapping(value = "/getAll")
     public List<UserDTO> queryAllUsers() {
-        return userService.queryAllUsers();
+        return iuserService.queryAllUsers();
     }
 
     @PostMapping(value = "/add")
     public int addUser(@RequestBody UserDTO userDTO) {
-        return userService.addUser(userDTO);
+        return iuserService.addUser(userDTO);
     }
 
     @PutMapping(value = "/update")
     public int updateUser(@RequestBody UserDTO userDTO) {
-        return userService.updateUser(userDTO);
+        return iuserService.updateUser(userDTO);
     }
 
     @DeleteMapping(value = "/delete")
     public int deleteUser(@RequestBody UserDTO userDTO) {
-        return userService.deleteUser(userDTO);
+        return iuserService.deleteUser(userDTO);
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
+        userService.registerNewUser(
+                userDTO.getLogin(),
+                userDTO.getName(),
+                userDTO.getTelephone(),
+                userDTO.getPassword(),
+                userDTO.getSurname1(),
+                userDTO.getSurname2(),
+                userDTO.getEmail()
+        );
+        return ResponseEntity.ok().build();
+    }
 }
