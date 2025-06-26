@@ -1,25 +1,46 @@
 <nav *ngIf="router.url !== '/login'">
   <mat-toolbar>
     <mat-toolbar-row>
-      <span class="logo_container"><img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo"
-          class="logo"></span>
 
+      <!-- Logo -->
+      <span class="logo_container">
+        <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo" class="logo">
+      </span>
+
+      <span class="example-spacer"></span>
+
+      <!-- Botón de login -->
       <ng-container *ngIf="!login">
-         <span class="example-spacer"></span>
-        <button mat-raised-button color="warn" *ngIf="router.url !== '/login'" (click)="irALogin()">Iniciar Sesión</button>
+        <button mat-raised-button color="warn" (click)="irALogin()">Iniciar Sesión</button>
       </ng-container>
 
-
+      <!-- Botón hamburguesa con menú -->
       <ng-container *ngIf="login">
-        <span>
-          <p>Usuario: {{username}}</p>
-        </span>
-        <span class="example-spacer"></span>
-        <button class="ver-ofertas"  *ngIf="router.url !== '/lista-ofertas'" mat-raised-button color="warn" (click)="irAListaOfertas()">Ver
-          Ofertas</button>
-        <button *ngIf="router.url !== '/publicar-oferta'" mat-raised-button color="warn"
-          (click)="irAPublicarOferta()">Publicar</button>
+        <button mat-icon-button [matMenuTriggerFor]="hamburguesa">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <mat-menu #hamburguesa="matMenu">
+          <button mat-menu-item disabled>
+            👤 {{ username || 'Usuario' }}
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="irAListaOfertas()">
+            <mat-icon>work</mat-icon>
+            <span>Ver Ofertas</span>
+          </button>
+          <button mat-menu-item (click)="irAPublicarOferta()">
+            <mat-icon>add_circle</mat-icon>
+            <span>Publicar Oferta</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="cerrarSesion()">
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar sesión</span>
+          </button>
+        </mat-menu>
       </ng-container>
+
     </mat-toolbar-row>
   </mat-toolbar>
 </nav>

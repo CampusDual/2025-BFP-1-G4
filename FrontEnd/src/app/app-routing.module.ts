@@ -4,13 +4,17 @@ import { LoginComponent } from './auth/login/login.component';
 import { PublicarOfertaComponent } from './componentes/publicar-oferta/publicar-oferta.component';
 import { ListaOfertasComponent } from './componentes/lista-ofertas/lista-ofertas.component';
 import { MostrarOfertaComponent } from './componentes/mostrar-oferta/mostrar-oferta.component';
+import { RegisterComponent } from './register/register.component';
+
+
 
 
 const routes: Routes = [
   { path: 'mostrar-oferta', component: MostrarOfertaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'publicar-oferta', component: PublicarOfertaComponent },
-   { path: 'lista-ofertas', component: ListaOfertasComponent },
+  { path: 'lista-ofertas', component: ListaOfertasComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/mostrar-oferta', pathMatch: 'full' },
 ];
 

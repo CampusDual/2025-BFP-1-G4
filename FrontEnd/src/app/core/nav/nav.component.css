@@ -2,10 +2,10 @@
   flex: 1 1 auto;
 }
 
-/*.mdc-button {
-  background-color: #fff;
-  border-color: #fff !important;
-}*/
+app-nav {
+  height: 60px;
+  min-height: 60px;
+}
 
 .logo_container {
   width: 200px;

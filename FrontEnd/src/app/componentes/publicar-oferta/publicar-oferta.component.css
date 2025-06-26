@@ -1,27 +1,39 @@
-.page-title {
-  font-size: 2rem;
-  color: #212121;
-  font-weight: 600;
-  margin-bottom: 1.5rem;    /* para que la línea solo cubra el texto */
-  padding-bottom: 0.5rem;
-  text-align: center;
-}
 .page-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 1rem;
+  min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
+.page-title {
+  font-size: 2rem;
+  color: #d32f2f;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.page-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #ff4400;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
 
 .oferta-form {
   background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 600px;
-  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -34,27 +46,50 @@
 
 label {
   font-weight: 600;
-  color: #444;
+  color: #333;
   margin-bottom: 0.5rem;
+  font-size: 0.95rem;
 }
 
 input,
 textarea {
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 0.4rem;
-  resize: vertical;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #f44336;
 }
 
 textarea {
   min-height: 120px;
   max-height: 300px;
+  resize: vertical;
 }
 
+::placeholder {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #999;
+}
+
+/* Botón principal */
 button {
-    width: 100%;
-    font-size: 1rem;
-    font-weight: 400;
-    height: 45px !important;
+  background-color: #ff4400;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  height: 45px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #e65100;
 }

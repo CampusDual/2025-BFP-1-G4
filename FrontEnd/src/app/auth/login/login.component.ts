@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { JwtPayload } from '../../models/jwt-payload';
-
-
 
 @Component({
   selector: 'app-login',
@@ -15,39 +12,35 @@ export class LoginComponent implements OnInit {
   currentYear: number;
 
   loginF = this.lf.group({
-    email: ['', [Validators.required, Validators.email]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     rememberMe: [false],
   });
 
   hide = true;
 
-
   constructor(private lf: FormBuilder, private authService: AuthService, private router: Router) {
-  this.currentYear = new Date().getFullYear();
-   }
+    this.currentYear = new Date().getFullYear();
+  }
 
   onSubmit() {
     if (this.loginF.valid) {
-      const email = this.loginF.value.email!;
+      const username = this.loginF.value.username!;
       const password = this.loginF.value.password!;
       const rememberMe = this.loginF.value.rememberMe;
 
-
-      this.authService.login({ email, password }).subscribe({
+      this.authService.login({ username, password }).subscribe({
         next: (res: string) => {
-
           sessionStorage.setItem('token', res);
-          sessionStorage.setItem('email', email || '');
+          sessionStorage.setItem('username', username || '');
 
           if (rememberMe) {
-            localStorage.setItem('rememberedEmail', email || '');
-
+            localStorage.setItem('rememberedUsername', username || '');
           } else {
-            localStorage.removeItem('rememberedEmail');
+            localStorage.removeItem('rememberedUsername');
           }
 
-          this.router.navigate(['/publicar-oferta']);
+          this.router.navigate(['/lista-ofertas']);
         },
         error: (err: string) => {
           alert('Datos incorrectos');
@@ -57,10 +50,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const rememberedEmail = localStorage.getItem('rememberedEmail');
-    if (rememberedEmail) {
-      this.loginF.patchValue({ email: rememberedEmail });
+    const rememberedUsername = localStorage.getItem('rememberedUsername');
+    if (rememberedUsername) {
+      this.loginF.patchValue({ username: rememberedUsername });
     }
   }
 
+  irARegistro() {
+  this.router.navigate(['/register']);
 }
+}
+

@@ -8,6 +8,7 @@
       <p class="oferta-descripcion">{{ oferta.description }}</p>
       <p class="oferta-email"><mat-icon>email</mat-icon> {{ oferta.enterpriseEmail }}</p>
       <p class="oferta-fecha"><mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate | date:'dd/MM/yyyy' }}</p>
+      <button class="apButton" (click)="aplicarOferta(oferta)">Postularse</button>
     </div>
   </div>
 </div>

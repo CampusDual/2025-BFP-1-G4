@@ -10,25 +10,21 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: { email: string, password: string }): Observable<string> {
-
-    const encodedCredentials = btoa(`${credentials.email}:${credentials.password}`);
-
+  login(credentials: { username: string, password: string }): Observable<string> {
+    const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + encodedCredentials,
       'Content-Type': 'text/plain;charset=UTF-8'
     });
 
-
-
     return this.http.post(`${this.baseUrl}/login`, null, {
       headers,
       responseType: 'text'
     }).pipe(
-     map(response => {
+      map(response => {
         if (response) {
           sessionStorage.setItem('token', response);
-          sessionStorage.setItem('username', credentials.email);
+          sessionStorage.setItem('username', credentials.username);
         }
         return response;
       })

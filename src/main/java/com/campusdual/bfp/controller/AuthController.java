@@ -64,14 +64,14 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/signup")
+   /*@PostMapping("/signup")
     public ResponseEntity<String> registerUser(@RequestBody SignupDTO request) {
         if (this.userService.existsByUsername(request.getLogin())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists.");
         }
 
-        this.userService.registerNewUser(request.getLogin(), request.getPassword());
+     this.userService.registerNewUser(request.getLogin(), request.getPassword());
         return ResponseEntity.status(HttpStatus.CREATED).body("User successfully registered.");
 
-    }
+    }*/
 }

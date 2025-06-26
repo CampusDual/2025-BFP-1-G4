@@ -1,24 +1,30 @@
 <div class="login-container">
     <mat-card>
         <form [formGroup]="loginF" (ngSubmit)="onSubmit()">
-            <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo" class="logo">
+            <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo"
+                class="logo">
             <h1 class="title">Iniciar Sesión</h1>
             <div>
                 <mat-form-field appearance="fill">
-                    <mat-label>Introduce tu email</mat-label>
-                    <input matInput placeholder="pat@example.com" formControlName="email" type="email" required>
-                    <mat-error *ngIf="loginF.get('email')?.invalid">Email inválido</mat-error>
+                    <mat-label>Introduce tu nombre de usuario</mat-label>
+                    <input matInput placeholder="ClusterTIC"
+                        formControlName="username" type="text" required>
+                    <mat-error *ngIf="loginF.get('username')?.invalid">Nombre de
+                        usuario inválido</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field appearance="fill">
                     <mat-label>Introduce tu contraseña</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="********"
+                    <input matInput [type]="hide ? 'password' : 'text'"
+                        placeholder="********"
                         formControlName="password" required>
 
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide" tabindex="-1" type="button">
-                        <mat-icon> {{hide ? 'visibility_off' : 'visibility'}} </mat-icon>
+                        <mat-icon> {{hide ? 'visibility_off' : 'visibility'}}
+                        </mat-icon>
                     </button>
                     <mat-error *ngIf="loginF.get('password')?.invalid">
                         Contraseña requerida (mínimo 6 caracteres)
@@ -26,14 +32,20 @@
                 </mat-form-field>
             </div>
 
-            <mat-checkbox formControlName="rememberMe" color="warn">Recuerdarme</mat-checkbox>
-
+            <mat-checkbox formControlName="rememberMe"
+                color="warn">Recuerdarme</mat-checkbox>
+            <div class="registro-link">
+                <span>¿No tienes cuenta?</span>
+                <a (click)="irARegistro()">Regístrate aquí</a>
+            </div>
             <mat-card-actions>
-                <button mat-flat-button color="warn" type="submit">Iniciar Sesión</button>
+                <button mat-flat-button color="warn" type="submit">Iniciar
+                    Sesión</button>
             </mat-card-actions>
         </form>
     </mat-card>
     <div class="footer_login">
-        <p>&copy; {{ currentYear }} Cluster Empleo. Todos los derechos reservados.</p>
+        <p>&copy; {{ currentYear }} Cluster Empleo. Todos los derechos
+            reservados.</p>
     </div>
 </div>

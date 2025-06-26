@@ -1,0 +1,56 @@
+<div class="registro-wrapper">
+  <mat-card class="registro-card">
+    <img
+      src="../assets/img/logo-clustertic.png"
+      alt="Cluster Empleo"
+      class="logo clickable"
+      (click)="volverAOfertas()" />
+
+    <h1 class="title">Registro de Usuario</h1>
+
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre*</mat-label>
+          <input matInput formControlName="name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido 1*</mat-label>
+          <input matInput formControlName="surname1" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido 2*</mat-label>
+          <input matInput formControlName="surname2" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono*</mat-label>
+          <input matInput formControlName="phonenumber" required />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email*</mat-label>
+        <input matInput formControlName="email" required type="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Usuario*</mat-label>
+        <input matInput formControlName="login" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña*</mat-label>
+        <input matInput type="password" formControlName="password" required />
+      </mat-form-field>
+
+      <div class="submit-container">
+        <button mat-flat-button color="warn" type="submit">Registrar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -36,3 +36,25 @@ button {
 .footer_login p{
     color: #777;
 }
+
+.registro-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+  padding: 5px;
+}
+
+.registro-link a {
+  margin-left: 0.4rem;
+  color: #ff4400;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.registro-link a:hover {
+  color: #e65100;
+  text-decoration: underline;
+}
