@@ -8,9 +8,12 @@ import com.campusdual.bfp.model.dao.RoleDao;
 import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dao.UserRoleDao;
 import com.campusdual.bfp.model.dto.UserDTO;
+import com.campusdual.bfp.model.dto.dtomapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -49,10 +52,16 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String username, String password) {
+    public void registerNewUser(String login, String name,String telephone, String password, String surname1, String surname2, String email) {
         User user = new User();
-        user.setLogin(username);
+        user.setLogin(login);
+        user.setName(name);
+        user.setTelephone(telephone);
         user.setPassword(this.passwordEncoder().encode(password));
+        user.setSurname1(surname1);
+        user.setSurname2(surname2);
+        user.setEmail(email);
+        user.setEnterpriseId(null);
         User savedUser = this.userDao.saveAndFlush(user);
 
         Role role = this.roleDao.findByRoleName("ROLE_USER");
@@ -64,6 +73,24 @@ public class UserService implements IUserService, UserDetailsService {
         }
     }
 
+    /*
+        public void registerNewEnterprise(String username, String password) {
+        User user = new User();
+        user.setLogin(username);
+        user.setName(username);
+        user.setPassword(this.passwordEncoder().encode(password));
+        User savedUser = this.userDao.saveAndFlush(user);
+
+        Role role = this.roleDao.findByRoleName("ROLE_USER");
+        if (role != null) {
+            UserRole userRole = new UserRole();
+            userRole.setUser(savedUser);
+            userRole.setRole(role);
+            this.userRoleDao.saveAndFlush(userRole);
+        }
+    }
+     */
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -71,12 +98,13 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public UserDTO queryUser(UserDTO userDTO) {
-        return null;
+        User user = UserMapper.INSTANCE.toEntity(userDTO);
+        return UserMapper.INSTANCE.toDTO(userDao.getReferenceById(user.getId()));
     }
 
     @Override
     public List<UserDTO> queryAllUsers() {
-        return List.of();
+        return UserMapper.INSTANCE.toDTOList(userDao.findAll());
     }
 
     @Override
