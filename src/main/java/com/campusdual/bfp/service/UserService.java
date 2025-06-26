@@ -1,11 +1,13 @@
 package com.campusdual.bfp.service;
 
+import com.campusdual.bfp.api.IUserService;
 import com.campusdual.bfp.model.Role;
 import com.campusdual.bfp.model.User;
 import com.campusdual.bfp.model.UserRole;
 import com.campusdual.bfp.model.dao.RoleDao;
 import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dao.UserRoleDao;
+import com.campusdual.bfp.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -17,10 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @Lazy
-public class UserService implements UserDetailsService {
+public class UserService implements IUserService, UserDetailsService {
 
     @Autowired
     private UserDao userDao;
@@ -49,7 +52,6 @@ public class UserService implements UserDetailsService {
     public void registerNewUser(String username, String password) {
         User user = new User();
         user.setLogin(username);
-        user.setName(username);
         user.setPassword(this.passwordEncoder().encode(password));
         User savedUser = this.userDao.saveAndFlush(user);
 
@@ -65,5 +67,30 @@ public class UserService implements UserDetailsService {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public UserDTO queryUser(UserDTO userDTO) {
+        return null;
+    }
+
+    @Override
+    public List<UserDTO> queryAllUsers() {
+        return List.of();
+    }
+
+    @Override
+    public int addUser(UserDTO userDTO) {
+        return 0;
+    }
+
+    @Override
+    public int updateUser(UserDTO userDTO) {
+        return 0;
+    }
+
+    @Override
+    public int deleteUser(UserDTO userDTO) {
+        return 0;
     }
 }
