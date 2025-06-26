@@ -54,4 +54,9 @@ export class RegisterComponent  {
       });
     }
   }
+
+  volverAOfertas() {
+  this.router.navigate(['/mostrar-oferta']);
+}
+
 }

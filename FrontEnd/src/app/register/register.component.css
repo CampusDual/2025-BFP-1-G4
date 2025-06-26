@@ -1,52 +1,88 @@
-/* Registro con estilo coherente a login y buena separación visual */
-.registro-container {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+.registro-wrapper {
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 100px); /* Deja espacio para nav y footer */
-  padding: 3rem 1rem; /* Añade margen superior e inferior */
-  background-color: #f0f0f0;
+  padding: 1rem;
   box-sizing: border-box;
 }
 
-mat-card {
-  padding: 2rem;
-  width: 520px;
-  max-width: 95%;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  border-radius: 12px;
-  box-sizing: border-box;
+.registro-card {
+  width: 100%;
+  max-width: 860px;
+  height: auto;
+  padding: 1.5rem 2.5rem 2rem 2.5rem; /* más espacio superior e inferior */
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .logo {
   display: block;
-  margin: 0 auto 1.5rem auto;
-  width: 90%;
-  height: 90%;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  margin: 0 auto 1rem auto;
+  width: 180px;
+  height: auto;
+  max-height: 80px; /* evita que se corte por altura */
+  object-fit: contain;
+}
+
+.logo.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.logo.clickable:hover {
+  transform: scale(1.05);
 }
 
 .title {
   text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #d32f2f;
+  font-size: 1.9rem;
   font-weight: 600;
+  color: #d32f2f;
+  margin-bottom: 2rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 mat-form-field {
+  flex: 1;
+}
+
+.full-width {
   width: 100%;
   margin-bottom: 1rem;
 }
 
+.submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
 button[type="submit"] {
+  padding: 0.75rem 3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
   background-color: #ff4400;
   color: white;
-  height: 45px;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
@@ -54,37 +90,26 @@ button[type="submit"]:hover {
   background-color: #e65100;
 }
 
-.footer_login p {
-  color: #777;
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-}
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
 
-.datos-generados {
-  text-align: center;
-  margin-top: 1rem;
-  font-weight: 500;
-  color: #333;
-  background-color: #fff3e0;
-  border-radius: 6px;
-  padding: 1rem;
-  border: 1px solid #ffe0b2;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-@media (max-width: 480px) {
-  mat-card {
-    width: 90%;
-    padding: 1.5rem;
+  .registro-card {
+    padding: 1rem;
+    max-height: none; /* importante: sin límite vertical */
   }
 
   .logo {
-    width: 120px;
+    width: 130px;
+    max-height: 70px;
   }
 
   .title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
   }
 }

@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 
 
+
 //componetes
 import { PublicarOfertaComponent } from './componentes/publicar-oferta/publicar-oferta.component';
 import { LoginComponent } from './auth/login/login.component';
