@@ -1,0 +1,90 @@
+/* Registro con estilo coherente a login y buena separación visual */
+.registro-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px); /* Deja espacio para nav y footer */
+  padding: 3rem 1rem; /* Añade margen superior e inferior */
+  background-color: #f0f0f0;
+  box-sizing: border-box;
+}
+
+mat-card {
+  padding: 2rem;
+  width: 520px;
+  max-width: 95%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto 1.5rem auto;
+  width: 90%;
+  height: 90%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+button[type="submit"] {
+  background-color: #ff4400;
+  color: white;
+  height: 45px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #e65100;
+}
+
+.footer_login p {
+  color: #777;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.datos-generados {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff3e0;
+  border-radius: 6px;
+  padding: 1rem;
+  border: 1px solid #ffe0b2;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  mat-card {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}

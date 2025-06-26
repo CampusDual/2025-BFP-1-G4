@@ -1,0 +1,48 @@
+<div class="registro-container">
+  <mat-card>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo" class="logo" />
+      <h1 class="title">Registro de empresa</h1>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido 1</mat-label>
+          <input matInput formControlName="surname1" required />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido 2</mat-label>
+          <input matInput formControlName="surname2" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="phone" required />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required type="email" />
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-flat-button color="warn" type="submit">Registrar</button>
+      </mat-card-actions>
+    </form>
+
+    <div *ngIf="registroExitoso" class="credenciales">
+      <h3>✅ Registro exitoso</h3>
+      <p><strong>Usuario:</strong> {{ loginGenerado }}</p>
+      <p><strong>Contraseña:</strong> {{ passwordGenerada }}</p>
+      <p>Puedes usar estas credenciales para iniciar sesión.</p>
+    </div>
+  </mat-card>
+</div>
