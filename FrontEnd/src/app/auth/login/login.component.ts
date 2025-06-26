@@ -55,4 +55,9 @@ export class LoginComponent implements OnInit {
       this.loginF.patchValue({ username: rememberedUsername });
     }
   }
+
+  irARegistro() {
+  this.router.navigate(['/register']);
 }
+}
+
