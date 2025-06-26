@@ -8,6 +8,7 @@ import com.campusdual.bfp.model.dao.RoleDao;
 import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dao.UserRoleDao;
 import com.campusdual.bfp.model.dto.UserDTO;
+import com.campusdual.bfp.model.dto.dtomapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -71,12 +72,13 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public UserDTO queryUser(UserDTO userDTO) {
-        return null;
+        User user = UserMapper.INSTANCE.toEntity(userDTO);
+        return UserMapper.INSTANCE.toDTO(userDao.getReferenceById(user.getId()));
     }
 
     @Override
     public List<UserDTO> queryAllUsers() {
-        return List.of();
+        return UserMapper.INSTANCE.toDTOList(userDao.findAll());
     }
 
     @Override
