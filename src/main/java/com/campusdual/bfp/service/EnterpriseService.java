@@ -44,9 +44,9 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Override
     public int deleteEnterprise(EnterpriseDTO enterpriseDTO) {
-        int ent_id = enterpriseDTO.getId();
+        int id = enterpriseDTO.getId();
         Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);
         enterpriseDao.delete(enterprise);
-        return ent_id;
+        return id;
     }
 }

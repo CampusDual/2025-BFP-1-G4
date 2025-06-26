@@ -49,7 +49,6 @@ public class UserService implements UserDetailsService {
     public void registerNewUser(String username, String password) {
         User user = new User();
         user.setLogin(username);
-        user.setName(username);
         user.setPassword(this.passwordEncoder().encode(password));
         User savedUser = this.userDao.saveAndFlush(user);
 
