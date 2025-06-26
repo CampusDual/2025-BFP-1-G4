@@ -51,6 +51,7 @@ public class SecurityConfig {
                 .antMatchers("/auth/**","/test/all", "/public/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/offer/getAll").permitAll()
                 .antMatchers("/offers/findAllByActive").permitAll()
+                .antMatchers(HttpMethod.GET, "/offer/**").hasRole("ENTERPRISE")
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

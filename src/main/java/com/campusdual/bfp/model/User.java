@@ -27,7 +27,10 @@ public class User implements UserDetails {
     private int id;
 
     @Column
-    private String nif;
+    private String telephone;
+
+    @Column
+    private String email;
 
     @Column
     private String name;
@@ -51,9 +54,10 @@ public class User implements UserDetails {
     private Set<UserRole> userRoles = new HashSet<>();
 
     public User(){ }
-    public User(int id, String nif, String name, String surname1, String surname2, String login, String password, Integer enterpriseId) {
+    public User(int id, String telephone, String email, String name, String surname1, String surname2, String login, String password, Integer enterpriseId) {
         this.id = id;
-        this.nif = nif;
+        this.telephone = telephone;
+        this.email = email;
         this.name = name;
         this.surname1 = surname1;
         this.surname2 = surname2;
@@ -70,12 +74,19 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getNif() {
-        return nif;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
