@@ -1,0 +1,28 @@
+<div class="page-container">
+    <h1 class="page-title">Empresas</h1>
+        <table mat-table class="tabla-empresas">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let enterprise of enterprisesList">
+                    <td>{{ enterprise.id }}</td>
+                    <td>{{ enterprise.name }}</td>
+                    <td>{{ enterprise.address }}</td>
+                    <td>{{ enterprise.email }}</td>
+                    <td>{{ enterprise.phonenumber }}</td>
+                    <td class="centrar">
+                    <!--<button mat-icon-button [ngClass]="enterprise.active ? 'activo' : 'inactivo'" (click)="toggleEstado(enterprise)">
+                            <mat-icon>{{ enterprise.active ? 'toggle_on' : 'toggle_off' }}</mat-icon>
+                        </button>-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>

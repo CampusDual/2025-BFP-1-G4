@@ -32,6 +32,7 @@ import { MostrarOfertaComponent } from './componentes/mostrar-oferta/mostrar-ofe
 //servicios
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
+import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empresas.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { RegisterComponent } from './register/register.component';
     NavComponent,
     ListaOfertasComponent,
     MostrarOfertaComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListaEmpresasComponent
   ],
   imports: [
     BrowserModule,
