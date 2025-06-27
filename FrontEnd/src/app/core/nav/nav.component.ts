@@ -52,7 +52,7 @@ export class NavComponent implements OnInit {
 
   cerrarSesion(): void {
     sessionStorage.clear();  // Borra todo lo que guardaste en sesión
-    this.router.navigate(['/mostrar-oferta']);  // Redirige al login
+    this.router.navigate(['/']);  // Redirige al login
   }
 
 }

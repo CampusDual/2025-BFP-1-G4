@@ -43,5 +43,4 @@ export class AuthService {
     sessionStorage.clear();
   }
 
-
 }

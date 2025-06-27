@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
             localStorage.removeItem('rememberedUsername');
           }
 
-          this.router.navigate(['/lista-ofertas']);
+          this.router.navigate(['/mostrar-oferta']);
         },
         error: (err: string) => {
           alert('Datos incorrectos');
