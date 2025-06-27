@@ -7,11 +7,9 @@ import { EnterpriseService } from 'src/app/services/enterprise.service';
   styleUrls: ['./lista-empresas.component.css']
 })
 export class ListaEmpresasComponent {
-  showView: string[] = ['id', 'name', 'address', 'email', 'phonenumber', 'acciones'];
-
   enterprisesList: any[] = [];
 
-  constructor(private enterpriseService: EnterpriseService) { }
+  constructor(private enterpriseService: EnterpriseService) {}
 
   ngOnInit(): void {
     this.enterpriseService.getAllEnterprises().subscribe({
@@ -23,16 +21,19 @@ export class ListaEmpresasComponent {
       }
     });
   }
-  
-  /*toggleEstado(enterprise: any): {
-    this.enterpriseService.toggleEstadoEnterprise(enterprise.id).subscribe({
-    next: (updatedEnterprise: { active: any; }) => {
-      console.log('Respuesta backend:', updatedEnterprise);
-      enterprise.active = updatedEnterprise.active;
-    },
-    error: (err: any) => {
-      console.error('Error al cambiar estado', err);
-    }
-  });
-  }*/
+
+  agregarFila() {
+    this.enterprisesList.push({
+      id: '—',
+      name: '',
+      address: '',
+      email: '',
+      phonenumber: ''
+    });
+  }
+
+  eliminarFila(empresa: any) {
+    const index = this.enterprisesList.indexOf(empresa);
+    if (index > -1) this.enterprisesList.splice(index, 1);
+  }
 }
