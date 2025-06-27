@@ -56,8 +56,10 @@ public class AuthController {
 
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String token = this.jwtUtils.generateJWTToken(userDetails.getUsername());
+            String role = userService.getRoleNameByUsername(userDetails.getUsername());
 
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(token + "|" + role);
+
 
         } catch (AuthenticationException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad credentials");
