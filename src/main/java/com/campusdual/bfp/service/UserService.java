@@ -80,6 +80,16 @@ public class UserService implements IUserService, UserDetailsService {
             userRoleDao.saveAndFlush(userRole);
         }
     }
+
+    public String getRoleNameByUsername(String username) {
+        User user = userDao.findByLogin(username);
+        if (user == null || user.getAuthorities().isEmpty()) {
+            return null;
+        }
+        // Devuelve el nombre del primer rol encontrado
+        return user.getAuthorities().iterator().next().getAuthority();
+    }
+
     /*
         public void registerNewEnterprise(String username, String password) {
         User user = new User();
