@@ -33,6 +33,7 @@ import { MostrarOfertaComponent } from './componentes/mostrar-oferta/mostrar-ofe
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empresas.component';
+import { AdministrationComponent } from './administration/administration.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empre
     ListaOfertasComponent,
     MostrarOfertaComponent,
     RegisterComponent,
-    ListaEmpresasComponent
+    ListaEmpresasComponent,
+    AdministrationComponent
   ],
   imports: [
     BrowserModule,

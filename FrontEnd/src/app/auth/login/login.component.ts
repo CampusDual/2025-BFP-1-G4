@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
           }
 
           if (this.authService.getRole() === 'admin') {
-            this.router.navigate(['/lista-empresas']);
+            this.router.navigate(['/administration']);
           }
           if (this.authService.getRole() === 'enterprise') {
-            this.router.navigate(['/lista-ofertas']);
+            this.router.navigate(['/mostrar-oferta']);
           }
           if (this.authService.getRole() === 'user') {
-            this.router.navigate(['/mostrar-oferta']);
+            this.router.navigate(['/lista-ofertas']);
           }
         console.log("No se ha encontrado el rol");
           /*this.router.navigate(['/lista-ofertas']);*/
