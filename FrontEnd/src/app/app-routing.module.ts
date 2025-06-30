@@ -7,15 +7,15 @@ import { MostrarOfertaComponent } from './componentes/mostrar-oferta/mostrar-ofe
 import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empresas.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './services/auth.guard';
-
-
-
+import { AdministrationComponent } from './administration/administration.component';
 
 const routes: Routes = [
   /*{ path: 'lista-empresas', component: ListaEmpresasComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
   { path: 'lista-ofertas', component: ListaOfertasComponent, canActivate: [AuthGuard], data: { roles: ['enterprise'] } },
   { path: 'publicar-oferta', component: PublicarOfertaComponent, canActivate: [AuthGuard], data: { roles: ['enterprise'] } },
   { path: 'mostrar-oferta', component: MostrarOfertaComponent, canActivate: [AuthGuard], data: { roles: ['role user'] } },*/
+
+  { path: 'administration', component: AdministrationComponent },
   { path: 'mostrar-oferta', component: MostrarOfertaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

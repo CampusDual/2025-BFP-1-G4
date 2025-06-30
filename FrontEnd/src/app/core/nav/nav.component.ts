@@ -3,7 +3,6 @@ import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { filter } from 'rxjs/operators';
 
-
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -12,15 +11,15 @@ import { filter } from 'rxjs/operators';
 export class NavComponent implements OnInit {
   login = false;
   username: string | null = null;
+  tipoUsuario: string | null = null;
+  esEmpresa = false;
+  esAdmin = false;
 
   constructor(private authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
-  
-    this.username = sessionStorage.getItem('username');
     this.actualizarEstado();
 
-    // Escuchar navegación para actualizar el estado del menú dinámicamente
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -28,15 +27,16 @@ export class NavComponent implements OnInit {
       });
   }
 
-  actualizarEstado(): void {
-    this.login = this.authService.isLogged;
-    this.username = this.authService.getUsername();
-  }
+ actualizarEstado(): void {
+  this.login = this.authService.isLogged;
+  this.username = this.authService.getUsername();
+  const role = this.authService.getRole();
 
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+  this.tipoUsuario = role ? role.toLowerCase().trim() : null;
+
+  this.esEmpresa = this.tipoUsuario === 'enterprise';
+  this.esAdmin = this.tipoUsuario === 'admin';
+}
 
   irALogin(): void {
     this.router.navigate(['/login']);
@@ -50,9 +50,12 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/publicar-oferta']);
   }
 
-  cerrarSesion(): void {
-    sessionStorage.clear();  // Borra todo lo que guardaste en sesión
-    this.router.navigate(['/']);  // Redirige al login
+  irAListaEmpresas(): void {
+    this.router.navigate(['/lista-empresas']);
   }
 
+  cerrarSesion(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

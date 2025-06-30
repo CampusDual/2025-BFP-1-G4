@@ -8,6 +8,14 @@ import { Oferta } from '../model/oferta.model';
 })
 export class OfertasService {
 
+checkInscription(username: string, offerId: number): Observable<boolean> {
+  return this.http.get<boolean>(`${this.apiUrl}/inscripciones/existe?user=${username}&offer=${offerId}`);
+}
+
+inscribirse(offerId: number): Observable<any> {
+  return this.http.post(`${this.apiUrl}/inscripciones`, { offerId }); // o más datos si necesitas
+}
+
   private apiUrl = 'http://localhost:30030/offers';
 
   constructor(private http: HttpClient) { }

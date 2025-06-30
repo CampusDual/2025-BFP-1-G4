@@ -44,10 +44,10 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/administration']);
           }
           if (this.authService.getRole() === 'enterprise') {
-            this.router.navigate(['/mostrar-oferta']);
+            this.router.navigate(['/lista-ofertas']);
           }
           if (this.authService.getRole() === 'user') {
-            this.router.navigate(['/lista-ofertas']);
+            this.router.navigate(['/mostrar-oferta']);
           }
         console.log("No se ha encontrado el rol");
           /*this.router.navigate(['/lista-ofertas']);*/
