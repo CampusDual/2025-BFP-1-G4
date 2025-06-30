@@ -4,15 +4,9 @@ public class InscriptionsDTO {
     private Long id;
     private Integer offerId;
     private Integer userId;
-    private boolean inscribed;
+    private String inscriptionDate;
+    private Boolean inscribed;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Integer getOfferId() {
         return offerId;
@@ -30,11 +24,27 @@ public class InscriptionsDTO {
         this.userId = userId;
     }
 
-    public boolean isInscribed() {
+    public String getInscriptionDate() {
+        return inscriptionDate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getInscribed() {
         return inscribed;
     }
 
-    public void setInscribed(boolean inscribed) {
+    public void setInscribed(Boolean inscribed) {
         this.inscribed = inscribed;
+    }
+
+    public void setInscriptionDate(String inscriptionDate) {
+        this.inscriptionDate = inscriptionDate;
     }
 }
