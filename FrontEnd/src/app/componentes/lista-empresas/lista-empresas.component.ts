@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EnterpriseService } from 'src/app/services/enterprise.service';
 
+
 @Component({
   selector: 'app-lista-empresas',
   templateUrl: './lista-empresas.component.html',
@@ -9,8 +10,7 @@ import { EnterpriseService } from 'src/app/services/enterprise.service';
 export class ListaEmpresasComponent {
   enterprisesList: any[] = [];
 
-  constructor(private enterpriseService: EnterpriseService) {}
-
+  constructor(private enterpriseService: EnterpriseService) { }
   ngOnInit(): void {
     this.enterpriseService.getAllEnterprises().subscribe({
       next: (data) => {
@@ -22,18 +22,5 @@ export class ListaEmpresasComponent {
     });
   }
 
-  agregarFila() {
-    this.enterprisesList.push({
-      id: '—',
-      name: '',
-      address: '',
-      email: '',
-      phonenumber: ''
-    });
-  }
-
-  eliminarFila(empresa: any) {
-    const index = this.enterprisesList.indexOf(empresa);
-    if (index > -1) this.enterprisesList.splice(index, 1);
-  }
+  
 }

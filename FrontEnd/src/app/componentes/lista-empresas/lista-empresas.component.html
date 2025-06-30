@@ -10,25 +10,15 @@
           <th>Dirección</th>
           <th>Email</th>
           <th>Teléfono</th>
-          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let enterprise of enterprisesList">
           <td>{{ enterprise.id }}</td>
-          <td contenteditable="true">{{ enterprise.name }}</td>
-          <td contenteditable="true">{{ enterprise.address }}</td>
-          <td contenteditable="true">{{ enterprise.email }}</td>
-          <td contenteditable="true">{{ enterprise.phonenumber }}</td>
-          <td><button class="delete-btn" (click)="eliminarFila(enterprise)">🗑</button></td>
-        </tr>
-        <tr>
-          <td>Nuevo</td>
-          <td contenteditable="true" class="editable" placeholder="Nombre..."></td>
-          <td contenteditable="true" class="editable" placeholder="Dirección..."></td>
-          <td contenteditable="true" class="editable" placeholder="Email..."></td>
-          <td contenteditable="true" class="editable" placeholder="Teléfono..."></td>
-          <td><button class="add-btn" (click)="agregarFila()">➕</button></td>
+          <td>{{ enterprise.name }}</td>
+          <td>{{ enterprise.address }}</td>
+          <td>{{ enterprise.email }}</td>
+          <td>{{ enterprise.phonenumber }}</td>
         </tr>
       </tbody>
     </table>
