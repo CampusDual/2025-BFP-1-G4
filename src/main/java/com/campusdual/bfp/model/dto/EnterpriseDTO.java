@@ -4,7 +4,7 @@ public class EnterpriseDTO {
     private Integer id;
     private String name;
     private String email;
-    private String phoneNumber;
+    private String phonenumber;
     private String address;
 
     public Integer getId() {
@@ -31,12 +31,12 @@ public class EnterpriseDTO {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getAddress() {
