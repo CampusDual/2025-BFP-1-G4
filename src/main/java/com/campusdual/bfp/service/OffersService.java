@@ -71,7 +71,7 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public int userApplyOffer(int offerId) {
+    public int userApplyOffer(Integer offerId) {
         return 0;
     }
 
@@ -85,11 +85,11 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public int userApplyOffer(int offerId, String login) {
+    public int userApplyOffer(Integer offerId, String login) {
         User user = userDao.findByLogin(login);
         if (user == null) throw new RuntimeException("Usuario no encontrado");
         Offer offer = offersDao.getReferenceById(offerId);
-        if (inscriptionsDao.existsByUserIdAndOfferId(user.getId(), offer.getId())) {
+        if (inscriptionsDao.existsByUserIdAndOfferId((long) user.getId(), offer.getId())) {
             throw new RuntimeException("Ya has aplicado a esta oferta");
         }
         Inscriptions inscriptions = new Inscriptions();

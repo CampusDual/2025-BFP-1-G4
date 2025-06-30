@@ -10,14 +10,12 @@ import java.util.List;
 
 public interface InscriptionsDao extends JpaRepository<Inscriptions, Long> {
     boolean existsByOfferIdAndUserId(Integer offerId, Integer userId);
-    int countByOfferId(int offerId);
+    int countByOfferId(Integer offerId);
     @Query("SELECT i.user.id FROM Inscriptions i WHERE i.offer.id = :offerId")
-    List<Integer> findUserIdsByOfferId(@Param("offerId") int offerId);
+    List<Integer> findUserIdsByOfferId(@Param("offerId") Integer offerId);
     Inscriptions findByUserIdAndOfferId(Integer offerId, Integer userId);
-    Inscriptions getReferenceByOfferIdAndUserId();
+    Inscriptions getReferenceByOfferIdAndUserId(Integer offerId, Integer userId);
     void deleteInscriptionByOffer(Offer offer);
 
-    Inscriptions getReferenceById();
-
-    boolean existsByUserIdAndOfferId(int id, Integer id1);
+    boolean existsByUserIdAndOfferId(Long id, Integer id1);
 }

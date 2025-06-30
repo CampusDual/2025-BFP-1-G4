@@ -18,11 +18,13 @@ public class InscriptionsService implements IInscriptionsService {
     @Autowired
     private InscriptionsDao inscriptionsDao;
 
+    @Autowired
+    private InscriptionsMapper inscriptionsMapper;
+
     @Override
     public InscriptionsDTO queryInscriptions(InscriptionsDTO inscriptionsDTO) {
         Inscriptions inscriptions = InscriptionsMapper.INSTANCE.toEntity(inscriptionsDTO);
-        return InscriptionsMapper.INSTANCE.toDTO(inscriptionsDao.getReferenceById());
-
+        return InscriptionsMapper.INSTANCE.toDTO(inscriptionsDao.getReferenceById(inscriptions.getId()));
     }
 
     @Override
@@ -32,6 +34,7 @@ public class InscriptionsService implements IInscriptionsService {
 
     @Override
     public List<InscriptionsDTO> queryAllInscriptions() {
-        return List.of();
+        return InscriptionsMapper.INSTANCE.toDTOList(inscriptionsDao.findAll());
     }
+
 }

@@ -10,9 +10,4 @@ public interface IInscriptionsService {
     //CRUD Operations
     InscriptionsDTO insertInscriptions(InscriptionsDTO inscriptionDTO);
     List<InscriptionsDTO> queryAllInscriptions();
-
-
-    //List<InscriptionsDTO> findInscriptionsByEnterpriseId();
-    //List<InscriptionsDTO> findAllByActiveInscriptions();
-
 }

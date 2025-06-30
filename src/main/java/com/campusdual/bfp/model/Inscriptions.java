@@ -11,11 +11,11 @@ public class Inscriptions {
     private Long id;
 
     @ManyToOne
-    @Column(name = "offerid")
+    @JoinColumn(name = "offerid")
     private Offer offer;
 
     @ManyToOne
-    @Column(name = "userid")
+    @JoinColumn(name = "userid")
     private User user;
 
     @Column

@@ -7,10 +7,10 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface InscriptionsMapper {
     InscriptionsMapper INSTANCE = Mappers.getMapper(InscriptionsMapper.class);
     Inscriptions toEntity(InscriptionsDTO inscriptionsDTO);
-    List<Inscriptions> toDTOList(List<Inscriptions> inscriptions);
+    List<InscriptionsDTO> toDTOList(List<Inscriptions> inscriptions);
     InscriptionsDTO toDTO(Inscriptions inscriptions);
 }
