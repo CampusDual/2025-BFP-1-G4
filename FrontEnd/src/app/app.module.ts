@@ -45,8 +45,8 @@ import { AdministrationComponent } from './administration/administration.compone
     NavComponent,
     ListaOfertasComponent,
     MostrarOfertaComponent,
-    RegisterComponent,
     ListaEmpresasComponent,
+    RegisterComponent,
     AdministrationComponent
   ],
   imports: [

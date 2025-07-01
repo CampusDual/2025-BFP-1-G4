@@ -22,4 +22,10 @@ public interface IOffersService {
     List<OffersDTO> findAllByActiveOffers();
 
     int userApplyOffer(Integer offerId, String login);
+
+    OffersDTO updateOffer(OffersDTO offer);
+
+    OffersDTO findOfferById(int id);
+
+
 }

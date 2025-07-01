@@ -1,7 +1,7 @@
 <div class="page-container">
-  <h1 class="page-title">Publicar nueva oferta</h1>
+  <h1 class="page-title">{{ modoEditar ? 'Editar oferta' : 'Publicar nueva oferta' }}</h1>
 
-  <form class="oferta-form" (ngSubmit)="publicarOferta()">
+  <form class="oferta-form" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="titulo">Título</label>
       <input
@@ -24,16 +24,29 @@
       ></textarea>
     </div>
 
+    <!-- Campo fecha solo visible en edición 
+    <div class="form-group" *ngIf="modoEditar">
+      <label for="fecha">Fecha de publicación</label>
+      <input
+        type="date"
+        [(ngModel)]="oferta.publicationdate"
+        name="fecha"
+        id="fecha"
+        required
+      />
+    </div>-->
+
     <button
-      mat-flat-button
-      color="warn"
-      type="submit"
-      [disabled]="
-    !oferta.title || oferta.title.trim() === '' ||
-    !oferta.description || oferta.description.trim() === ''
+  mat-flat-button
+  color="warn"
+  type="submit"
+  [disabled]="
+    !oferta.title || !oferta.title.trim() ||
+    !oferta.description || !oferta.description.trim()
   "
-    >
-      Publicar Oferta
-    </button>
+>
+  Guardar Oferta
+</button>
+
   </form>
 </div>
