@@ -10,7 +10,7 @@ import { OfertasService } from '../../services/ofertas-service.service';
 })
 export class PublicarOfertaComponent implements OnInit {
   oferta: Oferta = {
-    id: 1,
+    id: 0,
     title: '',
     description: '',
     publicationdate: new Date(),
