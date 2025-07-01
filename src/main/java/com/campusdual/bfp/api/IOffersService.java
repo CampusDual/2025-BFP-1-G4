@@ -20,8 +20,6 @@ public interface IOffersService {
 
     List<OffersDTO> findAllByActiveOffersOrderById();
 
-    int userApplyOffer(Integer offerId, String login);
-
     OffersDTO updateOffer(OffersDTO offer);
 
     OffersDTO findOfferById(int id);

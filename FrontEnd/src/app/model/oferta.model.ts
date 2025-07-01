@@ -1,5 +1,4 @@
 export interface Oferta {
-   id?: number;
   title: String;
   id?: Number;
   description: String;
