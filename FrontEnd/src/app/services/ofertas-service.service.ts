@@ -7,25 +7,25 @@ import { Oferta } from '../model/oferta.model';
   providedIn: 'root'
 })
 export class OfertasService {
-
-checkInscription(username: string, offerId: number): Observable<boolean> {
-  return this.http.get<boolean>(`${this.apiUrl}/inscripciones/existe?user=${username}&offer=${offerId}`);
-}
-
-inscribirse(offerId: number): Observable<any> {
-  return this.http.post(`${this.apiUrl}/inscripciones`, { offerId }); // o más datos si necesitas
-}
-
   private apiUrl = 'http://localhost:30030/offers';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  private getAuthHeaders(): HttpHeaders {
-    const token = sessionStorage.getItem('token');
-    return new HttpHeaders({
-      'Authorization': "Bearer " + token
-    });
-  }
+    private getAuthHeaders(): HttpHeaders {
+      const token = sessionStorage.getItem('token');
+      return new HttpHeaders({
+        'Authorization': "Bearer " + token
+      });
+    }
+
+/*
+checkInscription(username: string, offerId: number): Observable<boolean> {
+  return this.http.get<boolean>(`${this.apiUrl}/inscripciones/existe?user=${username}&offer=${offerId}`);
+} */
+
+inscribirse(offerid: number): Observable<any> {
+  return this.http.post(`${this.apiUrl}/apply`, { id: offerid }, { headers: this.getAuthHeaders() });
+}
 
   crearOferta(oferta: Oferta): Observable<Oferta> {
     return this.http.post<Oferta>(this.apiUrl + "/add", oferta, {
@@ -57,7 +57,6 @@ inscribirse(offerId: number): Observable<any> {
 
   getAllActiveOffers(): Observable<Oferta[]> {
     return this.http.get<Oferta[]>(this.apiUrl + "/findAllByActive", {
-      /*headers: this.getAuthHeaders()*/
     });
   }
 

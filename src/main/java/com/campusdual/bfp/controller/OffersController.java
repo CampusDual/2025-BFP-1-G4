@@ -3,6 +3,7 @@ package com.campusdual.bfp.controller;
 import com.campusdual.bfp.api.IOffersService;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class OffersController {
         return offersService.queryAllOffers();
     }
 
+    @PreAuthorize("hasRole('enterprise')")
     @PostMapping("/add")
     public OffersDTO addOffer(@RequestBody OffersDTO offer) {
         return offersService.insertOffer(offer);
@@ -35,12 +37,13 @@ public class OffersController {
         return "Controller words";
     }
 
+    @PreAuthorize("hasRole('enterprise')")
     @GetMapping("/byEnterprise")
     public List<OffersDTO> findOffersByEnterpriseId() {
-        return offersService.findOffersByEnterpriseId();
+        return offersService.findOffersByEnterpriseIdOrderById();
     }
 
-
+    @PreAuthorize("hasRole('enterprise')")
     @PutMapping("/toggleActive")
     public OffersDTO toggleActive(@RequestBody OffersDTO offersDTO) {
         return offersService.toggleActive(offersDTO);
@@ -48,7 +51,13 @@ public class OffersController {
 
     @GetMapping("/findAllByActive")
     public List<OffersDTO> getAllActiveOffers() {
-        return offersService.findAllByActiveOffers();}
+        return offersService.findAllByActiveOffersOrderById();}
+
+    @PreAuthorize("hasRole('user')")
+    @PostMapping("/apply")
+    public int userApplyOffer(@RequestBody OffersDTO offersDTO) {
+        return offersService.userApplyOffer(offersDTO.getId());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<OffersDTO> getOfferById(@PathVariable int id) {
