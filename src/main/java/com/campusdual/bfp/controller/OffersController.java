@@ -36,7 +36,7 @@ public class OffersController {
 
     @GetMapping("/byEnterprise")
     public List<OffersDTO> findOffersByEnterpriseId() {
-        return offersService.findOffersByEnterpriseId();
+        return offersService.findOffersByEnterpriseIdOrderById();
     }
 
 
@@ -47,7 +47,7 @@ public class OffersController {
 
     @GetMapping("/findAllByActive")
     public List<OffersDTO> getAllActiveOffers() {
-        return offersService.findAllByActiveOffers();}
+        return offersService.findAllByActiveOffersOrderById();}
 
 }
 

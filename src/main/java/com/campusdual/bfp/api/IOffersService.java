@@ -12,14 +12,14 @@ public interface IOffersService {
 
     OffersDTO insertOffer(OffersDTO offersDTO);
 
-    List<OffersDTO> findOffersByEnterpriseId();
+    List<OffersDTO> findOffersByEnterpriseIdOrderById();
 
 
     int userApplyOffer(Integer offerId);
 
     OffersDTO toggleActive(OffersDTO offersDTO);
 
-    List<OffersDTO> findAllByActiveOffers();
+    List<OffersDTO> findAllByActiveOffersOrderById();
 
     int userApplyOffer(Integer offerId, String login);
 }
