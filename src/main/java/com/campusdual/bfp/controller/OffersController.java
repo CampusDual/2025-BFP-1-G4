@@ -3,6 +3,7 @@ package com.campusdual.bfp.controller;
 import com.campusdual.bfp.api.IOffersService;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +50,21 @@ public class OffersController {
     public List<OffersDTO> getAllActiveOffers() {
         return offersService.findAllByActiveOffers();}
 
+    @GetMapping("/{id}")
+    public ResponseEntity<OffersDTO> getOfferById(@PathVariable int id) {
+        OffersDTO offer = offersService.findOfferById(id);
+        if (offer != null) {
+            return ResponseEntity.ok(offer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public OffersDTO updateOffer(@PathVariable int id, @RequestBody OffersDTO offer) {
+        offer.setId(id);  // Asegúrate que el DTO tiene setId para asignar el id recibido
+        return offersService.updateOffer(offer);
+    }
 }
 
 

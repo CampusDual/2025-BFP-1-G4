@@ -13,7 +13,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enterprise of enterprisesList">
+        <tr *ngFor="let enterprise of enterprisesList"
+          (click)="onRowClick(enterprise.id)" style="cursor: pointer;">
           <td>{{ enterprise.id }}</td>
           <td>{{ enterprise.name }}</td>
           <td>{{ enterprise.address }}</td>
@@ -21,6 +22,7 @@
           <td>{{ enterprise.phonenumber }}</td>
         </tr>
       </tbody>
+
     </table>
   </div>
 </div>

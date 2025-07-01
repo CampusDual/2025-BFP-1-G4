@@ -35,7 +35,7 @@ inscribirse(offerId: number): Observable<any> {
     );
   }
 
-  obtenerOfertas(): Observable<Oferta[]> {
+  obtenerOfertas(id: number): Observable<Oferta[]> {
     return this.http.get<Oferta[]>(this.apiUrl + "/getAll", {
       headers: this.getAuthHeaders()
     });
@@ -60,6 +60,21 @@ inscribirse(offerId: number): Observable<any> {
       /*headers: this.getAuthHeaders()*/
     });
   }
+
+obtenerOfertaPorId(id: number): Observable<Oferta> {
+  return this.http.get<Oferta>(`${this.apiUrl}/${id}`, {
+    headers: this.getAuthHeaders()
+  });
+}
+
+
+actualizarOferta(oferta: Oferta): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${oferta.id}`, oferta, {
+    headers: this.getAuthHeaders()
+  });
+}
+
+
 }
 
 

@@ -1,25 +1,31 @@
 <div class="page-container">
-    <h1 class="page-title">Ofertas de empleo</h1>
-        <table mat-table class="tabla-ofertas">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Descripción</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let oferta of offerList">
-                    <td>{{ oferta.title }}</td>
-                    <td>{{ oferta.description }}</td>
-                    <td class="centrar">{{ oferta.publicationDate | date: "dd-MM-yyyy" }}</td>
-                    <td class="centrar">
-                        <button mat-icon-button [ngClass]="oferta.active ? 'activo' : 'inactivo'" (click)="toggleEstado(oferta)">
-                            <mat-icon>{{ oferta.active ? 'toggle_on' : 'toggle_off' }}</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+  <h1 class="page-title">Ofertas de empleo</h1>
+
+  <!-- Botón nueva oferta -->
+  <div class="boton-publicar" style="margin-bottom: 15px;">
+    <button class="add-btn" mat-flat-button color="warn"(click)="irANuevaOferta()">Nueva oferta</button>
+  </div>
+
+  <table mat-table class="tabla-ofertas">
+    <thead> 
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let oferta of offerList" (click)="editarOferta(oferta.id)" style="cursor: pointer;">
+        <td>{{ oferta.title }}</td>
+        <td>{{ oferta.description }}</td>
+        <td class="centrar">{{ oferta.publicationDate | date: "dd-MM-yyyy" }}</td>
+        <td class="centrar" (click)="$event.stopPropagation()">
+          <button mat-icon-button [ngClass]="oferta.active ? 'activo' : 'inactivo'" (click)="toggleEstado(oferta)">
+            <mat-icon>{{ oferta.active ? 'toggle_on' : 'toggle_off' }}</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

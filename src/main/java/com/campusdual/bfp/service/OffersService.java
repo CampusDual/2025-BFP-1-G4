@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service("OffersService")
@@ -99,5 +99,55 @@ public class OffersService implements IOffersService {
         inscriptionsDao.saveAndFlush(inscriptions);
         return offer.getId();
     }
+
+    @Override
+    public OffersDTO updateOffer(OffersDTO offer) {
+        Optional<Offer> offerEntityOpt = offersDao.findById(offer.getId());
+
+        if (offerEntityOpt.isEmpty()) {
+            throw new RuntimeException("Oferta no encontrada con id " + offer.getId());
+        }
+
+        Offer offerEntity = offerEntityOpt.get();
+
+        // Actualizar campos de la entidad con valores del DTO
+        offerEntity.setTitle(offer.getTitle());
+        offerEntity.setDescription(offer.getDescription());
+        offerEntity.setPublicationDate(offer.getPublicationDate());
+        offerEntity.setActive(offer.isActive());
+        offerEntity.setEnterpriseId(offer.getEnterpriseId());
+
+
+        // Guardar la entidad actualizada en BD
+        Offer savedOffer = offersDao.save(offerEntity);
+
+        // Convertir a DTO y retornar
+        return convertToDTO(savedOffer);
+    }
+
+    @Override
+    public OffersDTO findOfferById(int id) {
+        Optional<Offer> offerEntityOpt = offersDao.findById(id);
+        if (offerEntityOpt.isPresent()) {
+            Offer offerEntity = offerEntityOpt.get();
+            // Aquí convierte la entidad a DTO
+            OffersDTO offerDTO = convertToDTO(offerEntity);
+            return offerDTO;
+        } else {
+            return null; // No encontrada
+        }
+    }
+
+    private OffersDTO convertToDTO(Offer entity) {
+        OffersDTO dto = new OffersDTO();
+        dto.setId(entity.getId());
+        dto.setTitle(entity.getTitle());
+        dto.setDescription(entity.getDescription());
+        dto.setPublicationDate(entity.getPublicationDate());
+        dto.setActive(entity.isActive());
+        dto.setEnterpriseId(entity.getEnterpriseId());
+        return dto;
+    }
+
 
 }

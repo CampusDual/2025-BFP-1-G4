@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { OfertasService } from '../../services/ofertas-service.service';
 
 @Component({
@@ -7,13 +8,13 @@ import { OfertasService } from '../../services/ofertas-service.service';
   styleUrls: ['./lista-ofertas.component.css']
 })
 export class ListaOfertasComponent {
-  
-  offerList: any[] =[];
+  offerList: any[] = [];
 
-  showView:string[] = ['titulo', 'descripcion', 'fecha', 'estado', 'acciones'];
+  constructor(
+    private ofertasService: OfertasService,
+    private router: Router
+  ) {}
 
-  constructor(private ofertasService: OfertasService) { }
-  
   ngOnInit(): void {
     this.ofertasService.getOfferById().subscribe({
       next: (data) => {
@@ -23,16 +24,25 @@ export class ListaOfertasComponent {
         console.error('Error al obtener ofertas', err);
       }
     });
-   } 
-toggleEstado(oferta: any) {
-  this.ofertasService.toggleEstadoOferta(oferta.id).subscribe({
-    next: (updatedOferta) => {
-      console.log('Respuesta backend:', updatedOferta);
-      oferta.active = updatedOferta.active;
-    },
-    error: (err) => {
-      console.error('Error al cambiar estado', err);
-    }
-  });
-}  
+  }
+
+  toggleEstado(oferta: any) {
+    this.ofertasService.toggleEstadoOferta(oferta.id).subscribe({
+      next: (updatedOferta) => {
+        console.log('Respuesta backend:', updatedOferta);
+        oferta.active = updatedOferta.active;
+      },
+      error: (err) => {
+        console.error('Error al cambiar estado', err);
+      }
+    });
+  }
+
+  irANuevaOferta(): void {
+    this.router.navigate(['/publicar-oferta']);
+  }
+
+  editarOferta(id: number): void {
+    this.router.navigate(['/editar-oferta', id]);
+  }
 }

@@ -54,23 +54,45 @@ table {
   color: #f44336;
 }
 
-/* Botones */
-.btn-ver,
-.btn-eliminar {
-  margin-right: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  border: none;
-  border-radius: 4px;
+/* Contenedor del botón para posicionarlo bien */
+.boton-nueva-oferta-container {
+  margin-left: 16px; /* separación del borde izquierdo */
+  margin-bottom: 16px; /* separación debajo */
+  display: flex;
+  justify-content: flex-start; /* alinea a la izquierda */
+}
+
+/* Botón naranja con borde y fondo transparente */
+.add-btn {
+  padding: 10px 22px;
+  border: 2px solid #ff7043; /* naranja */
+  background: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  outline: none;
 }
 
-.btn-ver {
-  background-color: #1976d2;
+/* Hover con fondo naranja y texto blanco */
+.add-btn:hover {
+  background-color: #ff7043;
   color: white;
 }
 
-.btn-eliminar {
-  background-color: #e53935;
-  color: white;
+/* Foco accesible */
+.add-btn:focus {
+  box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.5);
+}
+
+/* Opcional: eliminar estilos de Angular Material si se aplican */
+.add-btn.mat-flat-button {
+  background-color: transparent !important;
+  color: #ff7043 !important;
+  border: 2px solid #ff7043 !important;
+  box-shadow: none !important;
 }
