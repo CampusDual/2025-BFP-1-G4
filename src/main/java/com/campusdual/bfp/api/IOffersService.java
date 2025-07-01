@@ -6,11 +6,20 @@ import java.util.List;
 
 public interface IOffersService {
     //CRUD Operations
-    //Puede usarse entero en vez de OffersDTO para el id
     OffersDTO queryOffer(OffersDTO offersDTO);
+
     List<OffersDTO> queryAllOffers();
+
     OffersDTO insertOffer(OffersDTO offersDTO);
+
     List<OffersDTO> findOffersByEnterpriseId();
+
+
+    int userApplyOffer(Integer offerId);
+
     OffersDTO toggleActive(OffersDTO offersDTO);
+
     List<OffersDTO> findAllByActiveOffers();
+
+    int userApplyOffer(Integer offerId, String login);
 }

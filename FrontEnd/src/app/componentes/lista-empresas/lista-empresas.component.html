@@ -1,0 +1,26 @@
+<div class="lista-empresas-container">
+  <h1 class="page-title">Empresas Registradas</h1>
+
+  <div class="tabla-wrapper">
+    <table class="tabla-empresas">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Dirección</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enterprise of enterprisesList">
+          <td>{{ enterprise.id }}</td>
+          <td>{{ enterprise.name }}</td>
+          <td>{{ enterprise.address }}</td>
+          <td>{{ enterprise.email }}</td>
+          <td>{{ enterprise.phonenumber }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

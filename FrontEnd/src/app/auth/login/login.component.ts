@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
 
       this.authService.login({ username, password }).subscribe({
         next: (res: string) => {
-          sessionStorage.setItem('token', res);
-          sessionStorage.setItem('username', username || '');
+          /*sessionStorage.setItem('token', res);
+          sessionStorage.setItem('username', username || '');*/
 
           if (rememberMe) {
             localStorage.setItem('rememberedUsername', username || '');
@@ -40,7 +40,17 @@ export class LoginComponent implements OnInit {
             localStorage.removeItem('rememberedUsername');
           }
 
-          this.router.navigate(['/lista-ofertas']);
+          if (this.authService.getRole() === 'admin') {
+            this.router.navigate(['/administration']);
+          }
+          if (this.authService.getRole() === 'enterprise') {
+            this.router.navigate(['/lista-ofertas']);
+          }
+          if (this.authService.getRole() === 'user') {
+            this.router.navigate(['/mostrar-oferta']);
+          }
+        console.log("No se ha encontrado el rol");
+          /*this.router.navigate(['/lista-ofertas']);*/
         },
         error: (err: string) => {
           alert('Datos incorrectos');

@@ -16,7 +16,7 @@ public class Enterprise {
     private String email;
 
     @Column(name = "phonenumber")
-    private String phoneNumber;
+    private String phonenumber;
 
     @Column
     private String address;
@@ -52,12 +52,12 @@ public class Enterprise {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getAddress() {

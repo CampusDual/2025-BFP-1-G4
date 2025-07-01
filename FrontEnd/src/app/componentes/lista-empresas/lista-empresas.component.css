@@ -1,0 +1,75 @@
+.lista-empresas-container {
+  padding: 20px;
+  max-width: 100%;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  font-size: 28px;
+  color: #f44336;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.tabla-wrapper {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-empresas {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  table-layout: auto;
+}
+
+.tabla-empresas thead {
+  background-color: #f44336;
+  color: white;
+}
+
+.tabla-empresas thead tr {
+  transition: background-color 0.3s ease;
+}
+
+.tabla-empresas th,
+.tabla-empresas td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-empresas tr:hover:not(:last-child) {
+  background-color: #fdf5f4;
+}
+
+.tabla-empresas td[contenteditable="true"] {
+  background-color: #fff9f9;
+  cursor: text;
+  border-radius: 4px;
+}
+
+.tabla-empresas td[contenteditable="true"]:focus {
+  outline: 2px solid #f44336;
+  background-color: #fff3f3;
+}
+
+.add-btn,
+.delete-btn {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ff5722;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover,
+.delete-btn:hover {
+  background-color: #e64a19;
+}
