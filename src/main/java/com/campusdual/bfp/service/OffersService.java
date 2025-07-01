@@ -58,21 +58,16 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public List<OffersDTO> findOffersByEnterpriseId() {
+    public List<OffersDTO> findOffersByEnterpriseIdOrderById() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.findByLogin(auth.getName());
         Integer enterpriseId = user.getEnterpriseId();
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseId(enterpriseId));
+        return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseIdOrderById(enterpriseId));
     }
 
     @Override
-    public List<OffersDTO> findAllByActiveOffers() {
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActive(true));
-    }
-
-    @Override
-    public int userApplyOffer(Integer offerId) {
-        return 0;
+    public List<OffersDTO> findAllByActiveOffersOrderById() {
+        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActiveOrderById(true));
     }
 
     @Override
@@ -85,11 +80,12 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public int userApplyOffer(Integer offerId, String login) {
-        User user = userDao.findByLogin(login);
+    public int userApplyOffer(Integer offerId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userDao.findByLogin(auth.getName());
         if (user == null) throw new RuntimeException("Usuario no encontrado");
         Offer offer = offersDao.getReferenceById(offerId);
-        if (inscriptionsDao.existsByUserIdAndOfferId((long) user.getId(), offer.getId())) {
+        if (inscriptionsDao.existsByUserIdAndOfferId(user.getId(), offer.getId())) {
             throw new RuntimeException("Ya has aplicado a esta oferta");
         }
         Inscriptions inscriptions = new Inscriptions();

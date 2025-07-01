@@ -21,9 +21,6 @@ public class Inscriptions {
     @Column
     private Date inscriptiondate;
 
-    @Column
-    private boolean inscribed;
-
     public Long getId() {
         return id;
     }
@@ -54,14 +51,6 @@ public class Inscriptions {
 
     public void setInscriptiondate(Date inscriptiondate) {
         this.inscriptiondate = inscriptiondate;
-    }
-
-    public boolean isInscribed() {
-        return inscribed;
-    }
-
-    public void setInscribed(boolean inscribed) {
-        this.inscribed = inscribed;
     }
 
     public void getOfferId() {

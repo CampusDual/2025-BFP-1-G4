@@ -5,7 +5,6 @@ public class InscriptionsDTO {
     private Integer offerId;
     private Integer userId;
     private String inscriptionDate;
-    private Boolean inscribed;
 
 
     public Integer getOfferId() {
@@ -34,14 +33,6 @@ public class InscriptionsDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Boolean getInscribed() {
-        return inscribed;
-    }
-
-    public void setInscribed(Boolean inscribed) {
-        this.inscribed = inscribed;
     }
 
     public void setInscriptionDate(String inscriptionDate) {
