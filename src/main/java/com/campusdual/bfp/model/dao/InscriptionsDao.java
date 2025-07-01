@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface InscriptionsDao extends JpaRepository<Inscriptions, Long> {
-    boolean existsByOfferIdAndUserId(Integer offerId, Integer userId);
     int countByOfferId(Integer offerId);
     @Query("SELECT i.user.id FROM Inscriptions i WHERE i.offer.id = :offerId")
     List<Integer> findUserIdsByOfferId(@Param("offerId") Integer offerId);
@@ -17,5 +16,5 @@ public interface InscriptionsDao extends JpaRepository<Inscriptions, Long> {
     Inscriptions getReferenceByOfferIdAndUserId(Integer offerId, Integer userId);
     void deleteInscriptionByOffer(Offer offer);
 
-    boolean existsByUserIdAndOfferId(Long id, Integer id1);
+    boolean existsByUserIdAndOfferId(Integer id, Integer id1);
 }

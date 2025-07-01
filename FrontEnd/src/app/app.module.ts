@@ -34,7 +34,8 @@ import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empresas.component';
 import { AdministrationComponent } from './administration/administration.component';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,13 @@ import { AdministrationComponent } from './administration/administration.compone
     MatToolbarModule
   ],
 
-  providers: [AuthService],
+  providers: [AuthService,
+                  {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: JwtInterceptor,
+                    multi: true
+                  }
+                ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

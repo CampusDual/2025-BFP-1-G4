@@ -27,12 +27,20 @@ aplicarOferta(oferta: any): void {
     return;
   }
 
-  this.ofertasService.checkInscription(username, oferta.id).subscribe({
+this.ofertasService.inscribirse(oferta.id).subscribe({
+
+          next: () => alert(`✅ Te has postulado a la oferta: ${oferta.title}`),
+          error: () => alert('❌ Error al postularte, ya estás registrado.')
+        });
+
+
+  /*this.ofertasService.checkInscription(username, oferta.id).subscribe({
     next: (isInscrito: boolean) => {
       if (isInscrito) {
         alert('ℹ️ Ya estás inscrito en esta oferta.');
       } else {
         this.ofertasService.inscribirse(oferta.id).subscribe({
+
           next: () => alert(`✅ Te has postulado a la oferta: ${oferta.title}`),
           error: () => alert('❌ Error al postularte.')
         });
@@ -41,7 +49,7 @@ aplicarOferta(oferta: any): void {
     error: () => {
       alert('❌ Error al verificar inscripción.');
     }
-  });
+  });*/
 }
 
 
