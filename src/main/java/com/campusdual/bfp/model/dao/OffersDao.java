@@ -10,6 +10,6 @@ import java.util.List;
 public interface OffersDao extends JpaRepository<Offer, Integer>{
     //search enterprise by id
     //query all by enterprise id
-    List<Offer> findAllByEnterpriseIdOrderById(Integer enterpriseId);
-    List<Offer> findByActiveOrderById(boolean active);
+    List<Offer> findAllByEnterpriseIdOrderByPublicationDateDesc(Integer enterpriseId);
+    List<Offer> findByActiveOrderByPublicationDateDesc(boolean active);
 }

@@ -12,13 +12,13 @@ public interface IOffersService {
 
     OffersDTO insertOffer(OffersDTO offersDTO);
 
-    List<OffersDTO> findOffersByEnterpriseIdOrderById();
+    List<OffersDTO> findOffersByEnterpriseIdOrderByPublicationDateDesc();
 
     int userApplyOffer(Integer offerId);
 
     OffersDTO toggleActive(OffersDTO offersDTO);
 
-    List<OffersDTO> findAllByActiveOffersOrderById();
+    List<OffersDTO> findAllByActiveOffersOrderByPublicationDateDesc();
 
     OffersDTO updateOffer(OffersDTO offer);
 

@@ -40,7 +40,7 @@ public class OffersController {
     @PreAuthorize("hasRole('enterprise')")
     @GetMapping("/byEnterprise")
     public List<OffersDTO> findOffersByEnterpriseId() {
-        return offersService.findOffersByEnterpriseIdOrderById();
+        return offersService.findOffersByEnterpriseIdOrderByPublicationDateDesc();
     }
 
     @PreAuthorize("hasRole('enterprise')")
@@ -51,7 +51,7 @@ public class OffersController {
 
     @GetMapping("/findAllByActive")
     public List<OffersDTO> getAllActiveOffers() {
-        return offersService.findAllByActiveOffersOrderById();}
+        return offersService.findAllByActiveOffersOrderByPublicationDateDesc();}
 
     @PreAuthorize("hasRole('user')")
     @PostMapping("/apply")

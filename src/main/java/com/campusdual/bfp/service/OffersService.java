@@ -58,16 +58,16 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public List<OffersDTO> findOffersByEnterpriseIdOrderById() {
+    public List<OffersDTO> findOffersByEnterpriseIdOrderByPublicationDateDesc() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.findByLogin(auth.getName());
         Integer enterpriseId = user.getEnterpriseId();
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseIdOrderById(enterpriseId));
+        return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseIdOrderByPublicationDateDesc(enterpriseId));
     }
 
     @Override
-    public List<OffersDTO> findAllByActiveOffersOrderById() {
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActiveOrderById(true));
+    public List<OffersDTO> findAllByActiveOffersOrderByPublicationDateDesc() {
+        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActiveOrderByPublicationDateDesc(true));
     }
 
     @Override
