@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let oferta of offerList" (click)="editarOferta(oferta.id)" style="cursor: pointer;">
+      <tr *ngFor="let oferta of offerList" (click)="verCandidatos(oferta.id)" style="cursor: pointer;">
         <td>{{ oferta.title }}</td>
         <td>{{ oferta.description }}</td>
         <td class="centrar">{{ oferta.publicationDate | date: "dd-MM-yyyy" }}</td>

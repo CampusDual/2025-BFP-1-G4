@@ -1,6 +1,7 @@
 package com.campusdual.bfp.api;
 
 import com.campusdual.bfp.model.dto.OffersDTO;
+import com.campusdual.bfp.model.dto.UserDTO;
 
 import java.util.List;
 
@@ -12,17 +13,18 @@ public interface IOffersService {
 
     OffersDTO insertOffer(OffersDTO offersDTO);
 
-    List<OffersDTO> findOffersByEnterpriseIdOrderById();
+    List<OffersDTO> findOffersByEnterpriseIdOrderByPublicationDateDesc();
 
     int userApplyOffer(Integer offerId);
 
     OffersDTO toggleActive(OffersDTO offersDTO);
 
-    List<OffersDTO> findAllByActiveOffersOrderById();
+    List<OffersDTO> findAllByActiveOffersOrderByPublicationDateDesc();
 
     OffersDTO updateOffer(OffersDTO offer);
 
     OffersDTO findOfferById(int id);
 
 
+    List<UserDTO> getUsersByOfferId(Integer offerId);
 }
