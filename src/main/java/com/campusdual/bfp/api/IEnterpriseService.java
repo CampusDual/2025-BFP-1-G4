@@ -1,6 +1,7 @@
 package com.campusdual.bfp.api;
 
 import com.campusdual.bfp.model.dto.EnterpriseDTO;
+import com.campusdual.bfp.model.dto.EnterpriseUserDTO;
 
 import java.util.List;
 
@@ -10,10 +11,11 @@ public interface IEnterpriseService {
 
     List<EnterpriseDTO> queryAllEnterprise();
 
-    int insertEnterprise(EnterpriseDTO enterpriseDTO);
+    int insertEnterprise(EnterpriseUserDTO enterpriseUserDTO);
 
-    int updateEnterprise(EnterpriseDTO enterpriseDTO);
+    int updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO);
 
-    int deleteEnterprise(EnterpriseDTO enterpriseDTO);
+    int deleteEnterprise(Integer id);
 
+    boolean hasActiveOffers(int id);
 }

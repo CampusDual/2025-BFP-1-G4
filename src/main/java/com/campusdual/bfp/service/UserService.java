@@ -50,7 +50,7 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email) {
+    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email, Integer enterpriseId) {
         User user = new User();
         user.setLogin(login);
         user.setName(name);
@@ -59,10 +59,8 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname1(surname1);
         user.setSurname2(surname2);
         user.setEmail(email);
-        user.setEnterpriseId(null);
-        User savedUser = this.userDao.saveAndFlush(user);
-
-        this.addRoleToUser(savedUser.getId(), 1L);
+        user.setEnterpriseId(enterpriseId);
+        this.userDao.saveAndFlush(user);
     }
 
     public void addRoleToUser(int userid, Long roleid) {
@@ -79,6 +77,11 @@ public class UserService implements IUserService, UserDetailsService {
             userRole.setRole(role);
             userRoleDao.saveAndFlush(userRole);
         }
+    }
+
+    public int getUserIdByLogin(String login) {
+        User user = userDao.findByLogin(login);
+        return user != null ? user.getId() : -1;
     }
 
     public String getRoleNameByUsername(String username) {
