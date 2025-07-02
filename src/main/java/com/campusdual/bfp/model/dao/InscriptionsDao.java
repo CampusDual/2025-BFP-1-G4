@@ -2,6 +2,8 @@ package com.campusdual.bfp.model.dao;
 
 import com.campusdual.bfp.model.Inscriptions;
 import com.campusdual.bfp.model.Offer;
+import com.campusdual.bfp.model.User;
+import com.campusdual.bfp.model.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,4 +19,8 @@ public interface InscriptionsDao extends JpaRepository<Inscriptions, Long> {
     void deleteInscriptionByOffer(Offer offer);
 
     boolean existsByUserIdAndOfferId(Integer id, Integer id1);
+
+    @Query("SELECT i.user FROM Inscriptions i WHERE i.offer.id = :offerId")
+    List<User> findUsersByOfferId(@Param("offerId") Integer offerId);
+
 }
