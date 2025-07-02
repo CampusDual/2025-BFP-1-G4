@@ -1,6 +1,6 @@
 <div class="page-container">
     <h1 class="page-title">Candidatos postulados a la Oferta
-        </h1>
+    </h1>
     <div style="margin-top: 20px;">
         <button class="add-btn" (click)="editarOferta()">Editar esta
             oferta</button>
@@ -12,7 +12,6 @@
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Teléfono</th>
-                <th>Fecha de inscripción</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +19,6 @@
                 <td>{{ candidato.name }}</td>
                 <td>{{ candidato.email }}</td>
                 <td>{{ candidato.phonenumber }}</td>
-                <td>{{ candidato.inscriptiondate | date: 'dd-MM-yyyy' }}</td>
             </tr>
         </tbody>
     </table>
