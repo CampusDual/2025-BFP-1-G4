@@ -33,7 +33,8 @@ public class InscriptionsController {
 
     @PreAuthorize("hasRole('enterprise')")
     @GetMapping("/byOffer/{offerid}")
-    public List<UserDTO> getUsersByOffer(@PathVariable Integer offerId) {
+    public List<UserDTO> getUsersByOffer(@PathVariable("offerid") Integer offerId) {
         return inscriptionsService.findUsersByOfferId(offerId);
     }
+
 }

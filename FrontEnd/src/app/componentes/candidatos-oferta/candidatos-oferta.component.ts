@@ -9,7 +9,7 @@ import { InscripcionService } from '../../services/inscription.service';
   styleUrls: ['./candidatos-oferta.component.css']
 })
 export class CandidatosOfertaComponent implements OnInit {
-  ofertaId: number = 0;
+  ofertaid: number = 0;
   candidatos: any[] = [];
 
   constructor(
@@ -20,18 +20,18 @@ export class CandidatosOfertaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ofertaId = +this.route.snapshot.paramMap.get('id')!;
+    this.ofertaid = +this.route.snapshot.paramMap.get('id')!;
     this.cargarCandidatos();
   }
 
   cargarCandidatos(): void {
-    this.inscripcionService.getCandidatosPorOferta(this.ofertaId).subscribe({
+    this.inscripcionService.getCandidatosPorOferta(this.ofertaid).subscribe({
       next: (data) => this.candidatos = data,
       error: (err) => console.error('Error al cargar candidatos', err)
     });
   }
 
   editarOferta(): void {
-    this.router.navigate(['/publicar-oferta', this.ofertaId]);
+    this.router.navigate(['/editar-oferta', this.ofertaid]);
   }
 }
