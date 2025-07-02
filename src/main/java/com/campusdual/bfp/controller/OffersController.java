@@ -74,6 +74,7 @@ public class OffersController {
         offer.setId(id);  // Asegúrate que el DTO tiene setId para asignar el id recibido
         return offersService.updateOffer(offer);
     }
+
 }
 
 
