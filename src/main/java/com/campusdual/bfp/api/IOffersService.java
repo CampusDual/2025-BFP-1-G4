@@ -1,6 +1,7 @@
 package com.campusdual.bfp.api;
 
 import com.campusdual.bfp.model.dto.OffersDTO;
+import com.campusdual.bfp.model.dto.UserDTO;
 
 import java.util.List;
 
@@ -25,4 +26,5 @@ public interface IOffersService {
     OffersDTO findOfferById(int id);
 
 
+    List<UserDTO> getUsersByOfferId(Integer offerId);
 }

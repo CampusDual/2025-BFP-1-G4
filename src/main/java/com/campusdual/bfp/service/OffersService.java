@@ -8,6 +8,7 @@ import com.campusdual.bfp.model.dao.InscriptionsDao;
 import com.campusdual.bfp.model.dao.OffersDao;
 import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dto.OffersDTO;
+import com.campusdual.bfp.model.dto.UserDTO;
 import com.campusdual.bfp.model.dto.dtomapper.OffersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 
 @Service("OffersService")
@@ -143,6 +146,22 @@ public class OffersService implements IOffersService {
         dto.setActive(entity.isActive());
         dto.setEnterpriseId(entity.getEnterpriseId());
         return dto;
+    }
+
+    @Override
+    public List<UserDTO> getUsersByOfferId(Integer offerId) {
+        List<User> users = inscriptionsDao.findUsersByOfferId(offerId);
+        return users.stream().map(user -> {
+            UserDTO dto = new UserDTO();
+            dto.setId(user.getId());
+            dto.setName(user.getName());
+            dto.setSurname1(user.getSurname1());
+            dto.setSurname2(user.getSurname2());
+            dto.setEmail(user.getEmail());
+            dto.setPhonenumber(user.getPhonenumber());
+            // Map other fields as necessary
+            return dto;
+        }).collect(Collectors.toList());
     }
 
 
