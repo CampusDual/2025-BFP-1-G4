@@ -35,6 +35,7 @@ import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empre
 import { AdministrationComponent } from './administration/administration.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     MostrarOfertaComponent,
     ListaEmpresasComponent,
     RegisterComponent,
-    AdministrationComponent
+    AdministrationComponent,
+    CandidatosOfertaComponent
   ],
   imports: [
     BrowserModule,

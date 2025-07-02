@@ -45,4 +45,11 @@ export class ListaOfertasComponent {
   editarOferta(id: number): void {
     this.router.navigate(['/editar-oferta', id]);
   }
+
+  verCandidatos(id: number) {
+  this.router.navigate(['/candidatos-oferta', id]);
+}
+verInscritos(ofertaId: number) {
+  this.router.navigate(['/oferta', ofertaId, 'candidatos']);
+}
 }
