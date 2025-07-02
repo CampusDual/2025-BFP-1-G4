@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 
 
@@ -58,6 +59,7 @@ import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candi
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
+    MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,

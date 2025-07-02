@@ -1,45 +1,83 @@
 .lista-empresas-container {
-  padding: 20px;
-  max-width: 1200px;
+  padding: 1rem;
+  max-width: 900px;
   margin: auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.page-title {
-  font-size: 28px;
-  color: #f44336;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.tabla-wrapper {
-  overflow-x: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
 }
 
 .tabla-empresas {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+  margin-top: 1rem;
 }
 
-.tabla-empresas thead {
+.tabla-empresas th, .tabla-empresas td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.tabla-empresas th {
   background-color: #f44336;
   color: white;
 }
 
-.tabla-empresas th,
-.tabla-empresas td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
 .tabla-empresas tr:hover {
   background-color: #f9f9f9;
+  cursor: pointer;
 }
 
-.tabla-empresas td:last-child {
-  text-align: center;
+.form-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+form input {
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.add-btn {
+  margin-top: 20px;
+  padding: 10px 22px;
+  border: 2px solid #ff7043;
+  background: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  outline: none;
+}
+
+.add-btn:hover {
+  background-color: #ff7043;
+  color: white;
+}
+
+button[type="button"] {
+  margin-left: 10px;
+  padding: 10px 22px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+}
+
+button[type="button"]:hover {
+  background: #d32f2f;
 }

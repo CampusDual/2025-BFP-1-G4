@@ -5,7 +5,6 @@
     <table class="tabla-empresas">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nombre</th>
           <th>Dirección</th>
           <th>Email</th>
@@ -13,16 +12,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enterprise of enterprisesList"
-          (click)="onRowClick(enterprise.id)" style="cursor: pointer;">
-          <td>{{ enterprise.id }}</td>
+        <tr *ngFor="let enterprise of enterprisesList">
+
           <td>{{ enterprise.name }}</td>
           <td>{{ enterprise.address }}</td>
           <td>{{ enterprise.email }}</td>
           <td>{{ enterprise.phonenumber }}</td>
         </tr>
       </tbody>
-
     </table>
   </div>
 </div>

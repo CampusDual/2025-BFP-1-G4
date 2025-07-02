@@ -7,6 +7,9 @@ import { Enterprise } from '../model/enterprise.model';
   providedIn: 'root'
 })
 export class EnterpriseService {
+  obtenerEmpresas(): Observable<Enterprise[]> {
+    return this.http.get<Enterprise[]>(`${this.apiUrl}/getAll`);
+  }
 private apiUrl = 'http://localhost:30030/enterprises';
 
   constructor(private http: HttpClient) { }
