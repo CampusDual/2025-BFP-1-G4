@@ -50,14 +50,14 @@ public class EnterpriseController {
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> createEnterprise(@RequestBody EnterpriseUserDTO dto) {
         enterpriseService.insertEnterprise(dto);
-        return ResponseEntity.ok("Empresa y usuario creados");
+        return ResponseEntity.ok("Empresa creada");
     }
 
     @PutMapping(value = "/update/{id}")
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<?> updateEnterprise(@PathVariable int id, @RequestBody EnterpriseDTO enterpriseDTO) {
         enterpriseService.updateEnterprise(id, enterpriseDTO);
-        return ResponseEntity.ok("Empresa y usuario actualizados");
+        return ResponseEntity.ok("Empresa actualizados");
     }
 
     @DeleteMapping(value = "/delete/{id}")
@@ -67,7 +67,7 @@ public class EnterpriseController {
             return ResponseEntity.badRequest().body("Debe desactivar las ofertas antes de eliminar la empresa");
         }
         enterpriseService.deleteEnterprise(id);
-        return ResponseEntity.ok("Empresa y usuario eliminados");
+        return ResponseEntity.ok("Empresa eliminados");
     }
 
 }

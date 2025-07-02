@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Lazy
@@ -134,11 +135,32 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public int updateUser(UserDTO userDTO) {
-        return 0;
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return 0;
+        user.setName(userDTO.getName());
+        user.setPhonenumber(userDTO.getPhonenumber());
+        user.setEmail(userDTO.getEmail());
+        user.setSurname1(userDTO.getSurname1());
+        user.setSurname2(userDTO.getSurname2());
+        user.setLogin(userDTO.getLogin());
+
+        if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+            user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
+        }
+        userDao.saveAndFlush(user);
+        return user.getId();
     }
 
     @Override
     public int deleteUser(UserDTO userDTO) {
-        return 0;
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return 0;
+        List<UserRole> userRoles = userRoleDao.findAll()
+                .stream()
+                .filter(ur -> ur.getUser().getId() == user.getId())
+                .collect(Collectors.toList());
+        userRoleDao.deleteAll(userRoles);
+        userDao.delete(user);
+        return user.getId();
     }
 }

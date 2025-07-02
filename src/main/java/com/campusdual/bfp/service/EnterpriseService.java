@@ -3,7 +3,11 @@ package com.campusdual.bfp.service;
 import com.campusdual.bfp.api.IEnterpriseService;
 
 import com.campusdual.bfp.model.Enterprise;
+import com.campusdual.bfp.model.User;
+import com.campusdual.bfp.model.UserRole;
 import com.campusdual.bfp.model.dao.EnterpriseDao;
+import com.campusdual.bfp.model.dao.UserDao;
+import com.campusdual.bfp.model.dao.UserRoleDao;
 import com.campusdual.bfp.model.dto.EnterpriseDTO;
 import com.campusdual.bfp.model.dto.EnterpriseUserDTO;
 import com.campusdual.bfp.model.dto.UserDTO;
@@ -13,6 +17,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service("EnterpriseService")
 @Lazy
@@ -23,6 +28,12 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private UserRoleDao userRoleDao;
 
     @Override
     public EnterpriseDTO queryEnterprise(EnterpriseDTO enterpriseDTO) {
@@ -75,6 +86,20 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Override
     public int deleteEnterprise(Integer id) {
+        List<User> users = userDao.findAll()
+                .stream()
+                .filter(u -> id.equals(u.getEnterpriseId()))
+                .collect(Collectors.toList());
+
+        for (User user : users) {
+            List<UserRole> userRoles = userRoleDao.findAll()
+                    .stream()
+                    .filter(ur -> ur.getUser().getId() == user.getId())
+                    .collect(Collectors.toList());
+            userRoleDao.deleteAll(userRoles);
+            userDao.delete(user);
+        }
+
         enterpriseDao.deleteById(id);
         return id;
     }
