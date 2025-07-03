@@ -3,6 +3,7 @@ package com.campusdual.bfp.controller;
 import com.campusdual.bfp.api.IEnterpriseService;
 import com.campusdual.bfp.model.dto.EnterpriseDTO;
 import com.campusdual.bfp.model.dto.EnterpriseUserDTO;
+import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -53,6 +54,18 @@ public class EnterpriseController {
         }
         enterpriseService.deleteEnterprise(enterpriseDTO.getId());
         return ResponseEntity.ok("Empresa eliminados");
+    }
+
+    @PreAuthorize("hasRole('admin')")
+    @PutMapping("/toggleActive")
+    public EnterpriseDTO toggleActive(@RequestBody EnterpriseDTO enterpriseDTO) {
+        return enterpriseService.toggleActive(enterpriseDTO);
+    }
+
+    @GetMapping("/findAllByActive")
+    @PreAuthorize("hasRole('admin')")
+    public List<EnterpriseDTO> findAllByActive() {
+        return enterpriseService.findAllByActive();
     }
 
 }

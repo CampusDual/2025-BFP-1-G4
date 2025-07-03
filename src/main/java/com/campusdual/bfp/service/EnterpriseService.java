@@ -82,9 +82,24 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Override
     public int updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO) {
-        Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);
-        enterprise.setId(id);
+        Enterprise enterprise = enterpriseDao.getReferenceById(id);
+        enterprise.setName(enterpriseDTO.getName());
+        enterprise.setEmail(enterpriseDTO.getEmail());
+        enterprise.setPhonenumber(enterpriseDTO.getPhonenumber());
+        enterprise.setAddress(enterpriseDTO.getAddress());
         enterpriseDao.saveAndFlush(enterprise);
+
+        List<User> users = userDao.findAll()
+                .stream()
+                .filter(u -> id.equals(u.getEnterpriseId()))
+                .collect(Collectors.toList());
+        for (User user : users) {
+            user.setName(enterpriseDTO.getName());
+            user.setEmail(enterpriseDTO.getEmail());
+            user.setPhonenumber(enterpriseDTO.getPhonenumber());
+            userDao.saveAndFlush(user);
+        }
+
         return enterprise.getId();
     }
 
@@ -112,5 +127,23 @@ public class EnterpriseService implements IEnterpriseService {
     public boolean hasActiveOffers(int id) {
         return offerDao.countActiveOffersByEnterpriseId(id) > 0;
     }
+
+    @Override
+    public List<EnterpriseDTO> findAllByActive() {
+        return EnterpriseMapper.INSTANCE.toDTOList(enterpriseDao.findAllByActiveTrue());
+    }
+
+    @Override
+    public EnterpriseDTO toggleActive(EnterpriseDTO enterpriseDTO) {
+        Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);
+        Enterprise entity = enterpriseDao.getReferenceById(enterprise.getId());
+        if (entity.isActive() && hasActiveOffers(entity.getId())) {
+            throw new RuntimeException("Debe desactivar las ofertas antes de desactivar la empresa");
+        }
+        entity.setActive(!entity.isActive());
+        enterpriseDao.saveAndFlush(entity);
+        return EnterpriseMapper.INSTANCE.toDTO(entity);
+    }
+
 
 }
