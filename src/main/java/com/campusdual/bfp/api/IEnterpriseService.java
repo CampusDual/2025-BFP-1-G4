@@ -18,4 +18,8 @@ public interface IEnterpriseService {
     int deleteEnterprise(Integer id);
 
     boolean hasActiveOffers(int id);
+
+    List<EnterpriseDTO> findAllByActive();
+
+    EnterpriseDTO toggleActive(EnterpriseDTO enterpriseDTO);
 }

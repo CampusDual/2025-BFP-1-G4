@@ -22,6 +22,17 @@ public class Enterprise {
     @Column
     private String address;
 
+    @Column
+    private boolean active = true;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<User> users;
 

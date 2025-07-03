@@ -6,6 +6,7 @@ public class EnterpriseDTO {
     private String email;
     private String phonenumber;
     private String address;
+    private boolean active;
 
     public Integer getId() {
         return id;
@@ -46,4 +47,8 @@ public class EnterpriseDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public boolean isActive() { return active; }
+
+    public void setActive(boolean active) { this.active = active; }
 }
