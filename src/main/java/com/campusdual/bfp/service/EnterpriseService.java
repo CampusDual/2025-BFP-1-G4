@@ -11,6 +11,7 @@ import com.campusdual.bfp.model.dao.UserRoleDao;
 import com.campusdual.bfp.model.dto.EnterpriseDTO;
 import com.campusdual.bfp.model.dto.EnterpriseUserDTO;
 import com.campusdual.bfp.model.dto.UserDTO;
+import com.campusdual.bfp.model.dao.OffersDao;
 import com.campusdual.bfp.model.dto.dtomapper.EnterpriseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -34,6 +35,9 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Autowired
     private UserRoleDao userRoleDao;
+
+    @Autowired
+    private OffersDao offerDao;
 
     @Override
     public EnterpriseDTO queryEnterprise(EnterpriseDTO enterpriseDTO) {
@@ -106,7 +110,7 @@ public class EnterpriseService implements IEnterpriseService {
 
     @Override
     public boolean hasActiveOffers(int id) {
-        return false;
+        return offerDao.countActiveOffersByEnterpriseId(id) > 0;
     }
 
 }
