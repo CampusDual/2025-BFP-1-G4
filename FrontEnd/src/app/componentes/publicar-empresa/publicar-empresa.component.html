@@ -1,17 +1,20 @@
 <div class="page-container">
-  <h1 class="page-title">Publicar Nueva Empresa y Usuario</h1>
+  <h1 class="page-title">{{ modoEditar ? 'Editar Empresa' : 'Publicar Nueva Empresa' }}</h1>
 
-  <form (ngSubmit)="onSubmit()" #form="ngForm">
+  <form (ngSubmit)="onSubmit()" #empresaForm="ngForm" novalidate>
 
-    <!-- Campos empresa -->
     <div class="form-group">
-      <label for="name">Nombre Empresa</label>
+      <label for="name">Nombre *</label>
       <input
         id="name"
         name="name"
         [(ngModel)]="enterpriseUser.enterprise.name"
+        placeholder="Nombre de la empresa"
         required
-        placeholder="Nombre de la empresa" />
+        #name="ngModel" />
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+        El nombre es obligatorio.
+      </div>
     </div>
 
     <div class="form-group">
@@ -24,14 +27,19 @@
     </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
+      <label for="email">Email *</label>
       <input
         id="email"
         name="email"
         type="email"
         [(ngModel)]="enterpriseUser.enterprise.email"
+        placeholder="Email"
         required
-        placeholder="Email" />
+        email
+        #email="ngModel" />
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+        Por favor introduce un email válido.
+      </div>
     </div>
 
     <div class="form-group">
@@ -43,30 +51,55 @@
         placeholder="Teléfono" />
     </div>
 
-    <hr />
-
-    <!-- Campos usuario -->
     <div class="form-group">
-      <label for="login">Usuario</label>
+      <label for="login">Usuario (login) *</label>
       <input
         id="login"
         name="login"
         [(ngModel)]="enterpriseUser.login"
+        placeholder="Usuario"
         required
-        placeholder="Usuario para login" />
+        #login="ngModel" />
+      <div *ngIf="login.invalid && (login.dirty || login.touched)" class="error">
+        El usuario es obligatorio.
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="password">Contraseña</label>
+      <label for="password">Contraseña *</label>
       <input
         id="password"
         name="password"
         type="password"
         [(ngModel)]="enterpriseUser.password"
+        placeholder="Contraseña"
         required
-        placeholder="Contraseña" />
+        minlength="6"
+        #password="ngModel" />
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error">
+        La contraseña es obligatoria y debe tener al menos 6 caracteres.
+      </div>
     </div>
 
-    <button type="submit" class="add-btn" [disabled]="form.invalid">Guardar</button>
+    <button
+      mat-flat-button
+      color="warn"
+      type="submit"
+      [disabled]="empresaForm.invalid">
+      {{ modoEditar ? 'Actualizar Empresa' : 'Crear Empresa' }}
+    </button>
   </form>
 </div>
+
+<style>
+  .error {
+    color: #d32f2f;
+    font-size: 0.8em;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  input.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+  }
+</style>

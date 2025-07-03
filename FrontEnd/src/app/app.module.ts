@@ -39,7 +39,6 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

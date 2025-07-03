@@ -3,7 +3,7 @@
 
   <!-- Botón para publicar nueva oferta -->
   <div class="boton-publicar" style="margin-bottom: 15px;">
-    <button class="add-btn" (click)="irANuevaOferta()">
+    <button class="add-btn" (click)="irANuevaEmpresa()">
       Crear nueva Empresa
     </button>
   </div>
@@ -19,7 +19,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enterprise of enterprisesList">
+        <tr *ngFor="let enterprise of enterprisesList"
+          (click)="editarEmpresa(enterprise.id)" class="fila-clickable">
           <td>{{ enterprise.name }}</td>
           <td>{{ enterprise.address }}</td>
           <td>{{ enterprise.email }}</td>

@@ -24,8 +24,10 @@ const routes: Routes = [
   { path: 'lista-empresas', component: ListaEmpresasComponent },
   { path: 'lista-ofertas', component: ListaOfertasComponent },
   { path: 'publicar-oferta', component: PublicarOfertaComponent },
+  { path: 'publicar-oferta:id', component: PublicarOfertaComponent },
   { path: 'editar-oferta/:id', component: PublicarOfertaComponent },
   { path: 'publicar-empresa', component: PublicarEmpresaComponent },
+  { path: 'publicar-empresa/:id', component: PublicarEmpresaComponent },
   { path: 'candidatos-oferta/:id', component: CandidatosOfertaComponent },
   { path: '', redirectTo: '/mostrar-oferta', pathMatch: 'full' },
 ];

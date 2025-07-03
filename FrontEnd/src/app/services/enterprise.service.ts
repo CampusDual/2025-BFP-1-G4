@@ -8,6 +8,10 @@ import { Enterprise } from '../model/enterprise.model';
   providedIn: 'root'
 })
 export class EnterpriseService {
+  createEnterprise(enterprise: Enterprise) {
+    throw new Error('Method not implemented.');
+  }
+  
   getAllEnterprises(): Observable<Enterprise[]> {
     return this.http.get<Enterprise[]>(this.apiUrl + "/getAll", {
       headers: this.getAuthHeaders()

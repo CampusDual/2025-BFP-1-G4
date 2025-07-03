@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EnterpriseService } from '../../services/enterprise.service';
-import { Enterprise } from '../../model/enterprise.model';
 import { Router } from '@angular/router';
+import { EnterpriseService } from '../../services/enterprise.service';
+import { Enterprise } from 'src/app/model/enterprise.model';
 
 @Component({
   selector: 'app-lista-empresas',
@@ -9,23 +9,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./lista-empresas.component.css']
 })
 export class ListaEmpresasComponent implements OnInit {
+
   enterprisesList: Enterprise[] = [];
 
-  constructor(private enterpriseService: EnterpriseService, private router: Router) { }
+  constructor(
+    private enterpriseService: EnterpriseService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.cargarEmpresas();
+  }
+
+  cargarEmpresas(): void {
     this.enterpriseService.getAllEnterprises().subscribe({
-      next: (data) => this.enterprisesList = data,
-      error: (err) => console.error('Error al cargar empresas', err)
+      next: (data) => {
+        this.enterprisesList = data;
+      },
+      error: (err) => {
+        console.error('Error al cargar empresas', err);
+      }
     });
+  }
 
-}
+  irANuevaEmpresa(): void {
+    this.router.navigate(['/publicar-empresa']);
+  }
 
-onRowClick(id: number): void {
-  this.router.navigate(['/editar-empresa', id]);
-}
-
-irANuevaOferta(): void {
-  this.router.navigate(['/publicar-empresa']); // Ajusta la ruta si es distinta
-}
+  editarEmpresa(id: number): void {
+    this.router.navigate(['/publicar-empresa', id]);
+  }
 }
