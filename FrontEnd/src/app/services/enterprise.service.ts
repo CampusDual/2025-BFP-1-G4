@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { EnterpriseUserDTO } from '../model/enterprise-user-dto.model';
 import { Enterprise } from '../model/enterprise.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnterpriseService {
-  obtenerEmpresas(): Observable<Enterprise[]> {
-    return this.http.get<Enterprise[]>(`${this.apiUrl}/getAll`);
+  getAllEnterprises(): Observable<Enterprise[]> {
+    return this.http.get<Enterprise[]>(this.apiUrl + "/getAll", {
+      headers: this.getAuthHeaders()
+    });
   }
-private apiUrl = 'http://localhost:30030/enterprises';
+
+
+  getEnterprisePorId(id: number): Observable<Enterprise> {
+    return this.http.get<Enterprise>(`${this.apiUrl}/get/${id}`, { headers: this.getAuthHeaders() });
+  }
+
+  private apiUrl = 'http://localhost:30030/enterprises';
 
   constructor(private http: HttpClient) { }
 
@@ -21,19 +30,12 @@ private apiUrl = 'http://localhost:30030/enterprises';
     });
   }
 
-  createEnterprise(enterprise: Enterprise): Observable<Enterprise> {
-    return this.http.post<Enterprise>(this.apiUrl + "/add", enterprise, {
-      headers: this.getAuthHeaders()
-    }).pipe(
-      map((response: Enterprise) => response as Enterprise)
-    );
-  }
- 
-  getAllEnterprises(): Observable<Enterprise[]> {
-    return this.http.get<Enterprise[]>(this.apiUrl + "/getAll", {
-      headers: this.getAuthHeaders()
-    });
-  }
+createEnterpriseWithUser(dto: EnterpriseUserDTO): Observable<any> {
+  return this.http.post<any>(`${this.apiUrl}/add`, dto, {
+    headers: this.getAuthHeaders()
+  });
+}
+
 
   deleteEnterprise(id: number): Observable<Enterprise> {
     return this.http.delete<Enterprise>(`${this.apiUrl}/delete/${id}`, {
@@ -46,17 +48,4 @@ private apiUrl = 'http://localhost:30030/enterprises';
       headers: this.getAuthHeaders()
     });
   }
-
-  /*toggleEstadoEnterprise(id: number): Observable<any> {
-    return this.http.put(
-      `${this.apiUrl}/toggleActive`,
-      { id },
-      { headers: this.getAuthHeaders() }
-    );
-  }
-  getAllActiveEnterprises(): Observable<Enterprise[]> {
-    return this.http.get<Enterprise[]>(this.apiUrl + "/findAllByActive", {
-      headers: this.getAuthHeaders()
-    });
-  }*/
 }

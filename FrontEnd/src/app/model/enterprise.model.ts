@@ -1,8 +1,7 @@
 export interface Enterprise {
-  id: Number;
-  name: String;
-  address: String;
-  email: String;
-  phonenumber: String;
-  active: boolean;
+  id?: number;
+  name: string;
+  address?: string;
+  email: string;
+  phonenumber?: string;
 }
