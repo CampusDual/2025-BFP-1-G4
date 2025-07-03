@@ -1,6 +1,7 @@
 package com.campusdual.bfp.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "enterprise")
@@ -20,6 +21,12 @@ public class Enterprise {
 
     @Column
     private String address;
+
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<User> users;
+
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Offer> offers;
 
     public Enterprise() {
     }

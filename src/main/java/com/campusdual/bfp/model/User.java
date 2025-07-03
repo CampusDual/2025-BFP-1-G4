@@ -4,14 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.*;
 
 @Entity
@@ -42,6 +35,13 @@ public class User implements UserDetails {
 
     @Column
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "enterpriseid", insertable = false, updatable = false)
+    private Enterprise enterprise;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<UserRole> userRole;
 
     @Column (name="enterpriseid")
     private Integer enterpriseId;
