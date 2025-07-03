@@ -1,0 +1,63 @@
+.page-container {
+  margin: 2rem 3rem;
+  max-width: 600px;
+  background: white;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  border-radius: 8px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  color: #f44336;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #333;
+}
+
+input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1.5px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #f44336;
+  outline: none;
+}
+
+button.add-btn {
+  background-color: transparent;
+  border: 2px solid #ff7043;
+  color: #ff7043;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  width: 100%;
+}
+
+button.add-btn:hover:not(:disabled) {
+  background-color: #ff7043;
+  color: white;
+}
+
+button.add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

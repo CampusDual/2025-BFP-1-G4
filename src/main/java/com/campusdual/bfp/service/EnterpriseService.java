@@ -108,4 +108,5 @@ public class EnterpriseService implements IEnterpriseService {
     public boolean hasActiveOffers(int id) {
         return false;
     }
+
 }

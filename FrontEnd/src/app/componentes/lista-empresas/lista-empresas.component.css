@@ -81,3 +81,21 @@ button[type="button"] {
 button[type="button"]:hover {
   background: #d32f2f;
 }
+
+.add-btn {
+  padding: 10px 22px;
+  border: 2px solid #ff7043;
+  background: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+  margin-top: 1rem;
+}
+
+.add-btn:hover {
+  background-color: #ff7043;
+  color: white;
+}

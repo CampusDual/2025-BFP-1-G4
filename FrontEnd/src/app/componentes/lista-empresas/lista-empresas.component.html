@@ -1,6 +1,13 @@
 <div class="lista-empresas-container">
   <h1 class="page-title">Empresas Registradas</h1>
 
+  <!-- Botón para publicar nueva oferta -->
+  <div class="boton-publicar" style="margin-bottom: 15px;">
+    <button class="add-btn" (click)="irANuevaOferta()">
+      Crear nueva oferta
+    </button>
+  </div>
+
   <div class="tabla-wrapper">
     <table class="tabla-empresas">
       <thead>
@@ -13,7 +20,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let enterprise of enterprisesList">
-
           <td>{{ enterprise.name }}</td>
           <td>{{ enterprise.address }}</td>
           <td>{{ enterprise.email }}</td>
