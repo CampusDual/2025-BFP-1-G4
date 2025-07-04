@@ -1,32 +1,39 @@
-<div class="lista-empresas-container">
-  <h1 class="page-title">Empresas Registradas</h1>
+<!-- Botón para publicar nueva oferta -->
 
-  <!-- Botón para publicar nueva oferta -->
   <div class="boton-publicar" style="margin-bottom: 15px;">
     <button class="add-btn" (click)="irANuevaEmpresa()">
       Crear nueva Empresa
     </button>
+
+    <button class="delete-btn" [disabled]="!empresasSeleccionadas.length"
+      (click)="eliminarEmpresasSeleccionadas()">
+      Eliminar seleccionadas
+    </button>
   </div>
 
-  <div class="tabla-wrapper">
-    <table class="tabla-empresas">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Email</th>
-          <th>Teléfono</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let enterprise of enterprisesList"
-          (click)="editarEmpresa(enterprise.id)" class="fila-clickable">
-          <td>{{ enterprise.name }}</td>
-          <td>{{ enterprise.address }}</td>
-          <td>{{ enterprise.email }}</td>
-          <td>{{ enterprise.phonenumber }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<table class="tabla-empresas">
+  <thead>
+    <tr>
+      <th></th> <!-- columna para checkboxes -->
+      <th>Nombre</th>
+      <th>Dirección</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let enterprise of enterprisesList">
+      <td>
+        <input
+          type="checkbox"
+          (change)="toggleSeleccion(enterprise)"
+          [checked]="empresasSeleccionadas.includes(enterprise)" />
+      </td>
+      <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.name }}</td>
+      <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.address }}</td>
+      <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.email }}</td>
+      <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.phonenumber
+        }}</td>
+    </tr>
+  </tbody>
+</table>

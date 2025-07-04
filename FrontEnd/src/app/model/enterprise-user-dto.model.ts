@@ -3,13 +3,13 @@ import { User } from './user.model';
 
 export interface EnterpriseDTO{
   id?: number;
-  name: string;
-  email: string;
-  phonenumber: string;
-  address: string;
+  name: String;
+  email: String;
+  phonenumber: String;
+  address: String;
 }
 export interface EnterpriseUserDTO {
   enterprise: EnterpriseDTO;
   login: string;
-  password: string;
+  password?: string;
 }

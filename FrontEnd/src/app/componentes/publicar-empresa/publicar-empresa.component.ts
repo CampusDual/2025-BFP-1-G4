@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EnterpriseUserDTO } from 'src/app/model/enterprise-user-dto.model';
+import { EnterpriseService } from '../../services/enterprise.service';
+import { EnterpriseDTO, EnterpriseUserDTO } from '../../model/enterprise-user-dto.model';
 
 @Component({
   selector: 'app-publicar-empresa',
@@ -9,93 +9,89 @@ import { EnterpriseUserDTO } from 'src/app/model/enterprise-user-dto.model';
   styleUrls: ['./publicar-empresa.component.css']
 })
 export class PublicarEmpresaComponent implements OnInit {
-
   enterpriseUser: EnterpriseUserDTO = {
     enterprise: {
       name: '',
-      address: '',
       email: '',
-      phonenumber: ''
+      phonenumber: '',
+      address: ''
     },
     login: '',
     password: ''
   };
 
   modoEditar: boolean = false;
-  private apiUrl = 'http://localhost:30030/enterprises';
+  passwordEditable: boolean = false;
+  enterpriseId: number = 0;
 
   constructor(
-    private http: HttpClient,
+    private enterpriseService: EnterpriseService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-
-    if (idParam) {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
       this.modoEditar = true;
-      this.cargarEmpresaParaEditar(+idParam);
+      this.enterpriseId = +id;
+      this.cargarEmpresaParaEditar(this.enterpriseId);
     }
   }
 
-  private getAuthHeaders(): HttpHeaders {
-    const token = sessionStorage.getItem('token') || '';
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-  }
 
+  
   cargarEmpresaParaEditar(id: number): void {
-    this.http.get<any>(`${this.apiUrl}/get/${id}`, { headers: this.getAuthHeaders() }).subscribe({
-      next: (data) => {
-        this.enterpriseUser.enterprise = {
-          name: data.name,
-          address: data.address,
-          email: data.email,
-          phonenumber: data.phonenumber
-        };
-        // Suponiendo que el backend no te devuelve login ni password, los dejamos vacíos o como los tengas
-        this.enterpriseUser.login = '';
-        this.enterpriseUser.password = '';
-      },
-      error: (err) => {
-        console.error('Error al cargar empresa para editar', err);
-      }
-    });
-  }
+  this.enterpriseService.getEnterprisePorId(id).subscribe({
+    next: (data) => {
+      this.enterpriseUser.enterprise = data;
+    },
+    error: (err) => {
+      console.error('Error al obtener empresa', err);
+      alert('No se pudo cargar la empresa');
+    }
+  });
+}
+
 
   onSubmit(): void {
     if (this.modoEditar) {
-      this.actualizarEmpresaConUsuario();
+      this.actualizarEmpresa();
     } else {
-      this.crearEmpresaConUsuario();
+      this.publicarEmpresa();
     }
   }
 
-  crearEmpresaConUsuario(): void {
-    this.http.post<any>(`${this.apiUrl}/add`, this.enterpriseUser, { headers: this.getAuthHeaders() }).subscribe({
+  publicarEmpresa(): void {
+    this.enterpriseService.createEnterpriseWithUser(this.enterpriseUser).subscribe({
       next: () => {
-        alert('Empresa y usuario creados con éxito');
+        alert('Empresa creada con éxito');
         this.router.navigate(['/lista-empresas']);
       },
       error: (err) => {
-        console.error('Error al crear empresa con usuario', err);
-        alert('Error al crear empresa');
+        console.error('Error al crear empresa', err);
       }
     });
   }
 
-  actualizarEmpresaConUsuario(): void {
-    this.http.put<any>(`${this.apiUrl}/update/${id}`, this.enterpriseUser, { headers: this.getAuthHeaders() }).subscribe({
+  actualizarEmpresa(): void {
+    // Si el usuario no quiere cambiar contraseña, la eliminamos del objeto antes de enviarlo
+    if (!this.passwordEditable) {
+      delete this.enterpriseUser.password;
+    }
+
+    this.enterpriseService.updateEnterpriseWithUser(this.enterpriseId, this.enterpriseUser).subscribe({
       next: () => {
-        alert('Empresa y usuario actualizados con éxito');
+        alert('Empresa actualizada con éxito');
         this.router.navigate(['/lista-empresas']);
       },
       error: (err) => {
-        console.error('Error al actualizar empresa con usuario', err);
-        alert('Error al actualizar empresa');
+        console.error('Error al actualizar empresa', err);
       }
     });
+  }
+
+  habilitarPassword(): void {
+    this.passwordEditable = true;
   }
 }

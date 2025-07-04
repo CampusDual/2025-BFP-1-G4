@@ -1,23 +1,22 @@
-/* HEADER Y FOOTER */
-.main-header, .main-footer {
-  background-color: #ccc;
-  color: #212121;
-  padding: 0.8rem;
-  display: flex;
-  align-items: center;
-}
-
-.main-header .logo {
-  height: 50px;
-}
-
-.main-footer {
-  justify-content: center;
+footer {
+  background-color: #f0f0f0;
+  color: #555;
+  padding: 20px 40px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  margin-top: auto;
 }
 
-app-footer {
-  height: 60px;
-  min-height: 60px;
+footer a {
+  color: #ff7043;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #f44336;
 }

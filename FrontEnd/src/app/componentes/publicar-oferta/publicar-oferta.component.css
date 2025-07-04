@@ -93,3 +93,10 @@ button {
 button:hover {
   background-color: #e65100;
 }
+
+.boton-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Este es el nuevo espaciado entre botones */
+  margin-bottom: 15px;
+}

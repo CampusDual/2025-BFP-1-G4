@@ -1,19 +1,42 @@
 .lista-empresas-container {
-  padding: 1rem;
-  max-width: 900px;
+  padding: 2rem;
+  max-width: 1000px;
   margin: auto;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Encabezado */
+.page-title {
+  text-align: center;
+  color: #e53935;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+/* Botones superiores */
+.botones-superiores {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Tabla */
 .tabla-empresas {
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
 }
 
-.tabla-empresas th, .tabla-empresas td {
-  padding: 12px;
+.tabla-empresas th,
+.tabla-empresas td {
+  padding: 14px;
   border-bottom: 1px solid #ddd;
   text-align: left;
+  font-size: 15px;
 }
 
 .tabla-empresas th {
@@ -26,62 +49,12 @@
   cursor: pointer;
 }
 
-.form-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-}
-
-form label {
-  margin-top: 12px;
-  font-weight: 600;
-}
-
-form input {
-  padding: 8px;
-  font-size: 14px;
-  margin-top: 4px;
-}
-
-.add-btn {
-  margin-top: 20px;
-  padding: 10px 22px;
-  border: 2px solid #ff7043;
-  background: transparent;
-  color: #ff7043;
-  border-radius: 6px;
-  font-weight: 600;
+.tabla-empresas input[type="checkbox"] {
+  transform: scale(1.2);
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  user-select: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
-  outline: none;
 }
 
-.add-btn:hover {
-  background-color: #ff7043;
-  color: white;
-}
-
-button[type="button"] {
-  margin-left: 10px;
-  padding: 10px 22px;
-  background: #f44336;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 16px;
-}
-
-button[type="button"]:hover {
-  background: #d32f2f;
-}
-
+/* Botón de agregar */
 .add-btn {
   padding: 10px 22px;
   border: 2px solid #ff7043;
@@ -90,12 +63,60 @@ button[type="button"]:hover {
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: 0.3s ease;
   font-size: 16px;
-  margin-top: 1rem;
+  margin: 5px;
 }
 
 .add-btn:hover {
   background-color: #ff7043;
   color: white;
 }
+
+/* Botón de eliminar */
+.delete-btn {
+  padding: 10px 22px;
+  border: 2px solid #ff7043;
+  background: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.delete-btn:disabled {
+  background-color: #eeeeee;
+  color: #bbb;
+  border-color: #ccc;
+  cursor: not-allowed;
+  opacity: 1;
+  box-shadow: none;
+}
+
+.delete-btn:hover:not(:disabled) {
+   background-color: #ff7043;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tabla-empresas th,
+  .tabla-empresas td {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .botones-superiores {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-btn,
+  .delete-btn {
+    width: 100%;
+  }
+}
+

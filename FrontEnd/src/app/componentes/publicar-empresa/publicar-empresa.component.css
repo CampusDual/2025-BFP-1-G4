@@ -1,63 +1,91 @@
+/* Contenedor principal centrado */
 .page-container {
-  margin: 2rem 3rem;
-  max-width: 600px;
-  background: white;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-  border-radius: 8px;
+  margin: 5vh auto;
+  padding: 2rem 2.5rem;
+  max-width: 550px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Título */
 .page-title {
-  color: #f44336;
-  margin-bottom: 2rem;
   text-align: center;
+  color: #e53935;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
+/* Agrupación de campos */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.3rem;
   display: flex;
   flex-direction: column;
 }
 
+/* Etiquetas */
 label {
   margin-bottom: 0.4rem;
   font-weight: 600;
   color: #333;
 }
 
+/* Campos de entrada */
 input {
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1.5px solid #ddd;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
 }
 
+/* Enfocado */
 input:focus {
   border-color: #f44336;
   outline: none;
 }
 
+/* Botón principal */
 button.add-btn {
   background-color: transparent;
-  border: 2px solid #ff7043;
-  color: #ff7043;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: 6px;
+  border: 2px solid #f44336;
+  color: #f44336;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  user-select: none;
+  transition: 0.3s;
   width: 100%;
+  margin-top: 1rem;
 }
 
 button.add-btn:hover:not(:disabled) {
-  background-color: #ff7043;
+  background-color: #f44336;
   color: white;
 }
 
 button.add-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Mensajes de error */
+.error {
+  font-size: 13px;
+  color: #c62828;
+  margin-top: 4px;
+  padding-left: 2px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .page-container {
+    margin: 3vh 1rem;
+    padding: 1.5rem;
+  }
 }
