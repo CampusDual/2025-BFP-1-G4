@@ -13,7 +13,7 @@ public interface IEnterpriseService {
 
     int insertEnterprise(EnterpriseUserDTO enterpriseUserDTO);
 
-    int updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO);
+    EnterpriseDTO updateEnterprise(EnterpriseUserDTO dto);
 
     int deleteEnterprise(Integer id);
 

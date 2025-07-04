@@ -20,13 +20,9 @@ public class OffersDTO {
         this.id = id;
     }
 
-    public Integer getEnterpriseId() {
-        return enterpriseId;
-    }
+    public Integer getEnterpriseId() { return enterpriseId; }
 
-    public void setEnterpriseId(Integer enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
+    public void setEnterpriseId(Integer enterpriseId) { this.enterpriseId = enterpriseId; }
 
     public String getTitle() {
         return title;
@@ -60,19 +56,11 @@ public class OffersDTO {
         this.active = active;
     }
 
-    public String getEnterpriseName() {
-        return enterpriseName;
-    }
+    public String getEnterpriseName() { return enterpriseName; }
 
-    public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName;
-    }
+    public void setEnterpriseName(String enterpriseName) { this.enterpriseName = enterpriseName; }
 
-    public String getEnterpriseEmail() {
-        return enterpriseEmail;
-    }
+    public String getEnterpriseEmail() { return enterpriseEmail; }
 
-    public void setEnterpriseEmail(String enterpriseEmail) {
-        this.enterpriseEmail = enterpriseEmail;
-    }
+    public void setEnterpriseEmail(String enterpriseEmail) { this.enterpriseEmail = enterpriseEmail; }
 }

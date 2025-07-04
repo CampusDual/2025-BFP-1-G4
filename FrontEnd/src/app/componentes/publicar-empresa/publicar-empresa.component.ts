@@ -10,6 +10,8 @@ import { EnterpriseUserDTO } from 'src/app/model/enterprise-user-dto.model';
 })
 export class PublicarEmpresaComponent implements OnInit {
 
+private empresaId?: number;
+
   enterpriseUser: EnterpriseUserDTO = {
     enterprise: {
       name: '',
@@ -35,6 +37,7 @@ export class PublicarEmpresaComponent implements OnInit {
 
     if (idParam) {
       this.modoEditar = true;
+      this.empresaId = +idParam;
       this.cargarEmpresaParaEditar(+idParam);
     }
   }
@@ -87,7 +90,8 @@ export class PublicarEmpresaComponent implements OnInit {
   }
 
   actualizarEmpresaConUsuario(): void {
-    this.http.put<any>(`${this.apiUrl}/update/${id}`, this.enterpriseUser, { headers: this.getAuthHeaders() }).subscribe({
+    if (!this.empresaId) return;
+    this.http.put<any>(`${this.apiUrl}/update/${this.empresaId}`, this.enterpriseUser, { headers: this.getAuthHeaders() }).subscribe({
       next: () => {
         alert('Empresa y usuario actualizados con éxito');
         this.router.navigate(['/lista-empresas']);

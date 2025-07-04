@@ -58,7 +58,7 @@ public class UserController {
                 userDTO.getSurname1(),
                 userDTO.getSurname2(),
                 userDTO.getEmail(),
-                userDTO.getEnterpriseid()
+                null
         );
         int userId = userService.getUserIdByLogin(userDTO.getLogin());
         userService.addRoleToUser(userId, 1L);
