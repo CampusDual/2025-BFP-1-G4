@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,7 +73,7 @@ public class EnterpriseService implements IEnterpriseService {
                 null,
                 null,
                 userDTO.getEmail(),
-                enterprise.getId()
+                enterprise
         );
 
         int userId = userService.getUserIdByLogin(userDTO.getLogin());
@@ -80,34 +81,38 @@ public class EnterpriseService implements IEnterpriseService {
         return enterprise.getId();
     }
 
+    @Transactional
     @Override
-    public int updateEnterprise(Integer id, EnterpriseDTO enterpriseDTO) {
-        Enterprise enterprise = enterpriseDao.getReferenceById(id);
+    public EnterpriseDTO updateEnterprise(EnterpriseUserDTO dto) {
+        EnterpriseDTO enterpriseDTO = dto.getEnterprise();
+        /*Enterprise enterprise = EnterpriseMapper.INSTANCE.toEntity(enterpriseDTO);*/
+        Enterprise enterprise = enterpriseDao.getReferenceById(enterpriseDTO.getId());
+        // Actualiza los campos necesarios
         enterprise.setName(enterpriseDTO.getName());
         enterprise.setEmail(enterpriseDTO.getEmail());
         enterprise.setPhonenumber(enterpriseDTO.getPhonenumber());
-        enterprise.setAddress(enterpriseDTO.getAddress());
+        enterprise.setActive(enterpriseDTO.isActive());
         enterpriseDao.saveAndFlush(enterprise);
 
-        List<User> users = userDao.findAll()
-                .stream()
-                .filter(u -> id.equals(u.getEnterpriseId()))
-                .collect(Collectors.toList());
-        for (User user : users) {
-            user.setName(enterpriseDTO.getName());
-            user.setEmail(enterpriseDTO.getEmail());
-            user.setPhonenumber(enterpriseDTO.getPhonenumber());
-            userDao.saveAndFlush(user);
+        User user = userDao.findUserByEnterpriseId(enterprise.getId());
+        if(dto.getPassword() != null && !dto.getPassword().isEmpty()) {
+            user.setPassword(userService.passwordEncoder().encode(dto.getPassword()));
         }
+        user.setLogin(dto.getLogin());
+        user.setName(dto.getEnterprise().getName());
+        user.setPhonenumber(dto.getEnterprise().getPhonenumber());
+        user.setEmail(dto.getEnterprise().getEmail());
+        user.setEnterprise(enterprise);
+        userDao.saveAndFlush(user);
 
-        return enterprise.getId();
+        return enterpriseDTO;
     }
 
     @Override
     public int deleteEnterprise(Integer id) {
         List<User> users = userDao.findAll()
                 .stream()
-                .filter(u -> id.equals(u.getEnterpriseId()))
+                .filter(u -> u.getEnterprise() != null && id.equals(u.getEnterprise().getId()))
                 .collect(Collectors.toList());
 
         for (User user : users) {

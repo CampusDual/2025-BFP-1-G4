@@ -10,11 +10,8 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column (name="enterpriseid")
-    private Integer enterpriseId;
-
     @ManyToOne
-    @JoinColumn(name="enterpriseid", insertable = false, updatable = false)
+    @JoinColumn(name = "enterpriseid", referencedColumnName = "id")
     private Enterprise enterprise;
 
     @Column
@@ -37,13 +34,9 @@ public class Offer {
         this.id = id;
     }
 
-    public Integer getEnterpriseId() {
-        return enterpriseId;
-    }
+    public Enterprise getEnterprise() { return enterprise; }
 
-    public void setEnterpriseId(Integer enterpriseId) {
-        this.enterpriseId = enterpriseId;
-    }
+    public void setEnterprise(Enterprise enterprise) { this.enterprise = enterprise; }
 
     public String getTitle() {
         return title;
@@ -77,10 +70,4 @@ public class Offer {
         this.active = active;
     }
 
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
 }

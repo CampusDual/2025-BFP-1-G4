@@ -1,21 +1,30 @@
 package com.campusdual.bfp.controller;
 
 import com.campusdual.bfp.api.IEnterpriseService;
+import com.campusdual.bfp.model.User;
+import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dto.EnterpriseDTO;
 import com.campusdual.bfp.model.dto.EnterpriseUserDTO;
-import com.campusdual.bfp.model.dto.OffersDTO;
+import com.campusdual.bfp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController()
 @RequestMapping("/enterprises")
 public class EnterpriseController {
     @Autowired
     private IEnterpriseService enterpriseService;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/testController")
     public String testEnterpriseController() {
@@ -39,11 +48,11 @@ public class EnterpriseController {
         return ResponseEntity.ok("Empresa creada");
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/update")
     @PreAuthorize("hasRole('admin')")
-    public ResponseEntity<?> updateEnterprise(@PathVariable int id, @RequestBody EnterpriseDTO enterpriseDTO) {
-        enterpriseService.updateEnterprise(id, enterpriseDTO);
-        return ResponseEntity.ok("Empresa actualizados");
+    public ResponseEntity<EnterpriseDTO> updateEnterprise(@RequestBody EnterpriseUserDTO dto) {
+        EnterpriseDTO enterprise = enterpriseService.updateEnterprise(dto);
+        return ResponseEntity.ok(enterprise);
     }
 
     @DeleteMapping(value = "/delete")

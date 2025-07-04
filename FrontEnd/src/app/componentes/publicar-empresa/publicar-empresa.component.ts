@@ -9,6 +9,9 @@ import { EnterpriseDTO, EnterpriseUserDTO } from '../../model/enterprise-user-dt
   styleUrls: ['./publicar-empresa.component.css']
 })
 export class PublicarEmpresaComponent implements OnInit {
+
+private empresaId?: number;
+
   enterpriseUser: EnterpriseUserDTO = {
     enterprise: {
       name: '',
@@ -35,12 +38,17 @@ export class PublicarEmpresaComponent implements OnInit {
     if (id) {
       this.modoEditar = true;
       this.enterpriseId = +id;
-      this.cargarEmpresaParaEditar(this.enterpriseId);
+      this.cargarEmpresaParaEditar(+id);
     }
   }
 
+  private getAuthHeaders(): HttpHeaders {
+    const token = sessionStorage.getItem('token') || '';
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
-  
   cargarEmpresaParaEditar(id: number): void {
   this.enterpriseService.getEnterprisePorId(id).subscribe({
     next: (data) => {
@@ -74,19 +82,16 @@ export class PublicarEmpresaComponent implements OnInit {
     });
   }
 
-  actualizarEmpresa(): void {
-    // Si el usuario no quiere cambiar contraseña, la eliminamos del objeto antes de enviarlo
-    if (!this.passwordEditable) {
-      delete this.enterpriseUser.password;
-    }
-
-    this.enterpriseService.updateEnterpriseWithUser(this.enterpriseId, this.enterpriseUser).subscribe({
+  actualizarEmpresaConUsuario(): void {
+    if (!this.empresaId) return;
+    this.http.put<any>(`${this.apiUrl}/update/${this.empresaId}`, this.enterpriseUser, { headers: this.getAuthHeaders() }).subscribe({
       next: () => {
-        alert('Empresa actualizada con éxito');
+        alert('Empresa y usuario actualizados con éxito');
         this.router.navigate(['/lista-empresas']);
       },
       error: (err) => {
-        console.error('Error al actualizar empresa', err);
+        console.error('Error al actualizar empresa con usuario', err);
+        alert('Error al actualizar empresa');
       }
     });
   }

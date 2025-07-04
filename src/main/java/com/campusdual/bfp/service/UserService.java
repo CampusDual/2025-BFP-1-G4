@@ -1,6 +1,7 @@
 package com.campusdual.bfp.service;
 
 import com.campusdual.bfp.api.IUserService;
+import com.campusdual.bfp.model.Enterprise;
 import com.campusdual.bfp.model.Role;
 import com.campusdual.bfp.model.User;
 import com.campusdual.bfp.model.UserRole;
@@ -51,7 +52,7 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email, Integer enterpriseId) {
+    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email, Enterprise enterprise) {
         User user = new User();
         user.setLogin(login);
         user.setName(name);
@@ -60,7 +61,7 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname1(surname1);
         user.setSurname2(surname2);
         user.setEmail(email);
-        user.setEnterpriseId(enterpriseId);
+        user.setEnterprise(enterprise);
         this.userDao.saveAndFlush(user);
     }
 
