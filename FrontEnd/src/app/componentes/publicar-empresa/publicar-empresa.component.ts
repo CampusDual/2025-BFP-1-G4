@@ -97,6 +97,21 @@ private empresaId?: number;
   });
 }
 
+borrarSeleccionadas(): void {
+  for (let id of this.empresasSeleccionadas) {
+    this.enterpriseService.deleteEnterprise(id).subscribe({
+      next: () => {
+        console.log(`Empresa ${id} eliminada`);
+        this.cargarEmpresas(); // recargar la lista
+      },
+      error: (err) => {
+        console.error(`Error al eliminar empresa ${id}`, err);
+        alert(`Error al eliminar empresa ${id}`);
+      }
+    });
+  }
+}
+
 
   habilitarPassword(): void {
     this.passwordEditable = true;

@@ -43,11 +43,12 @@ createEnterpriseWithUser(dto: EnterpriseUserDTO): Observable<any> {
 }
 
 
-  deleteEnterprise(id: number): Observable<Enterprise> {
-    return this.http.delete<Enterprise>(`${this.apiUrl}/delete/${id}`, {
-      headers: this.getAuthHeaders()
-    });
-  }
+ deleteEnterprise(id: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/delete/${id}`, {
+    headers: this.getAuthHeaders()
+  });
+}
+
 
   updateEnterpriseWithUser(id: number, dto: EnterpriseUserDTO): Observable<any> {
   return this.http.put<any>(`${this.apiUrl}/update/${id}`, dto, {
