@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnterpriseService } from '../../services/enterprise.service';
 import { EnterpriseDTO, EnterpriseUserDTO } from '../../model/enterprise-user-dto.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-publicar-empresa',
@@ -64,7 +65,7 @@ private empresaId?: number;
 
   onSubmit(): void {
     if (this.modoEditar) {
-      this.actualizarEmpresa();
+      this.actualizarEmpresaConUsuario();
     } else {
       this.publicarEmpresa();
     }
@@ -83,18 +84,19 @@ private empresaId?: number;
   }
 
   actualizarEmpresaConUsuario(): void {
-    if (!this.empresaId) return;
-    this.http.put<any>(`${this.apiUrl}/update/${this.empresaId}`, this.enterpriseUser, { headers: this.getAuthHeaders() }).subscribe({
-      next: () => {
-        alert('Empresa y usuario actualizados con éxito');
-        this.router.navigate(['/lista-empresas']);
-      },
-      error: (err) => {
-        console.error('Error al actualizar empresa con usuario', err);
-        alert('Error al actualizar empresa');
-      }
-    });
-  }
+  if (!this.empresaId) return;
+  this.enterpriseService.updateEnterpriseWithUser(this.empresaId, this.enterpriseUser).subscribe({
+    next: () => {
+      alert('Empresa y usuario actualizados con éxito');
+      this.router.navigate(['/lista-empresas']);
+    },
+    error: (err) => {
+      console.error('Error al actualizar empresa con usuario', err);
+      alert('Error al actualizar empresa');
+    }
+  });
+}
+
 
   habilitarPassword(): void {
     this.passwordEditable = true;
