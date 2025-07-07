@@ -68,6 +68,7 @@ export class PublicarEmpresaComponent implements OnInit {
     } else {
       this.publicarEmpresa();
     }
+    
   }
 
   publicarEmpresa(): void {
@@ -79,7 +80,9 @@ export class PublicarEmpresaComponent implements OnInit {
       error: (err) => {
         console.error('Error al crear empresa', err);
       }
+      
     });
+    this.router.navigate(['/lista-empresas']);
   }
 
 actualizarEmpresaConUsuario(): void {
@@ -93,6 +96,7 @@ actualizarEmpresaConUsuario(): void {
       alert('Error al actualizar empresa');
     }
   });
+  this.router.navigate(['/lista-empresas']);
 }
 
   borrarSeleccionadas(ids: number[]) {
@@ -113,4 +117,6 @@ actualizarEmpresaConUsuario(): void {
   habilitarPassword(): void {
     this.passwordEditable = true;
   }
+
+ 
 }
