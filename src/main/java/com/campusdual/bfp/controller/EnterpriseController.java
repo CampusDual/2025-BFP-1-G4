@@ -31,16 +31,25 @@ public class EnterpriseController {
         return "Enterprises controller works!";
     }
 
-    /*@GetMapping(value = "/get")
+    @GetMapping(value = "/get")
     public EnterpriseDTO queryEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         return enterpriseService.queryEnterprise(enterpriseDTO);
-    }*/
-    @GetMapping(value = "/get/{id}")
-    public EnterpriseDTO queryEnterprise(@PathVariable Integer id) {
-        EnterpriseDTO dto = new EnterpriseDTO();
-        dto.setId(id);
-        return enterpriseService.queryEnterprise(dto);
     }
+
+    @GetMapping("/getWithUser/{id}")
+    public EnterpriseUserDTO getEnterpriseWithUser(@PathVariable Integer id) {
+        EnterpriseDTO enterpriseDTO = new EnterpriseDTO();
+        enterpriseDTO.setId(id);
+        EnterpriseDTO enterprise = enterpriseService.queryEnterprise(enterpriseDTO);
+        User user = userDao.findUserByEnterpriseId(id);
+        EnterpriseUserDTO dto = new EnterpriseUserDTO();
+        dto.setEnterprise(enterprise);
+        if (user != null) {
+            dto.setLogin(user.getLogin());
+        }
+        return dto;
+    }
+
 
     @GetMapping(value = "/getAll")
     public List<EnterpriseDTO> queryAllEnterprise() {
@@ -65,10 +74,10 @@ public class EnterpriseController {
     @PreAuthorize("hasAuthority('admin')")
     public ResponseEntity<?> deleteEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         if (enterpriseService.hasActiveOffers(enterpriseDTO.getId())) {
-            return ResponseEntity.badRequest().body("Debe desactivar las ofertas antes de eliminar la empresa");
+            return ResponseEntity.badRequest().body("{\"error\": \"Debe desactivar las ofertas antes de eliminar la empresa\"}");
         }
         enterpriseService.deleteEnterprise(enterpriseDTO.getId());
-        return ResponseEntity.ok("Empresa eliminados");
+        return ResponseEntity.ok().body("{\"message\": \"Empresa eliminada\"}");
     }
 
     @PreAuthorize("hasRole('admin')")
