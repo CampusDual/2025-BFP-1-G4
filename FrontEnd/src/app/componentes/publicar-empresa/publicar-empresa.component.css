@@ -90,4 +90,15 @@ button.add-btn:disabled {
   }
 }
 
+.small-edit-btn {
+  border: none;
+  background: transparent;
+  color: #ff7043;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 4px 6px;
+}
+.small-edit-btn:hover {
+  color: #f44336;
+}
 
