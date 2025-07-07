@@ -57,8 +57,11 @@ public class UserController {
                 userDTO.getPassword(),
                 userDTO.getSurname1(),
                 userDTO.getSurname2(),
-                userDTO.getEmail()
+                userDTO.getEmail(),
+                null
         );
+        int userId = userService.getUserIdByLogin(userDTO.getLogin());
+        userService.addRoleToUser(userId, 1L);
         return ResponseEntity.ok().build();
     }
 }

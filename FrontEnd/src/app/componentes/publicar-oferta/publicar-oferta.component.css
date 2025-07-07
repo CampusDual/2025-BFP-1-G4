@@ -1,11 +1,11 @@
 .page-container {
+  flex: 1; /* ✅ se adapta al alto disponible sin empujar el footer */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 3rem 1rem;
-  min-height: 100vh;
-  background-color: #f5f5f5;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .page-title {
@@ -73,7 +73,6 @@ textarea {
 }
 
 ::placeholder {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   color: #999;
 }
 
@@ -93,3 +92,4 @@ button {
 button:hover {
   background-color: #e65100;
 }
+

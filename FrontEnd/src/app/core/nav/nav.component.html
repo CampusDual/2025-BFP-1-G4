@@ -3,15 +3,17 @@
     <mat-toolbar-row>
 
       <!-- Logo -->
-      <span class="logo_container">
-        <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo" class="logo">
-      </span>
+      <a routerLink="/mostrar-oferta" class="logo_container">
+        <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo"
+          class="logo">
+      </a>
 
       <span class="example-spacer"></span>
 
       <!-- Botón de login -->
       <ng-container *ngIf="!login">
-        <button mat-raised-button color="warn" (click)="irALogin()">Iniciar Sesión</button>
+        <button mat-raised-button color="warn" (click)="irALogin()">Iniciar
+          Sesión</button>
       </ng-container>
 
       <!-- Botón hamburguesa con menú -->

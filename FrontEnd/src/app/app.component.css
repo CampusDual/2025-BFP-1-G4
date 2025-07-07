@@ -1,5 +1,12 @@
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* 🔐 evita scroll horizontal */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

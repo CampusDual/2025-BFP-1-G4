@@ -1,8 +1,11 @@
 <div class="login-container">
     <mat-card>
         <form [formGroup]="loginF" (ngSubmit)="onSubmit()">
-            <img src="../assets/img/logo-clustertic.png" alt="Cluster Empleo"
-                class="logo">
+            <a routerLink="/mostrar-oferta">
+                <img src="../assets/img/logo-clustertic.png"
+                    alt="Cluster Empleo" class="logo" />
+            </a>
+            
             <h1 class="title">Iniciar Sesión</h1>
             <div>
                 <mat-form-field appearance="fill">

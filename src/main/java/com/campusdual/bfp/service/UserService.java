@@ -1,6 +1,7 @@
 package com.campusdual.bfp.service;
 
 import com.campusdual.bfp.api.IUserService;
+import com.campusdual.bfp.model.Enterprise;
 import com.campusdual.bfp.model.Role;
 import com.campusdual.bfp.model.User;
 import com.campusdual.bfp.model.UserRole;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Lazy
@@ -50,7 +52,7 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email) {
+    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email, Enterprise enterprise) {
         User user = new User();
         user.setLogin(login);
         user.setName(name);
@@ -59,10 +61,8 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname1(surname1);
         user.setSurname2(surname2);
         user.setEmail(email);
-        user.setEnterpriseId(null);
-        User savedUser = this.userDao.saveAndFlush(user);
-
-        this.addRoleToUser(savedUser.getId(), 1L);
+        user.setEnterprise(enterprise);
+        this.userDao.saveAndFlush(user);
     }
 
     public void addRoleToUser(int userid, Long roleid) {
@@ -79,6 +79,11 @@ public class UserService implements IUserService, UserDetailsService {
             userRole.setRole(role);
             userRoleDao.saveAndFlush(userRole);
         }
+    }
+
+    public int getUserIdByLogin(String login) {
+        User user = userDao.findByLogin(login);
+        return user != null ? user.getId() : -1;
     }
 
     public String getRoleNameByUsername(String username) {
@@ -131,11 +136,32 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public int updateUser(UserDTO userDTO) {
-        return 0;
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return 0;
+        user.setName(userDTO.getName());
+        user.setPhonenumber(userDTO.getPhonenumber());
+        user.setEmail(userDTO.getEmail());
+        user.setSurname1(userDTO.getSurname1());
+        user.setSurname2(userDTO.getSurname2());
+        user.setLogin(userDTO.getLogin());
+
+        if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+            user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
+        }
+        userDao.saveAndFlush(user);
+        return user.getId();
     }
 
     @Override
     public int deleteUser(UserDTO userDTO) {
-        return 0;
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return 0;
+        List<UserRole> userRoles = userRoleDao.findAll()
+                .stream()
+                .filter(ur -> ur.getUser().getId() == user.getId())
+                .collect(Collectors.toList());
+        userRoleDao.deleteAll(userRoles);
+        userDao.delete(user);
+        return user.getId();
     }
 }

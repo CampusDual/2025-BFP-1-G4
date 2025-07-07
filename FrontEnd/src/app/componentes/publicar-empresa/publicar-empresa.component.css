@@ -1,0 +1,65 @@
+.page-container {
+  margin: 2vh auto; /* menos espacio arriba/abajo */
+  padding: 1.5rem 1.5rem; /* un poco más compacto */
+  max-width: 500px; /* un poco más angosto ayuda a cortar altura */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.page-title {
+  text-align: center;
+  color: #e53935;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+/* Espacio vertical más reducido */
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Input más compacto */
+input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+/* Botón principal más pequeño */
+button[mat-flat-button] {
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+/* Ajuste de botón pequeño */
+.small-edit-btn {
+  font-size: 1rem;
+  padding: 2px 4px;
+}
+
+/* Responsive optimizado */
+@media (max-width: 600px) {
+  .page-container {
+    margin: 2vh 1rem;
+    padding: 1rem;
+  }
+}

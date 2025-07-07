@@ -1,10 +1,12 @@
 package com.campusdual.bfp.service;
 
 import com.campusdual.bfp.api.IOffersService;
+import com.campusdual.bfp.model.Enterprise;
 import com.campusdual.bfp.model.Inscriptions;
 import com.campusdual.bfp.model.Offer;
 import com.campusdual.bfp.model.User;
 import com.campusdual.bfp.model.dao.InscriptionsDao;
+import com.campusdual.bfp.model.dao.EnterpriseDao;
 import com.campusdual.bfp.model.dao.OffersDao;
 import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dto.OffersDTO;
@@ -22,7 +24,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-
 @Service("OffersService")
 @Lazy
 public class OffersService implements IOffersService {
@@ -36,6 +37,9 @@ public class OffersService implements IOffersService {
     @Autowired
     private InscriptionsDao inscriptionsDao;
 
+    @Autowired
+    private EnterpriseDao enterpriseDao;
+
     @Override
     public OffersDTO queryOffer(OffersDTO offersDTO) {
         Offer offer = OffersMapper.INSTANCE.toEntity(offersDTO);
@@ -48,29 +52,32 @@ public class OffersService implements IOffersService {
     }
 
     @Override
-    public OffersDTO insertOffer(OffersDTO offersDTO){
+    public OffersDTO insertOffer(OffersDTO offersDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("User: " + auth.getName() + " is querying all offers.");
         User user = userDao.findByLogin(auth.getName());
-        offersDTO.setEnterpriseId(user.getEnterpriseId());
-        offersDTO.setPublicationDate(new Date());
-        offersDTO.setActive(true);
+        Enterprise enterprise = user.getEnterprise();
         Offer offer = OffersMapper.INSTANCE.toEntity(offersDTO);
+        offer.setEnterprise(enterprise);
+        offer.setPublicationDate(new Date());
+        offer.setActive(true);
         offersDao.saveAndFlush(offer);
-        return OffersMapper.INSTANCE.toDTO(offer);
+        return convertToDTO(offer);
     }
 
     @Override
     public List<OffersDTO> findOffersByEnterpriseIdOrderByPublicationDateDesc() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userDao.findByLogin(auth.getName());
-        Integer enterpriseId = user.getEnterpriseId();
+        Integer enterpriseId = user.getEnterprise().getId();
         return OffersMapper.INSTANCE.toDTOList(offersDao.findAllByEnterpriseIdOrderByPublicationDateDesc(enterpriseId));
     }
 
     @Override
     public List<OffersDTO> findAllByActiveOffersOrderByPublicationDateDesc() {
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActiveOrderByPublicationDateDesc(true));
+        List<Offer> offers = offersDao.findByActiveOrderByPublicationDateDesc(true);
+        return offers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -106,21 +113,14 @@ public class OffersService implements IOffersService {
         if (offerEntityOpt.isEmpty()) {
             throw new RuntimeException("Oferta no encontrada con id " + offer.getId());
         }
-
         Offer offerEntity = offerEntityOpt.get();
-
-        // Actualizar campos de la entidad con valores del DTO
         offerEntity.setTitle(offer.getTitle());
         offerEntity.setDescription(offer.getDescription());
         offerEntity.setPublicationDate(offer.getPublicationDate());
         offerEntity.setActive(offer.isActive());
-        offerEntity.setEnterpriseId(offer.getEnterpriseId());
-
-
-        // Guardar la entidad actualizada en BD
+        Enterprise enterprise = enterpriseDao.getReferenceById(offer.getEnterpriseId());
+        offerEntity.setEnterprise(enterprise);
         Offer savedOffer = offersDao.save(offerEntity);
-
-        // Convertir a DTO y retornar
         return convertToDTO(savedOffer);
     }
 
@@ -129,7 +129,6 @@ public class OffersService implements IOffersService {
         Optional<Offer> offerEntityOpt = offersDao.findById(id);
         if (offerEntityOpt.isPresent()) {
             Offer offerEntity = offerEntityOpt.get();
-            // Aquí convierte la entidad a DTO
             OffersDTO offerDTO = convertToDTO(offerEntity);
             return offerDTO;
         } else {
@@ -144,7 +143,11 @@ public class OffersService implements IOffersService {
         dto.setDescription(entity.getDescription());
         dto.setPublicationDate(entity.getPublicationDate());
         dto.setActive(entity.isActive());
-        dto.setEnterpriseId(entity.getEnterpriseId());
+        if (entity.getEnterprise() != null) {
+            dto.setEnterpriseId(entity.getEnterprise().getId());
+            dto.setEnterpriseName(entity.getEnterprise().getName());
+            dto.setEnterpriseEmail(entity.getEnterprise().getEmail());
+        }
         return dto;
     }
 

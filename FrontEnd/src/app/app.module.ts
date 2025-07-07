@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 
 
@@ -36,6 +37,8 @@ import { AdministrationComponent } from './administration/administration.compone
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 
 @NgModule({
   declarations: [
@@ -49,15 +52,18 @@ import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candi
     ListaEmpresasComponent,
     RegisterComponent,
     AdministrationComponent,
-    CandidatosOfertaComponent
-  ],
+    CandidatosOfertaComponent,
+    PublicarEmpresaComponent,
+   ],
   imports: [
     BrowserModule,
+    MatSnackBarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
+    MatTabsModule,
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,

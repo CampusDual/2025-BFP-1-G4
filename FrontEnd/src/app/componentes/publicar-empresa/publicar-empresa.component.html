@@ -1,0 +1,115 @@
+<div class="page-container">
+  <h1 class="page-title">{{ modoEditar ? 'Editar Empresa' : 'Publicar Nueva Empresa' }}</h1>
+
+  <form (ngSubmit)="onSubmit()" #empresaForm="ngForm" novalidate>
+
+    <div class="form-group">
+      <label for="name">Nombre *</label>
+      <input
+        id="name"
+        name="name"
+        [(ngModel)]="enterpriseUser.enterprise.name"
+        placeholder="Nombre de la empresa"
+        required
+        #name="ngModel" />
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Dirección</label>
+      <input
+        id="address"
+        name="address"
+        [(ngModel)]="enterpriseUser.enterprise.address"
+        placeholder="Dirección" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        [(ngModel)]="enterpriseUser.enterprise.email"
+        placeholder="Email"
+        required
+        email
+        #email="ngModel" />
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error">
+        Por favor introduce un email válido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phonenumber">Teléfono</label>
+      <input
+        id="phonenumber"
+        name="phonenumber"
+        [(ngModel)]="enterpriseUser.enterprise.phonenumber"
+        placeholder="Teléfono" />
+    </div>
+
+    <div class="form-group">
+      <label for="login">Usuario (login) *</label>
+      <input
+        id="login"
+        name="login"
+        [(ngModel)]="enterpriseUser.login"
+        placeholder="Usuario"
+        required
+        #login="ngModel" />
+      <div *ngIf="login.invalid && (login.dirty || login.touched)" class="error">
+        El usuario es obligatorio.
+      </div>
+    </div>
+
+  <div class="form-group">
+  <label for="password">Contraseña *</label>
+  
+  <div style="display: flex; gap: 8px; align-items: center;">
+    <input
+      id="password"
+      name="password"
+      type="password"
+      [(ngModel)]="enterpriseUser.password"
+      placeholder="Contraseña"
+      [disabled]="modoEditar && !passwordEditable"
+      required
+      minlength="6"
+      #password="ngModel" />
+
+    <!-- Botón para desbloquear -->
+    <button type="button" *ngIf="modoEditar && !passwordEditable" (click)="habilitarPassword()" class="small-edit-btn">
+      ✏️
+    </button>
+  </div>
+
+  <div *ngIf="passwordEditable && password.invalid && (password.dirty || password.touched)" class="error">
+    La contraseña es obligatoria y debe tener al menos 6 caracteres.
+  </div>
+</div>
+
+    <button
+      mat-flat-button
+      color="warn"
+      type="submit"
+      [disabled]="empresaForm.invalid">
+      {{ modoEditar ? 'Actualizar Empresa' : 'Crear Empresa' }}
+    </button>
+  </form>
+</div>
+<br>
+<style>
+  .error {
+    color: #d32f2f;
+    font-size: 0.8em;
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  input.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+  }
+</style>

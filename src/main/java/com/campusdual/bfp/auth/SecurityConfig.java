@@ -52,7 +52,6 @@ public class SecurityConfig {
                 .antMatchers("/users/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/offers/getAll").permitAll()
                 .antMatchers("/offers/findAllByActive").permitAll()
-                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(this.authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

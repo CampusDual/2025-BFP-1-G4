@@ -1,5 +1,5 @@
 export interface Enterprise {
-  id: Number;
+  id: number;
   name: String;
   address: String;
   email: String;

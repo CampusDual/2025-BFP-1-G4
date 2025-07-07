@@ -4,14 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.*;
 
 @Entity
@@ -43,14 +36,18 @@ public class User implements UserDetails {
     @Column
     private String password;
 
-    @Column (name="enterpriseid")
-    private Integer enterpriseId;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<UserRole> userRole;
+
+    @ManyToOne
+    @JoinColumn (name = "enterpriseid", referencedColumnName = "id")
+    private Enterprise enterprise;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
 
     public User(){ }
-    public User(int id, String phonenumber, String email, String name, String surname1, String surname2, String login, String password, Integer enterpriseId) {
+    public User(int id, String phonenumber, String email, String name, String surname1, String surname2, String login, String password, Enterprise enterprise) {
         this.id = id;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -59,7 +56,7 @@ public class User implements UserDetails {
         this.surname2 = surname2;
         this.login = login;
         this.password = password;
-        this.enterpriseId = enterpriseId;
+        this.enterprise = enterprise;
     }
 
     public int getId() {
@@ -125,12 +122,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Integer getEnterpriseId() {
-        return enterpriseId;
+    public Enterprise getEnterprise() {
+        return enterprise;
     }
-
-    public void setEnterpriseId(Integer enterpriseId) {
-        this.enterpriseId = enterpriseId;
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     @Override
