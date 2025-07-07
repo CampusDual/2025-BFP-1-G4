@@ -31,9 +31,15 @@ public class EnterpriseController {
         return "Enterprises controller works!";
     }
 
-    @GetMapping(value = "/get")
+    /*@GetMapping(value = "/get")
     public EnterpriseDTO queryEnterprise(@RequestBody EnterpriseDTO enterpriseDTO) {
         return enterpriseService.queryEnterprise(enterpriseDTO);
+    }*/
+    @GetMapping(value = "/get/{id}")
+    public EnterpriseDTO queryEnterprise(@PathVariable Integer id) {
+        EnterpriseDTO dto = new EnterpriseDTO();
+        dto.setId(id);
+        return enterpriseService.queryEnterprise(dto);
     }
 
     @GetMapping(value = "/getAll")
