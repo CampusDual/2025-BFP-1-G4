@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnterpriseService } from '../../services/enterprise.service';
-import { EnterpriseDTO, EnterpriseUserDTO } from '../../model/enterprise-user-dto.model';
+import { EnterpriseUserDTO } from '../../model/enterprise-user-dto.model';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -11,10 +11,9 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class PublicarEmpresaComponent implements OnInit {
 
-private empresaId?: number;
-
   enterpriseUser: EnterpriseUserDTO = {
     enterprise: {
+      id: undefined,
       name: '',
       email: '',
       phonenumber: '',
@@ -27,7 +26,7 @@ private empresaId?: number;
   modoEditar: boolean = false;
   passwordEditable: boolean = false;
   enterpriseId: number = 0;
-  empresasSeleccionadas: any;
+  empresasSeleccionadas: any[] = [];
 
   constructor(
     private enterpriseService: EnterpriseService,
@@ -40,7 +39,7 @@ private empresaId?: number;
     if (id) {
       this.modoEditar = true;
       this.enterpriseId = +id;
-      this.cargarEmpresaParaEditar(+id);
+      this.cargarEmpresaParaEditar(this.enterpriseId);
     }
   }
 
@@ -52,17 +51,16 @@ private empresaId?: number;
   }
 
   cargarEmpresaParaEditar(id: number): void {
-  this.enterpriseService.getEnterprisePorId(id).subscribe({
-    next: (data) => {
-      this.enterpriseUser.enterprise = data;
-    },
-    error: (err) => {
-      console.error('Error al obtener empresa', err);
-      alert('No se pudo cargar la empresa');
-    }
-  });
-}
-
+    this.enterpriseService.getEnterpriseWithUser(id).subscribe({
+      next: (data) => {
+        this.enterpriseUser = data; // data ya contiene enterprise y login
+      },
+      error: (err) => {
+        console.error('Error al obtener empresa', err);
+        alert('No se pudo cargar la empresa');
+      }
+    });
+  }
 
   onSubmit(): void {
     if (this.modoEditar) {
@@ -84,9 +82,8 @@ private empresaId?: number;
     });
   }
 
-  actualizarEmpresaConUsuario(): void {
-  if (!this.empresaId) return;
-  this.enterpriseService.updateEnterpriseWithUser(this.empresaId, this.enterpriseUser).subscribe({
+actualizarEmpresaConUsuario(): void {
+  this.enterpriseService.updateEnterpriseWithUser(this.enterpriseUser).subscribe({
     next: () => {
       alert('Empresa y usuario actualizados con éxito');
       this.router.navigate(['/lista-empresas']);
@@ -98,25 +95,20 @@ private empresaId?: number;
   });
 }
 
-borrarSeleccionadas(): void {
-  for (let id of this.empresasSeleccionadas) {
-    this.enterpriseService.deleteEnterprise(id).subscribe({
-      next: () => {
-        console.log(`Empresa ${id} eliminada`);
-        this.cargarEmpresas(); // recargar la lista
-      },
-      error: (err) => {
-        console.error(`Error al eliminar empresa ${id}`, err);
-        alert(`Error al eliminar empresa ${id}`);
+  borrarSeleccionadas(ids: number[]) {
+  ids.forEach(id => {
+    this.enterpriseService.getEnterpriseWithUser(id).subscribe(dto => {
+      const enterpriseId = dto.enterprise.id;
+      if (enterpriseId !== undefined) {
+        this.enterpriseService.deleteEnterprise(enterpriseId).subscribe(() => {
+          // Empresa eliminada
+        });
+      } else {
+        console.error('enterpriseId is undefined, cannot delete enterprise');
       }
     });
-  }
+  });
 }
-
-  cargarEmpresas() {
-    throw new Error('Method not implemented.');
-  }
-
 
   habilitarPassword(): void {
     this.passwordEditable = true;
