@@ -86,9 +86,11 @@ public class EnterpriseService implements IEnterpriseService {
     public EnterpriseDTO updateEnterprise(EnterpriseUserDTO dto) {
         EnterpriseDTO enterpriseDTO = dto.getEnterprise();
         Enterprise enterprise = enterpriseDao.getReferenceById(enterpriseDTO.getId());
+
         enterprise.setName(enterpriseDTO.getName());
         enterprise.setEmail(enterpriseDTO.getEmail());
         enterprise.setPhonenumber(enterpriseDTO.getPhonenumber());
+        enterprise.setAddress(enterpriseDTO.getAddress());
         enterprise.setActive(enterpriseDTO.isActive());
         enterpriseDao.saveAndFlush(enterprise);
 
@@ -147,6 +149,4 @@ public class EnterpriseService implements IEnterpriseService {
         enterpriseDao.saveAndFlush(entity);
         return EnterpriseMapper.INSTANCE.toDTO(entity);
     }
-
-
 }
