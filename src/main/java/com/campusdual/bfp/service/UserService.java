@@ -95,24 +95,6 @@ public class UserService implements IUserService, UserDetailsService {
         return user.getAuthorities().iterator().next().getAuthority();
     }
 
-    /*
-        public void registerNewEnterprise(String username, String password) {
-        User user = new User();
-        user.setLogin(username);
-        user.setName(username);
-        user.setPassword(this.passwordEncoder().encode(password));
-        User savedUser = this.userDao.saveAndFlush(user);
-
-        Role role = this.roleDao.findByRoleName("ROLE_USER");
-        if (role != null) {
-            UserRole userRole = new UserRole();
-            userRole.setUser(savedUser);
-            userRole.setRole(role);
-            this.userRoleDao.saveAndFlush(userRole);
-        }
-    }
-     */
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

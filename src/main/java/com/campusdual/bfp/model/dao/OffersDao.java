@@ -1,6 +1,5 @@
 package com.campusdual.bfp.model.dao;
 
-import com.campusdual.bfp.model.Enterprise;
 import com.campusdual.bfp.model.Offer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

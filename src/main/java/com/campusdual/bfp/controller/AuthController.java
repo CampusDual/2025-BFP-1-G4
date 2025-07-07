@@ -1,9 +1,7 @@
 package com.campusdual.bfp.controller;
 
 import com.campusdual.bfp.auth.JWTUtil;
-import com.campusdual.bfp.model.dto.SignupDTO;
 import com.campusdual.bfp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +12,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,14 +22,21 @@ import java.util.Base64;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    @Autowired
-    AuthenticationManager authenticationManager;
-    @Autowired
-    UserService userService;
-    @Autowired
-    PasswordEncoder encoder;
-    @Autowired
-    JWTUtil jwtUtils;
+
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final PasswordEncoder encoder;
+    private final JWTUtil jwtUtils;
+
+    public AuthController(AuthenticationManager authenticationManager,
+                          UserService userService,
+                          PasswordEncoder encoder,
+                          JWTUtil jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.userService = userService;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<String> authenticateUser(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
@@ -65,15 +69,4 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Bad credentials");
         }
     }
-
-   /*@PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@RequestBody SignupDTO request) {
-        if (this.userService.existsByUsername(request.getLogin())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists.");
-        }
-
-     this.userService.registerNewUser(request.getLogin(), request.getPassword());
-        return ResponseEntity.status(HttpStatus.CREATED).body("User successfully registered.");
-
-    }*/
 }

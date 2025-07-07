@@ -21,6 +21,7 @@ public class InscriptionsController {
         return "Inscriptions controller works!";
     }
 
+    @PreAuthorize("hasRole('user')")
     @PostMapping("/add")
     public InscriptionsDTO addInscription(@RequestBody InscriptionsDTO inscription) {
     return inscriptionsService.insertInscriptions(inscription);

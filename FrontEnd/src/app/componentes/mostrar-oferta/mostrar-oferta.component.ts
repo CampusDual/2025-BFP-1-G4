@@ -13,10 +13,18 @@ export class MostrarOfertaComponent implements OnInit {
   paginaActual: number = 1;
   elementosPorPagina: number = 4;
   totalPaginas: number = 1;
+usuarioRol: string | null = '';
 
-  constructor(private ofertasService: OfertasService, private authService: AuthService) {}
+  constructor(
+    private ofertasService: OfertasService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    // Obtener el rol desde el token
+    this.usuarioRol = this.authService.getRole();
+
+    // Cargar ofertas
     this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
       this.offerActivas = ofertas;
       this.totalPaginas = Math.ceil(ofertas.length / this.elementosPorPagina);
