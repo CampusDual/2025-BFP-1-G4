@@ -1,26 +1,12 @@
 html, body {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden; /* 🔐 evita scroll horizontal */
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-.main-content {
-  flex: 1 0 auto;
-}
-
-.main-footer {
-  width: 100%;
-  background-color: #2f2f2f;
-  color: #ccc;
-  font-size: 14px;
-  padding: 20px 0;
-  text-align: center;
-  margin-top: auto;
-  /* elimina position y bottom */
-  position: static; /* o simplemente bórralo */
 }
