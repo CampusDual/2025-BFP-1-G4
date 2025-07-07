@@ -54,14 +54,14 @@ public class OffersService implements IOffersService {
     @Override
     public OffersDTO insertOffer(OffersDTO offersDTO) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("User: " + auth.getName() + " is querying all offers.");
         User user = userDao.findByLogin(auth.getName());
-        offersDTO.setEnterpriseId(user.getEnterprise() != null ? user.getEnterprise().getId() : null);
-        offersDTO.setPublicationDate(new Date());
-        offersDTO.setActive(true);
+        Enterprise enterprise = user.getEnterprise();
         Offer offer = OffersMapper.INSTANCE.toEntity(offersDTO);
+        offer.setEnterprise(enterprise);
+        offer.setPublicationDate(new Date());
+        offer.setActive(true);
         offersDao.saveAndFlush(offer);
-        return OffersMapper.INSTANCE.toDTO(offer);
+        return convertToDTO(offer);
     }
 
     @Override
@@ -74,7 +74,10 @@ public class OffersService implements IOffersService {
 
     @Override
     public List<OffersDTO> findAllByActiveOffersOrderByPublicationDateDesc() {
-        return OffersMapper.INSTANCE.toDTOList(offersDao.findByActiveOrderByPublicationDateDesc(true));
+        List<Offer> offers = offersDao.findByActiveOrderByPublicationDateDesc(true);
+        return offers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -140,7 +143,11 @@ public class OffersService implements IOffersService {
         dto.setDescription(entity.getDescription());
         dto.setPublicationDate(entity.getPublicationDate());
         dto.setActive(entity.isActive());
-        dto.setEnterpriseId(entity.getEnterprise() != null ? entity.getEnterprise().getId() : null);
+        if (entity.getEnterprise() != null) {
+            dto.setEnterpriseId(entity.getEnterprise().getId());
+            dto.setEnterpriseName(entity.getEnterprise().getName());
+            dto.setEnterpriseEmail(entity.getEnterprise().getEmail());
+        }
         return dto;
     }
 
