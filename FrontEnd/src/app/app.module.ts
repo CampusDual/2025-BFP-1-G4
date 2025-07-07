@@ -37,6 +37,7 @@ import { AdministrationComponent } from './administration/administration.compone
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 
 @NgModule({
@@ -56,6 +57,7 @@ import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publica
    ],
   imports: [
     BrowserModule,
+    MatSnackBarModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,

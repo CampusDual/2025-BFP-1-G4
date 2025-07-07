@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EnterpriseService } from '../../services/enterprise.service';
 import { Enterprise } from 'src/app/model/enterprise.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-lista-empresas',
@@ -15,7 +16,8 @@ export class ListaEmpresasComponent implements OnInit {
 
   constructor(
     private enterpriseService: EnterpriseService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -51,17 +53,32 @@ export class ListaEmpresasComponent implements OnInit {
   }
 
   eliminarEmpresasSeleccionadas(): void {
+    if (this.empresasSeleccionadas.length === 0) {
+      this.snackBar.open('No hay empresas seleccionadas', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
     if (!confirm('¿Estás seguro de que deseas eliminar las empresas seleccionadas?')) return;
+
+    let errores = 0;
 
     this.empresasSeleccionadas.forEach((enterprise) => {
       this.enterpriseService.deleteEnterprise(enterprise.id!).subscribe({
         next: () => {
-          // Eliminar del listado local
+          // Eliminar del listado local si se borra bien
           this.enterprisesList = this.enterprisesList.filter(e => e.id !== enterprise.id);
           this.empresasSeleccionadas = this.empresasSeleccionadas.filter(e => e.id !== enterprise.id);
         },
         error: (err) => {
           console.error(`Error al eliminar empresa con ID ${enterprise.id}`, err);
+          errores++;
+
+          // Solo mostramos un mensaje por empresa fallida si ocurre
+          if (err.error?.mensaje) {
+            this.snackBar.open(err.error.mensaje, 'Cerrar', { duration: 5000 });
+          } else if (errores === 1) {
+            this.snackBar.open('Una o más empresas no se pudieron eliminar porque tienen ofertas activas.', 'Cerrar', { duration: 5000 });
+          }
         }
       });
     });
