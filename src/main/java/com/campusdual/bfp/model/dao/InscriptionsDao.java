@@ -3,7 +3,6 @@ package com.campusdual.bfp.model.dao;
 import com.campusdual.bfp.model.Inscriptions;
 import com.campusdual.bfp.model.Offer;
 import com.campusdual.bfp.model.User;
-import com.campusdual.bfp.model.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
