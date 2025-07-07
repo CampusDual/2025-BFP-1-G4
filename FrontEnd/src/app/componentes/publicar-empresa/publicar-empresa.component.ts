@@ -27,6 +27,7 @@ private empresaId?: number;
   modoEditar: boolean = false;
   passwordEditable: boolean = false;
   enterpriseId: number = 0;
+  empresasSeleccionadas: any;
 
   constructor(
     private enterpriseService: EnterpriseService,
@@ -111,6 +112,10 @@ borrarSeleccionadas(): void {
     });
   }
 }
+
+  cargarEmpresas() {
+    throw new Error('Method not implemented.');
+  }
 
 
   habilitarPassword(): void {
