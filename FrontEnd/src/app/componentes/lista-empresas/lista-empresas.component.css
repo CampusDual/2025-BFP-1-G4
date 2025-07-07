@@ -1,79 +1,30 @@
-.lista-empresas-container {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
-  background: #fff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  border-radius: 12px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Encabezado */
-.page-title {
-  text-align: center;
-  color: #e53935;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-}
-
-/* Botones superiores */
-.botones-superiores {
+.page-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+  margin: 0 3rem;
+  padding-top: 2rem;
+  box-sizing: border-box;
 }
 
-/* Tabla */
-.tabla-empresas {
+.page-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e53935;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Botones */
+.boton-publicar {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
 }
 
-.tabla-empresas th,
-.tabla-empresas td {
-  padding: 14px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-  font-size: 15px;
-}
-
-.tabla-empresas th {
-  background-color: #f44336;
-  color: white;
-}
-
-.tabla-empresas tr:hover {
-  background-color: #f9f9f9;
-  cursor: pointer;
-}
-
-.tabla-empresas input[type="checkbox"] {
-  transform: scale(1.2);
-  cursor: pointer;
-}
-
-/* Botón de agregar */
-.add-btn {
-  padding: 10px 22px;
-  border: 2px solid #ff7043;
-  background: transparent;
-  color: #ff7043;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 16px;
-  margin: 5px;
-}
-
-.add-btn:hover {
-  background-color: #ff7043;
-  color: white;
-}
-
-/* Botón de eliminar */
+.add-btn,
 .delete-btn {
   padding: 10px 22px;
   border: 2px solid #ff7043;
@@ -82,41 +33,84 @@
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
   font-size: 16px;
-  margin: 5px;
+  transition: 0.3s;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.delete-btn:disabled {
-  background-color: #eeeeee;
-  color: #bbb;
-  border-color: #ccc;
-  cursor: not-allowed;
-  opacity: 1;
-  box-shadow: none;
-}
-
-.delete-btn:hover:not(:disabled) {
-   background-color: #ff7043;
+.add-btn:hover,
+.delete-btn:hover {
+  background-color: #ff7043;
   color: white;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .tabla-empresas th,
-  .tabla-empresas td {
-    font-size: 13px;
-    padding: 10px;
-  }
-
-  .botones-superiores {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .add-btn,
-  .delete-btn {
-    width: 100%;
-  }
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
+/* Contenedor con altura limitada */
+.tabla-scroll-container {
+  max-height: calc(100vh - 300px); /* Ajusta según header/footer */
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Tabla general */
+.tabla-empresas {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-empresas th,
+.tabla-empresas td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.tabla-empresas th {
+  background-color: #fff;
+  color: #f44336;
+  font-weight: 600;
+  border-bottom: 2px solid #f44336;
+  text-align: center;
+}
+
+.tabla-empresas td {
+  cursor: pointer;
+}
+
+/* Paginación */
+.paginacion {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.paginacion button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #ff7043;
+  background-color: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background-color: #ff7043;
+  color: white;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

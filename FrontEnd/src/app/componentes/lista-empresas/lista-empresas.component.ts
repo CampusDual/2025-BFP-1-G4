@@ -87,4 +87,25 @@ export class ListaEmpresasComponent implements OnInit {
   estaSeleccionada(enterprise: Enterprise): boolean {
     return this.empresasSeleccionadas.includes(enterprise);
   }
+
+  paginaActual = 1;
+elementosPorPagina = 6;
+
+get totalPaginas(): number {
+  return Math.ceil(this.enterprisesList.length / this.elementosPorPagina);
+}
+
+get empresasPaginadas() {
+  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+  return this.enterprisesList.slice(inicio, inicio + this.elementosPorPagina);
+}
+
+cambiarPagina(direccion: 'anterior' | 'siguiente') {
+  if (direccion === 'anterior' && this.paginaActual > 1) {
+    this.paginaActual--;
+  } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
+    this.paginaActual++;
+  }
+}
+
 }

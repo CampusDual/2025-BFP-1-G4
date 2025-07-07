@@ -1,8 +1,7 @@
-/* Contenedor principal centrado */
 .page-container {
-  margin: 5vh auto;
-  padding: 2rem 2.5rem;
-  max-width: 550px;
+  margin: 2vh auto; /* menos espacio arriba/abajo */
+  padding: 1.5rem 1.5rem; /* un poco más compacto */
+  max-width: 500px; /* un poco más angosto ayuda a cortar altura */
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -10,95 +9,57 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 }
 
-/* Título */
 .page-title {
   text-align: center;
   color: #e53935;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
 }
 
-/* Agrupación de campos */
+/* Espacio vertical más reducido */
 .form-group {
-  margin-bottom: 1.3rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 }
 
-/* Etiquetas */
 label {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   font-weight: 600;
   color: #333;
+  font-size: 14px;
 }
 
-/* Campos de entrada */
+/* Input más compacto */
 input {
-  padding: 10px 14px;
-  font-size: 15px;
+  padding: 8px 12px;
+  font-size: 14px;
   border: 1.5px solid #ccc;
   border-radius: 6px;
   transition: border-color 0.3s;
 }
 
-/* Enfocado */
-input:focus {
-  border-color: #f44336;
-  outline: none;
-}
-
-/* Botón principal */
-button.add-btn {
-  background-color: transparent;
-  border: 2px solid #f44336;
-  color: #f44336;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 100%;
+/* Botón principal más pequeño */
+button[mat-flat-button] {
+  font-size: 14px;
+  padding: 10px;
   margin-top: 1rem;
+  width: 100%;
 }
 
-button.add-btn:hover:not(:disabled) {
-  background-color: #f44336;
-  color: white;
+/* Ajuste de botón pequeño */
+.small-edit-btn {
+  font-size: 1rem;
+  padding: 2px 4px;
 }
 
-button.add-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Mensajes de error */
-.error {
-  font-size: 13px;
-  color: #c62828;
-  margin-top: 4px;
-  padding-left: 2px;
-}
-
-/* Responsive */
+/* Responsive optimizado */
 @media (max-width: 600px) {
   .page-container {
-    margin: 3vh 1rem;
-    padding: 1.5rem;
+    margin: 2vh 1rem;
+    padding: 1rem;
   }
 }
-
-.small-edit-btn {
-  border: none;
-  background: transparent;
-  color: #ff7043;
-  cursor: pointer;
-  font-size: 1.2rem;
-  padding: 4px 6px;
-}
-.small-edit-btn:hover {
-  color: #f44336;
-}
-

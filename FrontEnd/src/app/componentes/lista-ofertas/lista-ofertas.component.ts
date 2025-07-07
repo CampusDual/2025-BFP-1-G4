@@ -52,4 +52,25 @@ export class ListaOfertasComponent {
 verInscritos(ofertaId: number) {
   this.router.navigate(['/oferta', ofertaId, 'candidatos']);
 }
+
+paginaActual = 1;
+elementosPorPagina = 4; // Ajusta según el alto máximo
+
+get totalPaginas(): number {
+  return Math.ceil(this.offerList.length / this.elementosPorPagina);
+}
+
+get ofertasPaginadas() {
+  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+  return this.offerList.slice(inicio, inicio + this.elementosPorPagina);
+}
+
+cambiarPagina(direccion: 'anterior' | 'siguiente') {
+  if (direccion === 'anterior' && this.paginaActual > 1) {
+    this.paginaActual--;
+  } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
+    this.paginaActual++;
+  }
+}
+
 }
