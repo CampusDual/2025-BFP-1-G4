@@ -11,7 +11,7 @@ export class MostrarOfertaComponent implements OnInit {
   offerActivas: any[] = [];
   ofertasPaginadas: any[] = [];
   paginaActual: number = 1;
-  elementosPorPagina: number = 4;
+  elementosPorPagina: number = 12;
   totalPaginas: number = 1;
 usuarioRol: string | null = '';
 
