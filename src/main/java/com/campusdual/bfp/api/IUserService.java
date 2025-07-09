@@ -19,4 +19,6 @@ public interface IUserService {
     int deleteUser(UserDTO userDTO);
 
     UserDTO getUserProfile(UserDTO userDTO);
+
+    UserDTO findUserById(int id);
 }

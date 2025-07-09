@@ -29,10 +29,20 @@ public class UserController {
         return iuserService.queryUser(userDTO);
     }
 
-    @PreAuthorize("hasRole('user')")
+    /*@PreAuthorize("hasRole('user')")
     @GetMapping(value = "/getProfile")
     public UserDTO getUserProfile(@RequestBody UserDTO userDTO) {
         return iuserService.getUserProfile(userDTO);
+    }*/
+
+    @PreAuthorize("hasRole('user')")
+    @GetMapping(value = "/getProfileById/{id}")
+    public ResponseEntity<UserDTO> getUserProfileById(@PathVariable int id) {
+        UserDTO user = userService.findUserById(id);
+        if (user == null) {
+            return ResponseEntity.ok(user);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping(value = "/getAll")
