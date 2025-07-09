@@ -9,11 +9,13 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+
   login = false;
   username: string | null = null;
   tipoUsuario: string | null = null;
   esEmpresa = false;
   esAdmin = false;
+  esCandidato=false;
 
   constructor(private authService: AuthService, public router: Router) { }
 
@@ -36,6 +38,7 @@ export class NavComponent implements OnInit {
 
   this.esEmpresa = this.tipoUsuario === 'enterprise';
   this.esAdmin = this.tipoUsuario === 'admin';
+  this.esCandidato = this.tipoUsuario === 'user';
 }
 
   irALogin(): void {
@@ -58,4 +61,12 @@ export class NavComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  irAPerfil() {
+  this.router.navigate(['/perfil-usuario']);
+}
+
+irAMostrarOfertas() {
+  this.router.navigate(['/mostrar-oferta']);
+}
 }

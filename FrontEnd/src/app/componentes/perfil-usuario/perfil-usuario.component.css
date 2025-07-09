@@ -1,0 +1,94 @@
+.perfil-container {
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.perfil-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #d32f2f;
+}
+
+.perfil-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.perfil-foto-nombre {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.perfil-avatar {
+  width: 100px;
+  height: 100px;
+  background: #ececec;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.perfil-info h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.perfil-subtitulo {
+  margin: 4px 0;
+  color: #555;
+}
+
+.perfil-ubicacion {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #777;
+}
+
+.perfil-ubicacion mat-icon {
+  margin-right: 4px;
+  font-size: 16px;
+}
+
+.perfil-acciones button {
+  margin: 4px;
+}
+
+.perfil-seccion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.perfil-col {
+  flex: 1 1 45%;
+}
+
+.perfil-links a {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #e64a19;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.perfil-links a mat-icon {
+  margin-right: 6px;
+  font-size: 20px;
+}
+
+.perfil-links a:hover {
+  color: #bf360c;
+}
