@@ -3,6 +3,7 @@ package com.campusdual.bfp.controller;
 import com.campusdual.bfp.api.IInscriptionsService;
 import com.campusdual.bfp.model.dto.InscriptionsDTO;
 import com.campusdual.bfp.model.dto.UserDTO;
+import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,12 @@ public class InscriptionsController {
     @GetMapping("/byOffer/{offerid}")
     public List<UserDTO> getUsersByOffer(@PathVariable("offerid") Integer offerId) {
         return inscriptionsService.findUsersByOfferId(offerId);
+    }
+
+    @PreAuthorize("hasRole('user')")
+    @GetMapping("/byUser/{userid}")
+    public List<OffersDTO> getOffersByUser(@PathVariable("userid") Integer userId) {
+        return inscriptionsService.findOffersByUserId(userId);
     }
 
 }

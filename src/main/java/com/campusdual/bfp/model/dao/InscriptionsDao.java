@@ -22,4 +22,6 @@ public interface InscriptionsDao extends JpaRepository<Inscriptions, Long> {
     @Query("SELECT i.user FROM Inscriptions i WHERE i.offer.id = :offerId")
     List<User> findUsersByOfferId(@Param("offerId") Integer offerId);
 
+    @Query("SELECT i.offer FROM Inscriptions i WHERE i.user.id = :userId")
+    List<Offer> findOffersByUserId(@Param("userId") Integer userId);
 }
