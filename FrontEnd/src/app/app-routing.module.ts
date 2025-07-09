@@ -6,6 +6,7 @@ import { ListaOfertasComponent } from './componentes/lista-ofertas/lista-ofertas
 import { MostrarOfertaComponent } from './componentes/mostrar-oferta/mostrar-oferta.component';
 import { ListaEmpresasComponent } from './componentes/lista-empresas/lista-empresas.component';
 import { RegisterComponent } from './register/register.component';
+import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component'; // importa el componente
 import { AuthGuard } from './services/auth.guard';
 import { AdministrationComponent } from './administration/administration.component';
 import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'publicar-empresa', component: PublicarEmpresaComponent },
   { path: 'publicar-empresa/:id', component: PublicarEmpresaComponent },
   { path: 'candidatos-oferta/:id', component: CandidatosOfertaComponent },
+  { path: 'perfil-usuario', component: PerfilUsuarioComponent},
   { path: '', redirectTo: '/mostrar-oferta', pathMatch: 'full' },
 ];
 

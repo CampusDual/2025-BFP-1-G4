@@ -39,6 +39,7 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
+import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publica
     AdministrationComponent,
     CandidatosOfertaComponent,
     PublicarEmpresaComponent,
+    PerfilUsuarioComponent,
    ],
   imports: [
     BrowserModule,
