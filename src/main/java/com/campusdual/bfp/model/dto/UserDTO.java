@@ -10,6 +10,12 @@ public class UserDTO {
     private String surname2;
     private Integer enterpriseid;
     private String login;
+    private String degree;
+    private String experience;
+    private String modality;
+    private String presentation;
+    private String github;
+    private String linkedin;
 
 
     public Integer getId() {
@@ -68,13 +74,9 @@ public class UserDTO {
         this.surname2 = surname2;
     }
 
-    public Integer getEnterpriseid() {
-        return enterpriseid;
-    }
+    public Integer getEnterpriseid() { return enterpriseid; }
 
-    public void setEnterpriseid(Integer enterpriseid) {
-        this.enterpriseid = enterpriseid;
-    }
+    public void setEnterpriseid(Integer enterpriseid) { this.enterpriseid = enterpriseid; }
 
     public String getLogin() {
         return login;
@@ -83,4 +85,29 @@ public class UserDTO {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public String getDegree() { return degree; }
+
+    public void setDegree(String degree) { this.degree = degree; }
+
+    public String getExperience() { return experience; }
+
+    public void setExperience(String experience) { this.experience = experience; }
+
+    public String getModality() { return modality; }
+
+    public void setModality(String modality) { this.modality = modality; }
+
+    public String getPresentation() { return presentation; }
+
+    public void setPresentation(String presentation) { this.presentation = presentation; }
+
+    public String getGithub() { return github; }
+
+    public void setGithub(String github) { this.github = github; }
+
+    public String getLinkedin() { return linkedin; }
+
+    public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
+
 }

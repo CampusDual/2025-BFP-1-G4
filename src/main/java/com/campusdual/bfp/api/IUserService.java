@@ -14,5 +14,7 @@ public interface IUserService {
 
     int updateUser(UserDTO userDTO);
 
+    int updateUserProfile(UserDTO userDTO);
+
     int deleteUser(UserDTO userDTO);
 }
