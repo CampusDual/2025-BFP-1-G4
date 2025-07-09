@@ -85,5 +85,8 @@ import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publica
                   }
                 ],
   bootstrap: [AppComponent]
+
+  
 })
 export class AppModule { }
+

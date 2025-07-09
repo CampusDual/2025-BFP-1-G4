@@ -6,7 +6,7 @@ html, body {
 body {
   display: flex; /* Habilita flexbox */
   flex-direction: column; /* Organiza los elementos en columna */
-  min-height: 100vh; /* Altura mínima del body igual a la altura de la ventana */
+   /* Altura mínima del body igual a la altura de la ventana */
 }
 
 main-content {
