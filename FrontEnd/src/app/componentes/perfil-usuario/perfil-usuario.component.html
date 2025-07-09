@@ -1,0 +1,59 @@
+<div class="perfil-container">
+  <h1 class="perfil-title">O teu perfil profesional</h1>
+
+  <div class="perfil-header">
+    <div class="perfil-foto-nombre">
+      <div class="perfil-avatar">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="perfil-info">
+        <h2>{{ usuario.nombre }}</h2>
+        <p class="perfil-subtitulo">{{ usuario.titulo }}</p>
+        <span class="perfil-ubicacion">
+          <mat-icon>location_on</mat-icon> {{ usuario.localidad }}
+        </span>
+      </div>
+    </div>
+    <div class="perfil-acciones">
+      <button mat-stroked-button color="warn">Editar perfil</button>
+      <button mat-flat-button color="accent">Descargar CV</button>
+    </div>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Sobre min">
+      <div class="perfil-seccion">
+        <div class="perfil-col">
+          <p><strong>Título profesional:</strong> {{ usuario.titulo }}</p>
+          <p><strong>Anos de experiencia:</strong> {{ usuario.experiencia }} anos</p>
+          <p><strong>Situación laboral:</strong> {{ usuario.situacion }}</p>
+          <p><strong>Disponibilidade:</strong> {{ usuario.disponibilidad }}</p>
+          <p><strong>Modalidade preferida:</strong> {{ usuario.modalidad }}</p>
+        </div>
+        <div class="perfil-col">
+          <p><strong>Presentación:</strong></p>
+          <p>{{ usuario.presentacion }}</p>
+          <div class="perfil-links">
+            <a *ngIf="usuario.linkedin" href="{{ usuario.linkedin }}" target="_blank">
+              <mat-icon>link</mat-icon> LinkedIn
+            </a>
+            <a *ngIf="usuario.github" href="{{ usuario.github }}" target="_blank">
+              <mat-icon>code</mat-icon> GitHub
+            </a>
+            <a *ngIf="usuario.web" href="{{ usuario.web }}" target="_blank">
+              <mat-icon>public</mat-icon> Web personal
+            </a>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Experiencia profesional">
+      <p>📌 Aquí irá la experiencia profesional cargada por el usuario.</p>
+    </mat-tab>
+
+    <mat-tab label="Educación">
+      <p>🎓 Aquí irá la formación académica del usuario.</p>
+    </mat-tab>
+  </mat-tab-group>
+</div>
