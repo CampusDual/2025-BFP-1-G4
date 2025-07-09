@@ -10,6 +10,7 @@ import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dao.UserRoleDao;
 import com.campusdual.bfp.model.dto.UserDTO;
 import com.campusdual.bfp.model.dto.dtomapper.UserMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -126,6 +127,19 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname1(userDTO.getSurname1());
         user.setSurname2(userDTO.getSurname2());
         user.setLogin(userDTO.getLogin());
+
+        if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+            user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
+        }
+        userDao.saveAndFlush(user);
+        return user.getId();
+    }
+
+    @Override
+    public int updateUserProfile(UserDTO userDTO) {
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return 0;
+        BeanUtils.copyProperties(userDTO, user, "id", "password", "login", "enterprise");
 
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));

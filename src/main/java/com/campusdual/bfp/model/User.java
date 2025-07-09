@@ -46,8 +46,26 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<UserRole> userRoles = new HashSet<>();
 
+    @Column
+    private String degree;
+
+    @Column
+    private String experience;
+
+    @Column
+    private String modality;
+
+    @Column
+    private String presentation;
+
+    @Column
+    private String github;
+
+    @Column
+    private String linkedin;
+
     public User(){ }
-    public User(int id, String phonenumber, String email, String name, String surname1, String surname2, String login, String password, Enterprise enterprise) {
+    public User(int id, String phonenumber, String email, String name, String surname1, String surname2, String login, String password, Enterprise enterprise, String degree, String experience, String modality, String presentation, String github, String linkedin) {
         this.id = id;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -57,6 +75,12 @@ public class User implements UserDetails {
         this.login = login;
         this.password = password;
         this.enterprise = enterprise;
+        this.degree = degree;
+        this.experience = experience;
+        this.modality = modality;
+        this.presentation = presentation;
+        this.github = github;
+        this.linkedin = linkedin;
     }
 
     public int getId() {
@@ -122,12 +146,33 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
+    public Enterprise getEnterprise() { return enterprise; }
+
+    public void setEnterprise(Enterprise enterprise) { this.enterprise = enterprise; }
+
+    public String getDegree() { return degree; }
+
+    public void setDegree(String title) { this.degree = title; }
+
+    public String getExperience() { return experience; }
+
+    public void setExperience(String experience) { this.experience = experience; }
+
+    public String getModality() { return modality; }
+
+    public void setModality(String modality) { this.modality = modality; }
+
+    public String getPresentation() { return presentation; }
+
+    public void setPresentation(String presentation) { this.presentation = presentation; }
+
+    public String getGithub() { return github; }
+
+    public void setGithub(String github) { this.github = github; }
+
+    public String getLinkedin() { return linkedin; }
+
+    public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

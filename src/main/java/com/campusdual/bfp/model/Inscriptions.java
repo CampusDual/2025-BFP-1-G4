@@ -21,6 +21,9 @@ public class Inscriptions {
     @Column
     private Date inscriptiondate;
 
+    @Column
+    private String status;
+
     public Long getId() {
         return id;
     }
@@ -53,9 +56,9 @@ public class Inscriptions {
         this.inscriptiondate = inscriptiondate;
     }
 
-    public void getOfferId() {
-    }
+    public void getOfferId() { }
 
-    public void getUserId() {
-    }
+    public void getUserId() { }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }
