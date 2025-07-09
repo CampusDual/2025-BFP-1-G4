@@ -1,12 +1,20 @@
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-x: hidden; /* 🔐 evita scroll horizontal */
+  height: 100%; /* Asegura que el html y el body ocupen toda la altura de la pantalla */
+  margin: 0; /* Elimina márgenes predeterminados */
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  display: flex; /* Habilita flexbox */
+  flex-direction: column; /* Organiza los elementos en columna */
+  min-height: 100vh; /* Altura mínima del body igual a la altura de la ventana */
+}
+
+main-content {
+  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
+}
+
+app-footer {
+  background-color: #f0f0f0; /* Color de fondo del footer */
+  padding: 20px; /* Espacio alrededor del contenido del footer */
+  text-align: center; /* Centra el texto */
 }
