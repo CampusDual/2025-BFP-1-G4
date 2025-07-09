@@ -160,4 +160,11 @@ public class UserService implements IUserService, UserDetailsService {
         userDao.delete(user);
         return user.getId();
     }
+
+    @Override
+    public UserDTO getUserProfile(UserDTO userDTO) {
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return null;
+        return UserMapper.INSTANCE.toDTO(user);
+    }
 }

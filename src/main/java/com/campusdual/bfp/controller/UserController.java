@@ -29,6 +29,12 @@ public class UserController {
         return iuserService.queryUser(userDTO);
     }
 
+    @PreAuthorize("hasRole('user')")
+    @GetMapping(value = "/getProfile")
+    public UserDTO getUserProfile(@RequestBody UserDTO userDTO) {
+        return iuserService.getUserProfile(userDTO);
+    }
+
     @GetMapping(value = "/getAll")
     public List<UserDTO> queryAllUsers() {
         return iuserService.queryAllUsers();
