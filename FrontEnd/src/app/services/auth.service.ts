@@ -50,4 +50,17 @@ export class AuthService {
     sessionStorage.clear();
   }
 
+  getUserId(): number | null {
+  const token = sessionStorage.getItem('token');
+  if (!token) return null;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.id || payload.sub || null;
+  } catch (e) {
+    console.error('Error al decodificar el token', e);
+    return null;
+  }
+}
+
 }
