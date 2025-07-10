@@ -37,12 +37,8 @@ public class UserController {
 
     @PreAuthorize("hasRole('user')")
     @GetMapping(value = "/getProfileById/{id}")
-    public ResponseEntity<UserDTO> getUserProfileById(@PathVariable int id) {
-        UserDTO user = userService.findUserById(id);
-        if (user == null) {
-            return ResponseEntity.ok(user);
-        }
-        return ResponseEntity.notFound().build();
+    public UserDTO getUserProfileById(@PathVariable int id) {
+        return userService.findUserById(id);
     }
 
     @GetMapping(value = "/getAll")
