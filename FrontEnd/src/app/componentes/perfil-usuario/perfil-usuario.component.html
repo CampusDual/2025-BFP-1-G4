@@ -7,7 +7,7 @@
         <mat-icon>person</mat-icon>
       </div>
       <div class="perfil-info">
-        <h2>{{ usuario.name }}</h2>
+        <h2>{{ usuario.name }} {{usuario.surname1}} {{usuario.surname2}}</h2>
         <p class="perfil-subtitulo">{{ usuario.degree }}</p>
       </div>
     </div>
@@ -22,8 +22,8 @@
       <div class="perfil-seccion">
         <div class="perfil-col">
           <p><strong>Título profesional:</strong> {{ usuario.degree }}</p>
-          <p><strong>Anos de experiencia:</strong> {{ usuario.experience }} anos</p>
-          <p><strong>Modalidade preferida:</strong> {{ usuario.modality }}</p>
+          <p><strong>Experiencia:</strong> {{ usuario.experience }} </p>
+          <p><strong>Modalidad preferida:</strong> {{ usuario.modality }}</p>
         </div>
         <div class="perfil-col">
           <p><strong>Presentación:</strong></p>

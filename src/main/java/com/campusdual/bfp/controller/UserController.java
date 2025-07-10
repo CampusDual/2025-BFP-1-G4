@@ -35,11 +35,18 @@ public class UserController {
         return iuserService.getUserProfile(userDTO);
     }*/
 
-    @PreAuthorize("hasRole('user')")
+    @PreAuthorize("hasRole('user', 'enterprise')")
     @GetMapping(value = "/getProfileById/{id}")
     public UserDTO getUserProfileById(@PathVariable int id) {
         return userService.findUserById(id);
     }
+
+    @PreAuthorize("hasRole('user', 'enterprise')")
+    @GetMapping(value = "/getIdByLogin/{login}")
+    public int getUserByLogin(@PathVariable String login) {
+        return userService.getUserIdByLogin(login);
+    }
+
 
     @GetMapping(value = "/getAll")
     public List<UserDTO> queryAllUsers() {

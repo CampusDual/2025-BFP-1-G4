@@ -11,11 +11,17 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  getUserById(id: number): Observable<User> {
+  getUserById(id: number): Observable<any> {
     return this.http.get<User>(`${this.apiUrl}/getProfileById/${id}`, {
       headers: this.getAuthHeaders()
     });
   }
+
+getIdByLogin(login: string): Observable<number> {
+  return this.http.get<number>(`${this.apiUrl}/getIdByLogin/${login}`, {
+    headers: this.getAuthHeaders()
+  });
+}
 
   private getAuthHeaders(): HttpHeaders {
     const token = sessionStorage.getItem('token');
