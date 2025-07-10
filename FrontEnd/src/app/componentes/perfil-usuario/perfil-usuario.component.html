@@ -35,6 +35,9 @@
             <a *ngIf="usuario.github" [href]="usuario.github" target="_blank">
               <mat-icon>code</mat-icon> GitHub
             </a>
+            <a *ngIf="usuario.phonenumber" href="tel:{{ usuario.phonenumber }}">
+              <mat-icon>phone</mat-icon> {{ usuario.phonenumber }}
+            </a>
           </div>
         </div>
       </div>
