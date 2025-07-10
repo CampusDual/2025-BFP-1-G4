@@ -1,0 +1,102 @@
+<div class="form-container">
+    <h1 class="form-title">Editar Perfil</h1>
+
+    <form (ngSubmit)="guardarCambios()" #perfilForm="ngForm">
+        <div class="row">
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput name="name" [(ngModel)]="usuario.name"
+                        required />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Primer Apellido</mat-label>
+                    <input matInput name="surname1"
+                        [(ngModel)]="usuario.surname1" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Segundo Apellido</mat-label>
+                    <input matInput name="surname2"
+                        [(ngModel)]="usuario.surname2" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput name="email" type="email"
+                        [(ngModel)]="usuario.email" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput name="phonenumber"
+                        [(ngModel)]="usuario.phonenumber" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Título Profesional</mat-label>
+                    <input matInput name="degree"
+                        [(ngModel)]="usuario.degree" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Modalidad</mat-label>
+                    <mat-select [(ngModel)]="usuario.modality" name="modality">
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Experiencia (años)</mat-label>
+                    <input matInput name="experience" type="number"
+                        [(ngModel)]="usuario.experience" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group" style="flex: 1 1 100%;">
+                <mat-form-field appearance="outline">
+                    <mat-label>Presentación</mat-label>
+                    <textarea matInput name="presentation" rows="4"
+                        [(ngModel)]="usuario.presentation"></textarea>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>LinkedIn</mat-label>
+                    <input matInput name="linkedin"
+                        [(ngModel)]="usuario.linkedin" />
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>GitHub</mat-label>
+                    <input matInput name="github"
+                        [(ngModel)]="usuario.github" />
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button mat-flat-button color="primary"
+                type="submit">Guardar</button>
+            <button mat-stroked-button color="warn" type="button"
+                (click)="cancelar()">Cancelar</button>
+        </div>
+    </form>
+</div>

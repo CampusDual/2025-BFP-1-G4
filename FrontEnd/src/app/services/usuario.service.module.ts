@@ -7,6 +7,7 @@ import { User } from '../model/user.model'; // Ajusta según tu modelo
   providedIn: 'root' // ⬅️ Esto es lo importante
 })
 export class UsuarioService {
+ 
   private apiUrl = 'http://localhost:30030/users';
 
   constructor(private http: HttpClient) {}
@@ -28,5 +29,10 @@ getIdByLogin(login: string): Observable<number> {
     return new HttpHeaders({
       'Authorization': 'Bearer ' + token
     });
+  }
+
+  updateUserProfile(user: User): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.put(`${this.apiUrl}/updateProfile`, user, { headers });
   }
 }

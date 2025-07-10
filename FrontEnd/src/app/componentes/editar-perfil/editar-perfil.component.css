@@ -1,0 +1,117 @@
+.form-container {
+  max-width: 600px;
+  margin: 3vh auto;
+  padding: 1.5rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-title {
+  color: #e64a19; /* naranja vibrante */
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.form-group {
+  flex: 1 1 calc(50% - 1rem);
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group[style*="flex: 1 1 100%"] {
+  flex: 1 1 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+/* Personaliza los bordes de los mat-form-field (outline) */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  border-color: #e64a19 !important;
+  border-width: 1.5px !important;
+  border-radius: 8px !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+  border-color: #bf360c !important;
+  border-width: 2px !important;
+  box-shadow: 0 0 8px rgba(191, 54, 12, 0.4);
+}
+
+/* Botones al final, alineados a la derecha */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+button[mat-flat-button] {
+  background-color: #e64a19;
+  color: white;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(230, 74, 25, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+button[mat-flat-button]:hover {
+  background-color: #bf360c;
+  box-shadow: 0 6px 20px rgba(191, 54, 12, 0.8);
+}
+
+button[mat-stroked-button] {
+  border-color: #d32f2f;
+  color: #d32f2f;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button[mat-stroked-button]:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex: 1 1 100% !important;
+    min-width: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  button[mat-flat-button], button[mat-stroked-button] {
+    width: 100%;
+  }
+}

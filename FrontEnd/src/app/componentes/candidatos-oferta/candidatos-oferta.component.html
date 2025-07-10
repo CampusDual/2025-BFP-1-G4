@@ -7,20 +7,24 @@
     </div>
     <br>
     <table class="tabla-ofertas">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let candidato of candidatos">
-                <td>{{ candidato.name }}</td>
-                <td>{{ candidato.email }}</td>
-                <td>{{ candidato.phonenumber }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Acción</th> <!-- Nueva columna -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let candidato of candidatos">
+      <td>{{ candidato.name }}</td>
+      <td>{{ candidato.email }}</td>
+      <td>{{ candidato.phonenumber }}</td>
+      <td>
+        <button class="add-btn" (click)="verPerfil(candidato.id)">
+          Ver perfil
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

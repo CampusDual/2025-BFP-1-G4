@@ -1,0 +1,160 @@
+.perfil-container {
+  padding: 30px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1100px;
+  margin: auto;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.perfil-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #333;
+  text-align: center;
+}
+
+.perfil-header {
+  display: flex;
+  justify-content: space-between; /* Para que el avatar-nombre y acciones estén separados */
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.perfil-foto-nombre {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.perfil-avatar {
+  width: 90px;
+  height: 90px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #757575;
+}
+
+.perfil-info h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #212121;
+}
+
+.perfil-subtitulo {
+  margin-top: 5px;
+  color: #616161;
+  font-size: 1rem;
+}
+
+.perfil-seccion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.perfil-col {
+  flex: 1 1 45%;
+}
+
+.perfil-col p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #424242;
+}
+
+.perfil-col strong {
+  color: #212121;
+}
+
+.perfil-links {
+  margin-top: 10px;
+}
+
+.perfil-links a {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #1976d2;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.perfil-links a mat-icon {
+  margin-right: 6px;
+  font-size: 20px;
+}
+
+.perfil-links a:hover {
+  color: #0d47a1;
+}
+
+.perfil-loading {
+  text-align: center;
+  font-size: 18px;
+  padding: 40px;
+  color: #888;
+}
+
+/* Aquí el estilo para el botón "Editar perfil" */
+
+.perfil-acciones {
+  display: flex;
+  justify-content: flex-end; /* Botón alineado a la derecha */
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.perfil-acciones button {
+  min-width: 140px;
+  font-weight: 600;
+  border-radius: 30px;
+  background-color: #e64a19; /* Naranja vibrante */
+  color: white;
+  box-shadow: 0 3px 8px rgba(230, 74, 25, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+}
+
+.perfil-acciones button:hover {
+  background-color: #bf360c; /* Naranja oscuro hover */
+  box-shadow: 0 5px 20px rgba(191, 54, 12, 0.9);
+}
+
+/* Responsive para móviles */
+
+@media (max-width: 768px) {
+  .perfil-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .perfil-foto-nombre {
+    justify-content: center;
+  }
+  .perfil-acciones {
+    justify-content: center;
+    width: 100%;
+    margin-left: 0;
+  }
+  .perfil-seccion {
+    flex-direction: column;
+  }
+  .perfil-col {
+    flex: 1 1 100%;
+  }
+}

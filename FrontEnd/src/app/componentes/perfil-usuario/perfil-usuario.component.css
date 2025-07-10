@@ -1,94 +1,180 @@
 .perfil-container {
-  padding: 30px 20px;
+  padding: 0.0rem 1.5rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1100px;
-  margin: auto;
+  margin: 1rem auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  color: #2c2c2c;
 }
 
 .perfil-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 30px;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
   color: #d32f2f;
+  text-align: center;
+  letter-spacing: 0.03em;
+  padding: 5px;
 }
 
 .perfil-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1.5rem;
 }
 
 .perfil-foto-nombre {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.5rem;
+  flex: 1 1 auto;
+  min-width: 220px;
 }
 
 .perfil-avatar {
-  width: 100px;
-  height: 100px;
-  background: #ececec;
+  width: 110px;
+  height: 110px;
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  font-size: 56px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.perfil-avatar:hover {
+  transform: scale(1.05);
 }
 
 .perfil-info h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
 }
 
 .perfil-subtitulo {
-  margin: 4px 0;
-  color: #555;
+  margin: 0.25rem 0 0;
+  font-size: 1rem;
+  color: #666;
+  font-style: italic;
+  letter-spacing: 0.02em;
 }
 
-.perfil-ubicacion {
+.perfil-acciones {
   display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #777;
-}
-
-.perfil-ubicacion mat-icon {
-  margin-right: 4px;
-  font-size: 16px;
+  justify-content: flex-end; /* para que el botón esté a la derecha */
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
 }
 
 .perfil-acciones button {
-  margin: 4px;
+  min-width: 140px;
+  font-weight: 600;
+  border-radius: 30px;
+  background-color: #e64a19; /* naranja */
+  color: white;
+  box-shadow: 0 3px 8px rgba(230, 74, 25, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.perfil-acciones button:hover {
+  background-color: #bf360c; /* naranja oscuro */
+  box-shadow: 0 5px 20px rgba(191, 54, 12, 0.9);
+}
+
 
 .perfil-seccion {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 20px;
+  gap: 2rem;
+  margin-top: 1rem;
 }
 
 .perfil-col {
   flex: 1 1 45%;
+  min-width: 280px;
+  color: #444;
+  line-height: 1.55;
+  font-size: 1rem;
+}
+
+.perfil-col p {
+  margin-bottom: 0.75rem;
+}
+
+.perfil-col p strong {
+  color: #d32f2f;
+}
+
+.perfil-links {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  gap: 13rem; /* espacio uniforme entre enlaces */
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd; /* separación visual */
 }
 
 .perfil-links a {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  color: #e64a19; /* naranja vibrante para destacar */
+  font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
-  color: #e64a19;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
 
 .perfil-links a mat-icon {
-  margin-right: 6px;
-  font-size: 20px;
+  margin-right: 8px;
+  font-size: 22px;
+  color: inherit;
 }
 
 .perfil-links a:hover {
-  color: #bf360c;
+  color: #bf360c; /* naranja oscuro al pasar mouse */
+}
+
+.perfil-loading {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+  font-size: 1.15rem;
+  padding: 2rem 0;
+}
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+  .perfil-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .perfil-foto-nombre {
+    justify-content: center;
+  }
+  .perfil-acciones {
+    justify-content: center;
+    width: 100%;
+  }
+  .perfil-seccion {
+    flex-direction: column;
+  }
+  .perfil-col {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
 }

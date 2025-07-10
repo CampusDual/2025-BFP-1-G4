@@ -34,4 +34,8 @@ export class CandidatosOfertaComponent implements OnInit {
   editarOferta(): void {
     this.router.navigate(['/editar-oferta', this.ofertaid]);
   }
+  verPerfil(id: number): void {
+  this.router.navigate(['/candidato', id]);
+}
+
 }
