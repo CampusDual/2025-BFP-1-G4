@@ -125,6 +125,12 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname1(userDTO.getSurname1());
         user.setSurname2(userDTO.getSurname2());
         user.setLogin(userDTO.getLogin());
+        user.setExperience(userDTO.getExperience());
+        user.setGithub(userDTO.getGithub());
+        user.setLinkedin(userDTO.getLinkedin());
+        user.setDegree(userDTO.getDegree());
+        user.setPresentation(userDTO.getPresentation());
+        user.setModality(userDTO.getModality());
 
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
@@ -190,6 +196,9 @@ public class UserService implements IUserService, UserDetailsService {
         dto.setPassword(entity.getPassword());
         dto.setGithub(entity.getGithub());
         dto.setLinkedin(entity.getLinkedin());
+        dto.setExperience(entity.getExperience());
+        dto.setPresentation(entity.getPresentation());
+        dto.setModality(entity.getModality());
 
         return dto;
     }
