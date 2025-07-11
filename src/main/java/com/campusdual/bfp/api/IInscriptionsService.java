@@ -16,4 +16,6 @@ public interface IInscriptionsService {
     List<UserDTO> findUsersByOfferId(Integer offerId);
 
     List<OffersDTO> findOffersByUserId(Integer userId);
+
+    String toggleActiveStatus(Long id, InscriptionsDTO inscriptionsDTO);
 }

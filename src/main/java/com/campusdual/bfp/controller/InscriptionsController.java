@@ -5,6 +5,7 @@ import com.campusdual.bfp.model.dto.InscriptionsDTO;
 import com.campusdual.bfp.model.dto.UserDTO;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -43,6 +44,12 @@ public class InscriptionsController {
     @GetMapping("/byUser/{userid}")
     public List<OffersDTO> getOffersByUser(@PathVariable("userid") Integer userId) {
         return inscriptionsService.findOffersByUserId(userId);
+    }
+
+    @PutMapping("/toggleActiveStatus/{id}")
+    public ResponseEntity<String> toggleActiveStatus(@PathVariable Long id, @RequestBody InscriptionsDTO inscriptionsDTO) {
+        String response = inscriptionsService.toggleActiveStatus(id, inscriptionsDTO);
+        return ResponseEntity.ok(response);
     }
 
 }

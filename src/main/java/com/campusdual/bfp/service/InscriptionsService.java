@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,6 +76,19 @@ public class InscriptionsService implements IInscriptionsService {
 
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public String toggleActiveStatus(Long id, InscriptionsDTO inscriptionsDTO) {
+        Optional<Inscriptions> optionalInscription = inscriptionsDao.findById(id);
+        String status = inscriptionsDTO.getStatus();
+        if (optionalInscription.isPresent()) {
+            Inscriptions inscription = optionalInscription.get();
+            inscription.setStatus(status);
+            inscriptionsDao.saveAndFlush(inscription);
+            return inscription.getStatus();
+        }
+        return "Inscription not found";
     }
 
 }

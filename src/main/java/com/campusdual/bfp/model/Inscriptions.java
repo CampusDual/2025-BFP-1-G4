@@ -59,6 +59,8 @@ public class Inscriptions {
     public void getOfferId() { }
 
     public void getUserId() { }
+
     public String getStatus() { return status; }
+
     public void setStatus(String status) { this.status = status; }
 }
