@@ -145,9 +145,9 @@ public class UserService implements IUserService, UserDetailsService {
         if (user == null) return 0;
         BeanUtils.copyProperties(userDTO, user, "id", "password", "login", "enterprise");
 
-        if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+       /* if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
-        }
+        } */
         userDao.saveAndFlush(user);
         return user.getId();
     }
