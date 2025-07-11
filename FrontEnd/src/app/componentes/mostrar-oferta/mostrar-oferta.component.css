@@ -171,3 +171,13 @@ mat-icon {
 .integrated-footer a:hover {
   color: #f44336;
 }
+
+.botones-container {
+  display: flex;
+  gap: 10px; /* espacio entre botones */
+  margin-top: auto;
+}
+
+.botones-container .mitad {
+  flex: 1;
+}

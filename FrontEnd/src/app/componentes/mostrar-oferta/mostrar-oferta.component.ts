@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OfertasService } from '../../services/ofertas-service.service';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mostrar-oferta',
@@ -13,12 +14,13 @@ export class MostrarOfertaComponent implements OnInit {
   paginaActual: number = 1;
   elementosPorPagina: number = 12;
   totalPaginas: number = 1;
-usuarioRol: string | null = '';
+  usuarioRol: string | null = '';
 
   constructor(
     private ofertasService: OfertasService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     // Obtener el rol desde el token
@@ -45,6 +47,10 @@ usuarioRol: string | null = '';
       this.paginaActual++;
     }
     this.actualizarPaginado();
+  }
+
+  verDetalle(id: number): void {
+    this.router.navigate(['/detalle-oferta']);
   }
 
   aplicarOferta(oferta: any): void {
