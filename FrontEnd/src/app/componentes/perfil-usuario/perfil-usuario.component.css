@@ -119,6 +119,7 @@
 }
 
 .perfil-links {
+margin-left: 12.5rem;
   display: flex;
   justify-content: center; /* centra horizontalmente */
   gap: 13rem; /* espacio uniforme entre enlaces */
