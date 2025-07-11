@@ -1,0 +1,173 @@
+.mostrar-ofertas-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 40px 20px;
+  max-width: 1200px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page-title {
+  font-size: 2rem;
+  color: #e53935;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contenido-ofertas {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+
+.page-title {
+  font-size: 2rem;
+  color: #e53935;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ofertas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* solo 4 columnas */
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.oferta-card {
+  background-color: #fff;
+  border-left: 5px solid #f44336;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+  min-height: 280px;
+  max-height: 300px;
+}
+
+.oferta-card:hover {
+  transform: translateY(-4px);
+}
+
+.oferta-titulo {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.oferta-descripcion {
+  font-size: 13px;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 8px;
+}
+
+.oferta-empresa,
+.oferta-email,
+.oferta-fecha {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+
+mat-icon {
+  font-size: 16px;
+  margin-right: 6px;
+  color: #888;
+}
+
+.apButton {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+}
+
+.apButton:hover {
+  background-color: #e64a19;
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.paginacion button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #ff7043;
+  background-color: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background-color: #ff7043;
+  color: white;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ofertas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .ofertas-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.integrated-footer {
+  background-color: #c1b8b7;
+  color: #000000;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  width: 98.7%;
+  margin-bottom: 0;
+  position:sticky; /* NO sticky ni absolute */
+  bottom: auto; /* no anclado */
+}
+
+.integrated-footer a {
+  color: #ff7043;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  padding: 5px;
+}
+
+.integrated-footer a:hover {
+  color: #f44336;
+}

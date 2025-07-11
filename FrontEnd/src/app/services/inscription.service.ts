@@ -20,8 +20,11 @@ export class InscripcionService {
   getPostulacionesUsuario(userId: number): Observable<any[]> {
     const url = `${this.apiUrl}/byUser/${userId}`;
     console.log('Llamando a URL:', url);
-    return this.http.get<any[]>(url);
+    return this.http.get<any[]>(url, {
+      headers: this.getAuthHeaders()
+    });
   }
+
   private getAuthHeaders(): HttpHeaders {
     const token = sessionStorage.getItem('token') || '';
     return new HttpHeaders({
