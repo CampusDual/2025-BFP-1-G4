@@ -1,0 +1,73 @@
+<div class="form-container">
+  <h1 class="form-title">Editar Perfil</h1>
+
+  <form (ngSubmit)="guardarCambios()" #perfilForm="ngForm">
+    <div class="row">
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input id="name" name="name" [(ngModel)]="usuario.name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="surname1">Primer Apellido</label>
+        <input id="surname1" name="surname1" [(ngModel)]="usuario.surname1" />
+      </div>
+
+      <div class="form-group">
+        <label for="surname2">Segundo Apellido</label>
+        <input id="surname2" name="surname2" [(ngModel)]="usuario.surname2" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" [(ngModel)]="usuario.email" />
+      </div>
+
+      <div class="form-group">
+        <label for="phonenumber">Teléfono</label>
+        <input id="phonenumber" name="phonenumber" [(ngModel)]="usuario.phonenumber" />
+      </div>
+
+      <div class="form-group">
+        <label for="degree">Título Profesional</label>
+        <input id="degree" name="degree" [(ngModel)]="usuario.degree" />
+      </div>
+
+      <div class="form-group">
+        <label for="modality">Modalidad</label>
+        <select id="modality" name="modality" [(ngModel)]="usuario.modality">
+          <option value="">Seleccionar...</option>
+          <option value="presencial">Presencial</option>
+          <option value="online">Online</option>
+          <option value="hibrido">Híbrido</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="experience">Experiencia</label>
+        <input id="experience" name="experience" type="string" [(ngModel)]="usuario.experience" />
+      </div>
+
+      <div class="form-group" style="flex: 1 1 100%;">
+        <label for="presentation">Presentación</label>
+        <textarea id="presentation" name="presentation" rows="4" [(ngModel)]="usuario.presentation"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="linkedin">LinkedIn</label>
+        <input id="linkedin" name="linkedin" [(ngModel)]="usuario.linkedin" />
+      </div>
+
+      <div class="form-group">
+        <label for="github">GitHub</label>
+        <input id="github" name="github" [(ngModel)]="usuario.github" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn-flat">Guardar</button>
+      <button type="button" class="btn-stroked" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

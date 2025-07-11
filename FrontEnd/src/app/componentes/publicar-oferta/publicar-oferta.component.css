@@ -1,11 +1,20 @@
+:root {
+  --primary-color: #ff4400;
+  --primary-hover: #e65100;
+  --accent-color: rgb(247, 188, 63);
+  --font-main: 'Roboto', 'Helvetica Neue', sans-serif;
+  --shadow-default: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .page-container {
-  flex: 1; /* ✅ se adapta al alto disponible sin empujar el footer */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  box-sizing: border-box;
-  width: 100%;
+  min-height: 100px ;
+  padding: 3rem 1rem;
+  background-color: #f5f5f5;
+  font-family: var(--font-main);
 }
 
 .page-title {
@@ -20,9 +29,9 @@
 .page-title::after {
   content: "";
   display: block;
-  width: 60px;
   height: 4px;
-  background-color: #ff4400;
+  width: 100%;
+  background-color: var(--primary-color);
   margin: 0.5rem auto 0;
   border-radius: 2px;
 }
@@ -31,7 +40,7 @@
   background-color: #ffffff;
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-default);
   width: 100%;
   max-width: 600px;
   display: flex;
@@ -57,8 +66,9 @@ textarea {
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  transition: border-color 0.3s ease;
   outline: none;
+  transition: border-color 0.3s ease;
+  font-family: var(--font-main);
 }
 
 input:focus,
@@ -68,7 +78,6 @@ textarea:focus {
 
 textarea {
   min-height: 120px;
-  max-height: 300px;
   resize: vertical;
 }
 
@@ -76,10 +85,9 @@ textarea {
   color: #999;
 }
 
-/* Botón principal */
 button {
-  background-color: #ff4400;
-  color: rgb(247, 188, 63);
+  background-color: var(--primary-color);
+  color: var(--accent-color);
   border: none;
   border-radius: 8px;
   font-size: 1rem;
@@ -90,6 +98,5 @@ button {
 }
 
 button:hover {
-  background-color: #e65100;
+  background-color: var(--primary-hover);
 }
-

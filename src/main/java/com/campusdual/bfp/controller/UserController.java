@@ -5,6 +5,7 @@ import com.campusdual.bfp.model.dto.UserDTO;
 import com.campusdual.bfp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,25 @@ public class UserController {
         return iuserService.queryUser(userDTO);
     }
 
+    /*@PreAuthorize("hasRole('user')")
+    @GetMapping(value = "/getProfile")
+    public UserDTO getUserProfile(@RequestBody UserDTO userDTO) {
+        return iuserService.getUserProfile(userDTO);
+    }*/
+
+    @PreAuthorize("hasRole('user', 'enterprise')")
+    @GetMapping(value = "/getProfileById/{id}")
+    public UserDTO getUserProfileById(@PathVariable int id) {
+        return userService.findUserById(id);
+    }
+
+    @PreAuthorize("hasRole('user', 'enterprise')")
+    @GetMapping(value = "/getIdByLogin/{login}")
+    public int getUserByLogin(@PathVariable String login) {
+        return userService.getUserIdByLogin(login);
+    }
+
+
     @GetMapping(value = "/getAll")
     public List<UserDTO> queryAllUsers() {
         return iuserService.queryAllUsers();
@@ -41,6 +61,12 @@ public class UserController {
     @PutMapping(value = "/update")
     public int updateUser(@RequestBody UserDTO userDTO) {
         return iuserService.updateUser(userDTO);
+    }
+
+    @PreAuthorize("hasRole('user')")
+    @PutMapping(value = "/updateProfile")
+    public int updateUserProfile(@RequestBody UserDTO userDTO) {
+        return iuserService.updateUserProfile(userDTO);
     }
 
     @DeleteMapping(value = "/delete")

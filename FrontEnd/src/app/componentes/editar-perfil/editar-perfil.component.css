@@ -1,0 +1,150 @@
+/* Tipografía global unificada */
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Contenedor principal del formulario */
+.form-container {
+  max-width: 600px;
+  margin: 3vh auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  color: #333;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Título del formulario */
+.form-title {
+  color: #e64a19;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Fila de inputs */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+/* Grupo de campos */
+.form-group {
+  flex: 1 1 calc(50% - 1rem);
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group[style*="flex: 1 1 100%"] {
+  flex: 1 1 100%;
+}
+
+/* Etiquetas */
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+/* Estilo general de inputs, textarea y select */
+input,
+select,
+textarea {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #e64a19;
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Textarea solo se puede redimensionar verticalmente */
+textarea {
+  resize: vertical;
+  max-height: 300px;
+}
+
+/* Foco en campos */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #bf360c;
+  box-shadow: 0 0 8px rgba(191, 54, 12, 0.4);
+  outline: none;
+}
+
+/* Área de botones */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* Botón plano (Guardar) */
+.btn-flat {
+  background-color: #e64a19;
+  color: white;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 4px 12px rgba(230, 74, 25, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-flat:hover {
+  background-color: #bf360c;
+  box-shadow: 0 6px 20px rgba(191, 54, 12, 0.8);
+}
+
+/* Botón contorno (Cancelar) */
+.btn-stroked {
+  border: 2px solid #d32f2f;
+  color: #d32f2f;
+  font-weight: 700;
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  background: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-stroked:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .btn-flat,
+  .btn-stroked {
+    width: 100%;
+  }
+}

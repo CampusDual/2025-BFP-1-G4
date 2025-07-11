@@ -1,15 +1,13 @@
 package com.campusdual.bfp.service;
 
 import com.campusdual.bfp.api.IUserService;
-import com.campusdual.bfp.model.Enterprise;
-import com.campusdual.bfp.model.Role;
-import com.campusdual.bfp.model.User;
-import com.campusdual.bfp.model.UserRole;
+import com.campusdual.bfp.model.*;
 import com.campusdual.bfp.model.dao.RoleDao;
 import com.campusdual.bfp.model.dao.UserDao;
 import com.campusdual.bfp.model.dao.UserRoleDao;
 import com.campusdual.bfp.model.dto.UserDTO;
 import com.campusdual.bfp.model.dto.dtomapper.UserMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
@@ -22,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -126,10 +125,29 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname1(userDTO.getSurname1());
         user.setSurname2(userDTO.getSurname2());
         user.setLogin(userDTO.getLogin());
+        user.setExperience(userDTO.getExperience());
+        user.setGithub(userDTO.getGithub());
+        user.setLinkedin(userDTO.getLinkedin());
+        user.setDegree(userDTO.getDegree());
+        user.setPresentation(userDTO.getPresentation());
+        user.setModality(userDTO.getModality());
 
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
         }
+        userDao.saveAndFlush(user);
+        return user.getId();
+    }
+
+    @Override
+    public int updateUserProfile(UserDTO userDTO) {
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return 0;
+        BeanUtils.copyProperties(userDTO, user, "id", "password", "login", "enterprise");
+
+       /* if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
+            user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
+        } */
         userDao.saveAndFlush(user);
         return user.getId();
     }
@@ -145,5 +163,43 @@ public class UserService implements IUserService, UserDetailsService {
         userRoleDao.deleteAll(userRoles);
         userDao.delete(user);
         return user.getId();
+    }
+
+    @Override
+    public UserDTO getUserProfile(UserDTO userDTO) {
+        User user = userDao.findUserById(userDTO.getId());
+        if (user == null) return null;
+        return UserMapper.INSTANCE.toDTO(user);
+    }
+
+    public UserDTO findUserById(int id) {
+        Optional<User> userEntityOpt = userDao.findById(id);
+        if (userEntityOpt.isPresent()) {
+            User userEntity = userEntityOpt.get();
+            UserDTO userDTO = convertToDTO(userEntity);
+            return userDTO;
+        } else {
+            return null; // No encontrada
+        }
+    }
+
+    private UserDTO convertToDTO(User entity) {
+        UserDTO dto = new UserDTO();
+        dto.setId(entity.getId());
+        dto.setDegree(entity.getDegree());
+        dto.setName(entity.getName());
+        dto.setSurname1(entity.getSurname1());
+        dto.setSurname2(entity.getSurname2());
+        dto.setEmail(entity.getEmail());
+        dto.setPhonenumber(entity.getPhonenumber());
+        dto.setLogin(entity.getLogin());
+        dto.setPassword(entity.getPassword());
+        dto.setGithub(entity.getGithub());
+        dto.setLinkedin(entity.getLinkedin());
+        dto.setExperience(entity.getExperience());
+        dto.setPresentation(entity.getPresentation());
+        dto.setModality(entity.getModality());
+
+        return dto;
     }
 }

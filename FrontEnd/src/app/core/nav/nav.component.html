@@ -16,49 +16,57 @@
           Sesión</button>
       </ng-container>
 
-      <!-- Botón hamburguesa con menú -->
       <ng-container *ngIf="login">
-        <button mat-icon-button [matMenuTriggerFor]="hamburguesa">
-          <mat-icon>menu</mat-icon>
-        </button>
+  <button mat-icon-button [matMenuTriggerFor]="hamburguesa">
+    <mat-icon>menu</mat-icon>
+  </button>
 
-        <mat-menu #hamburguesa="matMenu">
-          <button mat-menu-item disabled>
-            👤 {{ username || 'Usuario' }}
-          </button>
+  <mat-menu #hamburguesa="matMenu">
+    <button mat-menu-item disabled>
+      👤 {{ username || 'Usuario' }}
+    </button>
 
-          <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-          <!-- SOLO PARA EMPRESA -->
-          <ng-container *ngIf="esEmpresa">
-            <button mat-menu-item (click)="irAListaOfertas()">
-              <mat-icon>work</mat-icon>
-              <span>Ver Ofertas</span>
-            </button>
-            <button mat-menu-item (click)="irAPublicarOferta()">
-              <mat-icon>add_circle</mat-icon>
-              <span>Publicar Oferta</span>
-            </button>
-            <mat-divider></mat-divider>
-          </ng-container>
+    <!-- SOLO PARA CANDIDATO -->
+    <ng-container *ngIf="esCandidato">
+      <button mat-menu-item (click)="irAPerfil()">
+        <mat-icon>person</mat-icon>
+        <span>Ir a Perfil</span>
+      </button>
+      <button mat-menu-item (click)="irAMostrarOfertas()">
+        <mat-icon>list</mat-icon>
+        <span>Mostrar Ofertas</span>
+      </button>
+      <mat-divider></mat-divider>
+    </ng-container>
 
-          <!-- SOLO PARA ADMIN -->
-          <ng-container *ngIf="esAdmin">
-            <button mat-menu-item (click)="irAListaEmpresas()">
-              <mat-icon>business</mat-icon>
-              <span>Ver Empresas</span>
-            </button>
-            <mat-divider></mat-divider>
-          </ng-container>
+    <!-- SOLO PARA EMPRESA -->
+    <ng-container *ngIf="esEmpresa">
+      <button mat-menu-item (click)="irAListaOfertas()">
+        <mat-icon>work</mat-icon>
+        <span>Ver Ofertas</span>
+      </button>
+      <button mat-menu-item (click)="irAPublicarOferta()">
+        <mat-icon>add_circle</mat-icon>
+        <span>Publicar Oferta</span>
+      </button>
+      <mat-divider></mat-divider>
+    </ng-container>
 
-          <!-- PARA TODOS -->
-          <button mat-menu-item (click)="cerrarSesion()">
-            <mat-icon>logout</mat-icon>
-            <span>Cerrar sesión</span>
-          </button>
-        </mat-menu>
-      </ng-container>
+    <!-- SOLO PARA ADMIN -->
+    <ng-container *ngIf="esAdmin">
+      <button mat-menu-item (click)="irAListaEmpresas()">
+        <mat-icon>business</mat-icon>
+        <span>Ver Empresas</span>
+      </button>
+      <mat-divider></mat-divider>
+    </ng-container>
 
-    </mat-toolbar-row>
-  </mat-toolbar>
-</nav>
+    <!-- PARA TODOS -->
+    <button mat-menu-item (click)="cerrarSesion()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+  </mat-menu>
+</ng-container>

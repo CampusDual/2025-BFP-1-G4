@@ -6,14 +6,23 @@ import { Router, NavigationEnd } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  mostrarLayout = true;
+  mostrarFooter = true;
+  mostrarNavigator=true;
 
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        const ocultarEn = ['/register', '/login', '/mostrar-oferta' , '/publicar-empresa','/publicar-empresa', '/editar-perfil', '/perfil-usuario'];
+        this.mostrarFooter = !ocultarEn.includes(event.urlAfterRedirects);
+      }
+    });
+    
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
         const ocultarEn = ['/register', '/login'];
-        this.mostrarLayout = !ocultarEn.includes(event.urlAfterRedirects);
+        this.mostrarNavigator = !ocultarEn.includes(event.urlAfterRedirects);
       }
     });
   }
+  
 }

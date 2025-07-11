@@ -1,0 +1,50 @@
+<div class="perfil-container" *ngIf="usuario">
+  <h1 class="perfil-title">Perfil del candidato</h1>
+
+  <div class="perfil-header">
+    <div class="perfil-foto-nombre">
+      <div class="perfil-avatar">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="perfil-info">
+        <h2>{{ usuario.name }} {{usuario.surname1}} {{usuario.surname2}}</h2>
+        <p class="perfil-subtitulo">{{ usuario.degree }}</p>
+      </div>
+    </div>
+  </div>
+
+  <mat-tab-group>
+    <mat-tab label="Sobre el candidato">
+      <div class="perfil-seccion">
+        <div class="perfil-col">
+          <p><strong>Experiencia:</strong> {{ usuario.experience }} años</p>
+          <p><strong>Modalidad:</strong> {{ usuario.modality }}</p>
+          <p><strong>Email:</strong> {{ usuario.email }}</p>
+        </div>
+        <div class="perfil-col">
+          <p><strong>Presentación:</strong></p>
+          <p>{{ usuario.presentation }}</p>
+          <div class="perfil-links">
+            <a *ngIf="usuario.linkedin" [href]="usuario.linkedin" target="_blank">
+              <mat-icon>link</mat-icon> LinkedIn
+            </a>
+            <a *ngIf="usuario.github" [href]="usuario.github" target="_blank">
+              <mat-icon>code</mat-icon> GitHub
+            </a>
+            <a *ngIf="usuario.phonenumber" href="tel:{{ usuario.phonenumber }}">
+              <mat-icon>phone</mat-icon> {{ usuario.phonenumber }}
+            </a>
+          
+          </div>
+        </div>
+        
+      </div>
+      
+    </mat-tab>
+    
+  </mat-tab-group>
+</div>
+
+<div *ngIf="!usuario" class="perfil-loading">
+  <p>Cargando perfil del candidato...</p>
+</div>
