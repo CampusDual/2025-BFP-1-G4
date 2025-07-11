@@ -12,6 +12,7 @@ import java.util.List;
 public interface OffersMapper {
     OffersMapper INSTANCE = Mappers.getMapper(OffersMapper.class);
 
+    @Mapping(target = "enterpriseId", source = "enterprise.id")
     @Mapping(target = "enterpriseName", source = "enterprise.name")
     @Mapping(target = "enterpriseEmail", source = "enterprise.email")
     OffersDTO toDTO(Offer offer);
