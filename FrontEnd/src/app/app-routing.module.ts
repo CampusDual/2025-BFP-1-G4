@@ -14,6 +14,7 @@ import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.compo
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.component';
+import { OfertasPostuladoComponent } from './ofertas-postulado/ofertas-postulado.component';
 
 const routes: Routes = [
   /*{ path: 'lista-empresas', component: ListaEmpresasComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'mostrar-oferta', component: MostrarOfertaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'mis-postulaciones',component: OfertasPostuladoComponent},
   { path: 'lista-empresas', component: ListaEmpresasComponent },
   { path: 'lista-ofertas', component: ListaOfertasComponent },
   { path: 'publicar-oferta', component: PublicarOfertaComponent },

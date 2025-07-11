@@ -43,6 +43,7 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
 import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.component';
+import { OfertasPostuladoComponent } from './ofertas-postulado/ofertas-postulado.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.componen
     VistaCandidatoComponent,
     EditarPerfilComponent,
     DetalleOfertaComponent,
+    OfertasPostuladoComponent,
    ],
   imports: [
     BrowserModule,
@@ -95,7 +97,7 @@ import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.componen
                 ],
   bootstrap: [AppComponent]
 
-  
+
 })
 export class AppModule { }
 

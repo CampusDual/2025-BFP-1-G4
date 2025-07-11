@@ -9,6 +9,9 @@ import { UsuarioService } from '../../services/usuario.service.module';
   styleUrls: ['./perfil-usuario.component.css']
 })
 export class PerfilUsuarioComponent implements OnInit {
+  verPostulaciones(): void {
+    this.router.navigate(['/mis-postulaciones']);
+  }
   usuario: any = null;
 
   constructor(
