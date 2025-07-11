@@ -1,5 +1,5 @@
 <div class="perfil-container" *ngIf="usuario">
-  <h1 class="perfil-title">Perfil do candidato</h1>
+  <h1 class="perfil-title">Perfil del candidato</h1>
 
   <div class="perfil-header">
     <div class="perfil-foto-nombre">
@@ -34,10 +34,14 @@
             <a *ngIf="usuario.phonenumber" href="tel:{{ usuario.phonenumber }}">
               <mat-icon>phone</mat-icon> {{ usuario.phonenumber }}
             </a>
+          
           </div>
         </div>
+        
       </div>
+      
     </mat-tab>
+    
   </mat-tab-group>
 </div>
 

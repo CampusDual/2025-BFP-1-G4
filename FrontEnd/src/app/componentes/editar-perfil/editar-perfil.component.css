@@ -1,32 +1,40 @@
+/* Tipografía global unificada */
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+/* Contenedor principal del formulario */
 .form-container {
   max-width: 600px;
   margin: 3vh auto;
-  padding: 1.5rem 2rem;
-  background: #fff;
+  padding: 2rem;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
+/* Título del formulario */
 .form-title {
-  color: #e64a19; /* naranja vibrante */
+  color: #e64a19;
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: 2rem;
 }
 
+/* Fila de inputs */
 .row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: space-between;
 }
 
+/* Grupo de campos */
 .form-group {
   flex: 1 1 calc(50% - 1rem);
   min-width: 250px;
@@ -38,24 +46,44 @@
   flex: 1 1 100%;
 }
 
-.mat-form-field {
+/* Etiquetas */
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+/* Estilo general de inputs, textarea y select */
+input,
+select,
+textarea {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1.5px solid #e64a19;
+  border-radius: 8px;
+  background: #fff;
   width: 100%;
+  box-sizing: border-box;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Personaliza los bordes de los mat-form-field (outline) */
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  border-color: #e64a19 !important;
-  border-width: 1.5px !important;
-  border-radius: 8px !important;
+/* Textarea solo se puede redimensionar verticalmente */
+textarea {
+  resize: vertical;
+  max-height: 300px;
 }
 
-.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
-  border-color: #bf360c !important;
-  border-width: 2px !important;
+/* Foco en campos */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #bf360c;
   box-shadow: 0 0 8px rgba(191, 54, 12, 0.4);
+  outline: none;
 }
 
-/* Botones al final, alineados a la derecha */
+/* Área de botones */
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -63,35 +91,39 @@
   margin-top: 2.5rem;
 }
 
-button[mat-flat-button] {
+/* Botón plano (Guardar) */
+.btn-flat {
   background-color: #e64a19;
   color: white;
   border-radius: 30px;
   padding: 12px 30px;
   font-weight: 700;
   font-size: 1.1rem;
+  border: none;
   box-shadow: 0 4px 12px rgba(230, 74, 25, 0.6);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  border: none;
 }
 
-button[mat-flat-button]:hover {
+.btn-flat:hover {
   background-color: #bf360c;
   box-shadow: 0 6px 20px rgba(191, 54, 12, 0.8);
 }
 
-button[mat-stroked-button] {
-  border-color: #d32f2f;
+/* Botón contorno (Cancelar) */
+.btn-stroked {
+  border: 2px solid #d32f2f;
   color: #d32f2f;
   font-weight: 700;
   border-radius: 30px;
   padding: 12px 30px;
   font-size: 1.1rem;
+  background: transparent;
   transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
 }
 
-button[mat-stroked-button]:hover {
+.btn-stroked:hover {
   background-color: #d32f2f;
   color: white;
 }
@@ -103,7 +135,7 @@ button[mat-stroked-button]:hover {
   }
 
   .form-group {
-    flex: 1 1 100% !important;
+    flex: 1 1 100%;
     min-width: auto;
   }
 
@@ -111,7 +143,8 @@ button[mat-stroked-button]:hover {
     justify-content: center;
   }
 
-  button[mat-flat-button], button[mat-stroked-button] {
+  .btn-flat,
+  .btn-stroked {
     width: 100%;
   }
 }
