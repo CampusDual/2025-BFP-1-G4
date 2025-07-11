@@ -9,6 +9,10 @@ public class OffersDTO {
     private String description;
     private Date publicationDate;
     private boolean active;
+    private String requirements;
+    private String modality;
+    private String linkedin;
+    private String conditions;
     private String enterpriseName;
     private String enterpriseEmail;
 
@@ -55,6 +59,22 @@ public class OffersDTO {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public String getRequirements() { return requirements; }
+
+    public void setRequirements(String requirements) { this.requirements = requirements; }
+
+    public String getModality() { return modality; }
+
+    public void setModality(String modality) { this.modality = modality; }
+
+    public String getLinkedin() { return linkedin; }
+
+    public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
+
+    public String getConditions() { return conditions; }
+
+    public void setConditions(String conditions) { this.conditions = conditions; }
 
     public String getEnterpriseName() { return enterpriseName; }
 

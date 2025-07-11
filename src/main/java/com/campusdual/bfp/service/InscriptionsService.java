@@ -53,7 +53,7 @@ public class InscriptionsService implements IInscriptionsService {
             dto.setSurname2(user.getSurname2());
             dto.setEmail(user.getEmail());
             dto.setPhonenumber(user.getPhonenumber());
-            // Map other fields as necessary
+
             return dto;
         }).collect(Collectors.toList());
     }
@@ -68,7 +68,11 @@ public class InscriptionsService implements IInscriptionsService {
             dto.setDescription(offer.getDescription());
             dto.setPublicationDate(offer.getPublicationDate());
             dto.setActive(offer.isActive());
-            // Map other fields as necessary
+            dto.setRequirements(offer.getRequirements());
+            dto.setModality(offer.getModality());
+            dto.setLinkedin(offer.getLinkedin());
+            dto.setConditions(offer.getConditions());
+
             return dto;
         }).collect(Collectors.toList());
     }

@@ -60,6 +60,10 @@ public class OffersService implements IOffersService {
         offer.setEnterprise(enterprise);
         offer.setPublicationDate(new Date());
         offer.setActive(true);
+        offer.setRequirements(offer.getRequirements());
+        offer.setModality(offer.getModality());
+        offer.setLinkedin(offer.getLinkedin());
+        offer.setConditions(offer.getConditions());
         offersDao.saveAndFlush(offer);
         return convertToDTO(offer);
     }
@@ -102,6 +106,7 @@ public class OffersService implements IOffersService {
         inscriptions.setUser(user);
         inscriptions.setOffer(offer);
         inscriptions.setInscriptiondate(new Date());
+        inscriptions.setStatus("pendiente");
         inscriptionsDao.saveAndFlush(inscriptions);
         return offer.getId();
     }
@@ -118,6 +123,10 @@ public class OffersService implements IOffersService {
         offerEntity.setDescription(offer.getDescription());
         offerEntity.setPublicationDate(offer.getPublicationDate());
         offerEntity.setActive(offer.isActive());
+        offerEntity.setRequirements(offer.getRequirements());
+        offerEntity.setModality(offer.getModality());
+        offerEntity.setLinkedin(offer.getLinkedin());
+        offerEntity.setConditions(offer.getConditions());
         Enterprise enterprise = enterpriseDao.getReferenceById(offer.getEnterpriseId());
         offerEntity.setEnterprise(enterprise);
         Offer savedOffer = offersDao.save(offerEntity);
@@ -143,6 +152,10 @@ public class OffersService implements IOffersService {
         dto.setDescription(entity.getDescription());
         dto.setPublicationDate(entity.getPublicationDate());
         dto.setActive(entity.isActive());
+        dto.setRequirements(entity.getRequirements());
+        dto.setModality(entity.getModality());
+        dto.setLinkedin(entity.getLinkedin());
+        dto.setConditions(entity.getConditions());
         if (entity.getEnterprise() != null) {
             dto.setEnterpriseId(entity.getEnterprise().getId());
             dto.setEnterpriseName(entity.getEnterprise().getName());
@@ -162,7 +175,6 @@ public class OffersService implements IOffersService {
             dto.setSurname2(user.getSurname2());
             dto.setEmail(user.getEmail());
             dto.setPhonenumber(user.getPhonenumber());
-            // Map other fields as necessary
             return dto;
         }).collect(Collectors.toList());
     }
@@ -177,7 +189,10 @@ public class OffersService implements IOffersService {
             dto.setDescription(offer.getDescription());
             dto.setPublicationDate(offer.getPublicationDate());
             dto.setActive(offer.isActive());
-            // Map other fields as necessary
+            dto.setRequirements(offer.getRequirements());
+            dto.setModality(offer.getModality());
+            dto.setLinkedin(offer.getLinkedin());
+            dto.setConditions(offer.getConditions());
             return dto;
         }).collect(Collectors.toList());
     }
