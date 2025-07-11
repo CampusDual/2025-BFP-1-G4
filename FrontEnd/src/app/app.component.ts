@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const ocultarEn = ['/register', '/login', '/mostrar-oferta' , '/publicar-empresa','/mis-postulaciones','/publicar-empresa', '/editar-perfil', '/perfil-usuario'];
+        const ocultarEn = ['/register', '/login','/detalle-oferta', '/mostrar-oferta' , '/publicar-empresa','/mis-postulaciones','/publicar-empresa', '/editar-perfil', '/perfil-usuario'];
         this.mostrarFooter = !ocultarEn.includes(event.urlAfterRedirects);
       }
     });

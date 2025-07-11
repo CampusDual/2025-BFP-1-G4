@@ -1,37 +1,61 @@
 <div class="detalle-oferta-container">
-  <h2 class="titulo-oferta">{{ oferta.titulo }}</h2>
+  <h2 class="titulo-oferta">Desarrollador Frontend Angular</h2>
+
   <div class="info-principal">
-    <p class="descripcion">{{ oferta.descripcion }}</p>
+    <p class="descripcion">
+      Buscamos un desarrollador frontend con experiencia en Angular para formar parte de nuestro equipo de tecnología y participar en proyectos innovadores de gran impacto.
+    </p>
 
     <div class="datos-oferta">
       <div class="dato">
         <span class="etiqueta">Empresa:</span>
-        <span class="valor">{{ oferta.empresa }}</span>
+        <span class="valor">TechNova Solutions</span>
       </div>
       <div class="dato">
         <span class="etiqueta">Salario:</span>
-        <span class="valor">{{ oferta.salario | currency:'EUR':'symbol':'1.0-0' }}</span>
+        <span class="valor">€32,000 - €38,000 / año</span>
       </div>
       <div class="dato">
         <span class="etiqueta">Ubicación:</span>
-        <span class="valor">{{ oferta.ubicacion }}</span>
+        <span class="valor">Madrid, España</span>
       </div>
       <div class="dato">
         <span class="etiqueta">Tipo de contrato:</span>
-        <span class="valor">{{ oferta.tipoContrato }}</span>
+        <span class="valor">Indefinido</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">Modalidad:</span>
+        <span class="valor">Remoto</span>
       </div>
       <div class="dato">
         <span class="etiqueta">Fecha límite:</span>
-        <span class="valor">{{ oferta.fechaLimite | date:'dd/MM/yyyy' }}</span>
+        <span class="valor">31/08/2025</span>
       </div>
     </div>
 
     <div class="requisitos">
       <h3>Requisitos</h3>
       <ul>
-        <li *ngFor="let req of oferta.requisitos">{{ req }}</li>
+        <li>Experiencia mínima de 2 años con Angular 12+</li>
+        <li>Conocimientos sólidos de TypeScript y RxJS</li>
+        <li>Uso de herramientas como Git, Figma y Jira</li>
+        <li>Capacidad para trabajar en equipo y buena comunicación</li>
       </ul>
     </div>
 
+    <div class="requisitos">
+      <h3>Beneficios</h3>
+      <ul>
+        <li>Horario flexible y 100% remoto</li>
+        <li>Plan de formación continua</li>
+        <li>Seguro médico privado</li>
+        <li>Días libres adicionales por antigüedad</li>
+      </ul>
+    </div>
+
+    <div class="perfil-acciones" style="margin-top: 2rem;">
+      <button>Postularme</button>
+      <button>Guardar oferta</button>
+    </div>
   </div>
 </div>
