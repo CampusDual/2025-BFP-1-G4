@@ -178,7 +178,7 @@ public class OffersService implements IOffersService {
             return dto;
         }).collect(Collectors.toList());
     }
-
+/*
     @Override
     public List<OffersDTO> findOffersByUserId(Integer userId) {
         List<Offer> offers = inscriptionsDao.findOffersByUserId(userId);
@@ -195,6 +195,13 @@ public class OffersService implements IOffersService {
             dto.setConditions(offer.getConditions());
             return dto;
         }).collect(Collectors.toList());
-    }
+    }*/
+@Override
+public List<OffersDTO> findOffersByUserId(Integer userId) {
+    List<Offer> offers = inscriptionsDao.findOffersByUserId(userId);
+    return offers.stream()
+            .map(this::convertToDTO)
+            .collect(Collectors.toList());
+}
 
 }
