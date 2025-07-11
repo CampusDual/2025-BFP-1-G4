@@ -42,6 +42,7 @@ import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publica
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
 import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
+import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
     PerfilUsuarioComponent,
     VistaCandidatoComponent,
     EditarPerfilComponent,
+    DetalleOfertaComponent,
    ],
   imports: [
     BrowserModule,

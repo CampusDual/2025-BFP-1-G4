@@ -1,0 +1,40 @@
+<div class="detalle-oferta-container">
+  <h2 class="titulo-oferta">{{ oferta.titulo }}</h2>
+  <div class="info-principal">
+    <p class="descripcion">{{ oferta.descripcion }}</p>
+
+    <div class="datos-oferta">
+      <div class="dato">
+        <span class="etiqueta">Empresa:</span>
+        <span class="valor">{{ oferta.empresa }}</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">Salario:</span>
+        <span class="valor">{{ oferta.salario | currency:'EUR':'symbol':'1.0-0' }}</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">Ubicación:</span>
+        <span class="valor">{{ oferta.ubicacion }}</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">Tipo de contrato:</span>
+        <span class="valor">{{ oferta.tipoContrato }}</span>
+      </div>
+      <div class="dato">
+        <span class="etiqueta">Fecha límite:</span>
+        <span class="valor">{{ oferta.fechaLimite | date:'dd/MM/yyyy' }}</span>
+      </div>
+    </div>
+
+    <div class="requisitos">
+      <h3>Requisitos</h3>
+      <ul>
+        <li *ngFor="let req of oferta.requisitos">{{ req }}</li>
+      </ul>
+    </div>
+
+
+
+    <button class="boton-postular" (click)="postular()">Postularme</button>
+  </div>
+</div>
