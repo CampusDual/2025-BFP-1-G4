@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OfertasService } from '../services/ofertas-service.service';
-import { AuthService } from '../services/auth.service';
-import { InscripcionService } from '../services/inscription.service';
-import { UsuarioService } from '../services/usuario.service.module';
+import { OfertasService } from '../../services/ofertas-service.service';
+import { AuthService } from '../../services/auth.service';
+import { InscripcionService } from '../../services/inscription.service';
+import { UsuarioService } from '../../services/usuario.service.module';
 
 
 @Component({
@@ -61,7 +61,7 @@ constructor(
   }
 
   verDetalle(id: number): void {
-    this.router.navigate(['/detalle-oferta', id]);
+    this.router.navigate(['/detalle-oferta']);
   }
 
   actualizarPaginado(): void {

@@ -1,0 +1,80 @@
+.detalle-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.detalle-header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+
+.empresa-nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 0.25rem;
+}
+
+.puesto-titulo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #d32f2f;
+  margin-bottom: 1rem;
+}
+
+.oferta-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.oferta-meta mat-icon {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.btn-postular {
+  background-color: #e64a19;
+  color: white;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(230, 74, 25, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.btn-postular:hover {
+  background-color: #bf360c;
+}
+
+.detalle-cuerpo section {
+  margin-bottom: 2rem;
+}
+
+.detalle-cuerpo h3 {
+  font-size: 1.2rem;
+  color: #d32f2f;
+  margin-bottom: 0.8rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.3rem;
+}
+
+.detalle-cuerpo ul {
+  padding-left: 1.2rem;
+}
+
+.detalle-cuerpo li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}

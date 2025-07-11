@@ -10,11 +10,12 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
 import { AuthGuard } from './services/auth.guard';
 import { AdministrationComponent } from './administration/administration.component';
 import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candidatos-oferta.component';
-import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component'; // ajusta la ruta si es distinta
+
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
-import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.component';
-import { OfertasPostuladoComponent } from './ofertas-postulado/ofertas-postulado.component';
+import { DetalleOfertaComponent } from './componentes/detalle-oferta/detalle-oferta.component';
+import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofertas-postulado.component';
+import { VistaCandidatoComponent } from './componentes/vista-candidato/vista-candidato.component';
 
 const routes: Routes = [
   /*{ path: 'lista-empresas', component: ListaEmpresasComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },

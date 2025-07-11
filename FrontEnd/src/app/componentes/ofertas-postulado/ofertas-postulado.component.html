@@ -4,15 +4,12 @@
   <div class="ofertas-grid">
     <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">
       <h3 class="oferta-titulo">{{ oferta.title }}</h3>
-      <p class="oferta-empresa">
-        <mat-icon>business</mat-icon> {{ oferta.enterpriseName }}
-      </p>
+
       <p class="oferta-descripcion">{{ oferta.description }}</p>
-      <p class="oferta-email">
-        <mat-icon>email</mat-icon> {{ oferta.enterpriseEmail }}
-      </p>
+
       <p class="oferta-fecha">
-        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate | date:'dd/MM/yyyy' }}
+        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate |
+        date:'dd/MM/yyyy' }}
       </p>
 
       <button class="apButton" (click)="verDetalle(oferta.id)">
@@ -28,7 +25,8 @@
       Anterior
     </button>
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">
+    <button (click)="cambiarPagina('siguiente')"
+      [disabled]="paginaActual === totalPaginas">
       Siguiente
     </button>
   </div>

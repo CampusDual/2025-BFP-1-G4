@@ -40,10 +40,10 @@ import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candi
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
-import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
-import { DetalleOfertaComponent } from './detalle-oferta/detalle-oferta.component';
-import { OfertasPostuladoComponent } from './ofertas-postulado/ofertas-postulado.component';
+import { DetalleOfertaComponent } from './componentes/detalle-oferta/detalle-oferta.component';
+import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofertas-postulado.component';
+import { VistaCandidatoComponent } from './componentes/vista-candidato/vista-candidato.component';
 
 
 @NgModule({

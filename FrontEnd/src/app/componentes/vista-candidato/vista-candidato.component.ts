@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { User } from 'src/app/model/user.model';
-import { UsuarioService } from '../services/usuario.service.module';
+import { UsuarioService } from 'src/app/services/usuario.service.module';
 
 @Component({
   selector: 'app-vista-candidato',
