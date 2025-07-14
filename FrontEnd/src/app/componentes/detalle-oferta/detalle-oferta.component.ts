@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { OfertasService } from '../../services/ofertas-service.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class DetalleOfertaComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private ofertasService: OfertasService
+    private router: Router,
+    private ofertasService: OfertasService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +31,18 @@ export class DetalleOfertaComponent implements OnInit {
       });
     }
   }
+
+volver() {
+  const role = this.authService.getRole();
+
+  if (role === 'user') {
+    this.router.navigate(['/mis-postulaciones']);
+  } else if (role === 'enterprise') {
+    this.router.navigate(['/mostrar-oferta']);
+  } else {
+    this.router.navigate(['/']); // Fallback opcional
+  }
+}
 
   parseToList(texto: string): string[] {
   return texto.split('\n').filter(linea => linea.trim() !== '');
