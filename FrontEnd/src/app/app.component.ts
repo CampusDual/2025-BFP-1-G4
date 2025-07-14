@@ -20,12 +20,17 @@ export class AppComponent {
           '/publicar-empresa',
           '/mis-postulaciones',
           '/editar-perfil',
-          '/perfil-usuario'
+          '/perfil-usuario',
+          '/publicar-oferta',
+          '/editar-oferta/:id',
+          '/editar-oferta',
         ];
 
         // Rutas donde ocultar el footer que tienen parámetros (rutas dinámicas)
         const ocultarFooterPatrones = [
-          '/detalle-oferta/'
+          '/detalle-oferta/',
+          '/publicar-oferta/',
+          '/editar-oferta/'
         ];
 
         // Comprobar si la ruta actual está en la lista exacta
