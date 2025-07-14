@@ -1,60 +1,52 @@
-<div class="detalle-oferta-container">
-  <h2 class="titulo-oferta">Desarrollador Frontend Angular</h2>
+<div class="detalle-oferta-container" *ngIf="oferta">
+  <h2 class="titulo-oferta">{{ oferta.title }}</h2>
 
   <div class="info-principal">
     <p class="descripcion">
-      Buscamos un desarrollador frontend con experiencia en Angular para formar parte de nuestro equipo de tecnología y participar en proyectos innovadores de gran impacto.
+      {{ oferta.description }}
     </p>
 
     <div class="datos-oferta">
-      <div class="dato">
+      <div class="dato" *ngIf="oferta.enterpriseid">
         <span class="etiqueta">Empresa:</span>
-        <span class="valor">TechNova Solutions</span>
+        <span class="valor">ID: {{ oferta.enterpriseid }}</span>
+        <!-- Si tienes un nombre real en vez de ID, reemplaza esto -->
       </div>
-      <div class="dato">
-        <span class="etiqueta">Salario:</span>
-        <span class="valor">€32,000 - €38,000 / año</span>
-      </div>
-      <div class="dato">
-        <span class="etiqueta">Ubicación:</span>
-        <span class="valor">Madrid, España</span>
-      </div>
-      <div class="dato">
-        <span class="etiqueta">Tipo de contrato:</span>
-        <span class="valor">Indefinido</span>
-      </div>
-      <div class="dato">
+
+      <div class="dato" *ngIf="oferta.modality">
         <span class="etiqueta">Modalidad:</span>
-        <span class="valor">Remoto</span>
+        <span class="valor">{{ oferta.modality }}</span>
       </div>
-      <div class="dato">
-        <span class="etiqueta">Fecha límite:</span>
-        <span class="valor">31/08/2025</span>
+
+      <div class="dato" *ngIf="oferta.publicationdate">
+        <span class="etiqueta">Publicado el:</span>
+        <span class="valor">{{ oferta.publicationdate | date:'longDate' }}</span>
+      </div>
+
+      <div class="dato" *ngIf="oferta.active === false">
+        <span class="etiqueta">Estado:</span>
+        <span class="valor">Cerrada</span>
       </div>
     </div>
 
-    <div class="requisitos">
+    <div class="requisitos" *ngIf="oferta.requirements">
       <h3>Requisitos</h3>
       <ul>
-        <li>Experiencia mínima de 2 años con Angular 12+</li>
-        <li>Conocimientos sólidos de TypeScript y RxJS</li>
-        <li>Uso de herramientas como Git, Figma y Jira</li>
-        <li>Capacidad para trabajar en equipo y buena comunicación</li>
+        <li *ngFor="let req of parseToList(oferta.requirements)">{{ req }}</li>
       </ul>
     </div>
 
-    <div class="requisitos">
+    <div class="requisitos" *ngIf="oferta.conditions">
       <h3>Beneficios</h3>
       <ul>
-        <li>Horario flexible y 100% remoto</li>
-        <li>Plan de formación continua</li>
-        <li>Seguro médico privado</li>
-        <li>Días libres adicionales por antigüedad</li>
+        <li *ngFor="let cond of parseToList(oferta.conditions)">{{ cond }}</li>
       </ul>
     </div>
 
-    <div class="perfil-acciones" style="margin-top: 2rem;">
-      <button>Postularme</button>
+    <div class="perfil-acciones" style="margin-top: 2rem;" *ngIf="oferta.linkedin">
+      <a [href]="oferta.linkedin" target="_blank">
+        <button>Ver en LinkedIn</button>
+      </a>
       <button>Guardar oferta</button>
     </div>
   </div>

@@ -28,4 +28,9 @@ export class DetalleOfertaComponent implements OnInit {
       });
     }
   }
+
+  parseToList(texto: string): string[] {
+  return texto.split('\n').filter(linea => linea.trim() !== '');
+}
+
 }

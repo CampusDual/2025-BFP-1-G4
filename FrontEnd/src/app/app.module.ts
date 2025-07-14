@@ -43,7 +43,7 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { DetalleOfertaComponent } from './componentes/detalle-oferta/detalle-oferta.component';
 import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofertas-postulado.component';
-import { VistaCandidatoComponent } from './componentes/vista-candidato/vista-candidato.component';
+import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 
 
 @NgModule({

@@ -15,7 +15,7 @@ import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publica
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { DetalleOfertaComponent } from './componentes/detalle-oferta/detalle-oferta.component';
 import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofertas-postulado.component';
-import { VistaCandidatoComponent } from './componentes/vista-candidato/vista-candidato.component';
+import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 
 const routes: Routes = [
   /*{ path: 'lista-empresas', component: ListaEmpresasComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
