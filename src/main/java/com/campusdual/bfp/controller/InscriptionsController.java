@@ -53,4 +53,5 @@ public class InscriptionsController {
         return ResponseEntity.ok(response);
     }
 
+
 }
