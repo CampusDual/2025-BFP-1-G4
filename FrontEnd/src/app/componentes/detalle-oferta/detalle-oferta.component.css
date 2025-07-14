@@ -91,3 +91,29 @@
   line-height: 1.5;
   position: relative;
 }
+
+.perfil-acciones button {
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 1rem;
+}
+
+/* Botón LinkedIn: color azul, con sombra, destaca bien */
+.perfil-acciones a button {
+  min-width: 140px;
+  font-weight: 600;
+  border-radius: 30px;
+  background-color: #e64a19; /* naranja */
+  color: white;
+  box-shadow: 0 3px 8px rgba(230, 74, 25, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.perfil-acciones a button:hover {
+  background-color: #bf360c; /* naranja oscuro */
+  box-shadow: 0 5px 20px rgba(191, 54, 12, 0.9);
+}

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class MostrarOfertaComponent implements OnInit {
   offerActivas: any[] = [];
   ofertasPaginadas: any[] = [];
+  ofertasPostuladasIds: number[] = [];
   paginaActual: number = 1;
   elementosPorPagina: number = 12;
   totalPaginas: number = 1;
@@ -23,15 +24,34 @@ export class MostrarOfertaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Obtener el rol desde el token
+    // Obtener el rol desde el token (puede ser null)
     this.usuarioRol = this.authService.getRole();
 
-    // Cargar ofertas
-    this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
-      this.offerActivas = ofertas;
-      this.totalPaginas = Math.ceil(ofertas.length / this.elementosPorPagina);
-      this.actualizarPaginado();
+    // Obtener IDs de ofertas postuladas
+    this.ofertasService.getOfertasPostuladasPorUsuario().subscribe({
+      next: (ids: number[]) => {
+        this.ofertasPostuladasIds = ids;
+      },
+      error: (err) => {
+        console.error('Error al obtener ofertas postuladas:', err);
+      }
     });
+
+    // Cargar ofertas activas
+    this.ofertasService.getAllActiveOffers().subscribe({
+      next: (ofertas: any[]) => {
+        this.offerActivas = ofertas;
+        this.totalPaginas = Math.ceil(this.offerActivas.length / this.elementosPorPagina);
+        this.actualizarPaginado();
+      },
+      error: (err) => {
+        console.error('Error al cargar ofertas activas:', err);
+      }
+    });
+  }
+
+  yaPostulado(idOferta: number): boolean {
+    return this.ofertasPostuladasIds.includes(idOferta);
   }
 
   actualizarPaginado(): void {
@@ -50,7 +70,7 @@ export class MostrarOfertaComponent implements OnInit {
   }
 
   verDetalle(id: number): void {
-    this.router.navigate(['/detalle-oferta']);
+    this.router.navigate(['/detalle-oferta', id]);
   }
 
   aplicarOferta(oferta: any): void {
@@ -60,9 +80,17 @@ export class MostrarOfertaComponent implements OnInit {
       return;
     }
 
+    // Aquí asumimos que inscribirse devuelve Observable<any>
     this.ofertasService.inscribirse(oferta.id).subscribe({
-      next: () => alert(`✅ Te has postulado a la oferta: ${oferta.title}`),
-      error: () => alert('❌ Ya estás inscrito en esta oferta.')
+      next: () => {
+        alert(`✅ Te has postulado a la oferta: ${oferta.title}`);
+        // Actualiza lista para deshabilitar botón tras postularse
+        this.ofertasPostuladasIds.push(oferta.id);
+      },
+      error: (err) => {
+        console.error('Error al postularse:', err);
+        alert('❌ Ya estás inscrito en esta oferta o ocurrió un error.');
+      }
     });
   }
 }

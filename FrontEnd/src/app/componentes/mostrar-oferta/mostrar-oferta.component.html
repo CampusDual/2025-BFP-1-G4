@@ -21,8 +21,10 @@
         <button
           class="apButton mitad"
           *ngIf="usuarioRol !== 'admin' && usuarioRol !== 'enterprise'"
-          (click)="aplicarOferta(oferta)">
-          Postularse
+          (click)="aplicarOferta(oferta)"
+          [disabled]="yaPostulado(oferta.id)"
+          [ngClass]="{ 'boton-disabled': yaPostulado(oferta.id) }">
+          {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
         </button>
 
         <button

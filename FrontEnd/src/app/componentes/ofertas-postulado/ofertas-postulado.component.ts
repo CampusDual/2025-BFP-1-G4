@@ -61,7 +61,7 @@ constructor(
   }
 
   verDetalle(id: number): void {
-    this.router.navigate(['/detalle-oferta']);
+    this.router.navigate(['/detalle-oferta', id]);
   }
 
   actualizarPaginado(): void {

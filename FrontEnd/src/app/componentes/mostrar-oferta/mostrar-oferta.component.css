@@ -33,7 +33,8 @@
 
 .ofertas-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* solo 4 columnas */
+  grid-template-columns: repeat(4, 1fr);
+  /* solo 4 columnas */
   gap: 20px;
   flex-grow: 1;
 }
@@ -156,8 +157,10 @@ mat-icon {
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
   width: 98.7%;
   margin-bottom: 0;
-  position:sticky; /* NO sticky ni absolute */
-  bottom: auto; /* no anclado */
+  position: sticky;
+  /* NO sticky ni absolute */
+  bottom: auto;
+  /* no anclado */
 }
 
 .integrated-footer a {
@@ -174,10 +177,20 @@ mat-icon {
 
 .botones-container {
   display: flex;
-  gap: 10px; /* espacio entre botones */
+  gap: 10px;
+  /* espacio entre botones */
   margin-top: auto;
 }
 
 .botones-container .mitad {
   flex: 1;
+}
+
+button.boton-disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  border: 1px solid #999 !important;
+  pointer-events: none;
+  /* Por si acaso */
 }

@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'publicar-oferta:id', component: PublicarOfertaComponent },
   { path: 'editar-oferta/:id', component: PublicarOfertaComponent },
   { path: 'publicar-empresa', component: PublicarEmpresaComponent },
-  { path: 'detalle-oferta', component: DetalleOfertaComponent },
+  { path: 'detalle-oferta/:id', component: DetalleOfertaComponent },
   { path: 'publicar-empresa/:id', component: PublicarEmpresaComponent },
   { path: 'candidatos-oferta/:id', component: CandidatosOfertaComponent },
   { path: 'perfil-usuario', component: PerfilUsuarioComponent },
