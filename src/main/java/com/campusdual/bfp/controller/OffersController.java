@@ -51,7 +51,8 @@ public class OffersController {
 
     @GetMapping("/findAllByActive")
     public List<OffersDTO> getAllActiveOffers() {
-        return offersService.findAllByActiveOffersOrderByPublicationDateDesc();}
+        return offersService.findAllByActiveOffersOrderByPublicationDateDesc();
+    }
 
     @PreAuthorize("hasRole('user')")
     @PostMapping("/apply")

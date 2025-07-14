@@ -178,30 +178,13 @@ public class OffersService implements IOffersService {
             return dto;
         }).collect(Collectors.toList());
     }
-/*
+
     @Override
     public List<OffersDTO> findOffersByUserId(Integer userId) {
         List<Offer> offers = inscriptionsDao.findOffersByUserId(userId);
-        return offers.stream().map(offer-> {
-            OffersDTO dto = new OffersDTO();
-            dto.setId(offer.getId());
-            dto.setTitle(offer.getTitle());
-            dto.setDescription(offer.getDescription());
-            dto.setPublicationDate(offer.getPublicationDate());
-            dto.setActive(offer.isActive());
-            dto.setRequirements(offer.getRequirements());
-            dto.setModality(offer.getModality());
-            dto.setLinkedin(offer.getLinkedin());
-            dto.setConditions(offer.getConditions());
-            return dto;
-        }).collect(Collectors.toList());
-    }*/
-@Override
-public List<OffersDTO> findOffersByUserId(Integer userId) {
-    List<Offer> offers = inscriptionsDao.findOffersByUserId(userId);
-    return offers.stream()
-            .map(this::convertToDTO)
-            .collect(Collectors.toList());
-}
+        return offers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
 
 }

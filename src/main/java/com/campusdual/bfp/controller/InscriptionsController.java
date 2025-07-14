@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -26,12 +27,12 @@ public class InscriptionsController {
     @PreAuthorize("hasRole('user')")
     @PostMapping("/add")
     public InscriptionsDTO addInscription(@RequestBody InscriptionsDTO inscription) {
-    return inscriptionsService.insertInscriptions(inscription);
+        return inscriptionsService.insertInscriptions(inscription);
     }
 
     @GetMapping("/getAll")
     public List<InscriptionsDTO> queryAllInscriptions() {
-    return inscriptionsService.queryAllInscriptions();
+        return inscriptionsService.queryAllInscriptions();
     }
 
     @PreAuthorize("hasRole('enterprise')")
