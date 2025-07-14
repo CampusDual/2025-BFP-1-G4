@@ -8,15 +8,14 @@
     </p>
 
     <div class="datos-oferta">
-      <div class="dato" *ngIf="oferta.enterpriseid">
+      <div class="dato" *ngIf="oferta.enterpriseName">
         <span class="etiqueta">Empresa:</span>
-        <span class="valor">ID: {{ oferta.enterpriseid }}</span>
-        <!-- Si tienes un nombre real en vez de ID, reemplaza esto -->
+        <span class="valor"> {{ oferta.enterpriseName }}</span>
       </div>
 
       <div class="dato" *ngIf="oferta.modality">
         <span class="etiqueta">Modalidad:</span>
-        <span class="valor">{{ oferta.modality }}</span>
+        <span class="valor"> {{ oferta.modality }}</span>
       </div>
 
       <div class="dato" *ngIf="oferta.publicationdate">

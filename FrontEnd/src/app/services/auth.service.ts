@@ -28,6 +28,7 @@ export class AuthService {
         sessionStorage.setItem('token', log[0]);
         sessionStorage.setItem('username', credentials.username);
         sessionStorage.setItem('role', log[1]);
+      
       }
       return log[0];
     })
