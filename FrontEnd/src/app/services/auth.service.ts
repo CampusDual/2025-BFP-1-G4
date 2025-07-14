@@ -28,6 +28,7 @@ export class AuthService {
         sessionStorage.setItem('token', log[0]);
         sessionStorage.setItem('username', credentials.username);
         sessionStorage.setItem('role', log[1]);
+      
       }
       return log[0];
     })
@@ -56,7 +57,14 @@ export class AuthService {
 
   try {
     const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.id || payload.sub || null;
+    const id = payload.id || payload.sub || null;
+
+    if (id === null) return null;
+
+    // Convierte id a número, si no puede, devuelve null
+    const idNum = Number(id);
+    return isNaN(idNum) ? null : idNum;
+
   } catch (e) {
     console.error('Error al decodificar el token', e);
     return null;

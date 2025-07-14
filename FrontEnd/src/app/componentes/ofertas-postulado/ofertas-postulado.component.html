@@ -1,0 +1,35 @@
+<h1 class="page-title">Mis postulaciones</h1>
+
+<div class="contenido-ofertas">
+  <div class="ofertas-grid">
+    <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">
+      <h3 class="oferta-titulo">{{ oferta.title }}</h3>
+
+      <p class="oferta-descripcion">{{ oferta.description }}</p>
+
+      <p class="oferta-fecha">
+        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate |
+        date:'dd/MM/yyyy' }}
+      </p>
+
+      <button class="apButton" (click)="verDetalle(oferta.id)">
+        Ver detalle
+      </button>
+    </div>
+  </div>
+
+  <br /><br />
+
+  <div class="paginacion">
+    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">
+      Anterior
+    </button>
+    <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+    <button (click)="cambiarPagina('siguiente')"
+      [disabled]="paginaActual === totalPaginas">
+      Siguiente
+    </button>
+  </div>
+
+  <br />
+</div>

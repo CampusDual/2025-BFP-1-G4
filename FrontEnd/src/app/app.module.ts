@@ -40,8 +40,10 @@ import { CandidatosOfertaComponent } from './componentes/candidatos-oferta/candi
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PublicarEmpresaComponent } from './componentes/publicar-empresa/publicar-empresa.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
-import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
+import { DetalleOfertaComponent } from './componentes/detalle-oferta/detalle-oferta.component';
+import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofertas-postulado.component';
+import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 
 
 @NgModule({
@@ -61,6 +63,8 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
     PerfilUsuarioComponent,
     VistaCandidatoComponent,
     EditarPerfilComponent,
+    DetalleOfertaComponent,
+    OfertasPostuladoComponent,
    ],
   imports: [
     BrowserModule,
@@ -93,7 +97,7 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
                 ],
   bootstrap: [AppComponent]
 
-  
+
 })
 export class AppModule { }
 

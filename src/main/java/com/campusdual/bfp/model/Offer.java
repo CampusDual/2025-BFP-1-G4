@@ -26,6 +26,18 @@ public class Offer {
     @Column
     private boolean active;
 
+    @Column
+    private String requirements;
+
+    @Column
+    private String modality;
+
+    @Column
+    private String linkedin;
+
+    @Column
+    private String conditions;
+
     public Integer getId() {
         return id;
     }
@@ -70,4 +82,19 @@ public class Offer {
         this.active = active;
     }
 
+    public String getRequirements() { return requirements; }
+
+    public void setRequirements(String requirements) { this.requirements = requirements; }
+
+    public String getModality() { return modality; }
+
+    public void setModality(String modality) { this.modality = modality; }
+
+    public String getLinkedin() { return linkedin; }
+
+    public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
+
+    public String getConditions() { return conditions; }
+
+    public void setConditions(String conditions) { this.conditions = conditions; }
 }

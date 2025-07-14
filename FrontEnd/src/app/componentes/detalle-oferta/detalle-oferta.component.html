@@ -1,0 +1,53 @@
+<!--PARTE DE COPIA-->
+<div class="detalle-oferta-container" *ngIf="oferta">
+  <h2 class="titulo-oferta">{{ oferta.title }}</h2>
+
+  <div class="info-principal">
+    <p class="descripcion">
+      {{ oferta.description }}
+    </p>
+
+    <div class="datos-oferta">
+      <div class="dato" *ngIf="oferta.enterpriseName">
+        <span class="etiqueta">Empresa:</span>
+        <span class="valor"> {{ oferta.enterpriseName }}</span>
+      </div>
+
+      <div class="dato" *ngIf="oferta.modality">
+        <span class="etiqueta">Modalidad:</span>
+        <span class="valor"> {{ oferta.modality }}</span>
+      </div>
+
+      <div class="dato" *ngIf="oferta.publicationdate">
+        <span class="etiqueta">Publicado el:</span>
+        <span class="valor">{{ oferta.publicationdate}}</span>
+      </div>
+
+      <div class="dato" *ngIf="oferta.active === false">
+        <span class="etiqueta">Estado:</span>
+        <span class="valor">Cerrada</span>
+      </div>
+    </div>
+
+    <div class="requisitos" *ngIf="oferta.requirements">
+      <h3>Requisitos</h3>
+      <ul>
+        <li *ngFor="let req of parseToList(oferta.requirements)">{{ req }}</li>
+      </ul>
+    </div>
+
+    <div class="requisitos" *ngIf="oferta.conditions">
+      <h3>Beneficios</h3>
+      <ul>
+        <li *ngFor="let cond of parseToList(oferta.conditions)">{{ cond }}</li>
+      </ul>
+    </div>
+
+    <div class="perfil-acciones" style="margin-top: 2rem;"
+      *ngIf="oferta.linkedin">
+      <a [href]="oferta.linkedin" target="_blank">
+        <button>Ver en LinkedIn</button>
+      </a>
+    </div>
+  </div>
+</div>

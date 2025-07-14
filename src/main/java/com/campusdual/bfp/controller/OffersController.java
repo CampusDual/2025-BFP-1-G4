@@ -51,7 +51,8 @@ public class OffersController {
 
     @GetMapping("/findAllByActive")
     public List<OffersDTO> getAllActiveOffers() {
-        return offersService.findAllByActiveOffersOrderByPublicationDateDesc();}
+        return offersService.findAllByActiveOffersOrderByPublicationDateDesc();
+    }
 
     @PreAuthorize("hasRole('user')")
     @PostMapping("/apply")
@@ -71,7 +72,7 @@ public class OffersController {
 
     @PutMapping("/{id}")
     public OffersDTO updateOffer(@PathVariable int id, @RequestBody OffersDTO offer) {
-        offer.setId(id);  // Asegúrate que el DTO tiene setId para asignar el id recibido
+        offer.setId(id);
         return offersService.updateOffer(offer);
     }
 

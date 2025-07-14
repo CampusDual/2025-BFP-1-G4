@@ -17,7 +17,11 @@ export class PublicarOfertaComponent implements OnInit {
     active: true,
     enterpriseName: '',
     enterpriseId: 0,
-    enterpriseEmail: ''
+    enterpriseEmail: '',
+    requirements: '',
+    modality: '',
+    linkedin: '',
+    conditions: ''
   };
 
   modoEditar: boolean = false;

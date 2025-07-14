@@ -7,4 +7,10 @@ export interface Oferta {
   enterpriseName: String;
   enterpriseId: Number;
   enterpriseEmail: String;
+  requirements: string;
+  modality: string;
+  linkedin?: string;
+  conditions?: string;
 }
+
+

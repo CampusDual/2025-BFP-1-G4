@@ -12,16 +12,27 @@
         <mat-icon>email</mat-icon> {{ oferta.enterpriseEmail }}
       </p>
       <p class="oferta-fecha">
-        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate | date:'dd/MM/yyyy' }}
+        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate |
+        date:'dd/MM/yyyy' }}
       </p>
 
       <!-- Botón solo visible para usuarios que no sean admin ni enterprise -->
-      <button
-        class="apButton"
-        *ngIf="usuarioRol !== 'admin' && usuarioRol !== 'enterprise'"
-        (click)="aplicarOferta(oferta)">
-        Postularse
-      </button>
+      <div class="botones-container">
+        <button
+          class="apButton mitad"
+          *ngIf="usuarioRol !== 'admin' && usuarioRol !== 'enterprise'"
+          (click)="aplicarOferta(oferta)"
+          [disabled]="yaPostulado(oferta.id)"
+          [ngClass]="{ 'boton-disabled': yaPostulado(oferta.id) }">
+          {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
+        </button>
+
+        <button
+          class="apButton mitad"
+          (click)="verDetalle(oferta.id)">
+          Ver detalles
+        </button>
+      </div>
     </div>
   </div>
 
@@ -32,23 +43,24 @@
       Anterior
     </button>
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">
+    <button (click)="cambiarPagina('siguiente')"
+      [disabled]="paginaActual === totalPaginas">
       Siguiente
     </button>
   </div>
 
   <br>
-<footer class="integrated-footer">
-  <div class="footer-content">
-    <p>&copy;  2025  CLUSTER TIC GALICIA. Todos los derechos reservados.</p>
-    <!--
+  <footer class="integrated-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 CLUSTER TIC GALICIA. Todos los derechos reservados.</p>
+      <!--
     <nav class="footer-links">
       <a routerLink="/contacto">Contacto</a>
       <a routerLink="/privacidad">Privacidad</a>
       <a routerLink="/terminos">Términos</a>
     </nav>
     -->
-  </div>
-</footer>
+    </div>
+  </footer>
   <br>
 </div>

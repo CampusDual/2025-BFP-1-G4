@@ -1,6 +1,5 @@
 <div class="page-container">
-  <h1 class="page-title">{{ modoEditar ? 'Editar oferta' :
-    'Publicar nueva oferta' }}</h1>
+  <h1 class="page-title">{{ modoEditar ? 'Editar oferta' : 'Publicar nueva oferta' }}</h1>
 
   <form class="oferta-form" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -23,16 +22,48 @@
         required></textarea>
     </div>
 
+    <div class="form-group">
+      <label for="requirements">Requisitos</label>
+      <textarea
+        [(ngModel)]="oferta.requirements"
+        name="requirements"
+        id="requirements"
+        placeholder="Requisitos"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="modality">Modalidad</label>
+      <input
+        [(ngModel)]="oferta.modality"
+        name="modality"
+        id="modality"
+        placeholder="Modalidad" />
+    </div>
+
+    <div class="form-group">
+      <label for="conditions">Beneficios</label>
+      <textarea
+        [(ngModel)]="oferta.conditions"
+        name="conditions"
+        id="conditions"
+        placeholder="Beneficios"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="linkedin">LinkedIn</label>
+      <input
+        [(ngModel)]="oferta.linkedin"
+        name="linkedin"
+        id="linkedin"
+        placeholder="URL LinkedIn" />
+    </div>
+
     <button
       mat-flat-button
       color="warn"
       type="submit"
-      [disabled]="
-    !oferta.title || !oferta.title.trim() ||
-    !oferta.description || !oferta.description.trim()
-  ">
+      [disabled]="!oferta.title || !oferta.title.trim() || !oferta.description || !oferta.description.trim()">
       Guardar Oferta
     </button>
-
   </form>
 </div>

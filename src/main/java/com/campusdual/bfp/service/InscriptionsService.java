@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,7 +54,7 @@ public class InscriptionsService implements IInscriptionsService {
             dto.setSurname2(user.getSurname2());
             dto.setEmail(user.getEmail());
             dto.setPhonenumber(user.getPhonenumber());
-            // Map other fields as necessary
+
             return dto;
         }).collect(Collectors.toList());
     }
@@ -68,9 +69,31 @@ public class InscriptionsService implements IInscriptionsService {
             dto.setDescription(offer.getDescription());
             dto.setPublicationDate(offer.getPublicationDate());
             dto.setActive(offer.isActive());
-            // Map other fields as necessary
+            dto.setRequirements(offer.getRequirements());
+            dto.setModality(offer.getModality());
+            dto.setLinkedin(offer.getLinkedin());
+            dto.setConditions(offer.getConditions());
+            if (offer.getEnterprise() != null) {
+                dto.setEnterpriseId(offer.getEnterprise().getId());
+                dto.setEnterpriseName(offer.getEnterprise().getName());
+                dto.setEnterpriseEmail(offer.getEnterprise().getEmail());
+            }
+
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public String toggleActiveStatus(Long id, InscriptionsDTO inscriptionsDTO) {
+        Optional<Inscriptions> optionalInscription = inscriptionsDao.findById(id);
+        String status = inscriptionsDTO.getStatus();
+        if (optionalInscription.isPresent()) {
+            Inscriptions inscription = optionalInscription.get();
+            inscription.setStatus(status);
+            inscriptionsDao.saveAndFlush(inscription);
+            return inscription.getStatus();
+        }
+        return "Inscription not found";
     }
 
 }
