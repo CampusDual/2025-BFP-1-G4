@@ -73,6 +73,11 @@ public class InscriptionsService implements IInscriptionsService {
             dto.setModality(offer.getModality());
             dto.setLinkedin(offer.getLinkedin());
             dto.setConditions(offer.getConditions());
+            if (offer.getEnterprise() != null) {
+                dto.setEnterpriseId(offer.getEnterprise().getId());
+                dto.setEnterpriseName(offer.getEnterprise().getName());
+                dto.setEnterpriseEmail(offer.getEnterprise().getEmail());
+            }
 
             return dto;
         }).collect(Collectors.toList());
