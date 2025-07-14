@@ -24,34 +24,28 @@ export class MostrarOfertaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Obtener el rol desde el token (puede ser null)
+    // Obtener el rol desde el token
     this.usuarioRol = this.authService.getRole();
 
-    // Obtener IDs de ofertas postuladas
-    this.ofertasService.getOfertasPostuladasPorUsuario().subscribe({
-      next: (ids: number[]) => {
-        this.ofertasPostuladasIds = ids;
-      },
-      error: (err) => {
-        console.error('Error al obtener ofertas postuladas:', err);
-      }
+    // Obtener las ofertas en las que ya se postuló el usuario
+    this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ids => {
+      this.ofertasPostuladasIds = ids;
+      console.log('IDs de ofertas ya postuladas:', ids);
     });
 
+
     // Cargar ofertas activas
-    this.ofertasService.getAllActiveOffers().subscribe({
-      next: (ofertas: any[]) => {
-        this.offerActivas = ofertas;
-        this.totalPaginas = Math.ceil(this.offerActivas.length / this.elementosPorPagina);
-        this.actualizarPaginado();
-      },
-      error: (err) => {
-        console.error('Error al cargar ofertas activas:', err);
-      }
+    this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
+      this.offerActivas = ofertas;
+      this.totalPaginas = Math.ceil(ofertas.length / this.elementosPorPagina);
+      this.actualizarPaginado();
     });
   }
 
   yaPostulado(idOferta: number): boolean {
-    return this.ofertasPostuladasIds.includes(idOferta);
+    const postulado = this.ofertasPostuladasIds.includes(idOferta);
+    console.log('Oferta:', idOferta, '→ Ya postulado?', postulado);
+    return postulado;
   }
 
   actualizarPaginado(): void {
@@ -80,17 +74,9 @@ export class MostrarOfertaComponent implements OnInit {
       return;
     }
 
-    // Aquí asumimos que inscribirse devuelve Observable<any>
     this.ofertasService.inscribirse(oferta.id).subscribe({
-      next: () => {
-        alert(`✅ Te has postulado a la oferta: ${oferta.title}`);
-        // Actualiza lista para deshabilitar botón tras postularse
-        this.ofertasPostuladasIds.push(oferta.id);
-      },
-      error: (err) => {
-        console.error('Error al postularse:', err);
-        alert('❌ Ya estás inscrito en esta oferta o ocurrió un error.');
-      }
+      next: () => alert(`✅ Te has postulado a la oferta: ${oferta.title}`),
+      error: () => alert('❌ Ya estás inscrito en esta oferta.')
     });
   }
 }
