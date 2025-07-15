@@ -15,6 +15,7 @@ public class OffersDTO {
     private String conditions;
     private String enterpriseName;
     private String enterpriseEmail;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -83,4 +84,9 @@ public class OffersDTO {
     public String getEnterpriseEmail() { return enterpriseEmail; }
 
     public void setEnterpriseEmail(String enterpriseEmail) { this.enterpriseEmail = enterpriseEmail; }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
+
 }

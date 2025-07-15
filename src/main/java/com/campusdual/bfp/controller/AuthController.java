@@ -61,8 +61,9 @@ public class AuthController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String token = this.jwtUtils.generateJWTToken(userDetails.getUsername());
             String role = userService.getRoleNameByUsername(userDetails.getUsername());
+            Integer userId = userService.getUserIdByLogin(userDetails.getUsername());
 
-            return ResponseEntity.ok(token + "|" + role);
+            return ResponseEntity.ok(token + "|" + role + "|" + userId);
 
 
         } catch (AuthenticationException ex) {
