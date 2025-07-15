@@ -20,39 +20,51 @@ export class VistaCandidatoComponent implements OnInit {
     private inscripcionService: InscripcionService
   ) { }
 
-  ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.ofertaId = Number(this.route.snapshot.queryParamMap.get('ofertaId')) || 0;
+ngOnInit(): void {
+  const userId = Number(this.route.snapshot.paramMap.get('id'));
+  this.ofertaId = Number(this.route.snapshot.queryParamMap.get('ofertaId')) || 0;
 
-    if (id) {
-      this.usuarioService.getUserById(id).subscribe({
-        next: (data) => {
-          console.log('🟢 Datos del candidato cargados:', data);
-          this.usuario = data;
-        },
-        error: (err) => {
-          console.error('🔴 Error al cargar datos del candidato:', err);
-        }
-      });
-    } else {
-      console.warn('⚠️ ID de candidato no especificado en la URL.');
-    }
-  }
-
-  cambiarEstadoNuevo(estado: 'pendiente' | 'aceptado' | 'rechazado'): void {
-    if (!this.usuario || !this.ofertaId) {
-      console.error('No hay usuario u ofertaId para cambiar estado');
-      return;
-    }
-
-    this.inscripcionService.cambiarEstado(this.inscriptionId, estado).subscribe({
-      next: (resp) => {
-        console.log(`✅ Estado cambiado a ${estado}`, resp);
+  if (userId && this.ofertaId) {
+    this.usuarioService.getUserById(userId).subscribe({
+      next: (data) => {
+        this.usuario = data;
       },
       error: (err) => {
-        console.error('Error al cambiar estado:', err);
+        console.error('🔴 Error al cargar datos del candidato:', err);
       }
     });
 
+    this.inscripcionService
+      .getInscripcionPorUsuarioYOferta(userId, this.ofertaId)
+      .subscribe({
+        next: (inscripcion) => {
+          if (inscripcion && inscripcion.id) {
+            this.inscriptionId = inscripcion.id;
+            console.log('🟢 Inscription ID:', this.inscriptionId);
+          } else {
+            console.warn('⚠️ Inscripción no encontrada en backend');
+          }
+        },
+        error: (err) => {
+          console.error('🔴 Error al obtener inscripción:', err);
+        }
+      });
   }
+}
+
+cambiarEstadoNuevo(estado: 'pendiente' | 'aceptado' | 'rechazado'): void {
+  if (!this.inscriptionId || !this.usuario || !this.ofertaId) {
+    console.error('Faltan datos: inscripción, usuario u oferta');
+    return;
+  }
+
+  this.inscripcionService.cambiarEstado(this.inscriptionId, estado).subscribe({
+    next: (resp) => {
+      console.log(`✅ Estado cambiado a ${estado}`, resp);
+    },
+    error: (err) => {
+      console.error('Error al cambiar estado:', err);
+    }
+  });
+}
 }
