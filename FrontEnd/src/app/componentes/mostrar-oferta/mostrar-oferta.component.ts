@@ -16,6 +16,7 @@ export class MostrarOfertaComponent implements OnInit {
   elementosPorPagina: number = 12;
   totalPaginas: number = 1;
   usuarioRol: string | null = '';
+  userId: number | null = null;
 
   constructor(
     private ofertasService: OfertasService,
@@ -24,17 +25,20 @@ export class MostrarOfertaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Obtener el rol desde el token
     this.usuarioRol = this.authService.getRole();
+    this.userId = this.authService.getUserId();
 
-    // Obtener las ofertas en las que ya se postuló el usuario
-    this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ids => {
-      this.ofertasPostuladasIds = ids;
-      console.log('IDs de ofertas ya postuladas:', ids);
-    });
+    if (this.userId !== null) {
+      // Ahora sí puedes llamar a getOfertasPostuladasPorUsuario() seguro
+this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
+  this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
+  console.log('IDs de ofertas ya postuladas:', this.ofertasPostuladasIds);
+});
+    } else {
+      console.warn('⚠️ No se pudo recuperar userId de sessionStorage.');
+    }
 
-
-    // Cargar ofertas activas
+    // Siempre cargar ofertas activas
     this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
       this.offerActivas = ofertas;
       this.totalPaginas = Math.ceil(ofertas.length / this.elementosPorPagina);
@@ -67,16 +71,23 @@ export class MostrarOfertaComponent implements OnInit {
     this.router.navigate(['/detalle-oferta', id]);
   }
 
-  aplicarOferta(oferta: any): void {
-    const username = this.authService.getUsername();
-    if (!username) {
-      alert('⚠️ Debes iniciar sesión para postularte.');
-      return;
-    }
-
-    this.ofertasService.inscribirse(oferta.id).subscribe({
-      next: () => alert(`✅ Te has postulado a la oferta: ${oferta.title}`),
-      error: () => alert('❌ Ya estás inscrito en esta oferta.')
-    });
+aplicarOferta(oferta: any): void {
+  const username = this.authService.getUsername();
+  if (!username) {
+    alert('⚠️ Debes iniciar sesión para postularte.');
+    return;
   }
+
+  this.ofertasService.inscribirse(oferta.id).subscribe({
+    next: () => {
+      alert(`✅ Te has postulado a la oferta: ${oferta.title}`);
+
+      // 🔁 Refrescar postulaciones para que el botón se actualice
+      this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
+        this.ofertasPostuladasIds = ofertas.map(o => o.id);
+      });
+    },
+    error: () => alert('❌ Ya estás inscrito en esta oferta.')
+  });
+}
 }

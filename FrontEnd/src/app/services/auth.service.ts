@@ -24,11 +24,12 @@ export class AuthService {
     map((response: string) => {
       // Espera formato: token|role
       let log: string[] = response.split('|');
-      if (log[0] && log[1]) {
+      if (log[0] && log[1] && log[2]) {
         sessionStorage.setItem('token', log[0]);
         sessionStorage.setItem('username', credentials.username);
         sessionStorage.setItem('role', log[1]);
-      
+        sessionStorage.setItem('userId', log[2]); // Guardar userId si está presente
+
       }
       return log[0];
     })
@@ -47,11 +48,19 @@ export class AuthService {
     return sessionStorage.getItem('username');
   }
 
+getUserId(): number | null {
+  const id = sessionStorage.getItem('userId');
+  console.log('[DEBUG] userId recuperado del sessionStorage:', id);
+  const parsedId = Number(id);
+  return isNaN(parsedId) ? null : parsedId;
+}
+
+
   logout(): void {
     sessionStorage.clear();
   }
 
-  getUserId(): number | null {
+  /* getUserId(): number | null {
   const token = sessionStorage.getItem('token');
   if (!token) return null;
 
@@ -69,7 +78,7 @@ export class AuthService {
     console.error('Error al decodificar el token', e);
     return null;
   }
-}
+}*/
 
 
 }

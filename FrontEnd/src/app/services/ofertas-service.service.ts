@@ -19,7 +19,7 @@ export class OfertasService {
     });
   }
 
- getOfertasPostuladasPorUsuario(): Observable<number[]> {
+ getOfertasPostuladasPorUsuario(): Observable<any[]> {
   const userId = sessionStorage.getItem('userId');
   console.log('userId recuperado:', userId);
 
@@ -28,7 +28,7 @@ export class OfertasService {
     return of([]);
   }
 
-  return this.http.get<number[]>(`${this.apiUrl}/inscriptions/byUser/${userId}`, {
+  return this.http.get<number[]>(`http://localhost:30030/inscriptions/byUser/${userId}`, {
     headers: this.getAuthHeaders()
   });
 }
