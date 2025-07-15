@@ -5,7 +5,16 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class InscripcionService {
+export class InscripcionService { 
+cambiarEstado(inscriptionId: number, nuevoEstado: string): Observable<any> {
+  const body = {
+    status: nuevoEstado
+  };
+
+  const headers = this.getAuthHeaders();
+  return this.http.put(`${this.apiUrl}/toggleActiveStatus/${inscriptionId}`, body, { headers });
+}
+
 
   private apiUrl = 'http://localhost:30030/inscriptions'; // Cambia la URL según tu backend
 

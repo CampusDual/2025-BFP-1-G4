@@ -12,7 +12,8 @@
       <th>Nombre</th>
       <th>Email</th>
       <th>Teléfono</th>
-      <th>Acción</th> <!-- Nueva columna -->
+      <th>Estado</th> <!-- 🆕 Nueva columna -->
+      <th>Acción</th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +22,17 @@
       <td>{{ candidato.email }}</td>
       <td>{{ candidato.phonenumber }}</td>
       <td>
+        <span
+          [ngClass]="{
+            'estado-pendiente': candidato.status === 'pendiente',
+            'estado-aceptado': candidato.status === 'aceptado',
+            'estado-rechazado': candidato.status === 'rechazado'
+          }"
+        >
+          {{ candidato.status | titlecase }}
+        </span>
+      </td>
+      <td>
         <button class="add-btn" (click)="verPerfil(candidato.id)">
           Ver perfil
         </button>
@@ -28,3 +40,4 @@
     </tr>
   </tbody>
 </table>
+

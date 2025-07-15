@@ -75,3 +75,16 @@ table {
 .add-btn:focus {
   box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.5);
 }
+
+.estado-pendiente {
+  color: gray;
+  font-weight: bold;
+}
+.estado-aceptado {
+  color: green;
+  font-weight: bold;
+}
+.estado-rechazado {
+  color: red;
+  font-weight: bold;
+}
