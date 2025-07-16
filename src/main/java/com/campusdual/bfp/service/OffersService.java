@@ -187,4 +187,26 @@ public class OffersService implements IOffersService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<OffersDTO> findActiveOffersByTitleOrDescription(String searchText) {
+        List<Offer> offers = offersDao.findActiveByTitleOrDescriptionContainingIgnoreCase(searchText);
+        return offers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OffersDTO> findEnterpriseOffersByTitleOrDescription(String searchText) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userDao.findByLogin(auth.getName());
+        if (user == null || user.getEnterprise() == null) {
+            throw new RuntimeException("No se pudo obtener la empresa del usuario logueado.");
+        }
+        Integer enterpriseId = user.getEnterprise().getId();
+        List<Offer> offers = offersDao.findByEnterpriseIdAndTitleOrDescriptionContainingIgnoreCase(enterpriseId, searchText);
+        return offers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
 }

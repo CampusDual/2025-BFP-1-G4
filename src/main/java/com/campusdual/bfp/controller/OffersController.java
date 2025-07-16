@@ -1,6 +1,7 @@
 package com.campusdual.bfp.controller;
 
 import com.campusdual.bfp.api.IOffersService;
+import com.campusdual.bfp.model.dto.EnterpriseDTO;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -74,6 +75,17 @@ public class OffersController {
     public OffersDTO updateOffer(@PathVariable int id, @RequestBody OffersDTO offer) {
         offer.setId(id);
         return offersService.updateOffer(offer);
+    }
+
+    @GetMapping("/byTitleOrDescription")
+    public List<OffersDTO> findActiveOffersByTitleOrDescription(@RequestParam String searchText) {
+        return offersService.findActiveOffersByTitleOrDescription(searchText);
+    }
+
+    @PreAuthorize("hasRole('enterprise')")
+    @GetMapping("/enterprise/filterByText")
+    public List<OffersDTO> findEnterpriseOffersByTitleOrDescription(@RequestParam String searchText) {
+        return offersService.findEnterpriseOffersByTitleOrDescription(searchText);
     }
 
 }

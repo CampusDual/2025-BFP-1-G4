@@ -7,6 +7,15 @@ import { Oferta } from '../model/oferta.model';
   providedIn: 'root'
 })
 export class OfertasService {
+  buscarOfertasPorTexto(texto: string) {
+    return this.http.get<any[]>(`http://localhost:30030/offers/enterprise/filterByText`, {
+      params: { searchText: texto }
+    });
+  }
+
+  getAllEnterprises(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/filterById`);
+  }
 
   private apiUrl = 'http://localhost:30030/offers';
 
@@ -19,19 +28,19 @@ export class OfertasService {
     });
   }
 
- getOfertasPostuladasPorUsuario(): Observable<any[]> {
-  const userId = sessionStorage.getItem('userId');
-  console.log('userId recuperado:', userId);
+  getOfertasPostuladasPorUsuario(): Observable<any[]> {
+    const userId = sessionStorage.getItem('userId');
+    console.log('userId recuperado:', userId);
 
-  if (!userId) {
-    console.warn('No se encontró userId en sessionStorage');
-    return of([]);
+    if (!userId) {
+      console.warn('No se encontró userId en sessionStorage');
+      return of([]);
+    }
+
+    return this.http.get<number[]>(`http://localhost:30030/inscriptions/byUser/${userId}`, {
+      headers: this.getAuthHeaders()
+    });
   }
-
-  return this.http.get<number[]>(`http://localhost:30030/inscriptions/byUser/${userId}`, {
-    headers: this.getAuthHeaders()
-  });
-}
 
   inscribirse(offerid: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/apply`, { id: offerid }, { headers: this.getAuthHeaders() });
@@ -76,4 +85,12 @@ export class OfertasService {
       headers: this.getAuthHeaders()
     });
   }
+
+  // ofertas-service.service.ts
+  getOfertasFiltradasPorTexto(searchText: string): Observable<any[]> {
+    const url = `http://localhost:30030/offers/byTitleOrDescription?searchText=${encodeURIComponent(searchText)}`;
+    return this.http.get<any[]>(url);
+  }
+
+
 }

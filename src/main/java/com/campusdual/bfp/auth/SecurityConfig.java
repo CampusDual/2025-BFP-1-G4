@@ -52,6 +52,7 @@ public class SecurityConfig {
                 .antMatchers("/users/register").permitAll()
                 .antMatchers(HttpMethod.GET, "/offers/getAll").permitAll()
                 .antMatchers("/offers/findAllByActive").permitAll()
+                .antMatchers("/offers/byTitleOrDescription").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(this.authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -1,0 +1,55 @@
+.filtros-oferta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding: 0 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.filtros-oferta input[type="text"] {
+  padding: 10px 14px;
+  border: 2px solid #f44336;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 400px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  color: #333;
+  background-color: #fff;
+}
+
+.filtros-oferta input[type="text"]:focus {
+  border-color: #e53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+.filtros-oferta label {
+  font-size: 14px;
+  color: #444;
+  font-weight: 600;
+}
+
+.filtros-oferta select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 300px;
+  background-color: #fff;
+  color: #333;
+  font-family: inherit;
+}
+
+@media (max-width: 768px) {
+  .filtros-oferta {
+    align-items: stretch;
+  }
+
+  .filtros-oferta input[type="text"],
+  .filtros-oferta select {
+    width: 100%;
+    max-width: 100%;
+  }
+}

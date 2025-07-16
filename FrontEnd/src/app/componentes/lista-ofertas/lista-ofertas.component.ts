@@ -9,6 +9,10 @@ import { OfertasService } from '../../services/ofertas-service.service';
 })
 export class ListaOfertasComponent {
   offerList: any[] = [];
+  offerListFiltrada: any[] = [];
+  paginaActual = 1;
+  elementosPorPagina = 4; // Ajusta según el alto máximo
+  textoBusqueda: string = '';
 
   constructor(
     private ofertasService: OfertasService,
@@ -16,14 +20,59 @@ export class ListaOfertasComponent {
   ) {}
 
   ngOnInit(): void {
+    this.cargarOfertas();
+  }
+
+  cargarOfertas(): void {
     this.ofertasService.getOfferById().subscribe({
       next: (data) => {
         this.offerList = data;
+        this.offerListFiltrada = data;
+        this.paginaActual = 1;
       },
       error: (err) => {
         console.error('Error al obtener ofertas', err);
       }
     });
+  }
+
+  filtrarOfertas(): void {
+    const texto = this.textoBusqueda.trim();
+    if (texto === '') {
+      // Sin texto, mostrar todas las ofertas locales
+      this.offerListFiltrada = this.offerList;
+      this.paginaActual = 1;
+    } else {
+      // Llamar backend para filtrar por texto y empresa
+      this.ofertasService.buscarOfertasPorTexto(texto).subscribe({
+        next: (data) => {
+          // Aquí filtrar también solo las ofertas de la empresa logueada (esto depende de backend o filtrar aquí)
+          // Supongo que backend solo devuelve ofertas para esta empresa, sino filtras aquí
+          this.offerListFiltrada = data;
+          this.paginaActual = 1;
+        },
+        error: (err) => {
+          console.error('Error buscando ofertas', err);
+        }
+      });
+    }
+  }
+
+  get totalPaginas(): number {
+    return Math.ceil(this.offerListFiltrada.length / this.elementosPorPagina);
+  }
+
+  get ofertasPaginadas() {
+    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+    return this.offerListFiltrada.slice(inicio, inicio + this.elementosPorPagina);
+  }
+
+  cambiarPagina(direccion: 'anterior' | 'siguiente') {
+    if (direccion === 'anterior' && this.paginaActual > 1) {
+      this.paginaActual--;
+    } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
+    }
   }
 
   toggleEstado(oferta: any) {
@@ -47,30 +96,10 @@ export class ListaOfertasComponent {
   }
 
   verCandidatos(id: number) {
-  this.router.navigate(['/candidatos-oferta', id]);
-}
-verInscritos(ofertaId: number) {
-  this.router.navigate(['/oferta', ofertaId, 'candidatos']);
-}
-
-paginaActual = 1;
-elementosPorPagina = 4; // Ajusta según el alto máximo
-
-get totalPaginas(): number {
-  return Math.ceil(this.offerList.length / this.elementosPorPagina);
-}
-
-get ofertasPaginadas() {
-  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
-  return this.offerList.slice(inicio, inicio + this.elementosPorPagina);
-}
-
-cambiarPagina(direccion: 'anterior' | 'siguiente') {
-  if (direccion === 'anterior' && this.paginaActual > 1) {
-    this.paginaActual--;
-  } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
-    this.paginaActual++;
+    this.router.navigate(['/candidatos-oferta', id]);
   }
-}
 
+  verInscritos(ofertaId: number) {
+    this.router.navigate(['/oferta', ofertaId, 'candidatos']);
+  }
 }
