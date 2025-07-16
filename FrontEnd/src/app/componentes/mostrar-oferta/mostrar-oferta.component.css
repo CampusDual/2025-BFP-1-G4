@@ -1,3 +1,4 @@
+/* Contenedor principal */
 .mostrar-ofertas-container {
   display: flex;
   flex-direction: column;
@@ -23,18 +24,114 @@
   padding: 20px;
 }
 
-
-.page-title {
-  font-size: 2rem;
-  color: #e53935;
-  text-align: center;
+/* Botón desplegable filtro */
+.filtro-desplegable-container {
   margin-bottom: 20px;
 }
 
+.btn-filtro {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-filtro:hover {
+  background-color: #e64a19;
+}
+
+/* Lista de checkboxes dentro del filtro */
+.filtro-empresas-lista {
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 2px solid #ff7043;
+  border-radius: 10px;
+  background-color: #fff;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Botones mini para mostrar/ocultar todo */
+.botones-mini {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.btn-mini {
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-mini:hover {
+  background-color: #f44336;
+}
+
+/* Grid de checkboxes 3 columnas */
+.checkbox-lista {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 20px;
+}
+
+/* Etiqueta y checkbox */
+.checkbox-lista label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Checkbox personalizada naranja */
+.checkbox-lista input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ff7043;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.checkbox-lista input[type="checkbox"]:checked {
+  background-color: #ff7043;
+  border-color: #ff7043;
+}
+
+.checkbox-lista input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+/* Grid de ofertas */
 .ofertas-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* solo 4 columnas */
   gap: 20px;
   flex-grow: 1;
 }
@@ -134,17 +231,11 @@ mat-icon {
   cursor: not-allowed;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .ofertas-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .ofertas-grid {
-    grid-template-columns: 1fr;
-  }
+.sin-ofertas-msg {
+  font-style: italic;
+  text-align: center;
+  color: #999;
+  margin-top: 40px;
 }
 
 .integrated-footer {
@@ -158,9 +249,7 @@ mat-icon {
   width: 98.7%;
   margin-bottom: 0;
   position: sticky;
-  /* NO sticky ni absolute */
   bottom: auto;
-  /* no anclado */
 }
 
 .integrated-footer a {
@@ -178,7 +267,6 @@ mat-icon {
 .botones-container {
   display: flex;
   gap: 10px;
-  /* espacio entre botones */
   margin-top: auto;
 }
 
@@ -192,5 +280,4 @@ button.boton-disabled {
   cursor: not-allowed !important;
   border: 1px solid #999 !important;
   pointer-events: none;
-  /* Por si acaso */
 }

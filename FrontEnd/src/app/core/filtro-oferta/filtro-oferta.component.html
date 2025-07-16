@@ -1,0 +1,10 @@
+<div class="filtros-oferta">
+  <input type="text" placeholder="Buscar ofertas..." [(ngModel)]="textoBusqueda" (input)="onBuscarTexto()" />
+
+  <div *ngIf="mostrarFiltroEmpresa">
+    <label>Filtrar por empresa:</label>
+    <select multiple (change)="onCambiarEmpresas($event)">
+      <option *ngFor="let empresa of listaEmpresas" [value]="empresa">{{ empresa }}</option>
+    </select>
+  </div>
+</div>

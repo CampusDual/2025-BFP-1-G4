@@ -44,6 +44,8 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
 import { DetalleOfertaComponent } from './componentes/detalle-oferta/detalle-oferta.component';
 import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofertas-postulado.component';
 import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
+import { FiltroOfertasComponent } from './core/filtro-oferta/filtro-oferta.component';
+
 
 
 @NgModule({
@@ -64,8 +66,9 @@ import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.compo
     VistaCandidatoComponent,
     EditarPerfilComponent,
     DetalleOfertaComponent,
+    FiltroOfertasComponent,
     OfertasPostuladoComponent,
-   ],
+     ],
   imports: [
     BrowserModule,
     MatSnackBarModule,

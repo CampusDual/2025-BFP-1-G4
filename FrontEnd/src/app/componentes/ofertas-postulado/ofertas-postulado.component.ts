@@ -88,4 +88,29 @@ export class OfertasPostuladoComponent implements OnInit {
     this.ofertasPaginadas = this.ofertasPostuladas.slice(inicio, fin);
     console.log(`📄 Ofertas paginadas para la página ${this.paginaActual}:`, this.ofertasPaginadas);
   }
+
+  textoFiltro: string = '';
+empresasFiltro: string[] = [];
+
+get ofertasFiltradas(): any[] {
+  return this.ofertasPaginadas.filter(oferta => {
+    const coincideTexto = oferta.title.toLowerCase().includes(this.textoFiltro)
+      || oferta.description.toLowerCase().includes(this.textoFiltro);
+
+    const coincideEmpresa = this.empresasFiltro.length === 0
+      || this.empresasFiltro.includes(oferta.enterpriseName);
+
+    return coincideTexto && coincideEmpresa;
+  });
 }
+
+onFiltroTexto(texto: string) {
+  this.textoFiltro = texto;
+}
+
+onFiltroEmpresas(empresas: string[]) {
+  this.empresasFiltro = empresas;
+}
+
+}
+

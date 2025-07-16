@@ -1,5 +1,12 @@
 <h1 class="page-title">Mis postulaciones</h1>
 
+<app-filtro-oferta
+  [mostrarFiltroEmpresa]="false"
+  [listaEmpresas]="[]"
+  (filtroTexto)="onFiltroTexto($event)"
+  (filtroEmpresas)="onFiltroEmpresas($event)">
+</app-filtro-oferta>
+
 <div class="contenido-ofertas">
   <div class="ofertas-grid">
     <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">

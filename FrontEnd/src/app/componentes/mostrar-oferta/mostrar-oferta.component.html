@@ -1,7 +1,35 @@
 <h1 class="page-title">Ofertas de empleo disponibles</h1>
 
 <div class="contenido-ofertas">
-  <div class="ofertas-grid">
+
+  <!-- Botón desplegable filtro empresas -->
+  <div class="filtro-desplegable-container">
+    <button class="btn-filtro" (click)="toggleFiltro()">
+      {{ mostrarFiltro ? 'Ocultar filtro empresas ▲' : 'Mostrar filtro empresas ▼' }}
+    </button>
+
+    <div *ngIf="mostrarFiltro" class="filtro-empresas-lista">
+      <div class="botones-mini">
+        <button (click)="mostrarTodo()" class="btn-mini">Mostrar todo</button>
+        <button (click)="ocultarTodo()" class="btn-mini">Ocultar todo</button>
+      </div>
+
+      <div class="checkbox-lista">
+        <label *ngFor="let empresa of obtenerEmpresasUnicas()">
+          <input
+            type="checkbox"
+            [value]="empresa"
+            (change)="onCambiarEmpresas($event)"
+            [checked]="empresasSeleccionadas.includes(empresa)"
+          />
+          {{ empresa }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid ofertas -->
+  <div class="ofertas-grid" *ngIf="ofertasPaginadas.length > 0; else sinOfertas">
     <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">
       <h3 class="oferta-titulo">{{ oferta.title }}</h3>
       <p class="oferta-empresa">
@@ -12,11 +40,9 @@
         <mat-icon>email</mat-icon> {{ oferta.enterpriseEmail }}
       </p>
       <p class="oferta-fecha">
-        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate |
-        date:'dd/MM/yyyy' }}
+        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate | date:'dd/MM/yyyy' }}
       </p>
 
-      <!-- Botón solo visible para usuarios que no sean admin ni enterprise -->
       <div class="botones-container">
         <button
           class="apButton mitad"
@@ -27,40 +53,30 @@
           {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
         </button>
 
-        <button
-          class="apButton mitad"
-          (click)="verDetalle(oferta.id)">
-          Ver detalles
-        </button>
+        <button class="apButton mitad" (click)="verDetalle(oferta.id)">Ver detalles</button>
       </div>
     </div>
   </div>
 
+  <ng-template #sinOfertas>
+    <p class="sin-ofertas-msg">No hay ofertas que coincidan con el filtro seleccionado.</p>
+  </ng-template>
+
   <br><br>
 
-  <div class="paginacion">
-    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">
-      Anterior
-    </button>
+  <div class="paginacion" *ngIf="totalPaginas > 1">
+    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">Anterior</button>
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-    <button (click)="cambiarPagina('siguiente')"
-      [disabled]="paginaActual === totalPaginas">
-      Siguiente
-    </button>
+    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">Siguiente</button>
   </div>
 
   <br>
+
   <footer class="integrated-footer">
     <div class="footer-content">
       <p>&copy; 2025 CLUSTER TIC GALICIA. Todos los derechos reservados.</p>
-      <!--
-    <nav class="footer-links">
-      <a routerLink="/contacto">Contacto</a>
-      <a routerLink="/privacidad">Privacidad</a>
-      <a routerLink="/terminos">Términos</a>
-    </nav>
-    -->
     </div>
   </footer>
+
   <br>
 </div>
