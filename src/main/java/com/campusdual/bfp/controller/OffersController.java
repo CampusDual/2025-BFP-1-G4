@@ -82,9 +82,10 @@ public class OffersController {
         return offersService.findActiveOffersByTitleOrDescription(searchText);
     }
 
-    @GetMapping("/byText")
-    public List<OffersDTO> findOffersByTitleOrDescription(@RequestParam String searchText) {
-        return offersService.findActiveOffersByTitleOrDescription(searchText);
+    @PreAuthorize("hasRole('enterprise')")
+    @GetMapping("/enterprise/filterByText")
+    public List<OffersDTO> findEnterpriseOffersByTitleOrDescription(@RequestParam String searchText) {
+        return offersService.findEnterpriseOffersByTitleOrDescription(searchText);
     }
 
 }
