@@ -6,10 +6,25 @@
     <button class="add-btn" mat-flat-button color="warn" (click)="irANuevaOferta()">Nueva oferta</button>
   </div>
 
+  <!-- Barra de búsqueda -->
+  <div class="buscador-container">
+    <input
+      type="text"
+      placeholder="Buscar por título o descripción..."
+      [(ngModel)]="textoBusqueda"
+      (input)="filtrarOfertas()"
+      class="buscador-input"
+      autocomplete="off"
+    />
+    <button class="btn-buscar" (click)="filtrarOfertas()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
   <!-- Contenedor con altura limitada -->
   <div class="tabla-scroll-container">
     <table mat-table class="tabla-ofertas">
-      <thead> 
+      <thead>
         <tr>
           <th>Título</th>
           <th>Descripción</th>
@@ -18,24 +33,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let oferta of ofertasPaginadas" (click)="verCandidatos(oferta.id)" style="cursor: pointer;">
+        <tr
+          *ngFor="let oferta of ofertasPaginadas"
+          (click)="verCandidatos(oferta.id)"
+          style="cursor: pointer;"
+        >
           <td>{{ oferta.title }}</td>
           <td>{{ oferta.description }}</td>
           <td class="centrar">{{ oferta.publicationDate | date: 'dd-MM-yyyy' }}</td>
           <td class="centrar" (click)="$event.stopPropagation()">
-            <button mat-icon-button [ngClass]="oferta.active ? 'activo' : 'inactivo'" (click)="toggleEstado(oferta)">
+            <button
+              mat-icon-button
+              [ngClass]="oferta.active ? 'activo' : 'inactivo'"
+              (click)="toggleEstado(oferta)"
+            >
               <mat-icon>{{ oferta.active ? 'toggle_on' : 'toggle_off' }}</mat-icon>
             </button>
           </td>
+        </tr>
+        <tr *ngIf="ofertasPaginadas.length === 0">
+          <td colspan="4" class="sin-resultados">No se encontraron ofertas.</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <!-- Paginación -->
-  <div class="paginacion">
-    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">Anterior</button>
+  <div class="paginacion" *ngIf="totalPaginas > 1">
+    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">
+      Anterior
+    </button>
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">Siguiente</button>
+    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">
+      Siguiente
+    </button>
   </div>
 </div>

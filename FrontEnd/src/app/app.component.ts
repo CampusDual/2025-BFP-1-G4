@@ -24,6 +24,7 @@ export class AppComponent {
           '/publicar-oferta',
           '/editar-oferta/:id',
           '/editar-oferta',
+          '/lista-ofertas',
         ];
 
         // Rutas donde ocultar el footer que tienen parámetros (rutas dinámicas)
