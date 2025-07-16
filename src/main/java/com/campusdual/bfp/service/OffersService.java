@@ -188,6 +188,14 @@ public class OffersService implements IOffersService {
     }
 
     @Override
+    public List<OffersDTO> findActiveOffersByTitleOrDescription(String searchText) {
+        List<Offer> offers = offersDao.findActiveByTitleOrDescriptionContainingIgnoreCase(searchText);
+        return offers.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<OffersDTO> findOffersByTitleOrDescription(String searchText) {
         List<Offer> offers = offersDao.findByTitleOrDescriptionContainingIgnoreCase(searchText);
         return offers.stream()
