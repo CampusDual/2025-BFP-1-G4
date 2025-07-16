@@ -1,11 +1,20 @@
 <h1 class="page-title">Ofertas de empleo disponibles</h1>
 
 <div class="contenido-ofertas">
-
+  <div class="buscador-container">
+    <mat-icon class="icono-lupa">search</mat-icon>
+    <input
+      type="text"
+      [(ngModel)]="textoBusqueda"
+      (input)="onTextoBuscar($event)"
+      placeholder="Buscar por título o descripción..."
+      class="input-buscador" />
+  </div>
   <!-- Botón desplegable filtro empresas -->
   <div class="filtro-desplegable-container">
     <button class="btn-filtro" (click)="toggleFiltro()">
-      {{ mostrarFiltro ? 'Ocultar filtro empresas ▲' : 'Mostrar filtro empresas ▼' }}
+      {{ mostrarFiltro ? 'Ocultar filtro empresas ▲' :
+      'Mostrar filtro empresas ▼' }}
     </button>
 
     <div *ngIf="mostrarFiltro" class="filtro-empresas-lista">
@@ -20,8 +29,7 @@
             type="checkbox"
             [value]="empresa"
             (change)="onCambiarEmpresas($event)"
-            [checked]="empresasSeleccionadas.includes(empresa)"
-          />
+            [checked]="empresasSeleccionadas.includes(empresa)" />
           {{ empresa }}
         </label>
       </div>
@@ -29,7 +37,8 @@
   </div>
 
   <!-- Grid ofertas -->
-  <div class="ofertas-grid" *ngIf="ofertasPaginadas.length > 0; else sinOfertas">
+  <div class="ofertas-grid"
+    *ngIf="ofertasPaginadas.length > 0; else sinOfertas">
     <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">
       <h3 class="oferta-titulo">{{ oferta.title }}</h3>
       <p class="oferta-empresa">
@@ -40,7 +49,8 @@
         <mat-icon>email</mat-icon> {{ oferta.enterpriseEmail }}
       </p>
       <p class="oferta-fecha">
-        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate | date:'dd/MM/yyyy' }}
+        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate |
+        date:'dd/MM/yyyy' }}
       </p>
 
       <div class="botones-container">
@@ -53,21 +63,25 @@
           {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
         </button>
 
-        <button class="apButton mitad" (click)="verDetalle(oferta.id)">Ver detalles</button>
+        <button class="apButton mitad" (click)="verDetalle(oferta.id)">Ver
+          detalles</button>
       </div>
     </div>
   </div>
 
   <ng-template #sinOfertas>
-    <p class="sin-ofertas-msg">No hay ofertas que coincidan con el filtro seleccionado.</p>
+    <p class="sin-ofertas-msg">No hay ofertas que coincidan con el filtro
+      seleccionado.</p>
   </ng-template>
 
   <br><br>
 
   <div class="paginacion" *ngIf="totalPaginas > 1">
-    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">Anterior</button>
+    <button (click)="cambiarPagina('anterior')"
+      [disabled]="paginaActual === 1">Anterior</button>
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">Siguiente</button>
+    <button (click)="cambiarPagina('siguiente')"
+      [disabled]="paginaActual === totalPaginas">Siguiente</button>
   </div>
 
   <br>

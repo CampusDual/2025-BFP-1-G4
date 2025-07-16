@@ -27,27 +27,30 @@ export class MostrarOfertaComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
-    this.usuarioRol = this.authService.getRole();
-    this.userId = this.authService.getUserId();
+ ngOnInit(): void {
+  this.usuarioRol = this.authService.getRole();
+  this.userId = this.authService.getUserId();
 
-    if (this.userId !== null) {
-      this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
-        this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
-        console.log('Ofertas postuladas IDs:', this.ofertasPostuladasIds);
-      });
-    } else {
-      console.warn('⚠️ No se pudo recuperar userId de sessionStorage.');
-    }
-
-    this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
-      this.offerActivas = ofertas;
-      this.ofertasFiltradas = []; // Sin empresas seleccionadas, no muestra ofertas
-      this.totalPaginas = 0;
-      this.paginaActual = 1;
-      this.actualizarPaginado();
+  if (this.userId !== null) {
+    this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
+      this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
     });
   }
+
+  this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
+    this.offerActivas = ofertas;
+
+    // ✅ Marcar TODAS las empresas al cargar
+    this.empresasSeleccionadas = this.obtenerEmpresasUnicas();
+
+    // ✅ Mostrar todas las ofertas inicialmente
+    this.ofertasFiltradas = this.offerActivas;
+    this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
+    this.paginaActual = 1;
+    this.actualizarPaginado();
+  });
+}
+
 
   toggleFiltro(): void {
     this.mostrarFiltro = !this.mostrarFiltro;
@@ -136,4 +139,53 @@ export class MostrarOfertaComponent implements OnInit {
       error: () => alert('❌ Ya estás inscrito en esta oferta.')
     });
   }
+  textoBusqueda: string = '';
+
+aplicarFiltroTextualEmpresas(): void {
+  const texto = this.textoBusqueda.toLowerCase();
+
+  let ofertasFiltradas = this.offerActivas;
+
+  if (this.empresasSeleccionadas.length > 0) {
+    ofertasFiltradas = ofertasFiltradas.filter(oferta =>
+      this.empresasSeleccionadas.includes(oferta.enterpriseName)
+    );
+  }
+
+  if (this.textoBusqueda.trim() !== '') {
+    ofertasFiltradas = ofertasFiltradas.filter(oferta =>
+      oferta.title.toLowerCase().includes(texto) ||
+      oferta.description.toLowerCase().includes(texto)
+    );
+  }
+
+  this.ofertasFiltradas = ofertasFiltradas;
+  this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
+  this.paginaActual = 1;
+  this.actualizarPaginado();
+}
+
+onTextoBuscar(event: any): void {
+  const texto = event.target.value.trim();
+  this.textoBusqueda = texto;
+
+  if (texto === '') {
+    // Si el texto está vacío, solo aplicar filtro de empresas (local)
+    this.aplicarFiltroEmpresas();
+    return;
+  }
+
+  this.ofertasService.getOfertasFiltradasPorTexto(texto).subscribe(resultados => {
+    // Aplicar filtro también por empresas seleccionadas si hay
+    const filtradas = this.empresasSeleccionadas.length > 0
+      ? resultados.filter(oferta => this.empresasSeleccionadas.includes(oferta.enterpriseName))
+      : resultados;
+
+    this.ofertasFiltradas = filtradas;
+    this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
+    this.paginaActual = 1;
+    this.actualizarPaginado();
+  });
+}
+
 }

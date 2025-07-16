@@ -79,4 +79,12 @@ export class OfertasService {
       headers: this.getAuthHeaders()
     });
   }
+
+// ofertas-service.service.ts
+getOfertasFiltradasPorTexto(searchText: string): Observable<any[]> {
+  const url = `http://localhost:30030/offers/byTitleOrDescription?searchText=${encodeURIComponent(searchText)}`;
+  return this.http.get<any[]>(url);
+}
+
+
 }
