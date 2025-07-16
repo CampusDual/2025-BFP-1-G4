@@ -92,7 +92,8 @@ public class InscriptionsService implements IInscriptionsService {
                 dto.setEnterpriseEmail(offer.getEnterprise().getEmail());
             }
             // set status based on inscriptions
-            Inscriptions inscription = inscriptionsDao.findByUserIdAndOfferId(offer.getId(), userId);
+            Inscriptions inscription = inscriptionsDao.findByUserIdAndOfferId(userId, offer.getId());
+
             if (inscription != null) {
                 dto.setStatus(inscription.getStatus());
             } else {
