@@ -30,5 +30,5 @@ public interface IOffersService {
 
     List<OffersDTO> findOffersByUserId(Integer userId);
 
-    List<OffersDTO> findOffersByTitleOrDescription(String searchText);
+    List<OffersDTO> findActiveOffersByTitleOrDescription(String searchText);
 }
