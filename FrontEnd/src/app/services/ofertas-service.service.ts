@@ -7,6 +7,9 @@ import { Oferta } from '../model/oferta.model';
   providedIn: 'root'
 })
 export class OfertasService {
+    getAllEnterprises(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/filterById`);
+  }
 
   private apiUrl = 'http://localhost:30030/offers';
 

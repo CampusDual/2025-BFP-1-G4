@@ -1,6 +1,7 @@
 package com.campusdual.bfp.controller;
 
 import com.campusdual.bfp.api.IOffersService;
+import com.campusdual.bfp.model.dto.EnterpriseDTO;
 import com.campusdual.bfp.model.dto.OffersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -80,6 +81,7 @@ public class OffersController {
     public List<OffersDTO> findOffersByTitleOrDescription(@RequestParam String searchText) {
         return offersService.findOffersByTitleOrDescription(searchText);
     }
+
 
 }
 
