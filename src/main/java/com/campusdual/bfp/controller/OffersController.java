@@ -76,6 +76,11 @@ public class OffersController {
         return offersService.updateOffer(offer);
     }
 
+    @GetMapping("/byTitle")
+    public List<OffersDTO> findOffersByTitle(@RequestParam String title) {
+        return offersService.findOffersByTitle(title);
+    }
+
 }
 
 

@@ -14,4 +14,6 @@ public interface OffersDao extends JpaRepository<Offer, Integer>{
     List<Offer> findByActiveOrderByPublicationDateDesc(boolean active);
     @Query("SELECT COUNT(o) FROM Offer o WHERE o.enterprise.id = :enterpriseId AND o.active = true")
     int countActiveOffersByEnterpriseId(@Param("enterpriseId") int enterpriseId);
+
+    List<Offer> findByTitleContainingIgnoreCase(String title);
 }

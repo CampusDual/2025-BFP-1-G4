@@ -29,4 +29,5 @@ public interface IOffersService {
     List<UserDTO> getUsersByOfferId(Integer offerId);
 
     List<OffersDTO> findOffersByUserId(Integer userId);
-}
+
+    List<OffersDTO> findOffersByTitle(String title);}
