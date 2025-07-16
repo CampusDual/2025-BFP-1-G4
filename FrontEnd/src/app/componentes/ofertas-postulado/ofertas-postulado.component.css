@@ -171,3 +171,18 @@ mat-icon {
 .integrated-footer a:hover {
   color: #f44336;
 }
+
+.estado-pendiente {
+  color: orange;
+  font-weight: 700;
+}
+
+.estado-aceptado {
+  color: green;
+  font-weight: 700;
+}
+
+.estado-rechazado {
+  color: red;
+  font-weight: 700;
+}

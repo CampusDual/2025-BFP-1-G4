@@ -54,6 +54,19 @@ public class InscriptionsService implements IInscriptionsService {
             dto.setSurname2(user.getSurname2());
             dto.setEmail(user.getEmail());
             dto.setPhonenumber(user.getPhonenumber());
+            dto.setLinkedin(user.getLinkedin());
+            dto.setGithub(user.getGithub());
+            dto.setPresentation(user.getPresentation());
+            dto.setExperience(user.getExperience());
+            dto.setDegree(user.getDegree());
+            dto.setModality(user.getModality());
+
+            Inscriptions inscription = inscriptionsDao.findByUserIdAndOfferId(user.getId(), offerId);
+            if (inscription != null) {
+                dto.setStatus(inscription.getStatus());
+            } else {
+                dto.setStatus("Not Inscribed");
+            }
 
             return dto;
         }).collect(Collectors.toList());
@@ -79,7 +92,8 @@ public class InscriptionsService implements IInscriptionsService {
                 dto.setEnterpriseEmail(offer.getEnterprise().getEmail());
             }
             // set status based on inscriptions
-            Inscriptions inscription = inscriptionsDao.findByUserIdAndOfferId(offer.getId(), userId);
+            Inscriptions inscription = inscriptionsDao.findByUserIdAndOfferId(userId, offer.getId());
+
             if (inscription != null) {
                 dto.setStatus(inscription.getStatus());
             } else {

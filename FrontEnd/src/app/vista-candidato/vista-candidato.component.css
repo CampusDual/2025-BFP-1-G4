@@ -1,6 +1,6 @@
 .perfil-container {
   position: relative;
-  padding: 2rem 1.5rem 5rem; /* padding abajo extra para links */
+  padding: 2rem 1.5rem 5rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1100px;
   margin: 1rem auto;
@@ -11,7 +11,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  min-height: 400px; /* ajusta según contenido */
+  min-height: 400px;
 }
 
 .perfil-title {
@@ -76,11 +76,6 @@
   letter-spacing: 0.02em;
 }
 
-/* Ocultar acciones, porque es solo vista */
-.perfil-acciones {
-  display: none;
-}
-
 .perfil-seccion {
   display: flex;
   flex-wrap: wrap;
@@ -104,17 +99,12 @@
   color: #d32f2f;
 }
 
-/* Links distribuidos en todo el ancho al pie del contenedor */
 .perfil-links {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  position:static;
-  bottom: 0.5rem;
-  left: 1.5rem;
-  right: 1.5rem; 
+  position: static;
   padding-top: 10px;
-  border-top: none;
   margin-top: 0;
   background: transparent;
   box-sizing: border-box;
@@ -155,43 +145,51 @@
   padding: 2rem 0;
 }
 
-/* Responsive */
+/* Nueva sección para los botones de estado */
+.perfil-acciones {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  display: flex;
+  gap: 1rem;
+}
 
+.btn-estado {
+  min-width: 130px;
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.estado-aceptado {
+  background-color: #4caf50;
+  color: white;
+}
+
+.estado-aceptado:hover {
+  background-color: #388e3c;
+}
+
+.estado-rechazado {
+  background-color: #f44336;
+  color: white;
+}
+
+.estado-rechazado:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive para botones */
 @media (max-width: 768px) {
-  .perfil-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .perfil-foto-nombre {
-    justify-content: center;
-  }
   .perfil-acciones {
+    position: static;
     justify-content: center;
-    width: 100%;
-  }
-  .perfil-seccion {
-    flex-direction: column;
-  }
-  .perfil-col {
-    flex: 1 1 100%;
-    min-width: auto;
-  }
-
-  /* Para links al final en móvil, que no se monten */
-  .perfil-links {
-    position: relative;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    padding-top: 1rem;
-    border-top: 1px solid #ddd;
-    gap: 1rem;
-  }
-
-  .perfil-links a {
-    max-width: none;
-    flex: 1;
-    justify-content: center;
+    margin-top: 2rem;
   }
 }

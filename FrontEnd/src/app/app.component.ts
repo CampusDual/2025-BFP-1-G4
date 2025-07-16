@@ -30,7 +30,8 @@ export class AppComponent {
         const ocultarFooterPatrones = [
           '/detalle-oferta/',
           '/publicar-oferta/',
-          '/editar-oferta/'
+          '/editar-oferta/',
+          '/candidato/'
         ];
 
         // Comprobar si la ruta actual está en la lista exacta

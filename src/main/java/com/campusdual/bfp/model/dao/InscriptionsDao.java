@@ -13,7 +13,8 @@ public interface InscriptionsDao extends JpaRepository<Inscriptions, Long> {
     int countByOfferId(Integer offerId);
     @Query("SELECT i.user.id FROM Inscriptions i WHERE i.offer.id = :offerId")
     List<Integer> findUserIdsByOfferId(@Param("offerId") Integer offerId);
-    Inscriptions findByUserIdAndOfferId(Integer offerId, Integer userId);
+    Inscriptions findByUserIdAndOfferId(Integer userId, Integer offerId); // ✅ correcto orden
+
     Inscriptions getReferenceByOfferIdAndUserId(Integer offerId, Integer userId);
     void deleteInscriptionByOffer(Offer offer);
 

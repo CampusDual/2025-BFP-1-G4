@@ -16,6 +16,7 @@ public class UserDTO {
     private String presentation;
     private String github;
     private String linkedin;
+    private String status;
 
 
     public Integer getId() {
@@ -110,4 +111,6 @@ public class UserDTO {
 
     public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
 
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 }

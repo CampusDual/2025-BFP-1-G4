@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OfertasService } from '../../services/ofertas-service.service';
-import { AuthService } from '../../services/auth.service';
 import { InscripcionService } from '../../services/inscription.service';
+import { AuthService } from '../../services/auth.service';
 import { UsuarioService } from '../../services/usuario.service.module';
-
 
 @Component({
   selector: 'app-ofertas-postulado',
@@ -19,35 +17,55 @@ export class OfertasPostuladoComponent implements OnInit {
   totalPaginas: number = 1;
   usuarioRol: string | null = '';
 
-constructor(
-  private inscriptionService: InscripcionService,
-  private authService: AuthService,
-  private usuarioService: UsuarioService,
-  private router: Router
-) {}
-
+  constructor(
+    private inscriptionService: InscripcionService,
+    private authService: AuthService,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.usuarioRol = this.authService.getRole();
+    console.log('🔐 Rol del usuario:', this.usuarioRol);
 
     const login = this.authService.getUsername();
+    console.log('🔑 Login obtenido:', login);
+
     if (login) {
       this.usuarioService.getIdByLogin(login).subscribe({
         next: (userId: number) => {
-          console.log('🔑 ID obtenido desde login:', userId);
-          this.inscriptionService.getPostulacionesUsuario(userId).subscribe(ofertas => {
-            this.ofertasPostuladas = ofertas;
-            this.totalPaginas = Math.ceil(ofertas.length / this.elementosPorPagina);
-            this.actualizarPaginado();
+          console.log('🆔 ID del usuario obtenido:', userId);
+
+          this.inscriptionService.getPostulacionesUsuario(userId).subscribe({
+            next: (ofertas: any[]) => {
+              console.log('📄 Postulaciones recibidas del usuario:', ofertas);
+
+              // Aquí chequeamos que cada oferta tenga el campo 'status'
+              ofertas.forEach((oferta, index) => {
+                console.log(`Oferta[${index}] - Título: ${oferta.title}, Status: ${oferta.status}`);
+              });
+
+              this.ofertasPostuladas = ofertas;
+              this.totalPaginas = Math.ceil(ofertas.length / this.elementosPorPagina);
+              this.actualizarPaginado();
+            },
+            error: (err) => {
+              console.error('❌ Error al obtener postulaciones:', err);
+              this.ofertasPostuladas = [];
+              this.totalPaginas = 1;
+              this.actualizarPaginado();
+            }
           });
         },
         error: (err) => {
-          console.error('Error al obtener ID por login:', err);
+          console.error('❌ Error al obtener ID por login:', err);
           this.ofertasPostuladas = [];
           this.totalPaginas = 1;
           this.actualizarPaginado();
         }
       });
+    } else {
+      console.warn('⚠️ No se encontró login del usuario');
     }
   }
 
@@ -68,5 +86,6 @@ constructor(
     const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
     const fin = inicio + this.elementosPorPagina;
     this.ofertasPaginadas = this.ofertasPostuladas.slice(inicio, fin);
+    console.log(`📄 Ofertas paginadas para la página ${this.paginaActual}:`, this.ofertasPaginadas);
   }
 }

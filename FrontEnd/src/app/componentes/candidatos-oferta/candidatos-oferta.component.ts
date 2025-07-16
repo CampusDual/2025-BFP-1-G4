@@ -23,19 +23,23 @@ export class CandidatosOfertaComponent implements OnInit {
     this.ofertaid = +this.route.snapshot.paramMap.get('id')!;
     this.cargarCandidatos();
   }
-
-  cargarCandidatos(): void {
-    this.inscripcionService.getCandidatosPorOferta(this.ofertaid).subscribe({
-      next: (data) => this.candidatos = data,
-      error: (err) => console.error('Error al cargar candidatos', err)
-    });
-  }
+cargarCandidatos(): void {
+  this.inscripcionService.getCandidatosPorOferta(this.ofertaid).subscribe({
+    next: (data) => {
+      console.log('🟢 Candidatos recibidos:', data); // Asegúrate que aquí aparece "status"
+      this.candidatos = data;
+    },
+    error: (err) => console.error('Error al cargar candidatos', err)
+  });
+}
 
   editarOferta(): void {
     this.router.navigate(['/editar-oferta', this.ofertaid]);
   }
-  verPerfil(id: number): void {
-  this.router.navigate(['/candidato', id]);
+verPerfil(id: number): void {
+  this.router.navigate(['/candidato', id], {
+    queryParams: { ofertaId: this.ofertaid }
+  });
 }
 
 }

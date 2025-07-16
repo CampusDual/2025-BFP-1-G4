@@ -34,15 +34,21 @@
             <a *ngIf="usuario.phonenumber" href="tel:{{ usuario.phonenumber }}">
               <mat-icon>phone</mat-icon> {{ usuario.phonenumber }}
             </a>
-          
           </div>
         </div>
-        
       </div>
-      
     </mat-tab>
-    
   </mat-tab-group>
+
+  <!-- Botones de estado -->
+  <div class="perfil-acciones">
+    <button class="btn-estado estado-aceptado" (click)="cambiarEstadoNuevo('aceptado')">
+      Aceptar
+    </button>
+    <button class="btn-estado estado-rechazado" (click)="cambiarEstadoNuevo('rechazado')">
+      Rechazar
+    </button>
+  </div>
 </div>
 
 <div *ngIf="!usuario" class="perfil-loading">

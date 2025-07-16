@@ -6,10 +6,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class InscripcionService {
-
   private apiUrl = 'http://localhost:30030/inscriptions'; // Cambia la URL según tu backend
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
+
+  cambiarEstado(inscriptionId: number, nuevoEstado: string): Observable<any> {
+    const body = {
+      status: nuevoEstado
+    };
+
+    const headers = this.getAuthHeaders();
+    return this.http.put(`${this.apiUrl}/toggleActiveStatus/${inscriptionId}`, body, {
+      headers,
+      responseType: 'text' as 'json'  // ✅ SOLUCIÓN: evita error al recibir texto plano
+    });
+  }
 
   getCandidatosPorOferta(ofertaId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/byOffer/${ofertaId}`, {
@@ -23,6 +34,12 @@ export class InscripcionService {
     return this.http.get<any[]>(url, {
       headers: this.getAuthHeaders()
     });
+  }
+
+  getInscripcionPorUsuarioYOferta(userId: number, ofertaId: number) {
+    return this.http.get<{ id: number }>(
+      `${this.apiUrl}/byUserAndOffer?userId=${userId}&ofertaId=${ofertaId}`
+    );
   }
 
   private getAuthHeaders(): HttpHeaders {
