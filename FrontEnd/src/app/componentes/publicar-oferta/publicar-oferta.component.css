@@ -97,6 +97,4 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: var(--primary-hover);
-}
+
