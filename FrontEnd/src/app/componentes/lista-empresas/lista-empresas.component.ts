@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { EnterpriseService } from '../../services/enterprise.service';
 import { Enterprise } from 'src/app/model/enterprise.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,6 +14,9 @@ export class ListaEmpresasComponent implements OnInit {
   enterprisesList: Enterprise[] = [];
   empresasSeleccionadas: Enterprise[] = [];
 
+  paginaActual = 1;
+  elementosPorPagina = 6;
+
   constructor(
     private enterpriseService: EnterpriseService,
     private router: Router,
@@ -22,6 +25,13 @@ export class ListaEmpresasComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarEmpresas();
+
+    // Recarga empresas cada vez que se navega a esta ruta
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd && event.urlAfterRedirects === '/lista-empresas') {
+        this.cargarEmpresas();
+      }
+    });
   }
 
   cargarEmpresas(): void {
@@ -86,24 +96,20 @@ export class ListaEmpresasComponent implements OnInit {
     return this.empresasSeleccionadas.includes(enterprise);
   }
 
-  paginaActual = 1;
-elementosPorPagina = 6;
-
-get totalPaginas(): number {
-  return Math.ceil(this.enterprisesList.length / this.elementosPorPagina);
-}
-
-get empresasPaginadas() {
-  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
-  return this.enterprisesList.slice(inicio, inicio + this.elementosPorPagina);
-}
-
-cambiarPagina(direccion: 'anterior' | 'siguiente') {
-  if (direccion === 'anterior' && this.paginaActual > 1) {
-    this.paginaActual--;
-  } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
-    this.paginaActual++;
+  get totalPaginas(): number {
+    return Math.ceil(this.enterprisesList.length / this.elementosPorPagina);
   }
-}
 
+  get empresasPaginadas() {
+    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+    return this.enterprisesList.slice(inicio, inicio + this.elementosPorPagina);
+  }
+
+  cambiarPagina(direccion: 'anterior' | 'siguiente') {
+    if (direccion === 'anterior' && this.paginaActual > 1) {
+      this.paginaActual--;
+    } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
+    }
+  }
 }
