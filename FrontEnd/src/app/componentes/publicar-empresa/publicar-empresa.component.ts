@@ -27,6 +27,7 @@ export class PublicarEmpresaComponent implements OnInit {
   passwordEditable: boolean = false;
   enterpriseId: number = 0;
   empresasSeleccionadas: any[] = [];
+  location: any;
 
   constructor(
     private enterpriseService: EnterpriseService,
@@ -118,5 +119,7 @@ actualizarEmpresaConUsuario(): void {
     this.passwordEditable = true;
   }
 
- 
+ cancelar() {
+  this.router.navigate(['/lista-empresas']);
+}
 }

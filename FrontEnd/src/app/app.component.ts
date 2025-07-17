@@ -31,7 +31,8 @@ export class AppComponent {
           '/publicar-oferta/',
           '/editar-oferta/',
           '/candidato/',
-          '/mostrar-oferta?'
+          '/mostrar-oferta?',
+           '/publicar-empresa/'
         ];
 
         const ocultarFooter = ocultarFooterExacto.includes(event.urlAfterRedirects) ||

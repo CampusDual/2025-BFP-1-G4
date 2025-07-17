@@ -91,13 +91,24 @@
   </div>
 </div>
 
-    <button
-      mat-flat-button
-      color="warn"
-      type="submit"
-      [disabled]="empresaForm.invalid">
-      {{ modoEditar ? 'Actualizar Empresa' : 'Crear Empresa' }}
-    </button>
+    <div class="button-group">
+  <button
+    mat-flat-button
+    color="warn"
+    type="submit"
+    [disabled]="empresaForm.invalid">
+    {{ modoEditar ? 'Actualizar' : 'Guardar' }}
+  </button>
+
+  <button
+    mat-flat-button
+    color="warn"
+    type="button"
+    (click)="cancelar()">
+    Cancelar
+  </button>
+</div>
+
   </form>
 </div>
 <br>
