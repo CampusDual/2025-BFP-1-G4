@@ -64,8 +64,11 @@ public class User implements UserDetails {
     @Column
     private String linkedin;
 
+    @Column
+    private String laboral;
+
     public User(){ }
-    public User(int id, String phonenumber, String email, String name, String surname1, String surname2, String login, String password, Enterprise enterprise, String degree, String experience, String modality, String presentation, String github, String linkedin) {
+    public User(int id, String phonenumber, String email, String name, String surname1, String surname2, String login, String password, Enterprise enterprise, String degree, String experience, String modality, String presentation, String github, String linkedin, String laboral) {
         this.id = id;
         this.phonenumber = phonenumber;
         this.email = email;
@@ -81,6 +84,7 @@ public class User implements UserDetails {
         this.presentation = presentation;
         this.github = github;
         this.linkedin = linkedin;
+        this.laboral = laboral;
     }
 
     public int getId() {
@@ -206,6 +210,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getLaboral() {
+        return laboral;
+    }
+    public void setLaboral(String laboral) {
+        this.laboral = laboral;
     }
 
 }

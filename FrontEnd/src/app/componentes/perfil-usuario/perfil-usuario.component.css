@@ -52,10 +52,6 @@
   transition: transform 0.3s ease;
 }
 
-.perfil-avatar:hover {
-  transform: scale(1.05);
-}
-
 .perfil-info h2 {
   margin: 0;
   font-size: 1.75rem;
