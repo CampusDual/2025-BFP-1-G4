@@ -83,8 +83,8 @@
 /* Grid de checkboxes 3 columnas */
 .checkbox-lista {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px 10px;
 }
 
 /* Etiqueta y checkbox */
