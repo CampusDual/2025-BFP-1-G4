@@ -1,43 +1,48 @@
 <div class="page-container">
-    <h1 class="page-title">Candidatos postulados a la Oferta
-    </h1>
-    <div style="margin-top: 20px;">
-        <button class="add-btn" (click)="editarOferta()">Editar esta
-            oferta</button>
-    </div>
-    <br>
+  <h1 class="page-title">Candidatos postulados a la Oferta</h1>
+  <div style="margin-top: 20px;">
+    <button class="add-btn" (click)="editarOferta()">Editar esta oferta</button>
+  </div>
+  <br>
+  <div class="tabla-scroll-container">
     <table class="tabla-ofertas">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Email</th>
-      <th>Teléfono</th>
-      <th>Estado</th> <!-- 🆕 Nueva columna -->
-      <th>Acción</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let candidato of candidatos">
-      <td>{{ candidato.name }}</td>
-      <td>{{ candidato.email }}</td>
-      <td>{{ candidato.phonenumber }}</td>
-      <td>
-        <span
-          [ngClass]="{
-            'estado-pendiente': candidato.status === 'pendiente',
-            'estado-aceptado': candidato.status === 'aceptado',
-            'estado-rechazado': candidato.status === 'rechazado'
-          }"
-        >
-          {{ candidato.status | titlecase }}
-        </span>
-      </td>
-      <td>
-        <button class="add-btn" (click)="verPerfil(candidato.id)">
-          Ver perfil
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Estado</th>
+        <th>Acción</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let candidato of candidatosPaginados">
+        <td>{{ candidato.name }}</td>
+        <td>{{ candidato.email }}</td>
+        <td>{{ candidato.phonenumber }}</td>
+        <td>
+            <span
+              [ngClass]="{
+                'estado-pendiente': candidato.status === 'pendiente',
+                'estado-aceptado': candidato.status === 'aceptado',
+                'estado-rechazado': candidato.status === 'rechazado'
+              }"
+            >
+              {{ candidato.status | titlecase }}
+            </span>
+        </td>
+        <td>
+          <button class="add-btn" (click)="verPerfil(candidato.id)">
+            Ver perfil
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="paginacion">
+    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">Anterior</button>
+    <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">Siguiente</button>
+  </div>
+</div>

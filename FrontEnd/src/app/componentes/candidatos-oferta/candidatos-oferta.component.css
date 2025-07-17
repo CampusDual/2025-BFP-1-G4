@@ -16,7 +16,7 @@
 table {
   width: 100%;
   margin-bottom: 1rem;
-  
+
 }
 
 .tabla-ofertas {
@@ -63,7 +63,7 @@ table {
   user-select: none;
   font-size: 16px;
   outline: none;
-  margin-bottom: auto; 
+  margin-bottom: auto;
 }
 
 .add-btn:hover {
@@ -86,4 +86,35 @@ table {
 .estado-rechazado {
   color: red;
   font-weight: bold;
+}
+
+.paginacion {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.paginacion button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #ff7043;
+  background-color: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background-color: #ff7043;
+  color: white;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
