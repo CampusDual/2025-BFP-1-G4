@@ -15,10 +15,10 @@
         <button mat-raised-button color="primary"
           (click)="editarPerfil()">Editar
           perfil</button>
-           <button mat-raised-button color="primary" (click)="verPostulaciones()"
-        style="margin-left: 10px;">
-        Mis Postulaciones
-      </button>
+        <button mat-raised-button color="primary" (click)="verPostulaciones()"
+          style="margin-left: 10px;">
+          Mis Postulaciones
+        </button>
       </div>
 
     </div>
@@ -31,7 +31,9 @@
       <div class="perfil-seccion">
         <div class="perfil-col">
           <p><strong>Título profesional:</strong> {{ usuario.degree }}</p>
-          <p><strong>Experiencia:</strong> {{ usuario.experience }} </p>
+          <p><strong>Experiencia:</strong> {{ usuario.experience }} año{{
+            usuario.experience === 1 ? '' : 's' }}</p>
+
           <p><strong>Modalidad preferida:</strong> {{ usuario.modality }}</p>
           <p><strong>Email:</strong> {{ usuario.email }}</p>
         </div>

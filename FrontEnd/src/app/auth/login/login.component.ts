@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           }
 
           if (this.authService.getRole() === 'admin') {
-            this.router.navigate(['/administration']);
+            this.router.navigate(['/lista-empresas']);
           }
           if (this.authService.getRole() === 'enterprise') {
             this.router.navigate(['/lista-ofertas']);

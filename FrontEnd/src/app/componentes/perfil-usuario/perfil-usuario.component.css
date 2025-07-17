@@ -39,8 +39,8 @@
 }
 
 .perfil-avatar {
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
   border-radius: 50%;
   display: flex;

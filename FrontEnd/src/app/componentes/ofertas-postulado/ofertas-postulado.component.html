@@ -1,6 +1,5 @@
 <h1 class="page-title">Mis postulaciones</h1>
 
-
 <div class="contenido-ofertas">
   <div class="ofertas-grid">
     <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">
@@ -9,36 +8,29 @@
 
       <span
         [ngClass]="{
-      'estado-pendiente': oferta.status === 'pendiente',
-      'estado-aceptado': oferta.status === 'aceptado',
-      'estado-rechazado': oferta.status === 'rechazado'
-    }">
-        {{ oferta.status ? (oferta.status | titlecase) : 'Estado no disponible'
-        }}
+          'estado-pendiente': oferta.status === 'pendiente',
+          'estado-aceptado': oferta.status === 'aceptado',
+          'estado-rechazado': oferta.status === 'rechazado'
+        }">
+        {{ oferta.status ? (oferta.status | titlecase) : 'Estado no disponible' }}
       </span>
 
       <p class="oferta-fecha">
-        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate |
-        date:'dd/MM/yyyy' }}
+        <mat-icon>calendar_month</mat-icon> {{ oferta.publicationDate | date:'dd/MM/yyyy' }}
       </p>
 
-      <button class="apButton" (click)="verDetalle(oferta.id)">Ver
-        detalle</button>
+      <button class="apButton" (click)="verDetalle(oferta.id)">Ver detalle</button>
     </div>
-
-    <br /><br />
-
-    <div class="paginacion">
-      <button (click)="cambiarPagina('anterior')"
-        [disabled]="paginaActual === 1">
-        Anterior
-      </button>
-      <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
-      <button (click)="cambiarPagina('siguiente')"
-        [disabled]="paginaActual === totalPaginas">
-        Siguiente
-      </button>
-    </div>
-
-    <br />
   </div>
+
+  <!-- Paginador va aquí, FUERA del grid -->
+  <div class="paginacion">
+    <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">
+      Anterior
+    </button>
+    <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
+    <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">
+      Siguiente
+    </button>
+  </div>
+</div>
