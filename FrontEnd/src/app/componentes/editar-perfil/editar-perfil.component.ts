@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service.module';
 import { AuthService } from '../../services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -15,8 +14,7 @@ export class EditarPerfilComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private authService: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,9 +37,7 @@ export class EditarPerfilComponent implements OnInit {
           },
           error: (err) => {
             console.error('Error al cargar usuario:', err);
-            this.snackBar.open('⚠️ No se pudo cargar tu perfil.', 'Cerrar', {
-              duration: 3000
-            });
+            alert('⚠️ No se pudo cargar tu perfil.');
           }
         });
       },
@@ -55,16 +51,12 @@ export class EditarPerfilComponent implements OnInit {
   guardarCambios(): void {
     this.usuarioService.updateUserProfile(this.usuario).subscribe({
       next: () => {
-        this.snackBar.open('✅ Perfil actualizado correctamente.', 'Cerrar', {
-          duration: 3000
-        });
+        alert('✅ Perfil actualizado correctamente.');
         this.router.navigate(['/perfil-usuario']);
       },
       error: (err) => {
         console.error('Error al guardar cambios:', err);
-        this.snackBar.open('❌ Hubo un error al guardar los cambios.', 'Cerrar', {
-          duration: 3000
-        });
+        alert('❌ Hubo un error al guardar los cambios.');
       }
     });
   }

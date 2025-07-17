@@ -98,6 +98,8 @@ actualizarEmpresaConUsuario(): void {
     }
   });
   this.router.navigate(['/lista-empresas']);
+  
+
 }
 
   borrarSeleccionadas(ids: number[]) {
