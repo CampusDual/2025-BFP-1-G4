@@ -33,15 +33,8 @@ export class DetalleOfertaComponent implements OnInit {
   }
 
 volver() {
-  const role = this.authService.getRole();
-
-  if (role === 'user') {
-    this.router.navigate(['/mis-postulaciones']);
-  } else if (role === 'enterprise') {
-    this.router.navigate(['/mostrar-oferta']);
-  } else {
-    this.router.navigate(['/']);
-  }
+  const queryParams = this.route.snapshot.queryParams;
+  this.router.navigate(['/mostrar-oferta'], { queryParams, replaceUrl: true });
 }
 
   parseToList(texto: string): string[] {
