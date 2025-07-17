@@ -1,9 +1,4 @@
 
-*,
-*::before,
-*::after {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-}
 
 html, body {
   height: 100%; /* Asegura que el html y el body ocupen toda la altura de la pantalla */
