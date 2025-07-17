@@ -15,7 +15,7 @@ export class DetalleOfertaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ofertasService: OfertasService,
-    private authService: AuthService
+  
   ) {}
 
   ngOnInit(): void {

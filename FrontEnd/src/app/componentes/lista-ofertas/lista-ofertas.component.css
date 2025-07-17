@@ -37,7 +37,6 @@
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   transition: 0.3s;
 }
@@ -75,7 +74,6 @@
   font-size: 1rem;
   border: 2px solid #ff7043;
   border-radius: 6px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   transition: border-color 0.3s ease;
 }
 
