@@ -141,7 +141,7 @@ public class OffersService implements IOffersService {
             OffersDTO offerDTO = convertToDTO(offerEntity);
             return offerDTO;
         } else {
-            return null; // No encontrada
+            return null;
         }
     }
 
