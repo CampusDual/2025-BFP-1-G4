@@ -40,7 +40,7 @@ volver() {
   } else if (role === 'enterprise') {
     this.router.navigate(['/mostrar-oferta']);
   } else {
-    this.router.navigate(['/']); // Fallback opcional
+    this.router.navigate(['/']);
   }
 }
 

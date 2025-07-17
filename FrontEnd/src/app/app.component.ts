@@ -12,7 +12,6 @@ export class AppComponent {
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Rutas donde ocultar el footer (rutas estáticas)
         const ocultarFooterExacto = [
           '/register',
           '/login',
@@ -27,7 +26,6 @@ export class AppComponent {
           '/lista-ofertas',
         ];
 
-        // Rutas donde ocultar el footer que tienen parámetros (rutas dinámicas)
         const ocultarFooterPatrones = [
           '/detalle-oferta/',
           '/publicar-oferta/',
@@ -35,9 +33,7 @@ export class AppComponent {
           '/candidato/'
         ];
 
-        // Comprobar si la ruta actual está en la lista exacta
         const ocultarFooter = ocultarFooterExacto.includes(event.urlAfterRedirects) ||
-          // O si la ruta actual empieza por alguno de los patrones
           ocultarFooterPatrones.some(ruta => event.urlAfterRedirects.startsWith(ruta));
 
         this.mostrarFooter = !ocultarFooter;
@@ -46,7 +42,6 @@ export class AppComponent {
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Rutas donde ocultar el navigator
         const ocultarNavigator = ['/register', '/login'];
 
         this.mostrarNavigator = !ocultarNavigator.includes(event.urlAfterRedirects);

@@ -65,7 +65,6 @@ export class ListaEmpresasComponent implements OnInit {
     this.empresasSeleccionadas.forEach((enterprise) => {
       this.enterpriseService.deleteEnterprise(enterprise.id!).subscribe({
         next: () => {
-          // Eliminar del listado local si se borra bien
           this.enterprisesList = this.enterprisesList.filter(e => e.id !== enterprise.id);
           this.empresasSeleccionadas = this.empresasSeleccionadas.filter(e => e.id !== enterprise.id);
         },
@@ -73,7 +72,6 @@ export class ListaEmpresasComponent implements OnInit {
           console.error(`Error al eliminar empresa con ID ${enterprise.id}`, err);
           errores++;
 
-          // Solo mostramos un mensaje por empresa fallida si ocurre
           if (err.error?.mensaje) {
             this.snackBar.open(err.error.mensaje, 'Cerrar', { duration: 5000 });
           } else if (errores === 1) {

@@ -13,7 +13,7 @@ export class MostrarOfertaComponent implements OnInit {
   ofertasFiltradas: any[] = [];
   ofertasPaginadas: any[] = [];
   empresasSeleccionadas: string[] = [];
-  mostrarFiltro: boolean = false; // controla desplegable
+  mostrarFiltro: boolean = false;
   paginaActual: number = 1;
   elementosPorPagina: number = 12;
   totalPaginas: number = 0;
@@ -170,13 +170,11 @@ onTextoBuscar(event: any): void {
   this.textoBusqueda = texto;
 
   if (texto === '') {
-    // Si el texto está vacío, solo aplicar filtro de empresas (local)
     this.aplicarFiltroEmpresas();
     return;
   }
 
   this.ofertasService.getOfertasFiltradasPorTexto(texto).subscribe(resultados => {
-    // Aplicar filtro también por empresas seleccionadas si hay
     const filtradas = this.empresasSeleccionadas.length > 0
       ? resultados.filter(oferta => this.empresasSeleccionadas.includes(oferta.enterpriseName))
       : resultados;

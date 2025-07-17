@@ -1,7 +1,6 @@
 <div class="page-container">
   <h1 class="page-title">Empresas registradas</h1>
 
-  <!-- Botones -->
   <div class="boton-publicar">
     <button class="add-btn" (click)="irANuevaEmpresa()">Crear nueva Empresa</button>
 
@@ -12,7 +11,6 @@
     </button>
   </div>
 
-  <!-- Contenedor con scroll para evitar que el footer se empuje -->
   <div class="tabla-scroll-container">
     <table class="tabla-empresas">
       <thead>
@@ -41,7 +39,6 @@
     </table>
   </div>
 
-  <!-- Paginación -->
   <div class="paginacion">
     <button (click)="cambiarPagina('anterior')" [disabled]="paginaActual === 1">Anterior</button>
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>

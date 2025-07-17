@@ -26,7 +26,7 @@ export class CandidatosOfertaComponent implements OnInit {
 cargarCandidatos(): void {
   this.inscripcionService.getCandidatosPorOferta(this.ofertaid).subscribe({
     next: (data) => {
-      console.log('🟢 Candidatos recibidos:', data); // Asegúrate que aquí aparece "status"
+      console.log('🟢 Candidatos recibidos:', data);
       this.candidatos = data;
     },
     error: (err) => console.error('Error al cargar candidatos', err)
