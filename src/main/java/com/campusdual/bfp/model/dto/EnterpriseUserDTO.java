@@ -5,7 +5,6 @@ public class EnterpriseUserDTO {
     private String login;
     private String password;
 
-    // getters y setters
     public EnterpriseDTO getEnterprise() { return enterprise; }
     public void setEnterprise(EnterpriseDTO enterprise) { this.enterprise = enterprise; }
     public String getLogin() { return login; }

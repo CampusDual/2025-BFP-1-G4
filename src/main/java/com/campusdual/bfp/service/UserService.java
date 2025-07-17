@@ -90,7 +90,6 @@ public class UserService implements IUserService, UserDetailsService {
         if (user == null || user.getAuthorities().isEmpty()) {
             return null;
         }
-        // Devuelve el nombre del primer rol encontrado
         return user.getAuthorities().iterator().next().getAuthority();
     }
 
