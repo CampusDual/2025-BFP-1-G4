@@ -18,14 +18,13 @@ export class DetalleOfertaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ofertasService: OfertasService,
-    private authService: AuthService, // Inyecta AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
-    this.usuarioRol = this.authService.getRole(); // Obtener el rol del usuario al inicializar
-    this.userId = this.authService.getUserId(); // Obtener el ID del usuario
+    this.usuarioRol = this.authService.getRole();
+    this.userId = this.authService.getUserId();
 
-    // Obtener las ofertas a las que el usuario ya se ha postulado
     if (this.userId !== null) {
       this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
         this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
@@ -45,20 +44,17 @@ export class DetalleOfertaComponent implements OnInit {
     }
   }
 
-  // Getter para verificar si el usuario tiene el rol 'user'
   get isUserRole(): boolean {
     return this.usuarioRol === 'user';
   }
 
-  // Método para verificar si el usuario ya se ha postulado a esta oferta
   yaPostulado(idOferta: number): boolean {
     return this.ofertasPostuladasIds.includes(idOferta);
   }
 
-  // Método para postularse a la oferta
   postularse(): void {
     if (!this.oferta || !this.isUserRole) {
-      return; // No se puede postular si no hay oferta o el rol no es de usuario
+      return;
     }
 
     const username = this.authService.getUsername();
@@ -70,7 +66,6 @@ export class DetalleOfertaComponent implements OnInit {
     this.ofertasService.inscribirse(this.oferta.id).subscribe({
       next: () => {
         alert(`✅ Te has postulado a la oferta: ${this.oferta.title}`);
-        // Actualizar la lista de ofertas postuladas después de una postulación exitosa
         if (this.userId !== null) {
           this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
             this.ofertasPostuladasIds = ofertas.map(o => o.id);
@@ -86,15 +81,10 @@ export class DetalleOfertaComponent implements OnInit {
 
   volver() {
     const origen = this.route.snapshot.queryParamMap.get('origen');
-    const ofertaId = this.route.snapshot.queryParamMap.get('ofertaId');
-
-    if (origen === 'mis-postulaciones') {
-      this.router.navigate(['/mis-postulaciones'], { queryParamsHandling: 'preserve' });
-    } else if (origen === 'candidatos-oferta' && ofertaId) {
-      this.router.navigate(['/candidatos-oferta', ofertaId], { queryParamsHandling: 'preserve' });
-    }
-    else {
-      this.router.navigate(['/mostrar-oferta'], { queryParamsHandling: 'preserve' });
+    if (origen === 'mostrar-oferta') {
+      this.router.navigate(['/mostrar-oferta']);
+    } else {
+      this.router.navigate(['/mostrar-oferta']);
     }
   }
 
