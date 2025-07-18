@@ -84,15 +84,19 @@ export class DetalleOfertaComponent implements OnInit {
     });
   }
 
-volver() {
-  const origen = this.route.snapshot.queryParamMap.get('origen');
+  volver() {
+    const origen = this.route.snapshot.queryParamMap.get('origen');
+    const ofertaId = this.route.snapshot.queryParamMap.get('ofertaId');
 
-  if (origen === 'mis-postulaciones') {
-    this.router.navigate(['/mis-postulaciones'], { queryParamsHandling: 'preserve' });
-  } else {
-    this.router.navigate(['/mostrar-oferta'], { queryParamsHandling: 'preserve' });
+    if (origen === 'mis-postulaciones') {
+      this.router.navigate(['/mis-postulaciones'], { queryParamsHandling: 'preserve' });
+    } else if (origen === 'candidatos-oferta' && ofertaId) {
+      this.router.navigate(['/candidatos-oferta', ofertaId], { queryParamsHandling: 'preserve' });
+    }
+    else {
+      this.router.navigate(['/mostrar-oferta'], { queryParamsHandling: 'preserve' });
+    }
   }
-}
 
   parseToList(texto: string): string[] {
     return texto.split('\n').filter(linea => linea.trim() !== '');
