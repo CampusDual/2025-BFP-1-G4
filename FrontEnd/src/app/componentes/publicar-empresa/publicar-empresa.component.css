@@ -1,7 +1,7 @@
 .page-container {
-  margin: 2vh auto; /* menos espacio arriba/abajo */
-  padding: 1.5rem 1.5rem; /* un poco más compacto */
-  max-width: 500px; /* un poco más angosto ayuda a cortar altura */
+  margin: 2vh auto;
+  padding: 1.5rem 1.5rem;
+  max-width: 500px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -18,11 +18,10 @@
   margin-bottom: 1rem;
 }
 
-/* Espacio vertical más reducido */
 .form-group {
   margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Mantener flex para la mayoría de los form-group */
+  flex-direction: column; /* Mantener dirección de columna para la mayoría de los form-group */
 }
 
 label {
@@ -32,7 +31,6 @@ label {
   font-size: 14px;
 }
 
-/* Input más compacto */
 input {
   padding: 8px 12px;
   font-size: 14px;
@@ -40,6 +38,35 @@ input {
   border-radius: 6px;
   transition: border-color 0.3s;
 }
+
+/* Nuevos estilos para el grupo de usuario y contraseña */
+.user-credentials-group {
+  display: flex; /* Convierte este contenedor en un flex container */
+  gap: 1rem; /* Espacio entre los campos de usuario y contraseña */
+  margin-bottom: 1rem; /* Margen inferior para este grupo */
+}
+
+.user-login-group {
+  flex: 1; /* Permite que el grupo de login crezca y ocupe espacio */
+  margin-bottom: 0; /* Eliminar el margen inferior del form-group aquí para evitar doble margen */
+}
+
+.user-password-group {
+  flex: 1; /* Permite que el grupo de contraseña crezca y ocupe espacio */
+  margin-bottom: 0; /* Eliminar el margen inferior del form-group aquí */
+}
+
+.password-input-wrapper {
+  display: flex;
+  gap: 8px; /* Espacio entre el input de contraseña y el botón */
+  align-items: center; /* Alinea verticalmente el input y el botón */
+  width: 100%; /* Asegura que el wrapper ocupe todo el ancho disponible */
+}
+
+.password-input-wrapper input {
+  flex: 1; /* Permite que el input de contraseña crezca y ocupe el espacio restante */
+}
+
 
 /* Botón principal más pequeño */
 button[mat-flat-button] {
@@ -61,5 +88,13 @@ button[mat-flat-button] {
   .page-container {
     margin: 2vh 1rem;
     padding: 1rem;
+  }
+  /* En pantallas pequeñas, apilar los campos de usuario y contraseña */
+  .user-credentials-group {
+    flex-direction: column;
+    gap: 0; /* Eliminar el espacio horizontal cuando se apilan */
+  }
+  .user-login-group, .user-password-group {
+    margin-bottom: 1rem; /* Añadir margen vertical cuando están apilados */
   }
 }
