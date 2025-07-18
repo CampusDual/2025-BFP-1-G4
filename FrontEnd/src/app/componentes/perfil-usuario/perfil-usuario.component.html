@@ -17,7 +17,7 @@
           perfil</button>
         <button mat-raised-button color="primary" (click)="verPostulaciones()"
           style="margin-left: 10px;">
-          Mis Postulaciones
+          Mis Ofertas
         </button>
       </div>
 
@@ -31,8 +31,7 @@
       <div color="warn" class="perfil-seccion">
         <div color="warn" class="perfil-col">
           <p><strong>Título profesional:</strong> {{ usuario.degree }}</p>
-          <p><strong>Experiencia:</strong> {{ usuario.experience }} año/s{{
-            usuario.experience === 1 ? '' : 's' }}</p>
+          <p><strong>Experiencia:</strong> {{ usuario.experience }} año/s</p>
 
           <p><strong>Modalidad preferida:</strong> {{ usuario.modality }}</p>
           <p><strong>Email:</strong> {{ usuario.email }}</p>

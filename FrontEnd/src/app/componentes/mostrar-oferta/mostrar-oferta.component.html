@@ -62,7 +62,7 @@
           (click)="aplicarOferta(oferta)"
           [disabled]="yaPostulado(oferta.id)"
           [ngClass]="{ 'boton-disabled': yaPostulado(oferta.id) }">
-          {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
+          {{ yaPostulado(oferta.id) ? 'Inscrito' : 'Inscribirse' }}
         </button>
 
         <button class="apButton mitad" (click)="verDetalle(oferta.id)">Ver

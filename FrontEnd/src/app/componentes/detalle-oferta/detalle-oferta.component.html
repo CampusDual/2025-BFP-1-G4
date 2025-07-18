@@ -51,7 +51,7 @@
           (click)="postularse()"
           [disabled]="yaPostulado(oferta.id)"
           [ngClass]="{ 'boton-disabled': yaPostulado(oferta.id) }">
-          {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
+          {{ yaPostulado(oferta.id) ? 'Inscrito' : 'Inscribirse' }}
         </button>
       </a>
       <button (click)="volver()">Volver</button>
