@@ -33,12 +33,13 @@ export class DetalleOfertaComponent implements OnInit {
   }
 
 volver() {
-  const queryParams = this.route.snapshot.queryParams;
-  this.router.navigate(['/mostrar-oferta'], { queryParams, replaceUrl: true });
-}
+  const origen = this.route.snapshot.queryParamMap.get('origen');
 
-  parseToList(texto: string): string[] {
-  return texto.split('\n').filter(linea => linea.trim() !== '');
+  if (origen === 'mis-postulaciones') {
+    this.router.navigate(['/mis-postulaciones'], { queryParamsHandling: 'preserve' });
+  } else {
+    this.router.navigate(['/mostrar-oferta'], { queryParamsHandling: 'preserve' });
+  }
 }
 
 }
