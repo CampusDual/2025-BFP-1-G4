@@ -9,9 +9,6 @@ import { OfertasService } from '../../services/ofertas-service.service';
   styleUrls: ['./detalle-oferta.component.css']
 })
 export class DetalleOfertaComponent implements OnInit {
-parseToList(arg0: any): any {
-throw new Error('Method not implemented.');
-}
   oferta: any = null;
   usuarioRol: string | null = '';
   userId: number | null = null;
@@ -87,10 +84,6 @@ throw new Error('Method not implemented.');
     });
   }
 
-  volver() {
-    const queryParams = this.route.snapshot.queryParams;
-    this.router.navigate(['/mostrar-oferta'], { queryParams, replaceUrl: true });
-  }
 volver() {
   const origen = this.route.snapshot.queryParamMap.get('origen');
 
