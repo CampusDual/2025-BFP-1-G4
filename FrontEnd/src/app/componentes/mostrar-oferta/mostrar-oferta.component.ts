@@ -122,9 +122,10 @@ export class MostrarOfertaComponent implements OnInit {
     this.actualizarPaginado();
   }
 
-  verDetalle(id: number): void {
+ verDetalle(id: number): void {
     this.router.navigate(['/detalle-oferta', id], {
       queryParams: {
+        origen: 'mostrar-oferta',
         pagina: this.paginaActual,
         filtros: JSON.stringify(this.empresasSeleccionadas),
         texto: this.textoBusqueda

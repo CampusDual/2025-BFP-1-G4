@@ -60,8 +60,10 @@ constructor(
     this.actualizarPaginado();
   }
 
-  verDetalle(id: number): void {
-    this.router.navigate(['/detalle-oferta', id]);
+ verDetalle(id: number): void {
+    this.router.navigate(['/detalle-oferta', id], {
+      queryParams: { origen: 'mis-postulaciones' }
+    });
   }
 
   actualizarPaginado(): void {
