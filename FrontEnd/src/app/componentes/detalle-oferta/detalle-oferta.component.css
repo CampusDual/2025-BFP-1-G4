@@ -116,3 +116,11 @@
   background-color: #bf360c; /* naranja oscuro */
   box-shadow: 0 5px 20px rgba(191, 54, 12, 0.9);
 }
+
+button.boton-disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  border: 1px solid #999 !important;
+  pointer-events: none;
+}

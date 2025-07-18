@@ -1,4 +1,3 @@
-<!--PARTE DE COPIA-->
 <div class="detalle-oferta-container" *ngIf="oferta">
   <h2 class="titulo-oferta">{{ oferta.title }}</h2>
 
@@ -46,6 +45,14 @@
     <div class="perfil-acciones" style="margin-top: 2rem;">
       <a *ngIf="oferta.linkedin" [href]="oferta.linkedin" target="_blank">
         <button>Ver en LinkedIn</button>
+      </a>
+      <a *ngIf="isUserRole">
+        <button
+          (click)="postularse()"
+          [disabled]="yaPostulado(oferta.id)"
+          [ngClass]="{ 'boton-disabled': yaPostulado(oferta.id) }">
+          {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
+        </button>
       </a>
       <button (click)="volver()">Volver</button>
     </div>
