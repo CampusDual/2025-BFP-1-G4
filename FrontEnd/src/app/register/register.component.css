@@ -68,8 +68,33 @@ button[mat-flat-button] {
   flex: 1;
 }
 
+/* Nuevos estilos para el grupo de usuario y contraseña */
+.user-credentials-group {
+  display: flex; /* Convierte este contenedor en un flex container */
+  gap: 1rem; /* Espacio entre los campos de usuario y contraseña */
+  margin-bottom: 1rem; /* Margen inferior para este grupo */
+}
+
+.user-login-group {
+  flex: 1; /* Permite que el grupo de login crezca y ocupe espacio */
+  margin-bottom: 0; /* Eliminar el margen inferior del form-group aquí para evitar doble margen */
+}
+
+.user-password-group {
+  flex: 1; /* Permite que el grupo de contraseña crezca y ocupe espacio */
+  margin-bottom: 0; /* Eliminar el margen inferior del form-group aquí */
+}
+
 @media (max-width: 600px) {
   .form-row {
     flex-direction: column;
+  }
+  /* En pantallas pequeñas, apilar los campos de usuario y contraseña */
+  .user-credentials-group {
+    flex-direction: column;
+    gap: 0; /* Eliminar el espacio horizontal cuando se apilan */
+  }
+  .user-login-group, .user-password-group {
+    margin-bottom: 1rem; /* Añadir margen vertical cuando están apilados */
   }
 }

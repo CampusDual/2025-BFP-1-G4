@@ -40,16 +40,17 @@
       <input id="email" formControlName="email" type="email" required placeholder="Correo electrónico" />
     </div>
 
-    <div class="form-group">
-      <label for="login">Usuario *</label>
-      <input id="login" formControlName="login" required placeholder="Nombre de usuario" />
-    </div>
+    <div class="user-credentials-group">
+      <div class="form-group user-login-group">
+        <label for="login">Usuario *</label>
+        <input id="login" formControlName="login" required placeholder="Nombre de usuario" />
+      </div>
 
-    <div class="form-group">
-      <label for="password">Contraseña *</label>
-      <input id="password" formControlName="password" type="password" required placeholder="Contraseña" />
+      <div class="form-group user-password-group">
+        <label for="password">Contraseña *</label>
+        <input id="password" formControlName="password" type="password" required placeholder="Contraseña" />
+      </div>
     </div>
-
     <button mat-flat-button color="warn" type="submit">Registrar</button>
   </form>
 </div>
