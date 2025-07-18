@@ -27,6 +27,7 @@ export class PublicarEmpresaComponent implements OnInit {
   passwordEditable: boolean = false;
   enterpriseId: number = 0;
   empresasSeleccionadas: any[] = [];
+  location: any;
 
   constructor(
     private enterpriseService: EnterpriseService,
@@ -53,7 +54,7 @@ export class PublicarEmpresaComponent implements OnInit {
   cargarEmpresaParaEditar(id: number): void {
     this.enterpriseService.getEnterpriseWithUser(id).subscribe({
       next: (data) => {
-        this.enterpriseUser = data; // data ya contiene enterprise y login
+        this.enterpriseUser = data;
       },
       error: (err) => {
         console.error('Error al obtener empresa', err);
@@ -68,7 +69,6 @@ export class PublicarEmpresaComponent implements OnInit {
     } else {
       this.publicarEmpresa();
     }
-    
   }
 
   publicarEmpresa(): void {
@@ -80,43 +80,42 @@ export class PublicarEmpresaComponent implements OnInit {
       error: (err) => {
         console.error('Error al crear empresa', err);
       }
-      
     });
-    this.router.navigate(['/lista-empresas']);
   }
 
-actualizarEmpresaConUsuario(): void {
-  this.enterpriseService.updateEnterpriseWithUser(this.enterpriseUser).subscribe({
-    next: () => {
-      alert('Empresa y usuario actualizados con éxito');
-      this.router.navigate(['/lista-empresas']);
-    },
-    error: (err) => {
-      console.error('Error al actualizar empresa con usuario', err);
-      alert('Error al actualizar empresa');
-    }
-  });
-  this.router.navigate(['/lista-empresas']);
-}
-
-  borrarSeleccionadas(ids: number[]) {
-  ids.forEach(id => {
-    this.enterpriseService.getEnterpriseWithUser(id).subscribe(dto => {
-      const enterpriseId = dto.enterprise.id;
-      if (enterpriseId !== undefined) {
-        this.enterpriseService.deleteEnterprise(enterpriseId).subscribe(() => {
-          // Empresa eliminada
-        });
-      } else {
-        console.error('enterpriseId is undefined, cannot delete enterprise');
+  actualizarEmpresaConUsuario(): void {
+    this.enterpriseService.updateEnterpriseWithUser(this.enterpriseUser).subscribe({
+      next: () => {
+        alert('Empresa y usuario actualizados con éxito');
+        this.router.navigate(['/lista-empresas']);
+      },
+      error: (err) => {
+        console.error('Error al actualizar empresa con usuario', err);
+        alert('Error al actualizar empresa');
       }
     });
-  });
-}
+  }
+
+  borrarSeleccionadas(ids: number[]) {
+    ids.forEach(id => {
+      this.enterpriseService.getEnterpriseWithUser(id).subscribe(dto => {
+        const enterpriseId = dto.enterprise.id;
+        if (enterpriseId !== undefined) {
+          this.enterpriseService.deleteEnterprise(enterpriseId).subscribe(() => {
+            // Empresa eliminada
+          });
+        } else {
+          console.error('enterpriseId is undefined, cannot delete enterprise');
+        }
+      });
+    });
+  }
 
   habilitarPassword(): void {
     this.passwordEditable = true;
   }
 
- 
+  cancelar() {
+    this.router.navigate(['/lista-empresas']);
+  }
 }

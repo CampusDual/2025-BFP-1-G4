@@ -44,7 +44,9 @@
       <p class="oferta-empresa">
         <mat-icon>business</mat-icon> {{ oferta.enterpriseName }}
       </p>
-      <p class="oferta-descripcion">{{ oferta.description }}</p>
+      <p class="oferta-descripcion">
+        {{ oferta.description.length > 180 ? (oferta.description | slice:0:180) + '...' : oferta.description }}
+      </p>
       <p class="oferta-email">
         <mat-icon>email</mat-icon> {{ oferta.enterpriseEmail }}
       </p>
@@ -86,11 +88,10 @@
 
   <br>
 
-  <footer class="integrated-footer">
-    <div class="footer-content">
-      <p>&copy; 2025 CLUSTER TIC GALICIA. Todos los derechos reservados.</p>
-    </div>
-  </footer>
 
-  <br>
 </div>
+<footer class="integrated-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 CLUSTER TIC GALICIA. Todos los derechos reservados.</p>
+  </div>
+</footer>

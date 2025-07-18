@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { EnterpriseService } from '../../services/enterprise.service';
 import { Enterprise } from 'src/app/model/enterprise.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -14,6 +14,9 @@ export class ListaEmpresasComponent implements OnInit {
   enterprisesList: Enterprise[] = [];
   empresasSeleccionadas: Enterprise[] = [];
 
+  paginaActual = 1;
+  elementosPorPagina = 6;
+
   constructor(
     private enterpriseService: EnterpriseService,
     private router: Router,
@@ -22,6 +25,13 @@ export class ListaEmpresasComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarEmpresas();
+
+    // Recarga empresas cada vez que se navega a esta ruta
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd && event.urlAfterRedirects === '/lista-empresas') {
+        this.cargarEmpresas();
+      }
+    });
   }
 
   cargarEmpresas(): void {
@@ -65,7 +75,6 @@ export class ListaEmpresasComponent implements OnInit {
     this.empresasSeleccionadas.forEach((enterprise) => {
       this.enterpriseService.deleteEnterprise(enterprise.id!).subscribe({
         next: () => {
-          // Eliminar del listado local si se borra bien
           this.enterprisesList = this.enterprisesList.filter(e => e.id !== enterprise.id);
           this.empresasSeleccionadas = this.empresasSeleccionadas.filter(e => e.id !== enterprise.id);
         },
@@ -73,7 +82,6 @@ export class ListaEmpresasComponent implements OnInit {
           console.error(`Error al eliminar empresa con ID ${enterprise.id}`, err);
           errores++;
 
-          // Solo mostramos un mensaje por empresa fallida si ocurre
           if (err.error?.mensaje) {
             this.snackBar.open(err.error.mensaje, 'Cerrar', { duration: 5000 });
           } else if (errores === 1) {
@@ -88,24 +96,20 @@ export class ListaEmpresasComponent implements OnInit {
     return this.empresasSeleccionadas.includes(enterprise);
   }
 
-  paginaActual = 1;
-elementosPorPagina = 6;
-
-get totalPaginas(): number {
-  return Math.ceil(this.enterprisesList.length / this.elementosPorPagina);
-}
-
-get empresasPaginadas() {
-  const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
-  return this.enterprisesList.slice(inicio, inicio + this.elementosPorPagina);
-}
-
-cambiarPagina(direccion: 'anterior' | 'siguiente') {
-  if (direccion === 'anterior' && this.paginaActual > 1) {
-    this.paginaActual--;
-  } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
-    this.paginaActual++;
+  get totalPaginas(): number {
+    return Math.ceil(this.enterprisesList.length / this.elementosPorPagina);
   }
-}
 
+  get empresasPaginadas() {
+    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+    return this.enterprisesList.slice(inicio, inicio + this.elementosPorPagina);
+  }
+
+  cambiarPagina(direccion: 'anterior' | 'siguiente') {
+    if (direccion === 'anterior' && this.paginaActual > 1) {
+      this.paginaActual--;
+    } else if (direccion === 'siguiente' && this.paginaActual < this.totalPaginas) {
+      this.paginaActual++;
+    }
+  }
 }

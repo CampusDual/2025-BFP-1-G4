@@ -1,6 +1,5 @@
 .perfil-container {
   padding: 0.0rem 1.5rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 1100px;
   margin: 1rem auto;
   background: #fff;
@@ -36,11 +35,12 @@
   gap: 1.5rem;
   flex: 1 1 auto;
   min-width: 220px;
+  justify-content: center;
 }
 
 .perfil-avatar {
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
   border-radius: 50%;
   display: flex;
@@ -50,10 +50,6 @@
   color: #fff;
   box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
   transition: transform 0.3s ease;
-}
-
-.perfil-avatar:hover {
-  transform: scale(1.05);
 }
 
 .perfil-info h2 {
@@ -73,24 +69,23 @@
 
 .perfil-acciones {
   display: flex;
-  justify-content: flex-end; /* para que el botón esté a la derecha */
+  justify-content: flex-end;
   gap: 0.75rem;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .perfil-acciones button {
   min-width: 140px;
   font-weight: 600;
   border-radius: 30px;
-  background-color: #e64a19; /* naranja */
+  background-color: #e64a19;
   color: white;
   box-shadow: 0 3px 8px rgba(230, 74, 25, 0.6);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .perfil-acciones button:hover {
-  background-color: #bf360c; /* naranja oscuro */
+  background-color: #bf360c;
   box-shadow: 0 5px 20px rgba(191, 54, 12, 0.9);
 }
 
@@ -118,19 +113,19 @@
 }
 
 .perfil-links {
-margin-left: 12.5rem;
   display: flex;
-  justify-content: center; /* centra horizontalmente */
-  gap: 12rem; /* espacio uniforme entre enlaces */
+  justify-content: center;
+  gap: 3rem;
   margin-top: 2.5rem;
   padding-top: 1rem;
-  border-top: 1px solid #ddd; /* separación visual */
+  border-top: 1px solid #ddd;
+  flex-wrap: wrap;
 }
 
 .perfil-links a {
   display: flex;
   align-items: center;
-  color: #e64a19; /* naranja vibrante para destacar */
+  color: #e64a19;
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
@@ -144,7 +139,7 @@ margin-left: 12.5rem;
 }
 
 .perfil-links a:hover {
-  color: #bf360c; /* naranja oscuro al pasar mouse */
+  color: #bf360c;
 }
 
 .perfil-loading {
@@ -155,26 +150,72 @@ margin-left: 12.5rem;
   padding: 2rem 0;
 }
 
-/* Responsive adjustments */
-
+/* Responsive ajustes para tablets */
 @media (max-width: 768px) {
   .perfil-header {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
+
   .perfil-foto-nombre {
     justify-content: center;
   }
+
   .perfil-acciones {
     justify-content: center;
     width: 100%;
   }
+
   .perfil-seccion {
     flex-direction: column;
   }
+
   .perfil-col {
     flex: 1 1 100%;
     min-width: auto;
+  }
+
+  .perfil-links {
+    margin-left: 0;
+    gap: 2rem;
+  }
+}
+
+/* Extra responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .perfil-title {
+    font-size: 1.75rem;
+  }
+
+  .perfil-avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 42px;
+  }
+
+  .perfil-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .perfil-subtitulo {
+    font-size: 0.9rem;
+  }
+
+  .perfil-col {
+    font-size: 0.95rem;
+  }
+
+  .perfil-links a {
+    font-size: 0.95rem;
+  }
+
+  .perfil-links {
+    gap: 1rem;
+  }
+
+  .perfil-acciones button {
+    min-width: 120px;
+    font-size: 0.9rem;
   }
 }

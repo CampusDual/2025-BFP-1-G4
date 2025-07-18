@@ -25,7 +25,7 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   cargarUser(): void {
-    const login = this.authService.getUsername(); // ⚠️ Asegúrate de tener este método
+    const login = this.authService.getUsername();
 
     if (!login) {
       alert('❌ No se pudo obtener tu login. Por favor inicia sesión de nuevo.');

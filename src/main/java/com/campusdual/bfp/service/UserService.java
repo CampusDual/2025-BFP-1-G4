@@ -90,7 +90,6 @@ public class UserService implements IUserService, UserDetailsService {
         if (user == null || user.getAuthorities().isEmpty()) {
             return null;
         }
-        // Devuelve el nombre del primer rol encontrado
         return user.getAuthorities().iterator().next().getAuthority();
     }
 
@@ -131,6 +130,7 @@ public class UserService implements IUserService, UserDetailsService {
         user.setDegree(userDTO.getDegree());
         user.setPresentation(userDTO.getPresentation());
         user.setModality(userDTO.getModality());
+        user.setLaboral(userDTO.getLaboral());
 
         if (userDTO.getPassword() != null && !userDTO.getPassword().isEmpty()) {
             user.setPassword(this.passwordEncoder().encode(userDTO.getPassword()));
@@ -195,6 +195,7 @@ public class UserService implements IUserService, UserDetailsService {
         dto.setExperience(entity.getExperience());
         dto.setPresentation(entity.getPresentation());
         dto.setModality(entity.getModality());
+        dto.setLaboral(entity.getLaboral());
 
         return dto;
     }

@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/auth/**","/test/all", "/public/**").permitAll()
                 .antMatchers("/users/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/offers/getAll").permitAll()
+                .antMatchers(HttpMethod.GET, "/offers/**").permitAll()
                 .antMatchers("/offers/findAllByActive").permitAll()
                 .antMatchers("/offers/byTitleOrDescription").permitAll()
                 .anyRequest().authenticated()

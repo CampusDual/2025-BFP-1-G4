@@ -11,7 +11,7 @@ export class ListaOfertasComponent {
   offerList: any[] = [];
   offerListFiltrada: any[] = [];
   paginaActual = 1;
-  elementosPorPagina = 4; // Ajusta según el alto máximo
+  elementosPorPagina = 4;
   textoBusqueda: string = '';
 
   constructor(
@@ -39,15 +39,11 @@ export class ListaOfertasComponent {
   filtrarOfertas(): void {
     const texto = this.textoBusqueda.trim();
     if (texto === '') {
-      // Sin texto, mostrar todas las ofertas locales
       this.offerListFiltrada = this.offerList;
       this.paginaActual = 1;
     } else {
-      // Llamar backend para filtrar por texto y empresa
       this.ofertasService.buscarOfertasPorTexto(texto).subscribe({
         next: (data) => {
-          // Aquí filtrar también solo las ofertas de la empresa logueada (esto depende de backend o filtrar aquí)
-          // Supongo que backend solo devuelve ofertas para esta empresa, sino filtras aquí
           this.offerListFiltrada = data;
           this.paginaActual = 1;
         },

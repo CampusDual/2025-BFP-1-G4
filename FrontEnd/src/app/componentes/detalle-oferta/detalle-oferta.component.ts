@@ -15,7 +15,7 @@ export class DetalleOfertaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private ofertasService: OfertasService,
-    private authService: AuthService
+  
   ) {}
 
   ngOnInit(): void {
@@ -33,15 +33,8 @@ export class DetalleOfertaComponent implements OnInit {
   }
 
 volver() {
-  const role = this.authService.getRole();
-
-  if (role === 'user') {
-    this.router.navigate(['/mis-postulaciones']);
-  } else if (role === 'enterprise') {
-    this.router.navigate(['/mostrar-oferta']);
-  } else {
-    this.router.navigate(['/']); // Fallback opcional
-  }
+  const queryParams = this.route.snapshot.queryParams;
+  this.router.navigate(['/mostrar-oferta'], { queryParams, replaceUrl: true });
 }
 
   parseToList(texto: string): string[] {

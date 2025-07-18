@@ -43,9 +43,8 @@
       </ul>
     </div>
 
-    <div class="perfil-acciones" style="margin-top: 2rem;"
-      *ngIf="oferta.linkedin">
-      <a [href]="oferta.linkedin" target="_blank">
+    <div class="perfil-acciones" style="margin-top: 2rem;">
+      <a *ngIf="oferta.linkedin" [href]="oferta.linkedin" target="_blank">
         <button>Ver en LinkedIn</button>
       </a>
       <button (click)="volver()">Volver</button>

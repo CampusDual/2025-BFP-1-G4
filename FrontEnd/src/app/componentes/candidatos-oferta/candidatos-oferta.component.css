@@ -12,16 +12,18 @@
   text-align: center;
 }
 
-/* Tabla de candidatos */
-table {
+/* Contenedor con altura limitada */
+.tabla-scroll-container {
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
   width: 100%;
-  margin-bottom: 1rem;
-  
 }
 
+/* Tabla de candidatos (igual a empresas) */
 .tabla-ofertas {
-  border-collapse: collapse;
+  width: 100%;
   table-layout: auto;
+  border-collapse: collapse;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   min-width: 600px;
@@ -29,25 +31,27 @@ table {
 
 .tabla-ofertas th,
 .tabla-ofertas td {
+  padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
-  padding: 12px 16px;
+  font-size: 15px;
 }
 
 .tabla-ofertas th {
   background-color: #fff;
-  border-bottom: 2px solid #f44336;
   color: #f44336;
-  font-weight: 500;
-  text-align: center;
-}
-
-.tabla-ofertas tr:hover {
-  background-color: #fdf5f4;
+  font-weight: 600;
+  border-bottom: 2px solid #f44336;
+  text-align: left;
 }
 
 .tabla-ofertas td {
-  text-align: center;
+  cursor: pointer;
+}
+
+/* Hover fila */
+.tabla-ofertas tr:hover {
+  background-color: #fdf5f4;
 }
 
 /* Botón naranja reutilizable */
@@ -61,10 +65,10 @@ table {
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   user-select: none;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
   outline: none;
-  margin-bottom: auto; 
+  margin-bottom: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .add-btn:hover {
@@ -76,6 +80,7 @@ table {
   box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.5);
 }
 
+/* Estados */
 .estado-pendiente {
   color: gray;
   font-weight: bold;
@@ -87,4 +92,36 @@ table {
 .estado-rechazado {
   color: red;
   font-weight: bold;
+}
+
+/* Paginación igual a empresas */
+.paginacion {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.paginacion button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid #ff7043;
+  background-color: transparent;
+  color: #ff7043;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paginacion button:hover:not(:disabled) {
+  background-color: #ff7043;
+  color: white;
+}
+
+.paginacion button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }

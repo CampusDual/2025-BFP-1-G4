@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OfertasService } from '../../services/ofertas-service.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mostrar-oferta',
@@ -13,44 +14,52 @@ export class MostrarOfertaComponent implements OnInit {
   ofertasFiltradas: any[] = [];
   ofertasPaginadas: any[] = [];
   empresasSeleccionadas: string[] = [];
-  mostrarFiltro: boolean = false; // controla desplegable
+  mostrarFiltro: boolean = false;
   paginaActual: number = 1;
   elementosPorPagina: number = 12;
   totalPaginas: number = 0;
   usuarioRol: string | null = '';
   userId: number | null = null;
   ofertasPostuladasIds: number[] = [];
+  textoBusqueda: string = '';
 
   constructor(
     private ofertasService: OfertasService,
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
- ngOnInit(): void {
-  this.usuarioRol = this.authService.getRole();
-  this.userId = this.authService.getUserId();
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.paginaActual = params['pagina'] ? +params['pagina'] : 1;
+      this.textoBusqueda = params['texto'] || '';
+      this.empresasSeleccionadas = params['filtros'] ? JSON.parse(params['filtros']) : [];
 
-  if (this.userId !== null) {
-    this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
-      this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
+      this.usuarioRol = this.authService.getRole();
+      this.userId = this.authService.getUserId();
+
+      if (this.userId !== null) {
+        this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
+          this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
+        });
+      }
+
+      this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
+        this.offerActivas = ofertas;
+
+        // Si no hay filtros, selecciona todas las empresas
+        if (this.empresasSeleccionadas.length === 0) {
+          this.empresasSeleccionadas = this.obtenerEmpresasUnicas();
+        }
+
+        // Aplica los filtros y paginación restaurados
+        this.aplicarFiltroTextualEmpresas();
+        this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
+        this.actualizarPaginado();
+      });
     });
   }
-
-  this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
-    this.offerActivas = ofertas;
-
-    // ✅ Marcar TODAS las empresas al cargar
-    this.empresasSeleccionadas = this.obtenerEmpresasUnicas();
-
-    // ✅ Mostrar todas las ofertas inicialmente
-    this.ofertasFiltradas = this.offerActivas;
-    this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
-    this.paginaActual = 1;
-    this.actualizarPaginado();
-  });
-}
-
 
   toggleFiltro(): void {
     this.mostrarFiltro = !this.mostrarFiltro;
@@ -95,7 +104,6 @@ export class MostrarOfertaComponent implements OnInit {
   }
 
   obtenerEmpresasUnicas(): string[] {
-    // Extrae lista única de empresas
     return Array.from(new Set(this.offerActivas.map(o => o.enterpriseName)));
   }
 
@@ -115,7 +123,13 @@ export class MostrarOfertaComponent implements OnInit {
   }
 
   verDetalle(id: number): void {
-    this.router.navigate(['/detalle-oferta', id]);
+    this.router.navigate(['/detalle-oferta', id], {
+      queryParams: {
+        pagina: this.paginaActual,
+        filtros: JSON.stringify(this.empresasSeleccionadas),
+        texto: this.textoBusqueda
+      }
+    });
   }
 
   yaPostulado(idOferta: number): boolean {
@@ -139,53 +153,48 @@ export class MostrarOfertaComponent implements OnInit {
       error: () => alert('❌ Ya estás inscrito en esta oferta.')
     });
   }
-  textoBusqueda: string = '';
 
-aplicarFiltroTextualEmpresas(): void {
-  const texto = this.textoBusqueda.toLowerCase();
+  aplicarFiltroTextualEmpresas(): void {
+    const texto = this.textoBusqueda.toLowerCase();
 
-  let ofertasFiltradas = this.offerActivas;
+    let ofertasFiltradas = this.offerActivas;
 
-  if (this.empresasSeleccionadas.length > 0) {
-    ofertasFiltradas = ofertasFiltradas.filter(oferta =>
-      this.empresasSeleccionadas.includes(oferta.enterpriseName)
-    );
-  }
+    if (this.empresasSeleccionadas.length > 0) {
+      ofertasFiltradas = ofertasFiltradas.filter(oferta =>
+        this.empresasSeleccionadas.includes(oferta.enterpriseName)
+      );
+    }
 
-  if (this.textoBusqueda.trim() !== '') {
-    ofertasFiltradas = ofertasFiltradas.filter(oferta =>
-      oferta.title.toLowerCase().includes(texto) ||
-      oferta.description.toLowerCase().includes(texto)
-    );
-  }
+    if (this.textoBusqueda.trim() !== '') {
+      ofertasFiltradas = ofertasFiltradas.filter(oferta =>
+        oferta.title.toLowerCase().includes(texto) ||
+        oferta.description.toLowerCase().includes(texto)
+      );
+    }
 
-  this.ofertasFiltradas = ofertasFiltradas;
-  this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
-  this.paginaActual = 1;
-  this.actualizarPaginado();
-}
-
-onTextoBuscar(event: any): void {
-  const texto = event.target.value.trim();
-  this.textoBusqueda = texto;
-
-  if (texto === '') {
-    // Si el texto está vacío, solo aplicar filtro de empresas (local)
-    this.aplicarFiltroEmpresas();
-    return;
-  }
-
-  this.ofertasService.getOfertasFiltradasPorTexto(texto).subscribe(resultados => {
-    // Aplicar filtro también por empresas seleccionadas si hay
-    const filtradas = this.empresasSeleccionadas.length > 0
-      ? resultados.filter(oferta => this.empresasSeleccionadas.includes(oferta.enterpriseName))
-      : resultados;
-
-    this.ofertasFiltradas = filtradas;
+    this.ofertasFiltradas = ofertasFiltradas;
     this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
-    this.paginaActual = 1;
     this.actualizarPaginado();
-  });
-}
+  }
 
+  onTextoBuscar(event: any): void {
+    const texto = event.target.value.trim();
+    this.textoBusqueda = texto;
+
+    if (texto === '') {
+      this.aplicarFiltroEmpresas();
+      return;
+    }
+
+    this.ofertasService.getOfertasFiltradasPorTexto(texto).subscribe(resultados => {
+      const filtradas = this.empresasSeleccionadas.length > 0
+        ? resultados.filter(oferta => this.empresasSeleccionadas.includes(oferta.enterpriseName))
+        : resultados;
+
+      this.ofertasFiltradas = filtradas;
+      this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
+      this.paginaActual = 1;
+      this.actualizarPaginado();
+    });
+  }
 }

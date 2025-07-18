@@ -1,115 +1,75 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: #f5f5f5;
-  overflow: hidden;
-  font-family: 'Roboto', sans-serif;
-}
-
-.registro-wrapper {
-  height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.registro-card {
-  width: 100%;
-  max-width: 860px;
-  height: auto;
-  padding: 1.5rem 2.5rem 2rem 2.5rem; /* más espacio superior e inferior */
-  border-radius: 16px;
-  background-color: #ffffff;
+.page-container {
+  margin: 2vh auto auto;
+  padding: 1.5rem;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  box-sizing: border-box;
+}
+
+.page-title {
+  text-align: center;
+  color: #e53935;
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
 }
 
 .logo {
+  width: 160px;
+  margin: 0 auto 1.2rem;
   display: block;
-  margin: 0 auto 1rem auto;
-  width: 180px;
-  height: auto;
-  max-height: 80px; /* evita que se corte por altura */
-  object-fit: contain;
-}
-
-.logo.clickable {
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-.logo.clickable:hover {
-  transform: scale(1.05);
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.title {
-  text-align: center;
-  font-size: 1.9rem;
+label {
+  margin-bottom: 0.3rem;
   font-weight: 600;
-  color: #d32f2f;
-  margin-bottom: 2rem;
+  color: #333;
+  font-size: 14px;
+}
+
+input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #e53935;
+  outline: none;
+}
+
+button[mat-flat-button] {
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: #e53935;
+  color: white;
 }
 
 .form-row {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
-mat-form-field {
+.form-group.half {
   flex: 1;
 }
 
-.full-width {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.submit-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-button[type="submit"] {
-  padding: 0.75rem 3rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  background-color: #ff4400;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #e65100;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .form-row {
     flex-direction: column;
-  }
-
-  .registro-card {
-    padding: 1rem;
-    max-height: none; /* importante: sin límite vertical */
-  }
-
-  .logo {
-    width: 130px;
-    max-height: 70px;
-  }
-
-  .title {
-    font-size: 1.6rem;
-  }
-
-  button[type="submit"] {
-    width: 100%;
   }
 }

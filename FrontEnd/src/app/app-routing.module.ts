@@ -18,11 +18,6 @@ import { OfertasPostuladoComponent } from './componentes/ofertas-postulado/ofert
 import { VistaCandidatoComponent } from './vista-candidato/vista-candidato.component';
 
 const routes: Routes = [
-  /*{ path: 'lista-empresas', component: ListaEmpresasComponent, canActivate: [AuthGuard], data: { roles: ['admin'] } },
-  { path: 'lista-ofertas', component: ListaOfertasComponent, canActivate: [AuthGuard], data: { roles: ['enterprise'] } },
-  { path: 'publicar-oferta', component: PublicarOfertaComponent, canActivate: [AuthGuard], data: { roles: ['enterprise'] } },
-  { path: 'mostrar-oferta', component: MostrarOfertaComponent, canActivate: [AuthGuard], data: { roles: ['role user'] } },*/
-
   { path: 'administration', component: AdministrationComponent },
   { path: 'mostrar-oferta', component: MostrarOfertaComponent },
   { path: 'login', component: LoginComponent },

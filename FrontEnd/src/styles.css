@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+html, body, input, textarea, select, button, mat-form-field, .mat-input-element {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.mat-form-field, .mat-input-element {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
 html, body { height: 100%; }
 body { margin: 0;}

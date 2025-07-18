@@ -1,56 +1,55 @@
-<div class="registro-wrapper">
-  <mat-card class="registro-card">
-    <img
-      src="../assets/img/logo-clustertic.png"
-      alt="Cluster Empleo"
-      class="logo clickable"
-      (click)="volverAOfertas()" />
+<br>
+<br>
+<br>
+<div class="page-container">
+  <img
+    src="../assets/img/logo-clustertic.png"
+    alt="Cluster Empleo"
+    class="logo clickable"
+    (click)="volverAOfertas()" />
 
-    <h1 class="title">Registro de Usuario</h1>
+  <h1 class="page-title">Registro de Usuario</h1>
 
-    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-      <div class="form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre*</mat-label>
-          <input matInput formControlName="name" required />
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Apellido 1*</mat-label>
-          <input matInput formControlName="surname1" required />
-        </mat-form-field>
+  <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="name">Nombre *</label>
+        <input id="name" formControlName="name" required placeholder="Nombre" />
       </div>
 
-      <div class="form-row">
-        <mat-form-field appearance="outline">
-          <mat-label>Apellido 2*</mat-label>
-          <input matInput formControlName="surname2" required />
-        </mat-form-field>
+      <div class="form-group half">
+        <label for="surname1">Apellido 1 *</label>
+        <input id="surname1" formControlName="surname1" required placeholder="Primer apellido" />
+      </div>
+    </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Teléfono*</mat-label>
-          <input matInput formControlName="phonenumber" required />
-        </mat-form-field>
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="surname2">Apellido 2 *</label>
+        <input id="surname2" formControlName="surname2" required placeholder="Segundo apellido" />
       </div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email*</mat-label>
-        <input matInput formControlName="email" required type="email" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Usuario*</mat-label>
-        <input matInput formControlName="login" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Contraseña*</mat-label>
-        <input matInput type="password" formControlName="password" required />
-      </mat-form-field>
-
-      <div class="submit-container">
-        <button mat-flat-button color="warn" type="submit">Registrar</button>
+      <div class="form-group half">
+        <label for="phonenumber">Teléfono *</label>
+        <input id="phonenumber" formControlName="phonenumber" required placeholder="Teléfono" />
       </div>
-    </form>
-  </mat-card>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input id="email" formControlName="email" type="email" required placeholder="Correo electrónico" />
+    </div>
+
+    <div class="form-group">
+      <label for="login">Usuario *</label>
+      <input id="login" formControlName="login" required placeholder="Nombre de usuario" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Contraseña *</label>
+      <input id="password" formControlName="password" type="password" required placeholder="Contraseña" />
+    </div>
+
+    <button mat-flat-button color="warn" type="submit">Registrar</button>
+  </form>
 </div>
