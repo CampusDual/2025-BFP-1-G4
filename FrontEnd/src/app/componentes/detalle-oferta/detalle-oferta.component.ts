@@ -9,6 +9,9 @@ import { OfertasService } from '../../services/ofertas-service.service';
   styleUrls: ['./detalle-oferta.component.css']
 })
 export class DetalleOfertaComponent implements OnInit {
+parseToList(arg0: any): any {
+throw new Error('Method not implemented.');
+}
   oferta: any = null;
 
   constructor(
