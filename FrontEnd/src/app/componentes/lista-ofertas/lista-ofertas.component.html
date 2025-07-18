@@ -39,7 +39,7 @@
           style="cursor: pointer;"
         >
           <td>{{ oferta.title }}</td>
-          <td>{{ oferta.description.length > 150 ? (oferta.description | slice:0:150) + '...' : oferta.description }}</td>
+          <td>{{ oferta.description.length > 100 ? (oferta.description | slice:0:100) + '...' : oferta.description }}</td>
           <td class="centrar">{{ oferta.publicationDate | date: 'dd-MM-yyyy' }}</td>
           <td class="centrar" (click)="$event.stopPropagation()">
             <button
