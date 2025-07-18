@@ -4,7 +4,9 @@
   <div class="ofertas-grid">
     <div *ngFor="let oferta of ofertasPaginadas" class="oferta-card">
       <h3 class="oferta-titulo">{{ oferta.title }}</h3>
-      <p class="oferta-descripcion">{{ oferta.description }}</p>
+      <p class="oferta-descripcion">
+        {{ oferta.description.length > 180 ? (oferta.description | slice:0:180) + '...' : oferta.description }}
+      </p>
 
       <span
         [ngClass]="{
