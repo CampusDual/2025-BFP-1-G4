@@ -64,7 +64,7 @@ export class ListaEmpresasComponent implements OnInit {
 
   eliminarEmpresasSeleccionadas(): void {
     if (this.empresasSeleccionadas.length === 0) {
-      this.snackBar.open('No hay empresas seleccionadas', 'Cerrar', { duration: 3000 });
+      alert('No hay empresas seleccionadas');
       return;
     }
 
@@ -83,14 +83,15 @@ export class ListaEmpresasComponent implements OnInit {
           errores++;
 
           if (err.error?.mensaje) {
-            this.snackBar.open(err.error.mensaje, 'Cerrar', { duration: 5000 });
+            alert(err.error.mensaje);
           } else if (errores === 1) {
-            this.snackBar.open('Una o más empresas no se pudieron eliminar porque tienen ofertas activas.', 'Cerrar', { duration: 5000 });
+            alert('Una o más empresas no se pudieron eliminar porque tienen ofertas activas.');
           }
         }
       });
     });
   }
+
 
   estaSeleccionada(enterprise: Enterprise): boolean {
     return this.empresasSeleccionadas.includes(enterprise);

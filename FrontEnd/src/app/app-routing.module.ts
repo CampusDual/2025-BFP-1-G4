@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: 'candidato/:id', component: VistaCandidatoComponent },
   { path: 'editar-perfil', component: EditarPerfilComponent },
   { path: '', redirectTo: '/mostrar-oferta', pathMatch: 'full' },
+  {path:'**', redirectTo: '/mostrar-oferta', pathMatch: 'full'}, // Redirige cualquier ruta desconocida a mostrar-oferta
 ];
 
 @NgModule({

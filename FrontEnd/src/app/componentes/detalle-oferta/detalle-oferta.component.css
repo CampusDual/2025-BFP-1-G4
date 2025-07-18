@@ -108,11 +108,19 @@
   border-radius: 30px;
   background-color: #e64a19; /* naranja */
   color: white;
-  box-shadow: 0 3px 8px rgba(230, 74, 25, 0.6);
+  box-shadow: 0 3px 8px rgba(156, 156, 156, 0.6);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .perfil-acciones a button:hover {
   background-color: #bf360c; /* naranja oscuro */
   box-shadow: 0 5px 20px rgba(191, 54, 12, 0.9);
+}
+
+button.boton-disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed !important;
+  border: 1px solid #999 !important;
+  pointer-events: none;
 }

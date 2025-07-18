@@ -60,25 +60,5 @@ getUserId(): number | null {
     sessionStorage.clear();
   }
 
-  /* getUserId(): number | null {
-  const token = sessionStorage.getItem('token');
-  if (!token) return null;
-
-  try {
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const id = payload.id || payload.sub || null;
-
-    if (id === null) return null;
-
-    // Convierte id a número, si no puede, devuelve null
-    const idNum = Number(id);
-    return isNaN(idNum) ? null : idNum;
-
-  } catch (e) {
-    console.error('Error al decodificar el token', e);
-    return null;
-  }
-}*/
-
 
 }

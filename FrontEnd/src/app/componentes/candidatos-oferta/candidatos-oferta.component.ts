@@ -1,3 +1,4 @@
+// candidatos-oferta.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OfertasService } from '../../services/ofertas-service.service';
@@ -55,6 +56,11 @@ export class CandidatosOfertaComponent implements OnInit {
 
   editarOferta(): void {
     this.router.navigate(['/editar-oferta', this.ofertaid]);
+  }
+
+  verOferta(): void {
+    // Pass the offerId and an 'origen' query parameter
+    this.router.navigate(['/detalle-oferta', this.ofertaid], { queryParams: { origen: 'candidatos-oferta', ofertaId: this.ofertaid } });
   }
 
   verPerfil(id: number): void {

@@ -55,14 +55,18 @@
         [(ngModel)]="oferta.linkedin"
         name="linkedin"
         id="linkedin"
-        placeholder="URL LinkedIn" />
+        placeholder="URL LinkedIn"
+        pattern="^(https?:\/\/)?(www\.)?linkedin\.com\/.*$" #linkedinInput="ngModel" />
+      <div *ngIf="linkedinInput.errors?.['pattern'] && linkedinInput.dirty" class="error-message">
+        Por favor, introduce una URL de LinkedIn válida.
+      </div>
     </div>
 
     <button
       mat-flat-button
       color="warn"
       type="submit"
-      [disabled]="!oferta.title || !oferta.title.trim() || !oferta.description || !oferta.description.trim()">
+      [disabled]="!oferta.title || !oferta.title.trim() || !oferta.description || !oferta.description.trim() || linkedinInput.errors?.['pattern']">
       Guardar Oferta
     </button>
   </form>

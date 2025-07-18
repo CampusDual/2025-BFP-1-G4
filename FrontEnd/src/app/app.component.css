@@ -28,3 +28,32 @@ app-footer {
   padding: 20px;
   text-align: center;
 }
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body, input, textarea, select, button, mat-form-field, .mat-input-element {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+.mat-form-field, .mat-input-element {
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+/* === Personalización global de Angular Material Tabs (mat-tab) === */
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: #e53935 !important; /* Rojo intenso */
+}
+
+::ng-deep .mat-tab-label.mat-tab-label-active {
+  color: #e53935 !important; /* Color del tab activo */
+}
+
+::ng-deep .mat-tab-label {
+  color: rgba(0, 0, 0, 0.6) !important; /* Color de tabs inactivos */
+}
