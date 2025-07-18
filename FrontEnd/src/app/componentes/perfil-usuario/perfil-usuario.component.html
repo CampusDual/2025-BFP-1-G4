@@ -25,13 +25,13 @@
 
   </div>
 
-  <mat-tab-group>
+  <mat-tab-group color="warn">
     <!-- TAB 1 -->
-    <mat-tab label="Sobre mi">
-      <div class="perfil-seccion">
-        <div class="perfil-col">
+    <mat-tab color="warn" label="Sobre mi">
+      <div color="warn" class="perfil-seccion">
+        <div color="warn" class="perfil-col">
           <p><strong>Título profesional:</strong> {{ usuario.degree }}</p>
-          <p><strong>Experiencia:</strong> {{ usuario.experience }} año{{
+          <p><strong>Experiencia:</strong> {{ usuario.experience }} año/s{{
             usuario.experience === 1 ? '' : 's' }}</p>
 
           <p><strong>Modalidad preferida:</strong> {{ usuario.modality }}</p>
