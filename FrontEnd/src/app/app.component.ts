@@ -23,7 +23,7 @@ export class AppComponent {
           '/publicar-oferta',
           '/editar-oferta/:id',
           '/editar-oferta',
-          '/lista-ofertas',
+          '/lista-ofertas'
         ];
 
         const ocultarFooterPatrones = [
@@ -32,7 +32,8 @@ export class AppComponent {
           '/editar-oferta/',
           '/candidato/',
           '/mostrar-oferta?',
-           '/publicar-empresa/'
+          '/publicar-empresa/',
+          '/candidatos-oferta/'
         ];
 
         const ocultarFooter = ocultarFooterExacto.includes(event.urlAfterRedirects) ||

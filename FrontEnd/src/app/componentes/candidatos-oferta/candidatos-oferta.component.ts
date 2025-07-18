@@ -13,7 +13,7 @@ export class CandidatosOfertaComponent implements OnInit {
   candidatos: any[] = [];
 
   paginaActual = 1;
-  elementosPorPagina = 15;
+  elementosPorPagina = 10;
 
   constructor(
     private route: ActivatedRoute,
