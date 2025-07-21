@@ -73,6 +73,7 @@ public class EnterpriseService implements IEnterpriseService {
                 null,
                 null,
                 userDTO.getEmail(),
+                userDTO.getLinkedin(),
                 enterprise
         );
 
@@ -102,6 +103,7 @@ public class EnterpriseService implements IEnterpriseService {
         user.setName(dto.getEnterprise().getName());
         user.setPhonenumber(dto.getEnterprise().getPhonenumber());
         user.setEmail(dto.getEnterprise().getEmail());
+        user.setLinkedin(dto.getLinkedin());
         user.setEnterprise(enterprise);
         userDao.saveAndFlush(user);
 
