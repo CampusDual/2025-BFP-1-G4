@@ -78,6 +78,7 @@ public class UserController {
                 userDTO.getSurname1(),
                 userDTO.getSurname2(),
                 userDTO.getEmail(),
+                userDTO.getLinkedin(),
                 null
         );
         int userId = userService.getUserIdByLogin(userDTO.getLogin());

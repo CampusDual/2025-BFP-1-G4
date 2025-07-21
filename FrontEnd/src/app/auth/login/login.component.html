@@ -8,18 +8,18 @@
 
             <h1 class="title">Iniciar Sesión</h1>
             <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Introduce tu nombre de usuario</mat-label>
+                <mat-form-field color="warn" appearance="fill">
+                    <mat-label color="warn">Introduce tu nombre de usuario</mat-label>
                     <input matInput placeholder="ClusterTIC"
                         formControlName="username" type="text" required>
-                    <mat-error *ngIf="loginF.get('username')?.invalid">Nombre de
+                    <mat-error color="warn" *ngIf="loginF.get('username')?.invalid">Nombre de
                         usuario inválido</mat-error>
                 </mat-form-field>
             </div>
             <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Introduce tu contraseña</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'"
+                <mat-form-field color="warn" appearance="fill">
+                    <mat-label color="warn">Introduce tu contraseña</mat-label>
+                    <input color="warn" matInput [type]="hide ? 'password' : 'text'"
                         placeholder="********"
                         formControlName="password" required>
 

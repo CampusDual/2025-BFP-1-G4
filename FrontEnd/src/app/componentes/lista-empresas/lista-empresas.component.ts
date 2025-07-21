@@ -13,6 +13,8 @@ export class ListaEmpresasComponent implements OnInit {
 
   enterprisesList: Enterprise[] = [];
   empresasSeleccionadas: Enterprise[] = [];
+  textoBusqueda: string = '';
+  listaFiltrada: Enterprise[] = [];
 
   paginaActual = 1;
   elementosPorPagina = 6;
@@ -34,16 +36,19 @@ export class ListaEmpresasComponent implements OnInit {
     });
   }
 
-  cargarEmpresas(): void {
-    this.enterpriseService.getAllEnterprises().subscribe({
-      next: (data) => {
-        this.enterprisesList = data;
-      },
-      error: (err) => {
-        console.error('Error al cargar empresas', err);
-      }
-    });
-  }
+cargarEmpresas(): void {
+  this.enterpriseService.getAllEnterprises().subscribe({
+    next: (data) => {
+      this.enterprisesList = data.sort((a, b) =>
+        a.name.toString().localeCompare(b.name.toString())
+      );
+      this.listaFiltrada = [...this.enterprisesList];
+    },
+    error: (err) => {
+      console.error('Error al cargar empresas', err);
+    }
+  });
+}
 
   irANuevaEmpresa(): void {
     this.router.navigate(['/publicar-empresa']);
@@ -97,14 +102,14 @@ export class ListaEmpresasComponent implements OnInit {
     return this.empresasSeleccionadas.includes(enterprise);
   }
 
-  get totalPaginas(): number {
-    return Math.ceil(this.enterprisesList.length / this.elementosPorPagina);
-  }
+ get totalPaginas(): number {
+   return Math.ceil(this.listaFiltrada.length / this.elementosPorPagina);
+ }
 
-  get empresasPaginadas() {
-    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
-    return this.enterprisesList.slice(inicio, inicio + this.elementosPorPagina);
-  }
+ get empresasPaginadas() {
+   const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
+   return this.listaFiltrada.slice(inicio, inicio + this.elementosPorPagina);
+ }
 
   cambiarPagina(direccion: 'anterior' | 'siguiente') {
     if (direccion === 'anterior' && this.paginaActual > 1) {
@@ -113,4 +118,12 @@ export class ListaEmpresasComponent implements OnInit {
       this.paginaActual++;
     }
   }
+
+filtrarEmpresas(): void {
+  const texto = this.textoBusqueda.trim().toLowerCase();
+  this.listaFiltrada = this.enterprisesList.filter(e =>
+    e.name.toLowerCase().includes(texto)
+  );
+  this.paginaActual = 1;
+}
 }

@@ -1,12 +1,26 @@
 <div class="page-container">
-  <h1 class="page-title">Empresas registradas</h1>
+  <div class="encabezado-centrado">
+    <h1 class="page-title">Empresas registradas</h1>
+    <div class="buscador-con-icono">
+      <span class="icono-lupa">
+        <mat-icon>search</mat-icon>
+      </span>
+      <input
+        type="text"
+        placeholder="Buscar empresa..."
+        [(ngModel)]="textoBusqueda"
+        (input)="filtrarEmpresas()"
+        class="input-buscador-empresas"
+      />
+    </div>
+  </div>
 
   <div class="boton-publicar">
     <button class="add-btn" (click)="irANuevaEmpresa()">Crear nueva Empresa</button>
 
     <button class="delete-btn"
-      [disabled]="!empresasSeleccionadas.length"
-      (click)="eliminarEmpresasSeleccionadas()">
+            [disabled]="!empresasSeleccionadas.length"
+            (click)="eliminarEmpresasSeleccionadas()">
       Eliminar seleccionadas
     </button>
   </div>
@@ -14,27 +28,27 @@
   <div class="tabla-scroll-container">
     <table class="tabla-empresas">
       <thead>
-        <tr>
-          <th></th>
-          <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Email</th>
-          <th>Teléfono</th>
-        </tr>
+      <tr>
+        <th></th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let enterprise of empresasPaginadas">
-          <td>
-            <input
-              type="checkbox"
-              (change)="toggleSeleccion(enterprise)"
-              [checked]="empresasSeleccionadas.includes(enterprise)" />
-          </td>
-          <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.name }}</td>
-          <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.address }}</td>
-          <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.email }}</td>
-          <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.phonenumber }}</td>
-        </tr>
+      <tr *ngFor="let enterprise of empresasPaginadas">
+        <td>
+          <input
+            type="checkbox"
+            (change)="toggleSeleccion(enterprise)"
+            [checked]="empresasSeleccionadas.includes(enterprise)" />
+        </td>
+        <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.name }}</td>
+        <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.address }}</td>
+        <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.email }}</td>
+        <td (click)="editarEmpresa(enterprise.id)">{{ enterprise.phonenumber }}</td>
+      </tr>
       </tbody>
     </table>
   </div>
@@ -44,5 +58,5 @@
     <span>Página {{ paginaActual }} de {{ totalPaginas }}</span>
     <button (click)="cambiarPagina('siguiente')" [disabled]="paginaActual === totalPaginas">Siguiente</button>
   </div>
-</div>
 
+</div>

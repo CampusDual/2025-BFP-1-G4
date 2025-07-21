@@ -311,3 +311,49 @@ button.boton-disabled {
   color: #888;
   font-size: 22px;
 }
+
+/* Contenedor relativo para el input y la lupa del filtro de empresas */
+.buscador-empresa-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-buscador-empresas {
+  padding: 8px 12px 8px 36px;
+  border: 2px solid #ff7043;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  width: 220px;
+  margin-left: 1em;
+  transition: border-color 0.3s;
+}
+
+.input-buscador-empresas:focus {
+  outline: none;
+  border-color: #e53935;
+}
+
+.icono-lupa-empresa {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+/* --- Margen entre el filtro de empresas y las tarjetas de ofertas --- */
+.filtro-empresas-lista {
+  margin-top: 12px;
+  margin-bottom: 0px; /* <--- Margen inferior añadido para separar del grid de ofertas */
+  padding: 12px 18px;
+  border: 2px solid #ff7043;
+  border-radius: 10px;
+  background-color: #fff;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}

@@ -51,7 +51,7 @@ public class UserService implements IUserService, UserDetailsService {
         return user != null;
     }
 
-    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email, Enterprise enterprise) {
+    public void registerNewUser(String login, String name, String phonenumber, String password, String surname1, String surname2, String email, String linkedin, Enterprise enterprise) {
         User user = new User();
         user.setLogin(login);
         user.setName(name);
@@ -61,6 +61,7 @@ public class UserService implements IUserService, UserDetailsService {
         user.setSurname2(surname2);
         user.setEmail(email);
         user.setEnterprise(enterprise);
+        user.setLinkedin(linkedin);
         this.userDao.saveAndFlush(user);
     }
 

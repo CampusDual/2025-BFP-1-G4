@@ -22,43 +22,57 @@ export class MostrarOfertaComponent implements OnInit {
   userId: number | null = null;
   ofertasPostuladasIds: number[] = [];
   textoBusqueda: string = '';
+  filtroEmpresaTexto: string = '';
+
+  // Paginación del filtro de empresas
+  empresaPaginaActual: number = 1;
+  empresasPorPagina: number = 18;
+  totalPaginasEmpresas: number = 0;
 
   constructor(
     private ofertasService: OfertasService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.paginaActual = params['pagina'] ? +params['pagina'] : 1;
-      this.textoBusqueda = params['texto'] || '';
-      this.empresasSeleccionadas = params['filtros'] ? JSON.parse(params['filtros']) : [];
+    const savedState = sessionStorage.getItem('mostrar-oferta-state');
+    if (savedState) {
+      const state = JSON.parse(savedState);
+      this.paginaActual = state.paginaActual || 1;
+      this.textoBusqueda = state.textoBusqueda || '';
+      this.empresasSeleccionadas = state.empresasSeleccionadas || [];
+    }
 
-      this.usuarioRol = this.authService.getRole();
-      this.userId = this.authService.getUserId();
+    this.usuarioRol = this.authService.getRole();
+    this.userId = this.authService.getUserId();
 
-      if (this.userId !== null) {
-        this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
-          this.ofertasPostuladasIds = ofertas.map(oferta => oferta.id);
-        });
+    if (this.userId !== null) {
+      this.ofertasService.getOfertasPostuladasPorUsuario().subscribe((ofertas: any[]) => {
+        this.ofertasPostuladasIds = ofertas.map((oferta: any) => oferta.id);
+      });
+    }
+
+    this.ofertasService.getAllActiveOffers().subscribe((ofertas: any[]) => {
+      this.offerActivas = ofertas;
+
+      if (this.empresasSeleccionadas.length === 0) {
+        this.empresasSeleccionadas = this.obtenerEmpresasUnicas();
       }
 
-      this.ofertasService.getAllActiveOffers().subscribe(ofertas => {
-        this.offerActivas = ofertas;
-
-        // Si no hay filtros, selecciona todas las empresas
-        if (this.empresasSeleccionadas.length === 0) {
-          this.empresasSeleccionadas = this.obtenerEmpresasUnicas();
-        }
-
-        // Aplica los filtros y paginación restaurados
-        this.aplicarFiltroTextualEmpresas();
-        this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
-        this.actualizarPaginado();
-      });
+      this.aplicarFiltroTextualEmpresas();
+      this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
+      this.actualizarPaginado();
     });
+  }
+
+  guardarEstado() {
+    sessionStorage.setItem('mostrar-oferta-state', JSON.stringify({
+      paginaActual: this.paginaActual,
+      textoBusqueda: this.textoBusqueda,
+      empresasSeleccionadas: this.empresasSeleccionadas
+    }));
   }
 
   toggleFiltro(): void {
@@ -78,39 +92,45 @@ export class MostrarOfertaComponent implements OnInit {
     }
 
     this.aplicarFiltroEmpresas();
+    this.guardarEstado();
   }
 
   aplicarFiltroEmpresas(): void {
     if (this.empresasSeleccionadas.length === 0) {
       this.ofertasFiltradas = [];
     } else {
-      this.ofertasFiltradas = this.offerActivas.filter(oferta =>
+      this.ofertasFiltradas = this.offerActivas.filter((oferta: any) =>
         this.empresasSeleccionadas.includes(oferta.enterpriseName)
       );
     }
     this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
     this.paginaActual = 1;
     this.actualizarPaginado();
+    this.guardarEstado();
   }
 
   mostrarTodo(): void {
     this.empresasSeleccionadas = this.obtenerEmpresasUnicas();
     this.aplicarFiltroEmpresas();
+    this.guardarEstado();
   }
 
   ocultarTodo(): void {
     this.empresasSeleccionadas = [];
     this.aplicarFiltroEmpresas();
+    this.guardarEstado();
   }
 
   obtenerEmpresasUnicas(): string[] {
-    return Array.from(new Set(this.offerActivas.map(o => o.enterpriseName)));
+    return Array.from(new Set(this.offerActivas.map((o: any) => o.enterpriseName)))
+      .sort((a, b) => a.localeCompare(b));
   }
 
   actualizarPaginado(): void {
     const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
     const fin = inicio + this.elementosPorPagina;
     this.ofertasPaginadas = this.ofertasFiltradas.slice(inicio, fin);
+    this.guardarEstado();
   }
 
   cambiarPagina(direccion: 'anterior' | 'siguiente'): void {
@@ -120,16 +140,13 @@ export class MostrarOfertaComponent implements OnInit {
       this.paginaActual++;
     }
     this.actualizarPaginado();
+    this.guardarEstado();
   }
 
- verDetalle(id: number): void {
+  verDetalle(id: number): void {
+    this.guardarEstado();
     this.router.navigate(['/detalle-oferta', id], {
-      queryParams: {
-        origen: 'mostrar-oferta',
-        pagina: this.paginaActual,
-        filtros: JSON.stringify(this.empresasSeleccionadas),
-        texto: this.textoBusqueda
-      }
+      queryParams: { origen: 'mostrar-oferta' }
     });
   }
 
@@ -147,8 +164,8 @@ export class MostrarOfertaComponent implements OnInit {
     this.ofertasService.inscribirse(oferta.id).subscribe({
       next: () => {
         alert(`✅ Te has postulado a la oferta: ${oferta.title}`);
-        this.ofertasService.getOfertasPostuladasPorUsuario().subscribe(ofertas => {
-          this.ofertasPostuladasIds = ofertas.map(o => o.id);
+        this.ofertasService.getOfertasPostuladasPorUsuario().subscribe((ofertas: any[]) => {
+          this.ofertasPostuladasIds = ofertas.map((o: any) => o.id);
         });
       },
       error: () => alert('❌ Ya estás inscrito en esta oferta.')
@@ -161,13 +178,13 @@ export class MostrarOfertaComponent implements OnInit {
     let ofertasFiltradas = this.offerActivas;
 
     if (this.empresasSeleccionadas.length > 0) {
-      ofertasFiltradas = ofertasFiltradas.filter(oferta =>
+      ofertasFiltradas = ofertasFiltradas.filter((oferta: any) =>
         this.empresasSeleccionadas.includes(oferta.enterpriseName)
       );
     }
 
     if (this.textoBusqueda.trim() !== '') {
-      ofertasFiltradas = ofertasFiltradas.filter(oferta =>
+      ofertasFiltradas = ofertasFiltradas.filter((oferta: any) =>
         oferta.title.toLowerCase().includes(texto) ||
         oferta.description.toLowerCase().includes(texto)
       );
@@ -176,6 +193,30 @@ export class MostrarOfertaComponent implements OnInit {
     this.ofertasFiltradas = ofertasFiltradas;
     this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
     this.actualizarPaginado();
+    this.guardarEstado();
+  }
+
+  obtenerEmpresasUnicasFiltradas(): string[] {
+    const todas = this.obtenerEmpresasUnicas();
+    if (!this.filtroEmpresaTexto.trim()) return todas;
+    const texto = this.filtroEmpresaTexto.trim().toLowerCase();
+    return todas.filter(e => e.toLowerCase().includes(texto));
+  }
+
+  // --- Paginación del filtro de empresas ---
+  getEmpresasPaginadas(): string[] {
+    const todas = this.obtenerEmpresasUnicasFiltradas();
+    this.totalPaginasEmpresas = Math.ceil(todas.length / this.empresasPorPagina);
+    const inicio = (this.empresaPaginaActual - 1) * this.empresasPorPagina;
+    return todas.slice(inicio, inicio + this.empresasPorPagina);
+  }
+
+  cambiarPaginaEmpresas(direccion: 'anterior' | 'siguiente'): void {
+    if (direccion === 'anterior' && this.empresaPaginaActual > 1) {
+      this.empresaPaginaActual--;
+    } else if (direccion === 'siguiente' && this.empresaPaginaActual < this.totalPaginasEmpresas) {
+      this.empresaPaginaActual++;
+    }
   }
 
   onTextoBuscar(event: any): void {
@@ -184,18 +225,20 @@ export class MostrarOfertaComponent implements OnInit {
 
     if (texto === '') {
       this.aplicarFiltroEmpresas();
+      this.guardarEstado();
       return;
     }
 
-    this.ofertasService.getOfertasFiltradasPorTexto(texto).subscribe(resultados => {
+    this.ofertasService.getOfertasFiltradasPorTexto(texto).subscribe((resultados: any[]) => {
       const filtradas = this.empresasSeleccionadas.length > 0
-        ? resultados.filter(oferta => this.empresasSeleccionadas.includes(oferta.enterpriseName))
+        ? resultados.filter((oferta: any) => this.empresasSeleccionadas.includes(oferta.enterpriseName))
         : resultados;
 
       this.ofertasFiltradas = filtradas;
       this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
       this.paginaActual = 1;
       this.actualizarPaginado();
+      this.guardarEstado();
     });
   }
 }

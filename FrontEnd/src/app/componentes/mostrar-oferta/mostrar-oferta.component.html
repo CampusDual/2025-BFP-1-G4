@@ -13,18 +13,25 @@
   <!-- Botón desplegable filtro empresas -->
   <div class="filtro-desplegable-container">
     <button class="btn-filtro" (click)="toggleFiltro()">
-      {{ mostrarFiltro ? 'Ocultar filtro empresas ▲' :
-      'Mostrar filtro empresas ▼' }}
+      {{ mostrarFiltro ? 'Ocultar filtro empresas ▲' : 'Mostrar filtro empresas ▼' }}
     </button>
 
     <div *ngIf="mostrarFiltro" class="filtro-empresas-lista">
       <div class="botones-mini">
         <button (click)="mostrarTodo()" class="btn-mini">Mostrar todo</button>
         <button (click)="ocultarTodo()" class="btn-mini">Ocultar todo</button>
+        <div class="buscador-empresa-container">
+          <mat-icon class="icono-lupa-empresa">search</mat-icon>
+          <input
+            type="text"
+            [(ngModel)]="filtroEmpresaTexto"
+            placeholder="Nombre de empresa"
+            class="input-buscador-empresas"
+            (input)="empresaPaginaActual = 1" />
+        </div>
       </div>
-
       <div class="checkbox-lista">
-        <label *ngFor="let empresa of obtenerEmpresasUnicas()">
+        <label *ngFor="let empresa of getEmpresasPaginadas()">
           <input
             type="checkbox"
             [value]="empresa"
@@ -32,6 +39,11 @@
             [checked]="empresasSeleccionadas.includes(empresa)" />
           {{ empresa }}
         </label>
+      </div>
+      <div class="paginacion paginacion-empresas" *ngIf="totalPaginasEmpresas > 1">
+        <button (click)="cambiarPaginaEmpresas('anterior')" [disabled]="empresaPaginaActual === 1">Anterior</button>
+        <span>Página {{ empresaPaginaActual }} de {{ totalPaginasEmpresas }}</span>
+        <button (click)="cambiarPaginaEmpresas('siguiente')" [disabled]="empresaPaginaActual === totalPaginasEmpresas">Siguiente</button>
       </div>
     </div>
   </div>
@@ -62,7 +74,7 @@
           (click)="aplicarOferta(oferta)"
           [disabled]="yaPostulado(oferta.id)"
           [ngClass]="{ 'boton-disabled': yaPostulado(oferta.id) }">
-          {{ yaPostulado(oferta.id) ? 'Postulado' : 'Postularse' }}
+          {{ yaPostulado(oferta.id) ? 'Inscrito' : 'Inscribirse' }}
         </button>
 
         <button class="apButton mitad" (click)="verDetalle(oferta.id)">Ver
