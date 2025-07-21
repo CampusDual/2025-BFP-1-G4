@@ -2,17 +2,63 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 3rem;
   padding-top: 2rem;
   box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* 👈 CENTRA TODO */
+}
+
+/* Contenedor centrado para título y buscador */
+.encabezado-centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* centra horizontalmente a los hijos */
+  justify-content: center; /* centra verticalmente si lo necesitas */
+  width: 100%;
+  max-width: 600px;        /* límite visual */
+  margin: 0 auto;          /* centra el bloque */
+  margin-bottom: 30px;
+  gap: 10px;
 }
 
 .page-title {
   font-size: 2rem;
   font-weight: 700;
   color: #e53935;
-  margin-bottom: 1.5rem;
   text-align: center;
+  margin: 0;
+}
+
+/* Buscador con icono centrado */
+.buscador-con-icono {
+  position: relative;
+  width: 250px;
+  margin-left: -50px; /* 👈 DESPLAZAMIENTO HACIA LA IZQUIERDA */
+}
+
+.input-buscador-empresas {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  font-size: 15px;
+  border: 2px solid #ff7043;
+  border-radius: 8px;
+  background-color: white;
+  color: #333;
+  box-shadow: none;
+}
+
+.input-buscador-empresas:focus {
+  outline: none;
+}
+
+.icono-lupa {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #ff7043;
+  pointer-events: none;
 }
 
 /* Botones */

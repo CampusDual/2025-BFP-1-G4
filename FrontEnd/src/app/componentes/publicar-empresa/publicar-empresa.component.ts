@@ -71,17 +71,29 @@ export class PublicarEmpresaComponent implements OnInit {
     }
   }
 
-  publicarEmpresa(): void {
-    this.enterpriseService.createEnterpriseWithUser(this.enterpriseUser).subscribe({
-      next: () => {
+publicarEmpresa(): void {
+  this.enterpriseService.createEnterpriseWithUser(this.enterpriseUser).subscribe({
+    next: (response) => {
+      // Si la respuesta es un error pero con status 200, puedes comprobar aquí
+      if (response && response.error) {
+        alert('Error al crear empresa: ' + response.error);
+      } else {
         alert('Empresa creada con éxito');
         this.router.navigate(['/lista-empresas']);
-      },
-      error: (err) => {
+      }
+    },
+    error: (err) => {
+      // Si el error tiene status 200, tratarlo como éxito
+      if (err.status === 200) {
+        alert('Empresa creada con éxito');
+        this.router.navigate(['/lista-empresas']);
+      } else {
+        alert('Error al crear empresa');
         console.error('Error al crear empresa', err);
       }
-    });
-  }
+    }
+  });
+}
 
   actualizarEmpresaConUsuario(): void {
     this.enterpriseService.updateEnterpriseWithUser(this.enterpriseUser).subscribe({

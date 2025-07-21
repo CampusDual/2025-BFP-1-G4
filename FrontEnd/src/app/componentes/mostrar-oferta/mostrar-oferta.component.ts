@@ -22,6 +22,12 @@ export class MostrarOfertaComponent implements OnInit {
   userId: number | null = null;
   ofertasPostuladasIds: number[] = [];
   textoBusqueda: string = '';
+  filtroEmpresaTexto: string = '';
+
+  // Paginación del filtro de empresas
+  empresaPaginaActual: number = 1;
+  empresasPorPagina: number = 18;
+  totalPaginasEmpresas: number = 0;
 
   constructor(
     private ofertasService: OfertasService,
@@ -31,7 +37,6 @@ export class MostrarOfertaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Leer estado guardado en sessionStorage
     const savedState = sessionStorage.getItem('mostrar-oferta-state');
     if (savedState) {
       const state = JSON.parse(savedState);
@@ -188,6 +193,29 @@ export class MostrarOfertaComponent implements OnInit {
     this.totalPaginas = Math.ceil(this.ofertasFiltradas.length / this.elementosPorPagina);
     this.actualizarPaginado();
     this.guardarEstado();
+  }
+
+  obtenerEmpresasUnicasFiltradas(): string[] {
+    const todas = this.obtenerEmpresasUnicas();
+    if (!this.filtroEmpresaTexto.trim()) return todas;
+    const texto = this.filtroEmpresaTexto.trim().toLowerCase();
+    return todas.filter(e => e.toLowerCase().includes(texto));
+  }
+
+  // --- Paginación del filtro de empresas ---
+  getEmpresasPaginadas(): string[] {
+    const todas = this.obtenerEmpresasUnicasFiltradas();
+    this.totalPaginasEmpresas = Math.ceil(todas.length / this.empresasPorPagina);
+    const inicio = (this.empresaPaginaActual - 1) * this.empresasPorPagina;
+    return todas.slice(inicio, inicio + this.empresasPorPagina);
+  }
+
+  cambiarPaginaEmpresas(direccion: 'anterior' | 'siguiente'): void {
+    if (direccion === 'anterior' && this.empresaPaginaActual > 1) {
+      this.empresaPaginaActual--;
+    } else if (direccion === 'siguiente' && this.empresaPaginaActual < this.totalPaginasEmpresas) {
+      this.empresaPaginaActual++;
+    }
   }
 
   onTextoBuscar(event: any): void {
