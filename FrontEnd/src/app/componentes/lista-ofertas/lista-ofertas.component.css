@@ -1,35 +1,79 @@
-/* Contenedor principal */
+/* CONTENEDOR PRINCIPAL */
 .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
   padding-top: 2rem;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
-  overflow-x: hidden;
+  margin: 0 auto;
 }
 
-/* Título */
+/* ENCABEZADO CENTRADO: Título + Buscador */
+.encabezado-centrado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  gap: 10px;
+}
+
+/* TÍTULO DE PÁGINA */
 .page-title {
   font-size: 2rem;
   font-weight: 700;
   color: #e53935;
-  margin-bottom: 1.5rem;
   text-align: center;
+  margin: 0;
 }
 
-/* Botón: "Nueva oferta", "Nueva empresa", etc. */
-.boton-publicar,
-.boton-nueva-oferta-container {
+/* BUSCADOR CON ICONO INTERNO */
+.buscador-con-icono {
+  position: relative;
+  width: 250px;
+  margin-left: -50px;
+}
+
+.input-buscador-empresas {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  font-size: 15px;
+  border: 2px solid #ff7043;
+  border-radius: 8px;
+  background-color: white;
+  color: #333;
+  box-shadow: none;
+}
+
+.input-buscador-empresas:focus {
+  outline: none;
+}
+
+.icono-lupa {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #ff7043;
+  pointer-events: none;
+  font-size: 20px;
+}
+
+/* BOTONES */
+.boton-publicar {
   margin-bottom: 16px;
   display: flex;
+  gap: 1rem;
   justify-content: flex-start;
   width: 100%;
 }
 
-.add-btn {
+.add-btn,
+.delete-btn {
   padding: 10px 22px;
   border: 2px solid #ff7043;
   background: transparent;
@@ -39,9 +83,11 @@
   cursor: pointer;
   font-size: 16px;
   transition: 0.3s;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.add-btn:hover {
+.add-btn:hover,
+.delete-btn:hover {
   background-color: #ff7043;
   color: white;
 }
@@ -50,7 +96,12 @@
   box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.4);
 }
 
-/* Compatibilidad con Angular Material */
+.delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* COMPATIBILIDAD ANGULAR MATERIAL */
 .add-btn.mat-flat-button {
   background-color: transparent !important;
   color: #ff7043 !important;
@@ -58,80 +109,36 @@
   box-shadow: none !important;
 }
 
-/* Buscador */
-.buscador-container {
-  display: flex;
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 20px;
-  gap: 8px;
-  box-sizing: border-box;
-}
-
-.buscador-input {
-  flex-grow: 1;
-  padding: 8px 12px;
-  font-size: 1rem;
-  border: 2px solid #ff7043;
-  border-radius: 6px;
-  transition: border-color 0.3s ease;
-}
-
-.buscador-input:focus {
-  border-color: #e53935;
-  outline: none;
-}
-
-.btn-buscar {
-  background-color: #ff7043;
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  font-size: 1.1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-buscar:hover {
-  background-color: #e53935;
-}
-
-/* Contenedor de la tabla con scroll si hay muchas filas */
+/* CONTENEDOR DE TABLA */
 .tabla-scroll-container {
   max-height: calc(100vh - 300px);
   overflow-y: auto;
   width: 100%;
-  box-sizing: border-box;
-  max-width: 1200px;
-  overflow-x: auto;
 }
 
-/* Tabla general */
-.tabla-ofertas {
+/* TABLA GENERAL */
+.tabla-ofertas,
+.tabla-empresas {
   width: 100%;
+  table-layout: auto;
   border-collapse: collapse;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  table-layout: fixed;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .tabla-ofertas th,
-.tabla-ofertas td {
+.tabla-ofertas td,
+.tabla-empresas th,
+.tabla-empresas td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
   font-size: 15px;
-  overflow-wrap: break-word;
   word-break: break-word;
 }
 
-.tabla-ofertas th {
+.tabla-ofertas th,
+.tabla-empresas th {
   background-color: #fff;
   color: #f44336;
   font-weight: 600;
@@ -139,13 +146,16 @@
   text-align: center;
 }
 
-/* Centrado en columnas específicas */
 .tabla-ofertas td.centrar,
 .tabla-ofertas th.centrar {
   text-align: center;
 }
 
-/* Íconos de estado */
+.tabla-empresas td {
+  cursor: pointer;
+}
+
+/* ESTADOS */
 .activo {
   color: #4caf50;
 }
@@ -154,7 +164,6 @@
   color: #f44336;
 }
 
-/* Círculo de estado (si usas) */
 .estado-circle {
   width: 13px;
   height: 13px;
@@ -162,7 +171,7 @@
   display: inline-block;
 }
 
-/* Paginación */
+/* PAGINACIÓN */
 .paginacion {
   margin-top: 1.5rem;
   display: flex;
@@ -193,7 +202,7 @@
   cursor: not-allowed;
 }
 
-/* Mensaje si no hay resultados */
+/* MENSAJE CUANDO NO HAY RESULTADOS */
 .sin-resultados {
   text-align: center;
   font-style: italic;
