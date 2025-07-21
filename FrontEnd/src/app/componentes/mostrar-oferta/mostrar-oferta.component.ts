@@ -122,7 +122,8 @@ export class MostrarOfertaComponent implements OnInit {
   }
 
   obtenerEmpresasUnicas(): string[] {
-    return Array.from(new Set(this.offerActivas.map((o: any) => o.enterpriseName)));
+    return Array.from(new Set(this.offerActivas.map((o: any) => o.enterpriseName)))
+      .sort((a, b) => a.localeCompare(b));
   }
 
   actualizarPaginado(): void {
