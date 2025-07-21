@@ -81,8 +81,11 @@ export class DetalleOfertaComponent implements OnInit {
 
   volver() {
     const origen = this.route.snapshot.queryParamMap.get('origen');
-    if (origen === 'mostrar-oferta') {
-      this.router.navigate(['/mostrar-oferta']);
+    const ofertaId = this.route.snapshot.queryParamMap.get('ofertaId');
+    if (origen === 'candidatos-oferta' && ofertaId) {
+      this.router.navigate(['/candidatos-oferta', ofertaId]);
+    } else if (origen === 'mis-postulaciones') {
+      this.router.navigate(['/mis-postulaciones']);
     } else {
       this.router.navigate(['/mostrar-oferta']);
     }
