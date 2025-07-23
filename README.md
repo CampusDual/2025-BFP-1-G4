@@ -18,8 +18,17 @@ Este proyecto es una plataforma web de empleo orientada a empresas y usuarios en
 
 ---
 
-## 🚀 Usuario de Prueba
-USER: test@test.com
+## 🚀 Usuarios de Prueba
+1-Candidato
+USER: Nando5P
+PASS: 456789
+
+2-Empresa
+USER: cinfo
+PASS: 456789
+
+3-Administrador
+USER:admin 
 PASS: 456789
 
 ## 🔐 Acceso empresarial
