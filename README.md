@@ -19,7 +19,16 @@ Este proyecto es una plataforma web de empleo orientada a empresas y usuarios en
 ---
 
 ## 🚀 Usuario de Prueba
-USER: test@test.com
+1-Candidato
+USER: felice
+PASS: 456789
+
+2-Empresa
+USER: aqua
+PASS: 456789
+
+3-Administrador
+USER: admin
 PASS: 456789
 
 ## 🔐 Acceso empresarial
